@@ -1,0 +1,5375 @@
+[
+  {
+    "Número": "1",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Arroz, integral, cozido",
+    "Energia(kcal)": "123.53",
+    "Proteína(g)": "2.59",
+    "Lipídeos(g)": "1.00",
+    "Carboidrato(g)": "25.81"
+  },
+  {
+    "Número": "2",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Arroz, integral, cru",
+    "Energia(kcal)": "359.68",
+    "Proteína(g)": "7.32",
+    "Lipídeos(g)": "1.86",
+    "Carboidrato(g)": "77.45"
+  },
+  {
+    "Número": "3",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Arroz, tipo 1, cozido",
+    "Energia(kcal)": "128.26",
+    "Proteína(g)": "2.52",
+    "Lipídeos(g)": "0.23",
+    "Carboidrato(g)": "28.06"
+  },
+  {
+    "Número": "4",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Arroz, tipo 1, cru",
+    "Energia(kcal)": "357.79",
+    "Proteína(g)": "7.16",
+    "Lipídeos(g)": "0.34",
+    "Carboidrato(g)": "78.76"
+  },
+  {
+    "Número": "5",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Arroz, tipo 2, cozido",
+    "Energia(kcal)": "130.12",
+    "Proteína(g)": "2.57",
+    "Lipídeos(g)": "0.36",
+    "Carboidrato(g)": "28.19"
+  },
+  {
+    "Número": "6",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Arroz, tipo 2, cru",
+    "Energia(kcal)": "358.12",
+    "Proteína(g)": "7.24",
+    "Lipídeos(g)": "0.28",
+    "Carboidrato(g)": "78.88"
+  },
+  {
+    "Número": "7",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Aveia, flocos, crua",
+    "Energia(kcal)": "393.82",
+    "Proteína(g)": "13.92",
+    "Lipídeos(g)": "8.50",
+    "Carboidrato(g)": "66.64"
+  },
+  {
+    "Número": "8",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Biscoito, doce, maisena",
+    "Energia(kcal)": "442.82",
+    "Proteína(g)": "8.07",
+    "Lipídeos(g)": "11.97",
+    "Carboidrato(g)": "75.23"
+  },
+  {
+    "Número": "9",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Biscoito, doce, recheado com chocolate",
+    "Energia(kcal)": "471.82",
+    "Proteína(g)": "6.40",
+    "Lipídeos(g)": "19.58",
+    "Carboidrato(g)": "70.55"
+  },
+  {
+    "Número": "10",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Biscoito, doce, recheado com morango",
+    "Energia(kcal)": "471.17",
+    "Proteína(g)": "5.72",
+    "Lipídeos(g)": "19.57",
+    "Carboidrato(g)": "71.01"
+  },
+  {
+    "Número": "11",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Biscoito, doce, wafer, recheado de chocolate",
+    "Energia(kcal)": "502.46",
+    "Proteína(g)": "5.56",
+    "Lipídeos(g)": "24.67",
+    "Carboidrato(g)": "67.54"
+  },
+  {
+    "Número": "12",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Biscoito, doce, wafer, recheado de morango",
+    "Energia(kcal)": "513.45",
+    "Proteína(g)": "4.52",
+    "Lipídeos(g)": "26.40",
+    "Carboidrato(g)": "67.35"
+  },
+  {
+    "Número": "13",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Biscoito, salgado, cream cracker",
+    "Energia(kcal)": "431.73",
+    "Proteína(g)": "10.06",
+    "Lipídeos(g)": "14.44",
+    "Carboidrato(g)": "68.73"
+  },
+  {
+    "Número": "14",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Bolo, mistura para",
+    "Energia(kcal)": "418.63",
+    "Proteína(g)": "6.16",
+    "Lipídeos(g)": "6.13",
+    "Carboidrato(g)": "84.71"
+  },
+  {
+    "Número": "15",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Bolo, pronto, aipim",
+    "Energia(kcal)": "323.85",
+    "Proteína(g)": "4.42",
+    "Lipídeos(g)": "12.75",
+    "Carboidrato(g)": "47.86"
+  },
+  {
+    "Número": "16",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Bolo, pronto, chocolate",
+    "Energia(kcal)": "410.01",
+    "Proteína(g)": "6.22",
+    "Lipídeos(g)": "18.47",
+    "Carboidrato(g)": "54.72"
+  },
+  {
+    "Número": "17",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Bolo, pronto, coco",
+    "Energia(kcal)": "333.44",
+    "Proteína(g)": "5.67",
+    "Lipídeos(g)": "11.30",
+    "Carboidrato(g)": "52.28"
+  },
+  {
+    "Número": "18",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Bolo, pronto, milho",
+    "Energia(kcal)": "311.39",
+    "Proteína(g)": "4.80",
+    "Lipídeos(g)": "12.41",
+    "Carboidrato(g)": "45.11"
+  },
+  {
+    "Número": "19",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Canjica, branca, crua",
+    "Energia(kcal)": "357.60",
+    "Proteína(g)": "7.20",
+    "Lipídeos(g)": "0.97",
+    "Carboidrato(g)": "78.06"
+  },
+  {
+    "Número": "20",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Canjica, com leite integral",
+    "Energia(kcal)": "112.46",
+    "Proteína(g)": "2.36",
+    "Lipídeos(g)": "1.24",
+    "Carboidrato(g)": "23.63"
+  },
+  {
+    "Número": "21",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Cereais, milho, flocos, com sal",
+    "Energia(kcal)": "369.60",
+    "Proteína(g)": "7.29",
+    "Lipídeos(g)": "1.60",
+    "Carboidrato(g)": "80.83"
+  },
+  {
+    "Número": "22",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Cereais, milho, flocos, sem sal",
+    "Energia(kcal)": "363.34",
+    "Proteína(g)": "6.88",
+    "Lipídeos(g)": "1.18",
+    "Carboidrato(g)": "80.45"
+  },
+  {
+    "Número": "23",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Cereais, mingau, milho, infantil",
+    "Energia(kcal)": "394.43",
+    "Proteína(g)": "6.43",
+    "Lipídeos(g)": "1.09",
+    "Carboidrato(g)": "87.27"
+  },
+  {
+    "Número": "24",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Cereais, mistura para vitamina, trigo, cevada e aveia",
+    "Energia(kcal)": "381.13",
+    "Proteína(g)": "8.90",
+    "Lipídeos(g)": "2.12",
+    "Carboidrato(g)": "81.62"
+  },
+  {
+    "Número": "25",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Cereal matinal, milho",
+    "Energia(kcal)": "365.35",
+    "Proteína(g)": "7.16",
+    "Lipídeos(g)": "0.96",
+    "Carboidrato(g)": "83.82"
+  },
+  {
+    "Número": "26",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Cereal matinal, milho, açúcar",
+    "Energia(kcal)": "376.56",
+    "Proteína(g)": "4.74",
+    "Lipídeos(g)": "0.67",
+    "Carboidrato(g)": "88.84"
+  },
+  {
+    "Número": "27",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Creme de arroz, pó",
+    "Energia(kcal)": "386.00",
+    "Proteína(g)": "7.03",
+    "Lipídeos(g)": "1.23",
+    "Carboidrato(g)": "83.87"
+  },
+  {
+    "Número": "28",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Creme de milho, pó",
+    "Energia(kcal)": "333.03",
+    "Proteína(g)": "4.82",
+    "Lipídeos(g)": "1.64",
+    "Carboidrato(g)": "86.15"
+  },
+  {
+    "Número": "29",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Curau, milho verde",
+    "Energia(kcal)": "78.43",
+    "Proteína(g)": "2.36",
+    "Lipídeos(g)": "1.64",
+    "Carboidrato(g)": "13.94"
+  },
+  {
+    "Número": "30",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Curau, milho verde, mistura para",
+    "Energia(kcal)": "402.29",
+    "Proteína(g)": "2.22",
+    "Lipídeos(g)": "13.37",
+    "Carboidrato(g)": "79.82"
+  },
+  {
+    "Número": "31",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Farinha, de arroz, enriquecida",
+    "Energia(kcal)": "363.06",
+    "Proteína(g)": "1.27",
+    "Lipídeos(g)": "0.30",
+    "Carboidrato(g)": "85.50"
+  },
+  {
+    "Número": "32",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Farinha, de centeio, integral",
+    "Energia(kcal)": "335.78",
+    "Proteína(g)": "12.52",
+    "Lipídeos(g)": "1.75",
+    "Carboidrato(g)": "73.30"
+  },
+  {
+    "Número": "33",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Farinha, de milho, amarela",
+    "Energia(kcal)": "350.59",
+    "Proteína(g)": "7.19",
+    "Lipídeos(g)": "1.47",
+    "Carboidrato(g)": "79.08"
+  },
+  {
+    "Número": "34",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Farinha, de rosca",
+    "Energia(kcal)": "370.58",
+    "Proteína(g)": "11.38",
+    "Lipídeos(g)": "1.46",
+    "Carboidrato(g)": "75.79"
+  },
+  {
+    "Número": "35",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Farinha, de trigo",
+    "Energia(kcal)": "360.47",
+    "Proteína(g)": "9.79",
+    "Lipídeos(g)": "1.37",
+    "Carboidrato(g)": "75.09"
+  },
+  {
+    "Número": "36",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Farinha, láctea, de cereais",
+    "Energia(kcal)": "414.85",
+    "Proteína(g)": "11.88",
+    "Lipídeos(g)": "5.79",
+    "Carboidrato(g)": "77.77"
+  },
+  {
+    "Número": "37",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Lasanha, massa fresca, cozida",
+    "Energia(kcal)": "163.76",
+    "Proteína(g)": "5.81",
+    "Lipídeos(g)": "1.16",
+    "Carboidrato(g)": "32.52"
+  },
+  {
+    "Número": "38",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Lasanha, massa fresca, crua",
+    "Energia(kcal)": "220.31",
+    "Proteína(g)": "7.01",
+    "Lipídeos(g)": "1.34",
+    "Carboidrato(g)": "45.06"
+  },
+  {
+    "Número": "39",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Macarrão, instantâneo",
+    "Energia(kcal)": "435.86",
+    "Proteína(g)": "8.79",
+    "Lipídeos(g)": "17.24",
+    "Carboidrato(g)": "62.43"
+  },
+  {
+    "Número": "40",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Macarrão, trigo, cru",
+    "Energia(kcal)": "371.12",
+    "Proteína(g)": "10.00",
+    "Lipídeos(g)": "1.30",
+    "Carboidrato(g)": "77.94"
+  },
+  {
+    "Número": "41",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Macarrão, trigo, cru, com ovos",
+    "Energia(kcal)": "370.57",
+    "Proteína(g)": "10.32",
+    "Lipídeos(g)": "1.97",
+    "Carboidrato(g)": "76.62"
+  },
+  {
+    "Número": "42",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Milho, amido, cru",
+    "Energia(kcal)": "361.37",
+    "Proteína(g)": "0.60",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "87.15"
+  },
+  {
+    "Número": "43",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Milho, fubá, cru",
+    "Energia(kcal)": "353.48",
+    "Proteína(g)": "7.21",
+    "Lipídeos(g)": "1.90",
+    "Carboidrato(g)": "78.87"
+  },
+  {
+    "Número": "44",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Milho, verde, cru",
+    "Energia(kcal)": "138.17",
+    "Proteína(g)": "6.59",
+    "Lipídeos(g)": "0.61",
+    "Carboidrato(g)": "28.56"
+  },
+  {
+    "Número": "45",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Milho, verde, enlatado, drenado",
+    "Energia(kcal)": "97.56",
+    "Proteína(g)": "3.23",
+    "Lipídeos(g)": "2.35",
+    "Carboidrato(g)": "17.14"
+  },
+  {
+    "Número": "46",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Mingau tradicional, pó",
+    "Energia(kcal)": "373.42",
+    "Proteína(g)": "0.58",
+    "Lipídeos(g)": "0.37",
+    "Carboidrato(g)": "89.34"
+  },
+  {
+    "Número": "47",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pamonha, barra para cozimento, pré-cozida",
+    "Energia(kcal)": "171.22",
+    "Proteína(g)": "2.55",
+    "Lipídeos(g)": "4.85",
+    "Carboidrato(g)": "30.68"
+  },
+  {
+    "Número": "48",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pão, aveia, forma",
+    "Energia(kcal)": "343.09",
+    "Proteína(g)": "12.35",
+    "Lipídeos(g)": "5.69",
+    "Carboidrato(g)": "59.57"
+  },
+  {
+    "Número": "49",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pão, de soja",
+    "Energia(kcal)": "308.73",
+    "Proteína(g)": "11.34",
+    "Lipídeos(g)": "3.58",
+    "Carboidrato(g)": "56.51"
+  },
+  {
+    "Número": "50",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pão, glúten, forma",
+    "Energia(kcal)": "252.99",
+    "Proteína(g)": "11.95",
+    "Lipídeos(g)": "2.73",
+    "Carboidrato(g)": "44.12"
+  },
+  {
+    "Número": "51",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pão, milho, forma",
+    "Energia(kcal)": "292.01",
+    "Proteína(g)": "8.30",
+    "Lipídeos(g)": "3.11",
+    "Carboidrato(g)": "56.40"
+  },
+  {
+    "Número": "52",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pão, trigo, forma, integral",
+    "Energia(kcal)": "253.19",
+    "Proteína(g)": "9.43",
+    "Lipídeos(g)": "3.65",
+    "Carboidrato(g)": "49.94"
+  },
+  {
+    "Número": "53",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pão, trigo, francês",
+    "Energia(kcal)": "299.81",
+    "Proteína(g)": "7.95",
+    "Lipídeos(g)": "3.10",
+    "Carboidrato(g)": "58.65"
+  },
+  {
+    "Número": "54",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pão, trigo, sovado",
+    "Energia(kcal)": "310.96",
+    "Proteína(g)": "8.40",
+    "Lipídeos(g)": "2.84",
+    "Carboidrato(g)": "61.45"
+  },
+  {
+    "Número": "55",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pastel, de carne, cru",
+    "Energia(kcal)": "288.70",
+    "Proteína(g)": "10.74",
+    "Lipídeos(g)": "8.79",
+    "Carboidrato(g)": "42.02"
+  },
+  {
+    "Número": "56",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pastel, de carne, frito",
+    "Energia(kcal)": "388.37",
+    "Proteína(g)": "10.10",
+    "Lipídeos(g)": "20.14",
+    "Carboidrato(g)": "43.77"
+  },
+  {
+    "Número": "57",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pastel, de queijo, cru",
+    "Energia(kcal)": "308.47",
+    "Proteína(g)": "9.85",
+    "Lipídeos(g)": "9.63",
+    "Carboidrato(g)": "45.95"
+  },
+  {
+    "Número": "58",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pastel, de queijo, frito",
+    "Energia(kcal)": "422.11",
+    "Proteína(g)": "8.71",
+    "Lipídeos(g)": "22.67",
+    "Carboidrato(g)": "48.13"
+  },
+  {
+    "Número": "59",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pastel, massa, crua",
+    "Energia(kcal)": "310.20",
+    "Proteína(g)": "6.90",
+    "Lipídeos(g)": "5.48",
+    "Carboidrato(g)": "57.38"
+  },
+  {
+    "Número": "60",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pastel, massa, frita",
+    "Energia(kcal)": "569.67",
+    "Proteína(g)": "6.02",
+    "Lipídeos(g)": "40.86",
+    "Carboidrato(g)": "49.34"
+  },
+  {
+    "Número": "61",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Pipoca, com óleo de soja, sem sal",
+    "Energia(kcal)": "448.33",
+    "Proteína(g)": "9.93",
+    "Lipídeos(g)": "15.94",
+    "Carboidrato(g)": "70.31"
+  },
+  {
+    "Número": "62",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Polenta, pré-cozida",
+    "Energia(kcal)": "102.74",
+    "Proteína(g)": "2.29",
+    "Lipídeos(g)": "0.30",
+    "Carboidrato(g)": "23.31"
+  },
+  {
+    "Número": "63",
+    "Grupo": "Cereais e derivados",
+    "Descrição do Alimento": "Torrada, pão francês",
+    "Energia(kcal)": "377.42",
+    "Proteína(g)": "10.52",
+    "Lipídeos(g)": "3.30",
+    "Carboidrato(g)": "74.56"
+  },
+  {
+    "Número": "64",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Abóbora, cabotian, cozida",
+    "Energia(kcal)": "48.04",
+    "Proteína(g)": "1.44",
+    "Lipídeos(g)": "0.73",
+    "Carboidrato(g)": "10.76"
+  },
+  {
+    "Número": "65",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Abóbora, cabotian, crua",
+    "Energia(kcal)": "38.60",
+    "Proteína(g)": "1.75",
+    "Lipídeos(g)": "0.54",
+    "Carboidrato(g)": "8.36"
+  },
+  {
+    "Número": "66",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Abóbora, menina brasileira, crua",
+    "Energia(kcal)": "13.61",
+    "Proteína(g)": "0.61",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "3.30"
+  },
+  {
+    "Número": "67",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Abóbora, moranga, crua",
+    "Energia(kcal)": "12.36",
+    "Proteína(g)": "0.96",
+    "Lipídeos(g)": "0.06",
+    "Carboidrato(g)": "2.67"
+  },
+  {
+    "Número": "68",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Abóbora, moranga, refogada",
+    "Energia(kcal)": "29.00",
+    "Proteína(g)": "0.39",
+    "Lipídeos(g)": "0.80",
+    "Carboidrato(g)": "5.98"
+  },
+  {
+    "Número": "69",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Abóbora, pescoço, crua",
+    "Energia(kcal)": "24.47",
+    "Proteína(g)": "0.67",
+    "Lipídeos(g)": "0.12",
+    "Carboidrato(g)": "6.12"
+  },
+  {
+    "Número": "70",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Abobrinha, italiana, cozida",
+    "Energia(kcal)": "15.04",
+    "Proteína(g)": "1.12",
+    "Lipídeos(g)": "0.20",
+    "Carboidrato(g)": "2.98"
+  },
+  {
+    "Número": "71",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Abobrinha, italiana, crua",
+    "Energia(kcal)": "19.28",
+    "Proteína(g)": "1.14",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "4.29"
+  },
+  {
+    "Número": "72",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Abobrinha, italiana, refogada",
+    "Energia(kcal)": "24.43",
+    "Proteína(g)": "1.07",
+    "Lipídeos(g)": "0.82",
+    "Carboidrato(g)": "4.19"
+  },
+  {
+    "Número": "73",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Abobrinha, paulista, crua",
+    "Energia(kcal)": "30.81",
+    "Proteína(g)": "0.64",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "7.87"
+  },
+  {
+    "Número": "74",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Acelga, crua",
+    "Energia(kcal)": "20.94",
+    "Proteína(g)": "1.44",
+    "Lipídeos(g)": "0.11",
+    "Carboidrato(g)": "4.63"
+  },
+  {
+    "Número": "75",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Agrião, cru",
+    "Energia(kcal)": "16.58",
+    "Proteína(g)": "2.69",
+    "Lipídeos(g)": "0.24",
+    "Carboidrato(g)": "2.25"
+  },
+  {
+    "Número": "76",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Aipo, cru",
+    "Energia(kcal)": "19.09",
+    "Proteína(g)": "0.76",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "4.27"
+  },
+  {
+    "Número": "77",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Alface, americana, crua",
+    "Energia(kcal)": "8.79",
+    "Proteína(g)": "0.61",
+    "Lipídeos(g)": "0.13",
+    "Carboidrato(g)": "1.75"
+  },
+  {
+    "Número": "78",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Alface, crespa, crua",
+    "Energia(kcal)": "10.68",
+    "Proteína(g)": "1.35",
+    "Lipídeos(g)": "0.16",
+    "Carboidrato(g)": "1.70"
+  },
+  {
+    "Número": "79",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Alface, lisa, crua",
+    "Energia(kcal)": "13.82",
+    "Proteína(g)": "1.69",
+    "Lipídeos(g)": "0.12",
+    "Carboidrato(g)": "2.43"
+  },
+  {
+    "Número": "80",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Alface, roxa, crua",
+    "Energia(kcal)": "12.72",
+    "Proteína(g)": "0.91",
+    "Lipídeos(g)": "0.19",
+    "Carboidrato(g)": "2.49"
+  },
+  {
+    "Número": "81",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Alfavaca, crua",
+    "Energia(kcal)": "29.18",
+    "Proteína(g)": "2.66",
+    "Lipídeos(g)": "0.48",
+    "Carboidrato(g)": "5.24"
+  },
+  {
+    "Número": "82",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Alho, cru",
+    "Energia(kcal)": "113.13",
+    "Proteína(g)": "7.01",
+    "Lipídeos(g)": "0.22",
+    "Carboidrato(g)": "23.91"
+  },
+  {
+    "Número": "83",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Alho-poró, cru",
+    "Energia(kcal)": "31.51",
+    "Proteína(g)": "1.41",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "6.88"
+  },
+  {
+    "Número": "84",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Almeirão, cru",
+    "Energia(kcal)": "18.03",
+    "Proteína(g)": "1.77",
+    "Lipídeos(g)": "0.22",
+    "Carboidrato(g)": "3.34"
+  },
+  {
+    "Número": "85",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Almeirão, refogado",
+    "Energia(kcal)": "65.08",
+    "Proteína(g)": "1.70",
+    "Lipídeos(g)": "4.85",
+    "Carboidrato(g)": "5.70"
+  },
+  {
+    "Número": "86",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Batata, baroa, cozida",
+    "Energia(kcal)": "80.12",
+    "Proteína(g)": "0.85",
+    "Lipídeos(g)": "0.17",
+    "Carboidrato(g)": "18.95"
+  },
+  {
+    "Número": "87",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Batata, baroa, crua",
+    "Energia(kcal)": "100.98",
+    "Proteína(g)": "1.05",
+    "Lipídeos(g)": "0.17",
+    "Carboidrato(g)": "23.98"
+  },
+  {
+    "Número": "88",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Batata, doce, cozida",
+    "Energia(kcal)": "76.76",
+    "Proteína(g)": "0.64",
+    "Lipídeos(g)": "0.09",
+    "Carboidrato(g)": "18.42"
+  },
+  {
+    "Número": "89",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Batata, doce, crua",
+    "Energia(kcal)": "118.24",
+    "Proteína(g)": "1.26",
+    "Lipídeos(g)": "0.13",
+    "Carboidrato(g)": "28.20"
+  },
+  {
+    "Número": "90",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Batata, frita, tipo chips, industrializada",
+    "Energia(kcal)": "542.73",
+    "Proteína(g)": "5.58",
+    "Lipídeos(g)": "36.62",
+    "Carboidrato(g)": "51.22"
+  },
+  {
+    "Número": "91",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Batata, inglesa, cozida",
+    "Energia(kcal)": "51.59",
+    "Proteína(g)": "1.16",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "11.94"
+  },
+  {
+    "Número": "92",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Batata, inglesa, crua",
+    "Energia(kcal)": "64.37",
+    "Proteína(g)": "1.77",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "14.69"
+  },
+  {
+    "Número": "93",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Batata, inglesa, frita",
+    "Energia(kcal)": "267.16",
+    "Proteína(g)": "4.97",
+    "Lipídeos(g)": "13.11",
+    "Carboidrato(g)": "35.64"
+  },
+  {
+    "Número": "94",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Batata, inglesa, sauté",
+    "Energia(kcal)": "67.89",
+    "Proteína(g)": "1.29",
+    "Lipídeos(g)": "0.90",
+    "Carboidrato(g)": "14.09"
+  },
+  {
+    "Número": "95",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Berinjela, cozida",
+    "Energia(kcal)": "18.85",
+    "Proteína(g)": "0.68",
+    "Lipídeos(g)": "0.15",
+    "Carboidrato(g)": "4.47"
+  },
+  {
+    "Número": "96",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Berinjela, crua",
+    "Energia(kcal)": "19.63",
+    "Proteína(g)": "1.22",
+    "Lipídeos(g)": "0.10",
+    "Carboidrato(g)": "4.43"
+  },
+  {
+    "Número": "97",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Beterraba, cozida",
+    "Energia(kcal)": "32.15",
+    "Proteína(g)": "1.29",
+    "Lipídeos(g)": "0.09",
+    "Carboidrato(g)": "7.23"
+  },
+  {
+    "Número": "98",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Beterraba, crua",
+    "Energia(kcal)": "48.83",
+    "Proteína(g)": "1.95",
+    "Lipídeos(g)": "0.09",
+    "Carboidrato(g)": "11.11"
+  },
+  {
+    "Número": "99",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Biscoito, polvilho doce",
+    "Energia(kcal)": "437.55",
+    "Proteína(g)": "1.29",
+    "Lipídeos(g)": "12.25",
+    "Carboidrato(g)": "80.54"
+  },
+  {
+    "Número": "100",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Brócolis, cozido",
+    "Energia(kcal)": "24.64",
+    "Proteína(g)": "2.13",
+    "Lipídeos(g)": "0.46",
+    "Carboidrato(g)": "4.37"
+  },
+  {
+    "Número": "101",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Brócolis, cru",
+    "Energia(kcal)": "25.50",
+    "Proteína(g)": "3.64",
+    "Lipídeos(g)": "0.27",
+    "Carboidrato(g)": "4.03"
+  },
+  {
+    "Número": "102",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Cará, cozido",
+    "Energia(kcal)": "77.58",
+    "Proteína(g)": "1.53",
+    "Lipídeos(g)": "0.11",
+    "Carboidrato(g)": "18.85"
+  },
+  {
+    "Número": "103",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Cará, cru",
+    "Energia(kcal)": "95.63",
+    "Proteína(g)": "2.28",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "22.95"
+  },
+  {
+    "Número": "104",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Caruru, cru",
+    "Energia(kcal)": "34.03",
+    "Proteína(g)": "3.20",
+    "Lipídeos(g)": "0.58",
+    "Carboidrato(g)": "5.97"
+  },
+  {
+    "Número": "105",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Catalonha, crua",
+    "Energia(kcal)": "23.89",
+    "Proteína(g)": "1.87",
+    "Lipídeos(g)": "0.28",
+    "Carboidrato(g)": "4.75"
+  },
+  {
+    "Número": "106",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Catalonha, refogada",
+    "Energia(kcal)": "63.45",
+    "Proteína(g)": "1.95",
+    "Lipídeos(g)": "4.81",
+    "Carboidrato(g)": "4.81"
+  },
+  {
+    "Número": "107",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Cebola, crua",
+    "Energia(kcal)": "39.42",
+    "Proteína(g)": "1.71",
+    "Lipídeos(g)": "0.08",
+    "Carboidrato(g)": "8.85"
+  },
+  {
+    "Número": "108",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Cebolinha, crua",
+    "Energia(kcal)": "19.52",
+    "Proteína(g)": "1.87",
+    "Lipídeos(g)": "0.35",
+    "Carboidrato(g)": "3.37"
+  },
+  {
+    "Número": "109",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Cenoura, cozida",
+    "Energia(kcal)": "29.86",
+    "Proteína(g)": "0.85",
+    "Lipídeos(g)": "0.22",
+    "Carboidrato(g)": "6.69"
+  },
+  {
+    "Número": "110",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Cenoura, crua",
+    "Energia(kcal)": "34.14",
+    "Proteína(g)": "1.32",
+    "Lipídeos(g)": "0.17",
+    "Carboidrato(g)": "7.66"
+  },
+  {
+    "Número": "111",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Chicória, crua",
+    "Energia(kcal)": "13.84",
+    "Proteína(g)": "1.14",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "2.85"
+  },
+  {
+    "Número": "112",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Chuchu, cozido",
+    "Energia(kcal)": "18.54",
+    "Proteína(g)": "0.41",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "4.79"
+  },
+  {
+    "Número": "113",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Chuchu, cru",
+    "Energia(kcal)": "16.98",
+    "Proteína(g)": "0.70",
+    "Lipídeos(g)": "0.06",
+    "Carboidrato(g)": "4.14"
+  },
+  {
+    "Número": "114",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Coentro, folhas desidratadas",
+    "Energia(kcal)": "309.07",
+    "Proteína(g)": "20.88",
+    "Lipídeos(g)": "10.39",
+    "Carboidrato(g)": "47.95"
+  },
+  {
+    "Número": "115",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Couve, manteiga, crua",
+    "Energia(kcal)": "27.06",
+    "Proteína(g)": "2.87",
+    "Lipídeos(g)": "0.55",
+    "Carboidrato(g)": "4.33"
+  },
+  {
+    "Número": "116",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Couve, manteiga, refogada ",
+    "Energia(kcal)": "90.34",
+    "Proteína(g)": "1.67",
+    "Lipídeos(g)": "6.59",
+    "Carboidrato(g)": "8.71"
+  },
+  {
+    "Número": "117",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Couve-flor, crua",
+    "Energia(kcal)": "22.56",
+    "Proteína(g)": "1.91",
+    "Lipídeos(g)": "0.21",
+    "Carboidrato(g)": "4.52"
+  },
+  {
+    "Número": "118",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Couve-flor, cozida",
+    "Energia(kcal)": "19.11",
+    "Proteína(g)": "1.24",
+    "Lipídeos(g)": "0.27",
+    "Carboidrato(g)": "3.88"
+  },
+  {
+    "Número": "119",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Espinafre, Nova Zelândia, cru",
+    "Energia(kcal)": "16.10",
+    "Proteína(g)": "2.00",
+    "Lipídeos(g)": "0.24",
+    "Carboidrato(g)": "2.57"
+  },
+  {
+    "Número": "120",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Espinafre, Nova Zelândia, refogado",
+    "Energia(kcal)": "67.25",
+    "Proteína(g)": "2.72",
+    "Lipídeos(g)": "5.43",
+    "Carboidrato(g)": "4.24"
+  },
+  {
+    "Número": "121",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Farinha, de mandioca, crua",
+    "Energia(kcal)": "360.87",
+    "Proteína(g)": "1.55",
+    "Lipídeos(g)": "0.28",
+    "Carboidrato(g)": "87.90"
+  },
+  {
+    "Número": "122",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Farinha, de mandioca, torrada",
+    "Energia(kcal)": "365.27",
+    "Proteína(g)": "1.23",
+    "Lipídeos(g)": "0.29",
+    "Carboidrato(g)": "89.19"
+  },
+  {
+    "Número": "123",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Farinha, de puba",
+    "Energia(kcal)": "360.18",
+    "Proteína(g)": "1.62",
+    "Lipídeos(g)": "0.47",
+    "Carboidrato(g)": "87.29"
+  },
+  {
+    "Número": "124",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Fécula, de mandioca",
+    "Energia(kcal)": "330.85",
+    "Proteína(g)": "0.52",
+    "Lipídeos(g)": "0.28",
+    "Carboidrato(g)": "81.15"
+  },
+  {
+    "Número": "125",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Feijão, broto, cru",
+    "Energia(kcal)": "38.72",
+    "Proteína(g)": "4.17",
+    "Lipídeos(g)": "0.10",
+    "Carboidrato(g)": "7.76"
+  },
+  {
+    "Número": "126",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Inhame, cru",
+    "Energia(kcal)": "96.70",
+    "Proteína(g)": "2.05",
+    "Lipídeos(g)": "0.21",
+    "Carboidrato(g)": "23.23"
+  },
+  {
+    "Número": "127",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Jiló, cru",
+    "Energia(kcal)": "27.37",
+    "Proteína(g)": "1.40",
+    "Lipídeos(g)": "0.22",
+    "Carboidrato(g)": "6.19"
+  },
+  {
+    "Número": "128",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Jurubeba, crua",
+    "Energia(kcal)": "125.81",
+    "Proteína(g)": "4.41",
+    "Lipídeos(g)": "3.91",
+    "Carboidrato(g)": "23.06"
+  },
+  {
+    "Número": "129",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Mandioca, cozida",
+    "Energia(kcal)": "125.36",
+    "Proteína(g)": "0.57",
+    "Lipídeos(g)": "0.30",
+    "Carboidrato(g)": "30.09"
+  },
+  {
+    "Número": "130",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Mandioca, crua",
+    "Energia(kcal)": "151.42",
+    "Proteína(g)": "1.13",
+    "Lipídeos(g)": "0.30",
+    "Carboidrato(g)": "36.17"
+  },
+  {
+    "Número": "131",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Mandioca, farofa, temperada",
+    "Energia(kcal)": "405.69",
+    "Proteína(g)": "2.06",
+    "Lipídeos(g)": "9.12",
+    "Carboidrato(g)": "80.30"
+  },
+  {
+    "Número": "132",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Mandioca, frita",
+    "Energia(kcal)": "300.06",
+    "Proteína(g)": "1.38",
+    "Lipídeos(g)": "11.20",
+    "Carboidrato(g)": "50.25"
+  },
+  {
+    "Número": "133",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Manjericão, cru",
+    "Energia(kcal)": "21.15",
+    "Proteína(g)": "1.99",
+    "Lipídeos(g)": "0.39",
+    "Carboidrato(g)": "3.64"
+  },
+  {
+    "Número": "134",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Maxixe, cru",
+    "Energia(kcal)": "13.75",
+    "Proteína(g)": "1.39",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "2.73"
+  },
+  {
+    "Número": "135",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Mostarda, folha, crua",
+    "Energia(kcal)": "18.11",
+    "Proteína(g)": "2.11",
+    "Lipídeos(g)": "0.17",
+    "Carboidrato(g)": "3.24"
+  },
+  {
+    "Número": "136",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Nhoque, batata, cozido",
+    "Energia(kcal)": "180.78",
+    "Proteína(g)": "5.86",
+    "Lipídeos(g)": "1.94",
+    "Carboidrato(g)": "36.78"
+  },
+  {
+    "Número": "137",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Nabo, cru",
+    "Energia(kcal)": "18.19",
+    "Proteína(g)": "1.20",
+    "Lipídeos(g)": "0.05",
+    "Carboidrato(g)": "4.15"
+  },
+  {
+    "Número": "138",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Palmito, juçara, em conserva",
+    "Energia(kcal)": "23.20",
+    "Proteína(g)": "1.79",
+    "Lipídeos(g)": "0.40",
+    "Carboidrato(g)": "4.33"
+  },
+  {
+    "Número": "139",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Palmito, pupunha, em conserva",
+    "Energia(kcal)": "29.43",
+    "Proteína(g)": "2.46",
+    "Lipídeos(g)": "0.45",
+    "Carboidrato(g)": "5.51"
+  },
+  {
+    "Número": "140",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Pão, de queijo, assado",
+    "Energia(kcal)": "363.08",
+    "Proteína(g)": "5.12",
+    "Lipídeos(g)": "24.57",
+    "Carboidrato(g)": "34.24"
+  },
+  {
+    "Número": "141",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Pão, de queijo, cru",
+    "Energia(kcal)": "294.54",
+    "Proteína(g)": "3.65",
+    "Lipídeos(g)": "13.99",
+    "Carboidrato(g)": "38.51"
+  },
+  {
+    "Número": "142",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Pepino, cru",
+    "Energia(kcal)": "9.53",
+    "Proteína(g)": "0.87",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "2.04"
+  },
+  {
+    "Número": "143",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Pimentão, amarelo, cru",
+    "Energia(kcal)": "27.93",
+    "Proteína(g)": "1.22",
+    "Lipídeos(g)": "0.44",
+    "Carboidrato(g)": "5.96"
+  },
+  {
+    "Número": "144",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Pimentão, verde, cru",
+    "Energia(kcal)": "21.29",
+    "Proteína(g)": "1.05",
+    "Lipídeos(g)": "0.15",
+    "Carboidrato(g)": "4.89"
+  },
+  {
+    "Número": "145",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Pimentão, vermelho, cru",
+    "Energia(kcal)": "23.28",
+    "Proteína(g)": "1.04",
+    "Lipídeos(g)": "0.15",
+    "Carboidrato(g)": "5.47"
+  },
+  {
+    "Número": "146",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Polvilho, doce",
+    "Energia(kcal)": "351.23",
+    "Proteína(g)": "0.43",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "86.77"
+  },
+  {
+    "Número": "147",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Quiabo, cru",
+    "Energia(kcal)": "29.94",
+    "Proteína(g)": "1.92",
+    "Lipídeos(g)": "0.30",
+    "Carboidrato(g)": "6.37"
+  },
+  {
+    "Número": "148",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Rabanete, cru",
+    "Energia(kcal)": "13.74",
+    "Proteína(g)": "1.39",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "2.73"
+  },
+  {
+    "Número": "149",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Repolho, branco, cru",
+    "Energia(kcal)": "17.12",
+    "Proteína(g)": "0.88",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "3.86"
+  },
+  {
+    "Número": "150",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Repolho, roxo, cru",
+    "Energia(kcal)": "30.91",
+    "Proteína(g)": "1.91",
+    "Lipídeos(g)": "0.06",
+    "Carboidrato(g)": "7.20"
+  },
+  {
+    "Número": "151",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Repolho, roxo, refogado",
+    "Energia(kcal)": "41.77",
+    "Proteína(g)": "1.80",
+    "Lipídeos(g)": "1.24",
+    "Carboidrato(g)": "7.56"
+  },
+  {
+    "Número": "152",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Rúcula, crua",
+    "Energia(kcal)": "13.13",
+    "Proteína(g)": "1.77",
+    "Lipídeos(g)": "0.11",
+    "Carboidrato(g)": "2.22"
+  },
+  {
+    "Número": "153",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Salsa, crua",
+    "Energia(kcal)": "33.42",
+    "Proteína(g)": "3.26",
+    "Lipídeos(g)": "0.61",
+    "Carboidrato(g)": "5.71"
+  },
+  {
+    "Número": "154",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Seleta de legumes, enlatada",
+    "Energia(kcal)": "56.53",
+    "Proteína(g)": "3.42",
+    "Lipídeos(g)": "0.35",
+    "Carboidrato(g)": "12.67"
+  },
+  {
+    "Número": "155",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Serralha, crua",
+    "Energia(kcal)": "30.40",
+    "Proteína(g)": "2.67",
+    "Lipídeos(g)": "0.74",
+    "Carboidrato(g)": "4.95"
+  },
+  {
+    "Número": "156",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Taioba, crua",
+    "Energia(kcal)": "34.21",
+    "Proteína(g)": "2.90",
+    "Lipídeos(g)": "0.93",
+    "Carboidrato(g)": "5.43"
+  },
+  {
+    "Número": "157",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Tomate, com semente, cru",
+    "Energia(kcal)": "15.34",
+    "Proteína(g)": "1.10",
+    "Lipídeos(g)": "0.17",
+    "Carboidrato(g)": "3.14"
+  },
+  {
+    "Número": "158",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Tomate, extrato",
+    "Energia(kcal)": "60.93",
+    "Proteína(g)": "2.43",
+    "Lipídeos(g)": "0.19",
+    "Carboidrato(g)": "14.96"
+  },
+  {
+    "Número": "159",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Tomate, molho industrializado",
+    "Energia(kcal)": "38.45",
+    "Proteína(g)": "1.38",
+    "Lipídeos(g)": "0.90",
+    "Carboidrato(g)": "7.71"
+  },
+  {
+    "Número": "160",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Tomate, purê",
+    "Energia(kcal)": "27.94",
+    "Proteína(g)": "1.36",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "6.89"
+  },
+  {
+    "Número": "161",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Tomate, salada",
+    "Energia(kcal)": "20.55",
+    "Proteína(g)": "0.81",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "5.12"
+  },
+  {
+    "Número": "162",
+    "Grupo": "Verduras, hortaliças e derivados",
+    "Descrição do Alimento": "Vagem, crua",
+    "Energia(kcal)": "24.90",
+    "Proteína(g)": "1.79",
+    "Lipídeos(g)": "0.17",
+    "Carboidrato(g)": "5.35"
+  },
+  {
+    "Número": "163",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Abacate, cru",
+    "Energia(kcal)": "96.15",
+    "Proteína(g)": "1.24",
+    "Lipídeos(g)": "8.40",
+    "Carboidrato(g)": "6.03"
+  },
+  {
+    "Número": "164",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Abacaxi, cru",
+    "Energia(kcal)": "48.32",
+    "Proteína(g)": "0.86",
+    "Lipídeos(g)": "0.12",
+    "Carboidrato(g)": "12.33"
+  },
+  {
+    "Número": "165",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Abacaxi, polpa, congelada",
+    "Energia(kcal)": "30.59",
+    "Proteína(g)": "0.47",
+    "Lipídeos(g)": "0.11",
+    "Carboidrato(g)": "7.80"
+  },
+  {
+    "Número": "166",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Abiu, cru",
+    "Energia(kcal)": "62.42",
+    "Proteína(g)": "0.83",
+    "Lipídeos(g)": "0.70",
+    "Carboidrato(g)": "14.93"
+  },
+  {
+    "Número": "167",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Açaí, polpa, com xarope de guaraná e glucose",
+    "Energia(kcal)": "110.30",
+    "Proteína(g)": "0.72",
+    "Lipídeos(g)": "3.66",
+    "Carboidrato(g)": "21.46"
+  },
+  {
+    "Número": "168",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Açaí, polpa, congelada",
+    "Energia(kcal)": "58.05",
+    "Proteína(g)": "0.80",
+    "Lipídeos(g)": "3.94",
+    "Carboidrato(g)": "6.21"
+  },
+  {
+    "Número": "169",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Acerola, crua",
+    "Energia(kcal)": "33.46",
+    "Proteína(g)": "0.91",
+    "Lipídeos(g)": "0.21",
+    "Carboidrato(g)": "7.97"
+  },
+  {
+    "Número": "170",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Acerola, polpa, congelada",
+    "Energia(kcal)": "21.94",
+    "Proteína(g)": "0.59",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "5.54"
+  },
+  {
+    "Número": "171",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Ameixa, calda, enlatada ",
+    "Energia(kcal)": "182.85",
+    "Proteína(g)": "0.41",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "46.89"
+  },
+  {
+    "Número": "172",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Ameixa, crua",
+    "Energia(kcal)": "52.54",
+    "Proteína(g)": "0.77",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "13.85"
+  },
+  {
+    "Número": "173",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Ameixa, em calda, enlatada, drenada ",
+    "Energia(kcal)": "177.36",
+    "Proteína(g)": "1.02",
+    "Lipídeos(g)": "0.28",
+    "Carboidrato(g)": "47.66"
+  },
+  {
+    "Número": "174",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Atemóia, crua",
+    "Energia(kcal)": "96.97",
+    "Proteína(g)": "0.97",
+    "Lipídeos(g)": "0.30",
+    "Carboidrato(g)": "25.33"
+  },
+  {
+    "Número": "175",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Banana, da terra, crua",
+    "Energia(kcal)": "128.02",
+    "Proteína(g)": "1.43",
+    "Lipídeos(g)": "0.24",
+    "Carboidrato(g)": "33.67"
+  },
+  {
+    "Número": "176",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Banana, doce em barra",
+    "Energia(kcal)": "280.11",
+    "Proteína(g)": "2.17",
+    "Lipídeos(g)": "0.05",
+    "Carboidrato(g)": "75.67"
+  },
+  {
+    "Número": "177",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Banana, figo, crua",
+    "Energia(kcal)": "105.08",
+    "Proteína(g)": "1.13",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "27.80"
+  },
+  {
+    "Número": "178",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Banana, maçã, crua",
+    "Energia(kcal)": "86.81",
+    "Proteína(g)": "1.75",
+    "Lipídeos(g)": "0.06",
+    "Carboidrato(g)": "22.34"
+  },
+  {
+    "Número": "179",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Banana, nanica, crua",
+    "Energia(kcal)": "91.53",
+    "Proteína(g)": "1.40",
+    "Lipídeos(g)": "0.12",
+    "Carboidrato(g)": "23.85"
+  },
+  {
+    "Número": "180",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Banana, ouro, crua",
+    "Energia(kcal)": "112.37",
+    "Proteína(g)": "1.48",
+    "Lipídeos(g)": "0.21",
+    "Carboidrato(g)": "29.34"
+  },
+  {
+    "Número": "181",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Banana, pacova, crua",
+    "Energia(kcal)": "77.91",
+    "Proteína(g)": "1.23",
+    "Lipídeos(g)": "0.08",
+    "Carboidrato(g)": "20.31"
+  },
+  {
+    "Número": "182",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Banana, prata, crua",
+    "Energia(kcal)": "98.25",
+    "Proteína(g)": "1.27",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "25.96"
+  },
+  {
+    "Número": "183",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Cacau, cru",
+    "Energia(kcal)": "74.29",
+    "Proteína(g)": "0.95",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "19.41"
+  },
+  {
+    "Número": "184",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Cajá-Manga, cru",
+    "Energia(kcal)": "45.58",
+    "Proteína(g)": "1.28",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "11.43"
+  },
+  {
+    "Número": "185",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Cajá, polpa, congelada",
+    "Energia(kcal)": "26.33",
+    "Proteína(g)": "0.59",
+    "Lipídeos(g)": "0.17",
+    "Carboidrato(g)": "6.37"
+  },
+  {
+    "Número": "186",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Caju, cru",
+    "Energia(kcal)": "43.07",
+    "Proteína(g)": "0.97",
+    "Lipídeos(g)": "0.33",
+    "Carboidrato(g)": "10.29"
+  },
+  {
+    "Número": "187",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Caju, polpa, congelada",
+    "Energia(kcal)": "36.57",
+    "Proteína(g)": "0.48",
+    "Lipídeos(g)": "0.15",
+    "Carboidrato(g)": "9.35"
+  },
+  {
+    "Número": "188",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Caju, suco concentrado, envasado",
+    "Energia(kcal)": "45.11",
+    "Proteína(g)": "0.40",
+    "Lipídeos(g)": "0.20",
+    "Carboidrato(g)": "10.73"
+  },
+  {
+    "Número": "189",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Caqui, chocolate, cru",
+    "Energia(kcal)": "71.35",
+    "Proteína(g)": "0.36",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "19.33"
+  },
+  {
+    "Número": "190",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Carambola, crua",
+    "Energia(kcal)": "45.74",
+    "Proteína(g)": "0.87",
+    "Lipídeos(g)": "0.18",
+    "Carboidrato(g)": "11.48"
+  },
+  {
+    "Número": "191",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Ciriguela, crua",
+    "Energia(kcal)": "75.59",
+    "Proteína(g)": "1.40",
+    "Lipídeos(g)": "0.36",
+    "Carboidrato(g)": "18.86"
+  },
+  {
+    "Número": "192",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Cupuaçu, cru",
+    "Energia(kcal)": "49.42",
+    "Proteína(g)": "1.16",
+    "Lipídeos(g)": "0.95",
+    "Carboidrato(g)": "10.43"
+  },
+  {
+    "Número": "193",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Cupuaçu, polpa, congelada",
+    "Energia(kcal)": "48.80",
+    "Proteína(g)": "0.84",
+    "Lipídeos(g)": "0.59",
+    "Carboidrato(g)": "11.39"
+  },
+  {
+    "Número": "194",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Figo, cru",
+    "Energia(kcal)": "41.45",
+    "Proteína(g)": "0.97",
+    "Lipídeos(g)": "0.16",
+    "Carboidrato(g)": "10.25"
+  },
+  {
+    "Número": "195",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Figo, enlatado, em calda",
+    "Energia(kcal)": "184.36",
+    "Proteína(g)": "0.56",
+    "Lipídeos(g)": "0.15",
+    "Carboidrato(g)": "50.34"
+  },
+  {
+    "Número": "196",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Fruta-pão, crua",
+    "Energia(kcal)": "67.05",
+    "Proteína(g)": "1.08",
+    "Lipídeos(g)": "0.19",
+    "Carboidrato(g)": "17.17"
+  },
+  {
+    "Número": "197",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Goiaba, branca, com casca, crua",
+    "Energia(kcal)": "51.74",
+    "Proteína(g)": "0.90",
+    "Lipídeos(g)": "0.49",
+    "Carboidrato(g)": "12.40"
+  },
+  {
+    "Número": "198",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Goiaba, doce em pasta",
+    "Energia(kcal)": "268.96",
+    "Proteína(g)": "0.58",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "74.12"
+  },
+  {
+    "Número": "199",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Goiaba, doce, cascão",
+    "Energia(kcal)": "285.59",
+    "Proteína(g)": "0.41",
+    "Lipídeos(g)": "0.10",
+    "Carboidrato(g)": "78.70"
+  },
+  {
+    "Número": "200",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Goiaba, vermelha, com casca, crua",
+    "Energia(kcal)": "54.17",
+    "Proteína(g)": "1.09",
+    "Lipídeos(g)": "0.44",
+    "Carboidrato(g)": "13.01"
+  },
+  {
+    "Número": "201",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Graviola, crua",
+    "Energia(kcal)": "61.62",
+    "Proteína(g)": "0.85",
+    "Lipídeos(g)": "0.21",
+    "Carboidrato(g)": "15.84"
+  },
+  {
+    "Número": "202",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Graviola, polpa, congelada",
+    "Energia(kcal)": "38.27",
+    "Proteína(g)": "0.57",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "9.78"
+  },
+  {
+    "Número": "203",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Jabuticaba, crua",
+    "Energia(kcal)": "58.05",
+    "Proteína(g)": "0.61",
+    "Lipídeos(g)": "0.13",
+    "Carboidrato(g)": "15.26"
+  },
+  {
+    "Número": "204",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Jaca, crua",
+    "Energia(kcal)": "87.92",
+    "Proteína(g)": "1.40",
+    "Lipídeos(g)": "0.27",
+    "Carboidrato(g)": "22.50"
+  },
+  {
+    "Número": "205",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Jambo, cru",
+    "Energia(kcal)": "26.91",
+    "Proteína(g)": "0.89",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "6.49"
+  },
+  {
+    "Número": "206",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Jamelão, cru",
+    "Energia(kcal)": "41.01",
+    "Proteína(g)": "0.55",
+    "Lipídeos(g)": "0.11",
+    "Carboidrato(g)": "10.63"
+  },
+  {
+    "Número": "207",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Kiwi, cru",
+    "Energia(kcal)": "51.14",
+    "Proteína(g)": "1.34",
+    "Lipídeos(g)": "0.63",
+    "Carboidrato(g)": "11.50"
+  },
+  {
+    "Número": "208",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Laranja, baía, crua",
+    "Energia(kcal)": "45.44",
+    "Proteína(g)": "0.98",
+    "Lipídeos(g)": "0.10",
+    "Carboidrato(g)": "11.47"
+  },
+  {
+    "Número": "209",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Laranja, baía, suco",
+    "Energia(kcal)": "36.65",
+    "Proteína(g)": "0.65",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "8.70"
+  },
+  {
+    "Número": "210",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Laranja, da terra, crua",
+    "Energia(kcal)": "51.47",
+    "Proteína(g)": "1.08",
+    "Lipídeos(g)": "0.19",
+    "Carboidrato(g)": "12.86"
+  },
+  {
+    "Número": "211",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Laranja, da terra, suco",
+    "Energia(kcal)": "40.96",
+    "Proteína(g)": "0.67",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "9.57"
+  },
+  {
+    "Número": "212",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Laranja, lima, crua",
+    "Energia(kcal)": "45.70",
+    "Proteína(g)": "1.06",
+    "Lipídeos(g)": "0.08",
+    "Carboidrato(g)": "11.53"
+  },
+  {
+    "Número": "213",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Laranja, lima, suco",
+    "Energia(kcal)": "39.34",
+    "Proteína(g)": "0.71",
+    "Lipídeos(g)": "0.12",
+    "Carboidrato(g)": "9.17"
+  },
+  {
+    "Número": "214",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Laranja, pêra, crua",
+    "Energia(kcal)": "36.77",
+    "Proteína(g)": "1.04",
+    "Lipídeos(g)": "0.13",
+    "Carboidrato(g)": "8.95"
+  },
+  {
+    "Número": "215",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Laranja, pêra, suco",
+    "Energia(kcal)": "32.71",
+    "Proteína(g)": "0.74",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "7.55"
+  },
+  {
+    "Número": "216",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Laranja, valência, crua",
+    "Energia(kcal)": "46.11",
+    "Proteína(g)": "0.77",
+    "Lipídeos(g)": "0.16",
+    "Carboidrato(g)": "11.72"
+  },
+  {
+    "Número": "217",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Laranja, valência, suco",
+    "Energia(kcal)": "36.20",
+    "Proteína(g)": "0.48",
+    "Lipídeos(g)": "0.12",
+    "Carboidrato(g)": "8.55"
+  },
+  {
+    "Número": "218",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Limão, cravo, suco",
+    "Energia(kcal)": "14.10",
+    "Proteína(g)": "0.33",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "5.25"
+  },
+  {
+    "Número": "219",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Limão, galego, suco",
+    "Energia(kcal)": "22.23",
+    "Proteína(g)": "0.57",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "7.32"
+  },
+  {
+    "Número": "220",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Limão, tahiti, cru",
+    "Energia(kcal)": "31.82",
+    "Proteína(g)": "0.94",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "11.08"
+  },
+  {
+    "Número": "221",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Maçã, Argentina, com casca, crua",
+    "Energia(kcal)": "62.53",
+    "Proteína(g)": "0.23",
+    "Lipídeos(g)": "0.25",
+    "Carboidrato(g)": "16.59"
+  },
+  {
+    "Número": "222",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Maçã, Fuji, com casca, crua",
+    "Energia(kcal)": "55.52",
+    "Proteína(g)": "0.29",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "15.15"
+  },
+  {
+    "Número": "223",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Macaúba, crua",
+    "Energia(kcal)": "404.28",
+    "Proteína(g)": "2.08",
+    "Lipídeos(g)": "40.66",
+    "Carboidrato(g)": "13.95"
+  },
+  {
+    "Número": "224",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": " Mamão, doce em calda, drenado",
+    "Energia(kcal)": "195.63",
+    "Proteína(g)": "0.19",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "54.00"
+  },
+  {
+    "Número": "225",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Mamão, Formosa, cru",
+    "Energia(kcal)": "45.34",
+    "Proteína(g)": "0.82",
+    "Lipídeos(g)": "0.12",
+    "Carboidrato(g)": "11.55"
+  },
+  {
+    "Número": "226",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Mamão, Papaia, cru",
+    "Energia(kcal)": "40.16",
+    "Proteína(g)": "0.46",
+    "Lipídeos(g)": "0.12",
+    "Carboidrato(g)": "10.44"
+  },
+  {
+    "Número": "227",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": " Mamão verde, doce em calda, drenado",
+    "Energia(kcal)": "209.38",
+    "Proteína(g)": "0.32",
+    "Lipídeos(g)": "0.10",
+    "Carboidrato(g)": "57.64"
+  },
+  {
+    "Número": "228",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Manga, Haden, crua",
+    "Energia(kcal)": "63.50",
+    "Proteína(g)": "0.41",
+    "Lipídeos(g)": "0.26",
+    "Carboidrato(g)": "16.66"
+  },
+  {
+    "Número": "229",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Manga, Palmer, crua",
+    "Energia(kcal)": "72.49",
+    "Proteína(g)": "0.41",
+    "Lipídeos(g)": "0.17",
+    "Carboidrato(g)": "19.35"
+  },
+  {
+    "Número": "230",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Manga, polpa, congelada",
+    "Energia(kcal)": "48.31",
+    "Proteína(g)": "0.38",
+    "Lipídeos(g)": "0.23",
+    "Carboidrato(g)": "12.52"
+  },
+  {
+    "Número": "231",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Manga, Tommy Atkins, crua",
+    "Energia(kcal)": "50.69",
+    "Proteína(g)": "0.86",
+    "Lipídeos(g)": "0.22",
+    "Carboidrato(g)": "12.77"
+  },
+  {
+    "Número": "232",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Maracujá, cru",
+    "Energia(kcal)": "68.44",
+    "Proteína(g)": "1.99",
+    "Lipídeos(g)": "2.10",
+    "Carboidrato(g)": "12.26"
+  },
+  {
+    "Número": "233",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Maracujá, polpa, congelada",
+    "Energia(kcal)": "38.76",
+    "Proteína(g)": "0.81",
+    "Lipídeos(g)": "0.18",
+    "Carboidrato(g)": "9.60"
+  },
+  {
+    "Número": "234",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Maracujá, suco concentrado, envasado",
+    "Energia(kcal)": "41.97",
+    "Proteína(g)": "0.77",
+    "Lipídeos(g)": "0.19",
+    "Carboidrato(g)": "9.64"
+  },
+  {
+    "Número": "235",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Melancia, crua",
+    "Energia(kcal)": "32.61",
+    "Proteína(g)": "0.88",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "8.14"
+  },
+  {
+    "Número": "236",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Melão, cru",
+    "Energia(kcal)": "29.37",
+    "Proteína(g)": "0.68",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "7.53"
+  },
+  {
+    "Número": "237",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Mexerica, Murcote, crua",
+    "Energia(kcal)": "57.59",
+    "Proteína(g)": "0.88",
+    "Lipídeos(g)": "0.13",
+    "Carboidrato(g)": "14.86"
+  },
+  {
+    "Número": "238",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Mexerica, Rio, crua",
+    "Energia(kcal)": "36.87",
+    "Proteína(g)": "0.65",
+    "Lipídeos(g)": "0.13",
+    "Carboidrato(g)": "9.34"
+  },
+  {
+    "Número": "239",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Morango, cru",
+    "Energia(kcal)": "30.15",
+    "Proteína(g)": "0.89",
+    "Lipídeos(g)": "0.31",
+    "Carboidrato(g)": "6.82"
+  },
+  {
+    "Número": "240",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Nêspera, crua",
+    "Energia(kcal)": "42.54",
+    "Proteína(g)": "0.31",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "11.53"
+  },
+  {
+    "Número": "241",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Pequi, cru",
+    "Energia(kcal)": "204.97",
+    "Proteína(g)": "2.34",
+    "Lipídeos(g)": "17.97",
+    "Carboidrato(g)": "12.97"
+  },
+  {
+    "Número": "242",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Pêra, Park, crua",
+    "Energia(kcal)": "60.59",
+    "Proteína(g)": "0.24",
+    "Lipídeos(g)": "0.23",
+    "Carboidrato(g)": "16.07"
+  },
+  {
+    "Número": "243",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Pêra, Williams, crua",
+    "Energia(kcal)": "53.31",
+    "Proteína(g)": "0.57",
+    "Lipídeos(g)": "0.11",
+    "Carboidrato(g)": "14.02"
+  },
+  {
+    "Número": "244",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Pêssego, Aurora, cru",
+    "Energia(kcal)": "36.33",
+    "Proteína(g)": "0.82",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "9.32"
+  },
+  {
+    "Número": "245",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Pêssego, enlatado, em calda",
+    "Energia(kcal)": "63.14",
+    "Proteína(g)": "0.71",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "16.88"
+  },
+  {
+    "Número": "246",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Pinha, crua",
+    "Energia(kcal)": "88.47",
+    "Proteína(g)": "1.49",
+    "Lipídeos(g)": "0.32",
+    "Carboidrato(g)": "22.45"
+  },
+  {
+    "Número": "247",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Pitanga, crua",
+    "Energia(kcal)": "41.42",
+    "Proteína(g)": "0.93",
+    "Lipídeos(g)": "0.17",
+    "Carboidrato(g)": "10.24"
+  },
+  {
+    "Número": "248",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Pitanga, polpa, congelada",
+    "Energia(kcal)": "19.11",
+    "Proteína(g)": "0.29",
+    "Lipídeos(g)": "0.12",
+    "Carboidrato(g)": "4.76"
+  },
+  {
+    "Número": "249",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Romã, crua",
+    "Energia(kcal)": "55.74",
+    "Proteína(g)": "0.40",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "15.11"
+  },
+  {
+    "Número": "250",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Tamarindo, cru",
+    "Energia(kcal)": "275.70",
+    "Proteína(g)": "3.21",
+    "Lipídeos(g)": "0.46",
+    "Carboidrato(g)": "72.53"
+  },
+  {
+    "Número": "251",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Tangerina, Poncã, crua",
+    "Energia(kcal)": "37.83",
+    "Proteína(g)": "0.85",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "9.61"
+  },
+  {
+    "Número": "252",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Tangerina, Poncã, suco",
+    "Energia(kcal)": "36.11",
+    "Proteína(g)": "0.52",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "8.80"
+  },
+  {
+    "Número": "253",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Tucumã, cru",
+    "Energia(kcal)": "262.02",
+    "Proteína(g)": "2.09",
+    "Lipídeos(g)": "19.08",
+    "Carboidrato(g)": "26.47"
+  },
+  {
+    "Número": "254",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Umbu, cru",
+    "Energia(kcal)": "37.02",
+    "Proteína(g)": "0.84",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "9.40"
+  },
+  {
+    "Número": "255",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Umbu, polpa, congelada",
+    "Energia(kcal)": "33.94",
+    "Proteína(g)": "0.51",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "8.79"
+  },
+  {
+    "Número": "256",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Uva, Itália, crua",
+    "Energia(kcal)": "52.87",
+    "Proteína(g)": "0.75",
+    "Lipídeos(g)": "0.20",
+    "Carboidrato(g)": "13.57"
+  },
+  {
+    "Número": "257",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Uva, Rubi, crua",
+    "Energia(kcal)": "49.06",
+    "Proteína(g)": "0.61",
+    "Lipídeos(g)": "0.16",
+    "Carboidrato(g)": "12.70"
+  },
+  {
+    "Número": "258",
+    "Grupo": "Frutas e derivados",
+    "Descrição do Alimento": "Uva, suco concentrado, envasado",
+    "Energia(kcal)": "57.66",
+    "Proteína(g)": "Tr",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "14.71"
+  },
+  {
+    "Número": "259",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Azeite, de dendê",
+    "Energia(kcal)": "884.00",
+    "Proteína(g)": "NA",
+    "Lipídeos(g)": "100.00",
+    "Carboidrato(g)": "NA"
+  },
+  {
+    "Número": "260",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Azeite, de oliva, extra virgem",
+    "Energia(kcal)": "884.00",
+    "Proteína(g)": "NA",
+    "Lipídeos(g)": "100.00",
+    "Carboidrato(g)": "NA"
+  },
+  {
+    "Número": "261",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Manteiga, com sal",
+    "Energia(kcal)": "725.97",
+    "Proteína(g)": "0.41",
+    "Lipídeos(g)": "82.36",
+    "Carboidrato(g)": "0.06"
+  },
+  {
+    "Número": "262",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Manteiga, sem sal",
+    "Energia(kcal)": "757.54",
+    "Proteína(g)": "0.40",
+    "Lipídeos(g)": "86.04",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "263",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Margarina, com óleo hidrogenado, com sal (65% de lipídeos)",
+    "Energia(kcal)": "596.12",
+    "Proteína(g)": "Tr",
+    "Lipídeos(g)": "67.43",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "264",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Margarina, com óleo hidrogenado, sem sal (80% de lipídeos)",
+    "Energia(kcal)": "722.53",
+    "Proteína(g)": "Tr",
+    "Lipídeos(g)": "81.73",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "265",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Margarina, com óleo interesterificado, com sal (65%de lipídeos)",
+    "Energia(kcal)": "594.45",
+    "Proteína(g)": "Tr",
+    "Lipídeos(g)": "67.25",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "266",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Margarina, com óleo interesterificado, sem sal (65% de lipídeos)",
+    "Energia(kcal)": "593.14",
+    "Proteína(g)": "Tr",
+    "Lipídeos(g)": "67.10",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "267",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Óleo, de babaçu",
+    "Energia(kcal)": "884.00",
+    "Proteína(g)": "NA",
+    "Lipídeos(g)": "100.00",
+    "Carboidrato(g)": "NA"
+  },
+  {
+    "Número": "268",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Óleo, de canola",
+    "Energia(kcal)": "884.00",
+    "Proteína(g)": "NA",
+    "Lipídeos(g)": "100.00",
+    "Carboidrato(g)": "NA"
+  },
+  {
+    "Número": "269",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Óleo, de girassol",
+    "Energia(kcal)": "884.00",
+    "Proteína(g)": "NA",
+    "Lipídeos(g)": "100.00",
+    "Carboidrato(g)": "NA"
+  },
+  {
+    "Número": "270",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Óleo, de milho",
+    "Energia(kcal)": "884.00",
+    "Proteína(g)": "NA",
+    "Lipídeos(g)": "100.00",
+    "Carboidrato(g)": "NA"
+  },
+  {
+    "Número": "271",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Óleo, de pequi",
+    "Energia(kcal)": "884.00",
+    "Proteína(g)": "NA",
+    "Lipídeos(g)": "100.00",
+    "Carboidrato(g)": "NA"
+  },
+  {
+    "Número": "272",
+    "Grupo": "Gorduras e óleos",
+    "Descrição do Alimento": "Óleo, de soja",
+    "Energia(kcal)": "884.00",
+    "Proteína(g)": "NA",
+    "Lipídeos(g)": "100.00",
+    "Carboidrato(g)": "NA"
+  },
+  {
+    "Número": "273",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Abadejo, filé, congelado, assado",
+    "Energia(kcal)": "111.62",
+    "Proteína(g)": "23.52",
+    "Lipídeos(g)": "1.24",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "274",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Abadejo, filé, congelado,cozido",
+    "Energia(kcal)": "91.10",
+    "Proteína(g)": "19.35",
+    "Lipídeos(g)": "0.94",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "275",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Abadejo, filé, congelado, cru",
+    "Energia(kcal)": "59.11",
+    "Proteína(g)": "13.08",
+    "Lipídeos(g)": "0.36",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "276",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Abadejo, filé, congelado, grelhado",
+    "Energia(kcal)": "129.64",
+    "Proteína(g)": "27.61",
+    "Lipídeos(g)": "1.30",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "277",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Atum, conserva em óleo",
+    "Energia(kcal)": "165.91",
+    "Proteína(g)": "26.19",
+    "Lipídeos(g)": "6.00",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "278",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Atum, fresco, cru",
+    "Energia(kcal)": "117.50",
+    "Proteína(g)": "25.68",
+    "Lipídeos(g)": "0.87",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "279",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Bacalhau, salgado, cru",
+    "Energia(kcal)": "135.89",
+    "Proteína(g)": "29.04",
+    "Lipídeos(g)": "1.32",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "280",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Bacalhau, salgado, refogado",
+    "Energia(kcal)": "139.66",
+    "Proteína(g)": "23.98",
+    "Lipídeos(g)": "3.61",
+    "Carboidrato(g)": "1.22"
+  },
+  {
+    "Número": "281",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Cação, posta, com farinha de trigo, frita",
+    "Energia(kcal)": "208.33",
+    "Proteína(g)": "24.95",
+    "Lipídeos(g)": "9.95",
+    "Carboidrato(g)": "3.10"
+  },
+  {
+    "Número": "282",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Cação, posta, cozida",
+    "Energia(kcal)": "116.01",
+    "Proteína(g)": "25.59",
+    "Lipídeos(g)": "0.75",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "283",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Cação, posta, crua",
+    "Energia(kcal)": "83.33",
+    "Proteína(g)": "17.85",
+    "Lipídeos(g)": "0.79",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "284",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Camarão, Rio Grande, grande, cozido",
+    "Energia(kcal)": "90.01",
+    "Proteína(g)": "18.97",
+    "Lipídeos(g)": "1.00",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "285",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Camarão, Rio Grande, grande, cru",
+    "Energia(kcal)": "47.18",
+    "Proteína(g)": "9.99",
+    "Lipídeos(g)": "0.50",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "286",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Camarão, Sete Barbas, sem cabeça, com casca, frito",
+    "Energia(kcal)": "231.25",
+    "Proteína(g)": "18.39",
+    "Lipídeos(g)": "15.62",
+    "Carboidrato(g)": "2.88"
+  },
+  {
+    "Número": "287",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Caranguejo, cozido",
+    "Energia(kcal)": "82.72",
+    "Proteína(g)": "18.48",
+    "Lipídeos(g)": "0.42",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "288",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Corimba, cru",
+    "Energia(kcal)": "128.16",
+    "Proteína(g)": "17.37",
+    "Lipídeos(g)": "5.99",
+    "Carboidrato(g)": "-0.03"
+  },
+  {
+    "Número": "289",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Corimbatá, assado",
+    "Energia(kcal)": "261.45",
+    "Proteína(g)": "19.90",
+    "Lipídeos(g)": "19.57",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "290",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Corimbatá, cozido",
+    "Energia(kcal)": "238.70",
+    "Proteína(g)": "20.13",
+    "Lipídeos(g)": "16.93",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "291",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Corvina de água doce, crua",
+    "Energia(kcal)": "101.01",
+    "Proteína(g)": "18.92",
+    "Lipídeos(g)": "2.24",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "292",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Corvina do mar, crua",
+    "Energia(kcal)": "94.00",
+    "Proteína(g)": "18.57",
+    "Lipídeos(g)": "1.58",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "293",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Corvina grande, assada",
+    "Energia(kcal)": "146.53",
+    "Proteína(g)": "26.77",
+    "Lipídeos(g)": "3.57",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "294",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Corvina grande, cozida",
+    "Energia(kcal)": "100.08",
+    "Proteína(g)": "23.44",
+    "Lipídeos(g)": "2.56",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "295",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Dourada de água doce, fresca",
+    "Energia(kcal)": "131.21",
+    "Proteína(g)": "18.81",
+    "Lipídeos(g)": "5.64",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "296",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Lambari, congelado, cru",
+    "Energia(kcal)": "130.84",
+    "Proteína(g)": "16.81",
+    "Lipídeos(g)": "6.55",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "297",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Lambari, congelado, frito",
+    "Energia(kcal)": "326.87",
+    "Proteína(g)": "28.43",
+    "Lipídeos(g)": "22.78",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "298",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Lambari, fresco, cru",
+    "Energia(kcal)": "151.60",
+    "Proteína(g)": "15.65",
+    "Lipídeos(g)": "9.40",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "299",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Manjuba, com farinha de trigo, frita",
+    "Energia(kcal)": "343.55",
+    "Proteína(g)": "23.45",
+    "Lipídeos(g)": "22.59",
+    "Carboidrato(g)": "10.24"
+  },
+  {
+    "Número": "300",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Manjuba, frita",
+    "Energia(kcal)": "349.33",
+    "Proteína(g)": "30.14",
+    "Lipídeos(g)": "24.46",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "301",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Merluza, filé, assado",
+    "Energia(kcal)": "121.91",
+    "Proteína(g)": "26.60",
+    "Lipídeos(g)": "0.92",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "302",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Merluza, filé, cru",
+    "Energia(kcal)": "89.13",
+    "Proteína(g)": "16.61",
+    "Lipídeos(g)": "2.02",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "303",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Merluza, filé, frito",
+    "Energia(kcal)": "191.63",
+    "Proteína(g)": "26.93",
+    "Lipídeos(g)": "8.50",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "304",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Pescada, branca, crua",
+    "Energia(kcal)": "110.88",
+    "Proteína(g)": "16.26",
+    "Lipídeos(g)": "4.59",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "305",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Pescada, branca, frita",
+    "Energia(kcal)": "223.04",
+    "Proteína(g)": "27.36",
+    "Lipídeos(g)": "11.78",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "306",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Pescada, filé, com farinha de trigo, frito",
+    "Energia(kcal)": "283.43",
+    "Proteína(g)": "21.44",
+    "Lipídeos(g)": "19.11",
+    "Carboidrato(g)": "5.03"
+  },
+  {
+    "Número": "307",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Pescada, filé, cru",
+    "Energia(kcal)": "107.21",
+    "Proteína(g)": "16.65",
+    "Lipídeos(g)": "4.00",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "308",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Pescada, filé, frito",
+    "Energia(kcal)": "154.27",
+    "Proteína(g)": "28.59",
+    "Lipídeos(g)": "3.57",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "309",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Pescada, filé, molho escabeche",
+    "Energia(kcal)": "141.96",
+    "Proteína(g)": "11.75",
+    "Lipídeos(g)": "8.02",
+    "Carboidrato(g)": "5.02"
+  },
+  {
+    "Número": "310",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Pescadinha, crua",
+    "Energia(kcal)": "76.41",
+    "Proteína(g)": "15.48",
+    "Lipídeos(g)": "1.14",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "311",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Pintado, assado",
+    "Energia(kcal)": "191.56",
+    "Proteína(g)": "36.45",
+    "Lipídeos(g)": "3.98",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "312",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Pintado, cru",
+    "Energia(kcal)": "91.08",
+    "Proteína(g)": "18.56",
+    "Lipídeos(g)": "1.31",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "313",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Pintado, grelhado",
+    "Energia(kcal)": "152.19",
+    "Proteína(g)": "30.80",
+    "Lipídeos(g)": "2.29",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "314",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Porquinho, cru",
+    "Energia(kcal)": "93.02",
+    "Proteína(g)": "20.49",
+    "Lipídeos(g)": "0.61",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "315",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Salmão, filé, com pele, fresco,  grelhado",
+    "Energia(kcal)": "228.73",
+    "Proteína(g)": "23.92",
+    "Lipídeos(g)": "14.04",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "316",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Salmão, sem pele, fresco, cru",
+    "Energia(kcal)": "169.78",
+    "Proteína(g)": "19.25",
+    "Lipídeos(g)": "9.71",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "317",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Salmão, sem pele, fresco, grelhado",
+    "Energia(kcal)": "242.71",
+    "Proteína(g)": "26.14",
+    "Lipídeos(g)": "14.53",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "318",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Sardinha, assada",
+    "Energia(kcal)": "164.35",
+    "Proteína(g)": "32.18",
+    "Lipídeos(g)": "2.99",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "319",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Sardinha, conserva em óleo",
+    "Energia(kcal)": "284.98",
+    "Proteína(g)": "15.94",
+    "Lipídeos(g)": "24.05",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "320",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Sardinha, frita",
+    "Energia(kcal)": "257.04",
+    "Proteína(g)": "33.38",
+    "Lipídeos(g)": "12.69",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "321",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Sardinha, inteira, crua",
+    "Energia(kcal)": "113.90",
+    "Proteína(g)": "21.08",
+    "Lipídeos(g)": "2.65",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "322",
+    "Grupo": "Pescados e frutos do mar",
+    "Descrição do Alimento": "Tucunaré, filé, congelado, cru",
+    "Energia(kcal)": "87.69",
+    "Proteína(g)": "17.96",
+    "Lipídeos(g)": "1.22",
+    "Carboidrato(g)": "-0.05"
+  },
+  {
+    "Número": "323",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Apresuntado",
+    "Energia(kcal)": "128.86",
+    "Proteína(g)": "13.45",
+    "Lipídeos(g)": "6.69",
+    "Carboidrato(g)": "2.86"
+  },
+  {
+    "Número": "324",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Caldo de carne, tablete",
+    "Energia(kcal)": "240.62",
+    "Proteína(g)": "7.82",
+    "Lipídeos(g)": "16.57",
+    "Carboidrato(g)": "15.05"
+  },
+  {
+    "Número": "325",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Caldo de galinha, tablete",
+    "Energia(kcal)": "251.45",
+    "Proteína(g)": "6.28",
+    "Lipídeos(g)": "20.42",
+    "Carboidrato(g)": "10.65"
+  },
+  {
+    "Número": "326",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, acém, moído, cozido",
+    "Energia(kcal)": "212.42",
+    "Proteína(g)": "26.69",
+    "Lipídeos(g)": "10.92",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "327",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, acém, moído, cru",
+    "Energia(kcal)": "136.56",
+    "Proteína(g)": "19.42",
+    "Lipídeos(g)": "5.95",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "328",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, acém, sem gordura, cozido",
+    "Energia(kcal)": "214.61",
+    "Proteína(g)": "27.27",
+    "Lipídeos(g)": "10.88",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "329",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, acém, sem gordura, cru",
+    "Energia(kcal)": "144.03",
+    "Proteína(g)": "20.82",
+    "Lipídeos(g)": "6.11",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "330",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, almôndegas, cruas",
+    "Energia(kcal)": "189.26",
+    "Proteína(g)": "12.31",
+    "Lipídeos(g)": "11.20",
+    "Carboidrato(g)": "9.79"
+  },
+  {
+    "Número": "331",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, almôndegas, fritas",
+    "Energia(kcal)": "271.81",
+    "Proteína(g)": "18.16",
+    "Lipídeos(g)": "15.78",
+    "Carboidrato(g)": "14.29"
+  },
+  {
+    "Número": "332",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, bucho, cozido",
+    "Energia(kcal)": "133.02",
+    "Proteína(g)": "21.64",
+    "Lipídeos(g)": "4.50",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "333",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, bucho, cru",
+    "Energia(kcal)": "137.30",
+    "Proteína(g)": "20.53",
+    "Lipídeos(g)": "5.50",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "334",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, capa de contra-filé, com gordura, crua",
+    "Energia(kcal)": "216.91",
+    "Proteína(g)": "19.20",
+    "Lipídeos(g)": "14.96",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "335",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, capa de contra-filé, com gordura, grelhada",
+    "Energia(kcal)": "311.70",
+    "Proteína(g)": "30.69",
+    "Lipídeos(g)": "20.03",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "336",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, capa de contra-filé, sem gordura, crua",
+    "Energia(kcal)": "131.06",
+    "Proteína(g)": "21.54",
+    "Lipídeos(g)": "4.33",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "337",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, capa de contra-filé, sem gordura, grelhada",
+    "Energia(kcal)": "239.44",
+    "Proteína(g)": "35.06",
+    "Lipídeos(g)": "9.95",
+    "Carboidrato(g)": "-0.01"
+  },
+  {
+    "Número": "338",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, charque, cozido",
+    "Energia(kcal)": "262.78",
+    "Proteína(g)": "36.36",
+    "Lipídeos(g)": "11.92",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "339",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, charque, cru",
+    "Energia(kcal)": "248.86",
+    "Proteína(g)": "22.71",
+    "Lipídeos(g)": "16.84",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "340",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, contra-filé, à milanesa",
+    "Energia(kcal)": "351.59",
+    "Proteína(g)": "20.61",
+    "Lipídeos(g)": "24.00",
+    "Carboidrato(g)": "12.17"
+  },
+  {
+    "Número": "341",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, contra-filé de costela, cru",
+    "Energia(kcal)": "202.44",
+    "Proteína(g)": "19.80",
+    "Lipídeos(g)": "13.07",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "342",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, contra-filé de costela, grelhado",
+    "Energia(kcal)": "274.91",
+    "Proteína(g)": "29.88",
+    "Lipídeos(g)": "16.33",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "343",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, contra-filé, com gordura, cru",
+    "Energia(kcal)": "205.86",
+    "Proteína(g)": "21.15",
+    "Lipídeos(g)": "12.81",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "344",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, contra-filé, com gordura, grelhado",
+    "Energia(kcal)": "278.05",
+    "Proteína(g)": "32.40",
+    "Lipídeos(g)": "15.49",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "345",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, contra-filé, sem gordura, cru",
+    "Energia(kcal)": "156.62",
+    "Proteína(g)": "24.00",
+    "Lipídeos(g)": "6.00",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "346",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, contra-filé, sem gordura, grelhado",
+    "Energia(kcal)": "193.69",
+    "Proteína(g)": "35.88",
+    "Lipídeos(g)": "4.49",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "347",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, costela, assada",
+    "Energia(kcal)": "373.04",
+    "Proteína(g)": "28.81",
+    "Lipídeos(g)": "27.72",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "348",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, costela, crua",
+    "Energia(kcal)": "357.72",
+    "Proteína(g)": "16.71",
+    "Lipídeos(g)": "31.75",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "349",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, coxão duro, sem gordura, cozido",
+    "Energia(kcal)": "216.62",
+    "Proteína(g)": "31.88",
+    "Lipídeos(g)": "8.92",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "350",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, coxão duro, sem gordura, cru",
+    "Energia(kcal)": "147.97",
+    "Proteína(g)": "21.51",
+    "Lipídeos(g)": "6.22",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "351",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, coxão mole, sem gordura, cozido",
+    "Energia(kcal)": "218.68",
+    "Proteína(g)": "32.38",
+    "Lipídeos(g)": "8.91",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "352",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, coxão mole, sem gordura, cru",
+    "Energia(kcal)": "169.07",
+    "Proteína(g)": "21.23",
+    "Lipídeos(g)": "8.69",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "353",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, cupim, assado",
+    "Energia(kcal)": "330.10",
+    "Proteína(g)": "28.63",
+    "Lipídeos(g)": "23.04",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "354",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, cupim, cru",
+    "Energia(kcal)": "221.40",
+    "Proteína(g)": "19.54",
+    "Lipídeos(g)": "15.30",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "355",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, fígado, cru",
+    "Energia(kcal)": "141.05",
+    "Proteína(g)": "20.71",
+    "Lipídeos(g)": "5.36",
+    "Carboidrato(g)": "1.11"
+  },
+  {
+    "Número": "356",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, fígado, grelhado",
+    "Energia(kcal)": "225.03",
+    "Proteína(g)": "29.86",
+    "Lipídeos(g)": "9.01",
+    "Carboidrato(g)": "4.20"
+  },
+  {
+    "Número": "357",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, filé mingnon, sem gordura, cru",
+    "Energia(kcal)": "142.86",
+    "Proteína(g)": "21.60",
+    "Lipídeos(g)": "5.61",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "358",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, filé mingnon, sem gordura, grelhado",
+    "Energia(kcal)": "219.70",
+    "Proteína(g)": "32.80",
+    "Lipídeos(g)": "8.83",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "359",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, flanco, sem gordura, cozido",
+    "Energia(kcal)": "195.58",
+    "Proteína(g)": "29.38",
+    "Lipídeos(g)": "7.77",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "360",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, flanco, sem gordura, cru",
+    "Energia(kcal)": "141.46",
+    "Proteína(g)": "20.00",
+    "Lipídeos(g)": "6.22",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "361",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, fraldinha, com gordura, cozida",
+    "Energia(kcal)": "338.45",
+    "Proteína(g)": "24.24",
+    "Lipídeos(g)": "26.05",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "362",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, fraldinha, com gordura, crua",
+    "Energia(kcal)": "220.72",
+    "Proteína(g)": "17.58",
+    "Lipídeos(g)": "16.15",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "363",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, lagarto, cozido",
+    "Energia(kcal)": "222.47",
+    "Proteína(g)": "32.86",
+    "Lipídeos(g)": "9.11",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "364",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, lagarto, cru",
+    "Energia(kcal)": "134.86",
+    "Proteína(g)": "20.54",
+    "Lipídeos(g)": "5.23",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "365",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, língua, cozida",
+    "Energia(kcal)": "314.90",
+    "Proteína(g)": "21.37",
+    "Lipídeos(g)": "24.80",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "366",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, língua, crua",
+    "Energia(kcal)": "215.25",
+    "Proteína(g)": "17.09",
+    "Lipídeos(g)": "15.77",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "367",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, maminha, crua",
+    "Energia(kcal)": "152.77",
+    "Proteína(g)": "20.93",
+    "Lipídeos(g)": "7.03",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "368",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, maminha, grelhada",
+    "Energia(kcal)": "153.09",
+    "Proteína(g)": "30.74",
+    "Lipídeos(g)": "2.42",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "369",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, miolo de alcatra, sem gordura, cru",
+    "Energia(kcal)": "162.87",
+    "Proteína(g)": "21.61",
+    "Lipídeos(g)": "7.83",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "370",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, miolo de alcatra, sem gordura, grelhado",
+    "Energia(kcal)": "241.36",
+    "Proteína(g)": "31.93",
+    "Lipídeos(g)": "11.64",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "371",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, músculo, sem gordura, cozido",
+    "Energia(kcal)": "193.80",
+    "Proteína(g)": "31.23",
+    "Lipídeos(g)": "6.70",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "372",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, músculo, sem gordura, cru",
+    "Energia(kcal)": "141.58",
+    "Proteína(g)": "21.56",
+    "Lipídeos(g)": "5.49",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "373",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, paleta, com gordura, crua",
+    "Energia(kcal)": "158.71",
+    "Proteína(g)": "21.41",
+    "Lipídeos(g)": "7.46",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "374",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, paleta, sem gordura, cozida",
+    "Energia(kcal)": "193.65",
+    "Proteína(g)": "29.72",
+    "Lipídeos(g)": "7.40",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "375",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, paleta, sem gordura, crua",
+    "Energia(kcal)": "140.94",
+    "Proteína(g)": "21.03",
+    "Lipídeos(g)": "5.67",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "376",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, patinho, sem gordura, cru",
+    "Energia(kcal)": "133.47",
+    "Proteína(g)": "21.72",
+    "Lipídeos(g)": "4.51",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "377",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, patinho, sem gordura, grelhado",
+    "Energia(kcal)": "219.26",
+    "Proteína(g)": "35.90",
+    "Lipídeos(g)": "7.31",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "378",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, peito, sem gordura, cozido",
+    "Energia(kcal)": "338.47",
+    "Proteína(g)": "22.25",
+    "Lipídeos(g)": "26.99",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "379",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, peito, sem gordura, cru",
+    "Energia(kcal)": "259.28",
+    "Proteína(g)": "17.56",
+    "Lipídeos(g)": "20.43",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "380",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, picanha, com gordura, crua",
+    "Energia(kcal)": "212.88",
+    "Proteína(g)": "18.82",
+    "Lipídeos(g)": "14.69",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "381",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, picanha, com gordura, grelhada",
+    "Energia(kcal)": "288.77",
+    "Proteína(g)": "26.42",
+    "Lipídeos(g)": "19.51",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "382",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, picanha, sem gordura, crua",
+    "Energia(kcal)": "133.52",
+    "Proteína(g)": "21.25",
+    "Lipídeos(g)": "4.74",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "383",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, picanha, sem gordura, grelhada",
+    "Energia(kcal)": "238.47",
+    "Proteína(g)": "31.91",
+    "Lipídeos(g)": "11.33",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "384",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, seca, cozida",
+    "Energia(kcal)": "312.80",
+    "Proteína(g)": "26.93",
+    "Lipídeos(g)": "21.93",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "385",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Carne, bovina, seca, crua",
+    "Energia(kcal)": "312.75",
+    "Proteína(g)": "19.66",
+    "Lipídeos(g)": "25.37",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "386",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Coxinha de frango, frita",
+    "Energia(kcal)": "283.05",
+    "Proteína(g)": "9.61",
+    "Lipídeos(g)": "11.84",
+    "Carboidrato(g)": "34.52"
+  },
+  {
+    "Número": "387",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Croquete, de carne, cru",
+    "Energia(kcal)": "245.77",
+    "Proteína(g)": "12.04",
+    "Lipídeos(g)": "15.56",
+    "Carboidrato(g)": "13.95"
+  },
+  {
+    "Número": "388",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Croquete, de carne, frito",
+    "Energia(kcal)": "346.74",
+    "Proteína(g)": "16.86",
+    "Lipídeos(g)": "22.67",
+    "Carboidrato(g)": "18.15"
+  },
+  {
+    "Número": "389",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Empada de frango, pré-cozida, assada",
+    "Energia(kcal)": "358.19",
+    "Proteína(g)": "6.94",
+    "Lipídeos(g)": "15.61",
+    "Carboidrato(g)": "47.49"
+  },
+  {
+    "Número": "390",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Empada, de frango, pré-cozida",
+    "Energia(kcal)": "377.48",
+    "Proteína(g)": "7.34",
+    "Lipídeos(g)": "22.89",
+    "Carboidrato(g)": "35.53"
+  },
+  {
+    "Número": "391",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, asa, com pele, crua",
+    "Energia(kcal)": "213.19",
+    "Proteína(g)": "18.10",
+    "Lipídeos(g)": "15.07",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "392",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, caipira, inteiro, com pele, cozido",
+    "Energia(kcal)": "242.89",
+    "Proteína(g)": "23.88",
+    "Lipídeos(g)": "15.62",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "393",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, caipira, inteiro, sem pele, cozido",
+    "Energia(kcal)": "195.76",
+    "Proteína(g)": "29.57",
+    "Lipídeos(g)": "7.70",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "394",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, coração, cru",
+    "Energia(kcal)": "221.50",
+    "Proteína(g)": "12.58",
+    "Lipídeos(g)": "18.60",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "395",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, coração, grelhado",
+    "Energia(kcal)": "207.27",
+    "Proteína(g)": "22.44",
+    "Lipídeos(g)": "12.10",
+    "Carboidrato(g)": "0.61"
+  },
+  {
+    "Número": "396",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, coxa, com pele, assada",
+    "Energia(kcal)": "215.12",
+    "Proteína(g)": "28.49",
+    "Lipídeos(g)": "10.36",
+    "Carboidrato(g)": "0.06"
+  },
+  {
+    "Número": "397",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, coxa, com pele, crua",
+    "Energia(kcal)": "161.47",
+    "Proteína(g)": "17.09",
+    "Lipídeos(g)": "9.81",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "398",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, coxa, sem pele, cozida",
+    "Energia(kcal)": "167.43",
+    "Proteína(g)": "26.86",
+    "Lipídeos(g)": "5.85",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "399",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, coxa, sem pele, crua",
+    "Energia(kcal)": "119.95",
+    "Proteína(g)": "17.81",
+    "Lipídeos(g)": "4.86",
+    "Carboidrato(g)": "0.02"
+  },
+  {
+    "Número": "400",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, fígado, cru",
+    "Energia(kcal)": "106.48",
+    "Proteína(g)": "17.59",
+    "Lipídeos(g)": "3.49",
+    "Carboidrato(g)": "-0.02"
+  },
+  {
+    "Número": "401",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, filé, à milanesa",
+    "Energia(kcal)": "220.87",
+    "Proteína(g)": "28.46",
+    "Lipídeos(g)": "7.79",
+    "Carboidrato(g)": "7.51"
+  },
+  {
+    "Número": "402",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, inteiro, com pele, cru",
+    "Energia(kcal)": "226.32",
+    "Proteína(g)": "16.44",
+    "Lipídeos(g)": "17.31",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "403",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, inteiro, sem pele, assado",
+    "Energia(kcal)": "187.34",
+    "Proteína(g)": "28.02",
+    "Lipídeos(g)": "7.50",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "404",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, inteiro, sem pele, cozido",
+    "Energia(kcal)": "170.39",
+    "Proteína(g)": "24.99",
+    "Lipídeos(g)": "7.06",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "405",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, inteiro, sem pele, cru",
+    "Energia(kcal)": "129.10",
+    "Proteína(g)": "20.59",
+    "Lipídeos(g)": "4.57",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "406",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, peito, com pele, assado",
+    "Energia(kcal)": "211.68",
+    "Proteína(g)": "33.42",
+    "Lipídeos(g)": "7.65",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "407",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, peito, com pele, cru",
+    "Energia(kcal)": "149.47",
+    "Proteína(g)": "20.78",
+    "Lipídeos(g)": "6.73",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "408",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, peito, sem pele, cozido",
+    "Energia(kcal)": "162.87",
+    "Proteína(g)": "31.47",
+    "Lipídeos(g)": "3.16",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "409",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, peito, sem pele, cru",
+    "Energia(kcal)": "119.16",
+    "Proteína(g)": "21.53",
+    "Lipídeos(g)": "3.02",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "410",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, peito, sem pele, grelhado",
+    "Energia(kcal)": "159.19",
+    "Proteína(g)": "32.03",
+    "Lipídeos(g)": "2.48",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "411",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, sobrecoxa, com pele, assada",
+    "Energia(kcal)": "259.60",
+    "Proteína(g)": "28.70",
+    "Lipídeos(g)": "15.19",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "412",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, sobrecoxa, com pele, crua",
+    "Energia(kcal)": "254.53",
+    "Proteína(g)": "15.46",
+    "Lipídeos(g)": "20.90",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "413",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, sobrecoxa, sem pele, assada",
+    "Energia(kcal)": "232.88",
+    "Proteína(g)": "29.18",
+    "Lipídeos(g)": "12.01",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "414",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Frango, sobrecoxa, sem pele, crua",
+    "Energia(kcal)": "161.80",
+    "Proteína(g)": "17.57",
+    "Lipídeos(g)": "9.62",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "415",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Hambúrguer, bovino, cru",
+    "Energia(kcal)": "214.84",
+    "Proteína(g)": "13.16",
+    "Lipídeos(g)": "16.18",
+    "Carboidrato(g)": "4.15"
+  },
+  {
+    "Número": "416",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Hambúrguer, bovino, frito",
+    "Energia(kcal)": "258.28",
+    "Proteína(g)": "19.97",
+    "Lipídeos(g)": "17.01",
+    "Carboidrato(g)": "6.32"
+  },
+  {
+    "Número": "417",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Hambúrguer, bovino, grelhado",
+    "Energia(kcal)": "209.83",
+    "Proteína(g)": "13.16",
+    "Lipídeos(g)": "12.43",
+    "Carboidrato(g)": "11.33"
+  },
+  {
+    "Número": "418",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Lingüiça, frango, crua",
+    "Energia(kcal)": "218.11",
+    "Proteína(g)": "14.24",
+    "Lipídeos(g)": "17.44",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "419",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Lingüiça, frango, frita",
+    "Energia(kcal)": "245.46",
+    "Proteína(g)": "18.32",
+    "Lipídeos(g)": "18.54",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "420",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Lingüiça, frango, grelhada",
+    "Energia(kcal)": "243.66",
+    "Proteína(g)": "18.19",
+    "Lipídeos(g)": "18.40",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "421",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Lingüiça, porco, crua",
+    "Energia(kcal)": "227.20",
+    "Proteína(g)": "16.06",
+    "Lipídeos(g)": "17.58",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "422",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Lingüiça, porco, frita",
+    "Energia(kcal)": "279.54",
+    "Proteína(g)": "20.45",
+    "Lipídeos(g)": "21.31",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "423",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Lingüiça, porco, grelhada",
+    "Energia(kcal)": "296.49",
+    "Proteína(g)": "23.17",
+    "Lipídeos(g)": "21.90",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "424",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Mortadela",
+    "Energia(kcal)": "268.82",
+    "Proteína(g)": "11.95",
+    "Lipídeos(g)": "21.65",
+    "Carboidrato(g)": "5.82"
+  },
+  {
+    "Número": "425",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Peru, congelado, assado",
+    "Energia(kcal)": "163.07",
+    "Proteína(g)": "26.20",
+    "Lipídeos(g)": "5.67",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "426",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Peru, congelado, cru",
+    "Energia(kcal)": "93.72",
+    "Proteína(g)": "18.08",
+    "Lipídeos(g)": "1.83",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "427",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, bisteca, crua",
+    "Energia(kcal)": "164.12",
+    "Proteína(g)": "21.50",
+    "Lipídeos(g)": "8.02",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "428",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, bisteca, frita",
+    "Energia(kcal)": "311.17",
+    "Proteína(g)": "33.75",
+    "Lipídeos(g)": "18.52",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "429",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, bisteca, grelhada",
+    "Energia(kcal)": "280.08",
+    "Proteína(g)": "28.89",
+    "Lipídeos(g)": "17.38",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "430",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, costela, assada",
+    "Energia(kcal)": "402.17",
+    "Proteína(g)": "30.22",
+    "Lipídeos(g)": "30.28",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "431",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, costela, crua",
+    "Energia(kcal)": "255.61",
+    "Proteína(g)": "18.00",
+    "Lipídeos(g)": "19.82",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "432",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, lombo, assado",
+    "Energia(kcal)": "210.23",
+    "Proteína(g)": "35.73",
+    "Lipídeos(g)": "6.40",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "433",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, lombo, cru",
+    "Energia(kcal)": "175.63",
+    "Proteína(g)": "22.60",
+    "Lipídeos(g)": "8.77",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "434",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, orelha, salgada, crua",
+    "Energia(kcal)": "258.49",
+    "Proteína(g)": "18.52",
+    "Lipídeos(g)": "19.89",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "435",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, pernil, assado",
+    "Energia(kcal)": "262.26",
+    "Proteína(g)": "32.13",
+    "Lipídeos(g)": "13.86",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "436",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, pernil, cru",
+    "Energia(kcal)": "186.06",
+    "Proteína(g)": "20.12",
+    "Lipídeos(g)": "11.10",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "437",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Porco, rabo, salgado, cru",
+    "Energia(kcal)": "377.42",
+    "Proteína(g)": "15.58",
+    "Lipídeos(g)": "34.47",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "438",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Presunto, com capa de gordura",
+    "Energia(kcal)": "127.85",
+    "Proteína(g)": "14.37",
+    "Lipídeos(g)": "6.77",
+    "Carboidrato(g)": "1.40"
+  },
+  {
+    "Número": "439",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Presunto, sem capa de gordura",
+    "Energia(kcal)": "93.74",
+    "Proteína(g)": "14.29",
+    "Lipídeos(g)": "2.71",
+    "Carboidrato(g)": "2.15"
+  },
+  {
+    "Número": "440",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Quibe, assado",
+    "Energia(kcal)": "136.23",
+    "Proteína(g)": "14.59",
+    "Lipídeos(g)": "2.68",
+    "Carboidrato(g)": "12.86"
+  },
+  {
+    "Número": "441",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Quibe, cru",
+    "Energia(kcal)": "109.49",
+    "Proteína(g)": "12.35",
+    "Lipídeos(g)": "1.67",
+    "Carboidrato(g)": "10.77"
+  },
+  {
+    "Número": "442",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Quibe, frito",
+    "Energia(kcal)": "253.83",
+    "Proteína(g)": "14.89",
+    "Lipídeos(g)": "15.80",
+    "Carboidrato(g)": "12.34"
+  },
+  {
+    "Número": "443",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Salame",
+    "Energia(kcal)": "397.84",
+    "Proteína(g)": "25.81",
+    "Lipídeos(g)": "30.64",
+    "Carboidrato(g)": "2.91"
+  },
+  {
+    "Número": "444",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Toucinho, cru",
+    "Energia(kcal)": "592.53",
+    "Proteína(g)": "11.48",
+    "Lipídeos(g)": "60.26",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "445",
+    "Grupo": "Carnes e derivados",
+    "Descrição do Alimento": "Toucinho, frito",
+    "Energia(kcal)": "696.56",
+    "Proteína(g)": "27.28",
+    "Lipídeos(g)": "64.31",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "446",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Bebida láctea, pêssego",
+    "Energia(kcal)": "55.16",
+    "Proteína(g)": "2.13",
+    "Lipídeos(g)": "1.91",
+    "Carboidrato(g)": "7.57"
+  },
+  {
+    "Número": "447",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Creme de Leite",
+    "Energia(kcal)": "221.48",
+    "Proteína(g)": "1.51",
+    "Lipídeos(g)": "22.48",
+    "Carboidrato(g)": "4.51"
+  },
+  {
+    "Número": "448",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Iogurte, natural",
+    "Energia(kcal)": "51.49",
+    "Proteína(g)": "4.06",
+    "Lipídeos(g)": "3.04",
+    "Carboidrato(g)": "1.92"
+  },
+  {
+    "Número": "449",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Iogurte, natural, desnatado",
+    "Energia(kcal)": "41.49",
+    "Proteína(g)": "3.83",
+    "Lipídeos(g)": "0.32",
+    "Carboidrato(g)": "5.77"
+  },
+  {
+    "Número": "450",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Iogurte, sabor abacaxi",
+    "Energia(kcal)": "*",
+    "Proteína(g)": "*",
+    "Lipídeos(g)": "*",
+    "Carboidrato(g)": "*"
+  },
+  {
+    "Número": "451",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Iogurte, sabor morango",
+    "Energia(kcal)": "69.57",
+    "Proteína(g)": "2.71",
+    "Lipídeos(g)": "2.33",
+    "Carboidrato(g)": "9.69"
+  },
+  {
+    "Número": "452",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Iogurte, sabor pêssego",
+    "Energia(kcal)": "67.85",
+    "Proteína(g)": "2.53",
+    "Lipídeos(g)": "2.34",
+    "Carboidrato(g)": "9.43"
+  },
+  {
+    "Número": "453",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Leite, condensado",
+    "Energia(kcal)": "312.57",
+    "Proteína(g)": "7.67",
+    "Lipídeos(g)": "6.74",
+    "Carboidrato(g)": "57.00"
+  },
+  {
+    "Número": "454",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Leite, de cabra",
+    "Energia(kcal)": "66.42",
+    "Proteína(g)": "3.07",
+    "Lipídeos(g)": "3.75",
+    "Carboidrato(g)": "5.25"
+  },
+  {
+    "Número": "455",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Leite, de vaca, achocolatado",
+    "Energia(kcal)": "82.82",
+    "Proteína(g)": "2.10",
+    "Lipídeos(g)": "2.17",
+    "Carboidrato(g)": "14.16"
+  },
+  {
+    "Número": "456",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Leite, de vaca, desnatado, pó",
+    "Energia(kcal)": "361.61",
+    "Proteína(g)": "34.69",
+    "Lipídeos(g)": "0.93",
+    "Carboidrato(g)": "53.04"
+  },
+  {
+    "Número": "457",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Leite, de vaca, desnatado, UHT",
+    "Energia(kcal)": "*",
+    "Proteína(g)": "*",
+    "Lipídeos(g)": "*",
+    "Carboidrato(g)": "*"
+  },
+  {
+    "Número": "458",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Leite, de vaca, integral",
+    "Energia(kcal)": "*",
+    "Proteína(g)": "*",
+    "Lipídeos(g)": "*",
+    "Carboidrato(g)": "*"
+  },
+  {
+    "Número": "459",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Leite, de vaca, integral, pó",
+    "Energia(kcal)": "496.65",
+    "Proteína(g)": "25.42",
+    "Lipídeos(g)": "26.90",
+    "Carboidrato(g)": "39.18"
+  },
+  {
+    "Número": "460",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Leite, fermentado",
+    "Energia(kcal)": "69.62",
+    "Proteína(g)": "1.89",
+    "Lipídeos(g)": "0.10",
+    "Carboidrato(g)": "15.67"
+  },
+  {
+    "Número": "461",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Queijo, minas, frescal",
+    "Energia(kcal)": "264.27",
+    "Proteína(g)": "17.41",
+    "Lipídeos(g)": "20.18",
+    "Carboidrato(g)": "3.24"
+  },
+  {
+    "Número": "462",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Queijo, minas, meia cura",
+    "Energia(kcal)": "320.72",
+    "Proteína(g)": "21.21",
+    "Lipídeos(g)": "24.61",
+    "Carboidrato(g)": "3.57"
+  },
+  {
+    "Número": "463",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Queijo, mozarela",
+    "Energia(kcal)": "329.87",
+    "Proteína(g)": "22.65",
+    "Lipídeos(g)": "25.18",
+    "Carboidrato(g)": "3.05"
+  },
+  {
+    "Número": "464",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Queijo, parmesão",
+    "Energia(kcal)": "452.96",
+    "Proteína(g)": "35.55",
+    "Lipídeos(g)": "33.53",
+    "Carboidrato(g)": "1.66"
+  },
+  {
+    "Número": "465",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Queijo, pasteurizado",
+    "Energia(kcal)": "303.08",
+    "Proteína(g)": "9.36",
+    "Lipídeos(g)": "27.44",
+    "Carboidrato(g)": "5.68"
+  },
+  {
+    "Número": "466",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Queijo, petit suisse, morango",
+    "Energia(kcal)": "121.11",
+    "Proteína(g)": "5.79",
+    "Lipídeos(g)": "2.84",
+    "Carboidrato(g)": "18.46"
+  },
+  {
+    "Número": "467",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Queijo, prato",
+    "Energia(kcal)": "359.88",
+    "Proteína(g)": "22.66",
+    "Lipídeos(g)": "29.11",
+    "Carboidrato(g)": "1.88"
+  },
+  {
+    "Número": "468",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Queijo, requeijão, cremoso",
+    "Energia(kcal)": "256.58",
+    "Proteína(g)": "9.63",
+    "Lipídeos(g)": "23.44",
+    "Carboidrato(g)": "2.43"
+  },
+  {
+    "Número": "469",
+    "Grupo": "Leite e derivados",
+    "Descrição do Alimento": "Queijo, ricota",
+    "Energia(kcal)": "139.73",
+    "Proteína(g)": "12.60",
+    "Lipídeos(g)": "8.11",
+    "Carboidrato(g)": "3.79"
+  },
+  {
+    "Número": "470",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Bebida isotônica, sabores variados",
+    "Energia(kcal)": "25.61",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "6.40"
+  },
+  {
+    "Número": "471",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Café, infusão 10%",
+    "Energia(kcal)": "9.07",
+    "Proteína(g)": "0.71",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "1.48"
+  },
+  {
+    "Número": "472",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Cana, aguardente 1",
+    "Energia(kcal)": "215.66",
+    "Proteína(g)": "",
+    "Lipídeos(g)": "",
+    "Carboidrato(g)": ""
+  },
+  {
+    "Número": "473",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Cana, caldo de",
+    "Energia(kcal)": "65.34",
+    "Proteína(g)": "Tr",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "18.15"
+  },
+  {
+    "Número": "474",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Cerveja, pilsen 2",
+    "Energia(kcal)": "40.72",
+    "Proteína(g)": "0.56",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "3.32"
+  },
+  {
+    "Número": "475",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Chá, erva-doce, infusão 5%",
+    "Energia(kcal)": "1.40",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "0.39"
+  },
+  {
+    "Número": "476",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Chá, mate, infusão 5%",
+    "Energia(kcal)": "2.73",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.05",
+    "Carboidrato(g)": "0.64"
+  },
+  {
+    "Número": "477",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Chá, preto, infusão 5%",
+    "Energia(kcal)": "2.25",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "0.63"
+  },
+  {
+    "Número": "478",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Coco, água de",
+    "Energia(kcal)": "21.51",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "5.28"
+  },
+  {
+    "Número": "479",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Refrigerante, tipo água tônica",
+    "Energia(kcal)": "30.78",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "7.95"
+  },
+  {
+    "Número": "480",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Refrigerante, tipo cola",
+    "Energia(kcal)": "33.51",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "8.66"
+  },
+  {
+    "Número": "481",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Refrigerante, tipo guaraná",
+    "Energia(kcal)": "38.70",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "10.00"
+  },
+  {
+    "Número": "482",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Refrigerante, tipo laranja",
+    "Energia(kcal)": "45.63",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "11.79"
+  },
+  {
+    "Número": "483",
+    "Grupo": "Bebidas (alcoólicas e não alcoólicas)",
+    "Descrição do Alimento": "Refrigerante, tipo limão",
+    "Energia(kcal)": "39.72",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "10.26"
+  },
+  {
+    "Número": "484",
+    "Grupo": "Ovos e derivados",
+    "Descrição do Alimento": "Omelete, de queijo",
+    "Energia(kcal)": "268.01",
+    "Proteína(g)": "15.57",
+    "Lipídeos(g)": "22.01",
+    "Carboidrato(g)": "0.44"
+  },
+  {
+    "Número": "485",
+    "Grupo": "Ovos e derivados",
+    "Descrição do Alimento": "Ovo, de codorna, inteiro, cru",
+    "Energia(kcal)": "176.89",
+    "Proteína(g)": "13.69",
+    "Lipídeos(g)": "12.68",
+    "Carboidrato(g)": "0.77"
+  },
+  {
+    "Número": "486",
+    "Grupo": "Ovos e derivados",
+    "Descrição do Alimento": "Ovo, de galinha, clara, cozida/10minutos",
+    "Energia(kcal)": "59.44",
+    "Proteína(g)": "13.45",
+    "Lipídeos(g)": "0.09",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "487",
+    "Grupo": "Ovos e derivados",
+    "Descrição do Alimento": "Ovo, de galinha, gema, cozida/10minutos",
+    "Energia(kcal)": "352.67",
+    "Proteína(g)": "15.90",
+    "Lipídeos(g)": "30.78",
+    "Carboidrato(g)": "1.56"
+  },
+  {
+    "Número": "488",
+    "Grupo": "Ovos e derivados",
+    "Descrição do Alimento": "Ovo, de galinha, inteiro, cozido/10minutos",
+    "Energia(kcal)": "145.70",
+    "Proteína(g)": "13.29",
+    "Lipídeos(g)": "9.48",
+    "Carboidrato(g)": "0.61"
+  },
+  {
+    "Número": "489",
+    "Grupo": "Ovos e derivados",
+    "Descrição do Alimento": "Ovo, de galinha, inteiro, cru",
+    "Energia(kcal)": "143.11",
+    "Proteína(g)": "13.03",
+    "Lipídeos(g)": "8.90",
+    "Carboidrato(g)": "1.64"
+  },
+  {
+    "Número": "490",
+    "Grupo": "Ovos e derivados",
+    "Descrição do Alimento": "Ovo, de galinha, inteiro, frito",
+    "Energia(kcal)": "240.19",
+    "Proteína(g)": "15.62",
+    "Lipídeos(g)": "18.59",
+    "Carboidrato(g)": "1.19"
+  },
+  {
+    "Número": "491",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Achocolatado, pó",
+    "Energia(kcal)": "401.02",
+    "Proteína(g)": "4.20",
+    "Lipídeos(g)": "2.17",
+    "Carboidrato(g)": "91.18"
+  },
+  {
+    "Número": "492",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Açúcar, cristal",
+    "Energia(kcal)": "386.85",
+    "Proteína(g)": "0.32",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "99.61"
+  },
+  {
+    "Número": "493",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Açúcar, mascavo",
+    "Energia(kcal)": "368.55",
+    "Proteína(g)": "0.76",
+    "Lipídeos(g)": "0.09",
+    "Carboidrato(g)": "94.45"
+  },
+  {
+    "Número": "494",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Açúcar, refinado",
+    "Energia(kcal)": "386.57",
+    "Proteína(g)": "0.32",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "99.54"
+  },
+  {
+    "Número": "495",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Chocolate, ao leite",
+    "Energia(kcal)": "539.59",
+    "Proteína(g)": "7.22",
+    "Lipídeos(g)": "30.27",
+    "Carboidrato(g)": "59.58"
+  },
+  {
+    "Número": "496",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Chocolate, ao leite, com castanha do Pará",
+    "Energia(kcal)": "558.88",
+    "Proteína(g)": "7.41",
+    "Lipídeos(g)": "34.19",
+    "Carboidrato(g)": "55.38"
+  },
+  {
+    "Número": "497",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Chocolate, ao leite, dietético",
+    "Energia(kcal)": "556.82",
+    "Proteína(g)": "6.90",
+    "Lipídeos(g)": "33.77",
+    "Carboidrato(g)": "56.32"
+  },
+  {
+    "Número": "498",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Chocolate, meio amargo",
+    "Energia(kcal)": "474.92",
+    "Proteína(g)": "4.86",
+    "Lipídeos(g)": "29.86",
+    "Carboidrato(g)": "62.42"
+  },
+  {
+    "Número": "499",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Cocada branca",
+    "Energia(kcal)": "448.85",
+    "Proteína(g)": "1.12",
+    "Lipídeos(g)": "13.59",
+    "Carboidrato(g)": "81.38"
+  },
+  {
+    "Número": "500",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Doce, de abóbora, cremoso",
+    "Energia(kcal)": "198.94",
+    "Proteína(g)": "0.92",
+    "Lipídeos(g)": "0.21",
+    "Carboidrato(g)": "54.61"
+  },
+  {
+    "Número": "501",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Doce, de leite, cremoso",
+    "Energia(kcal)": "306.31",
+    "Proteína(g)": "5.48",
+    "Lipídeos(g)": "5.99",
+    "Carboidrato(g)": "59.49"
+  },
+  {
+    "Número": "502",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Geléia, mocotó, natural",
+    "Energia(kcal)": "106.09",
+    "Proteína(g)": "2.12",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "24.23"
+  },
+  {
+    "Número": "503",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Glicose de milho",
+    "Energia(kcal)": "292.12",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "79.38"
+  },
+  {
+    "Número": "504",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Maria mole",
+    "Energia(kcal)": "301.24",
+    "Proteína(g)": "3.81",
+    "Lipídeos(g)": "0.19",
+    "Carboidrato(g)": "73.55"
+  },
+  {
+    "Número": "505",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Maria mole, coco queimado",
+    "Energia(kcal)": "306.63",
+    "Proteína(g)": "3.93",
+    "Lipídeos(g)": "0.09",
+    "Carboidrato(g)": "75.06"
+  },
+  {
+    "Número": "506",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Marmelada",
+    "Energia(kcal)": "257.24",
+    "Proteína(g)": "0.40",
+    "Lipídeos(g)": "0.14",
+    "Carboidrato(g)": "70.76"
+  },
+  {
+    "Número": "507",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Mel, de abelha",
+    "Energia(kcal)": "309.24",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "84.03"
+  },
+  {
+    "Número": "508",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Melado",
+    "Energia(kcal)": "296.51",
+    "Proteína(g)": "0.00",
+    "Lipídeos(g)": "0.00",
+    "Carboidrato(g)": "76.62"
+  },
+  {
+    "Número": "509",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Quindim",
+    "Energia(kcal)": "411.35",
+    "Proteína(g)": "4.74",
+    "Lipídeos(g)": "24.43",
+    "Carboidrato(g)": "46.30"
+  },
+  {
+    "Número": "510",
+    "Grupo": "Produtos açucarados",
+    "Descrição do Alimento": "Rapadura",
+    "Energia(kcal)": "351.96",
+    "Proteína(g)": "0.99",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "90.79"
+  },
+  {
+    "Número": "511",
+    "Grupo": "Miscelâneas",
+    "Descrição do Alimento": "Café, pó, torrado",
+    "Energia(kcal)": "418.62",
+    "Proteína(g)": "14.70",
+    "Lipídeos(g)": "11.95",
+    "Carboidrato(g)": "65.75"
+  },
+  {
+    "Número": "512",
+    "Grupo": "Miscelâneas",
+    "Descrição do Alimento": "Capuccino, pó",
+    "Energia(kcal)": "417.41",
+    "Proteína(g)": "11.31",
+    "Lipídeos(g)": "8.63",
+    "Carboidrato(g)": "73.61"
+  },
+  {
+    "Número": "513",
+    "Grupo": "Miscelâneas",
+    "Descrição do Alimento": "Fermento em pó, químico",
+    "Energia(kcal)": "89.72",
+    "Proteína(g)": "0.48",
+    "Lipídeos(g)": "0.07",
+    "Carboidrato(g)": "43.91"
+  },
+  {
+    "Número": "514",
+    "Grupo": "Miscelâneas",
+    "Descrição do Alimento": "Fermento, biológico, levedura, tablete",
+    "Energia(kcal)": "89.79",
+    "Proteína(g)": "16.96",
+    "Lipídeos(g)": "1.52",
+    "Carboidrato(g)": "7.70"
+  },
+  {
+    "Número": "515",
+    "Grupo": "Miscelâneas",
+    "Descrição do Alimento": "Gelatina, sabores variados, pó",
+    "Energia(kcal)": "380.22",
+    "Proteína(g)": "8.89",
+    "Lipídeos(g)": "Tr",
+    "Carboidrato(g)": "89.22"
+  },
+  {
+    "Número": "516",
+    "Grupo": "Miscelâneas",
+    "Descrição do Alimento": "Sal, dietético",
+    "Energia(kcal)": "NA",
+    "Proteína(g)": "NA",
+    "Lipídeos(g)": "NA",
+    "Carboidrato(g)": "NA"
+  },
+  {
+    "Número": "517",
+    "Grupo": "Miscelâneas",
+    "Descrição do Alimento": "Sal, grosso",
+    "Energia(kcal)": "NA",
+    "Proteína(g)": "NA",
+    "Lipídeos(g)": "NA",
+    "Carboidrato(g)": "NA"
+  },
+  {
+    "Número": "518",
+    "Grupo": "Miscelâneas",
+    "Descrição do Alimento": "Shoyu",
+    "Energia(kcal)": "60.93",
+    "Proteína(g)": "3.31",
+    "Lipídeos(g)": "0.33",
+    "Carboidrato(g)": "11.65"
+  },
+  {
+    "Número": "519",
+    "Grupo": "Miscelâneas",
+    "Descrição do Alimento": "Tempero a base de sal",
+    "Energia(kcal)": "21.33",
+    "Proteína(g)": "2.67",
+    "Lipídeos(g)": "0.26",
+    "Carboidrato(g)": "2.07"
+  },
+  {
+    "Número": "520",
+    "Grupo": "Outros alimentos industrializados",
+    "Descrição do Alimento": "Azeitona, preta, conserva",
+    "Energia(kcal)": "194.15",
+    "Proteína(g)": "1.16",
+    "Lipídeos(g)": "20.34",
+    "Carboidrato(g)": "5.54"
+  },
+  {
+    "Número": "521",
+    "Grupo": "Outros alimentos industrializados",
+    "Descrição do Alimento": "Azeitona, verde, conserva",
+    "Energia(kcal)": "136.94",
+    "Proteína(g)": "0.95",
+    "Lipídeos(g)": "14.22",
+    "Carboidrato(g)": "4.10"
+  },
+  {
+    "Número": "522",
+    "Grupo": "Outros alimentos industrializados",
+    "Descrição do Alimento": "Chantilly, spray, com gordura vegetal",
+    "Energia(kcal)": "314.96",
+    "Proteína(g)": "0.53",
+    "Lipídeos(g)": "27.27",
+    "Carboidrato(g)": "16.86"
+  },
+  {
+    "Número": "523",
+    "Grupo": "Outros alimentos industrializados",
+    "Descrição do Alimento": "Leite, de coco",
+    "Energia(kcal)": "166.16",
+    "Proteína(g)": "1.01",
+    "Lipídeos(g)": "18.36",
+    "Carboidrato(g)": "2.19"
+  },
+  {
+    "Número": "524",
+    "Grupo": "Outros alimentos industrializados",
+    "Descrição do Alimento": "Maionese, tradicional com ovos",
+    "Energia(kcal)": "302.15",
+    "Proteína(g)": "0.58",
+    "Lipídeos(g)": "30.50",
+    "Carboidrato(g)": "7.90"
+  },
+  {
+    "Número": "525",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Acarajé",
+    "Energia(kcal)": "289.21",
+    "Proteína(g)": "8.35",
+    "Lipídeos(g)": "19.93",
+    "Carboidrato(g)": "19.11"
+  },
+  {
+    "Número": "526",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Arroz carreteiro",
+    "Energia(kcal)": "153.77",
+    "Proteína(g)": "10.83",
+    "Lipídeos(g)": "7.12",
+    "Carboidrato(g)": "11.58"
+  },
+  {
+    "Número": "527",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Baião de dois, arroz e feijão-de-corda",
+    "Energia(kcal)": "135.68",
+    "Proteína(g)": "6.24",
+    "Lipídeos(g)": "3.23",
+    "Carboidrato(g)": "20.42"
+  },
+  {
+    "Número": "528",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Barreado",
+    "Energia(kcal)": "164.98",
+    "Proteína(g)": "18.27",
+    "Lipídeos(g)": "9.53",
+    "Carboidrato(g)": "0.24"
+  },
+  {
+    "Número": "529",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Bife à cavalo, com contra filé",
+    "Energia(kcal)": "291.23",
+    "Proteína(g)": "23.66",
+    "Lipídeos(g)": "21.15",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "530",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Bolinho de arroz",
+    "Energia(kcal)": "273.51",
+    "Proteína(g)": "8.04",
+    "Lipídeos(g)": "8.29",
+    "Carboidrato(g)": "41.68"
+  },
+  {
+    "Número": "531",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Camarão à baiana",
+    "Energia(kcal)": "100.78",
+    "Proteína(g)": "7.94",
+    "Lipídeos(g)": "5.97",
+    "Carboidrato(g)": "3.17"
+  },
+  {
+    "Número": "532",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Charuto, de repolho",
+    "Energia(kcal)": "78.23",
+    "Proteína(g)": "6.78",
+    "Lipídeos(g)": "1.12",
+    "Carboidrato(g)": "10.13"
+  },
+  {
+    "Número": "533",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Cuscuz, de milho, cozido com sal",
+    "Energia(kcal)": "113.46",
+    "Proteína(g)": "2.16",
+    "Lipídeos(g)": "0.68",
+    "Carboidrato(g)": "25.28"
+  },
+  {
+    "Número": "534",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Cuscuz, paulista",
+    "Energia(kcal)": "142.12",
+    "Proteína(g)": "2.56",
+    "Lipídeos(g)": "4.65",
+    "Carboidrato(g)": "22.51"
+  },
+  {
+    "Número": "535",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Cuxá, molho",
+    "Energia(kcal)": "80.09",
+    "Proteína(g)": "5.64",
+    "Lipídeos(g)": "3.59",
+    "Carboidrato(g)": "5.74"
+  },
+  {
+    "Número": "536",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Dobradinha",
+    "Energia(kcal)": "124.50",
+    "Proteína(g)": "19.77",
+    "Lipídeos(g)": "4.44",
+    "Carboidrato(g)": "0.00"
+  },
+  {
+    "Número": "537",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Estrogonofe de carne",
+    "Energia(kcal)": "173.14",
+    "Proteína(g)": "15.03",
+    "Lipídeos(g)": "10.80",
+    "Carboidrato(g)": "2.98"
+  },
+  {
+    "Número": "538",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Estrogonofe de frango",
+    "Energia(kcal)": "156.81",
+    "Proteína(g)": "17.55",
+    "Lipídeos(g)": "7.96",
+    "Carboidrato(g)": "2.59"
+  },
+  {
+    "Número": "539",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Feijão tropeiro mineiro",
+    "Energia(kcal)": "151.56",
+    "Proteína(g)": "10.17",
+    "Lipídeos(g)": "6.79",
+    "Carboidrato(g)": "19.58"
+  },
+  {
+    "Número": "540",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Feijoada",
+    "Energia(kcal)": "116.93",
+    "Proteína(g)": "8.67",
+    "Lipídeos(g)": "6.48",
+    "Carboidrato(g)": "11.64"
+  },
+  {
+    "Número": "541",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Frango, com açafrão",
+    "Energia(kcal)": "112.78",
+    "Proteína(g)": "9.70",
+    "Lipídeos(g)": "6.17",
+    "Carboidrato(g)": "4.06"
+  },
+  {
+    "Número": "542",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Macarrão, molho bolognesa",
+    "Energia(kcal)": "119.53",
+    "Proteína(g)": "4.93",
+    "Lipídeos(g)": "0.89",
+    "Carboidrato(g)": "22.52"
+  },
+  {
+    "Número": "543",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Maniçoba",
+    "Energia(kcal)": "134.22",
+    "Proteína(g)": "9.96",
+    "Lipídeos(g)": "8.70",
+    "Carboidrato(g)": "3.42"
+  },
+  {
+    "Número": "544",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Quibebe",
+    "Energia(kcal)": "86.35",
+    "Proteína(g)": "8.56",
+    "Lipídeos(g)": "2.67",
+    "Carboidrato(g)": "6.64"
+  },
+  {
+    "Número": "545",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Salada, de legumes, com maionese",
+    "Energia(kcal)": "96.10",
+    "Proteína(g)": "1.05",
+    "Lipídeos(g)": "7.04",
+    "Carboidrato(g)": "8.92"
+  },
+  {
+    "Número": "546",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Salada, de legumes, cozida no vapor",
+    "Energia(kcal)": "35.41",
+    "Proteína(g)": "2.01",
+    "Lipídeos(g)": "0.31",
+    "Carboidrato(g)": "7.09"
+  },
+  {
+    "Número": "547",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Salpicão, de frango",
+    "Energia(kcal)": "147.86",
+    "Proteína(g)": "13.93",
+    "Lipídeos(g)": "7.84",
+    "Carboidrato(g)": "4.57"
+  },
+  {
+    "Número": "548",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Sarapatel",
+    "Energia(kcal)": "122.98",
+    "Proteína(g)": "18.47",
+    "Lipídeos(g)": "4.42",
+    "Carboidrato(g)": "1.09"
+  },
+  {
+    "Número": "549",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Tabule",
+    "Energia(kcal)": "57.45",
+    "Proteína(g)": "2.05",
+    "Lipídeos(g)": "1.21",
+    "Carboidrato(g)": "10.58"
+  },
+  {
+    "Número": "550",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Tacacá",
+    "Energia(kcal)": "46.89",
+    "Proteína(g)": "6.96",
+    "Lipídeos(g)": "0.36",
+    "Carboidrato(g)": "3.39"
+  },
+  {
+    "Número": "551",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Tapioca, com manteiga",
+    "Energia(kcal)": "347.83",
+    "Proteína(g)": "0.09",
+    "Lipídeos(g)": "10.91",
+    "Carboidrato(g)": "63.59"
+  },
+  {
+    "Número": "552",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Tucupi, com pimenta-de-cheiro",
+    "Energia(kcal)": "27.18",
+    "Proteína(g)": "2.06",
+    "Lipídeos(g)": "0.28",
+    "Carboidrato(g)": "4.74"
+  },
+  {
+    "Número": "553",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Vaca atolada",
+    "Energia(kcal)": "144.90",
+    "Proteína(g)": "5.12",
+    "Lipídeos(g)": "9.32",
+    "Carboidrato(g)": "10.06"
+  },
+  {
+    "Número": "554",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Vatapá",
+    "Energia(kcal)": "254.89",
+    "Proteína(g)": "6.00",
+    "Lipídeos(g)": "23.23",
+    "Carboidrato(g)": "9.75"
+  },
+  {
+    "Número": "555",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Virado à paulista",
+    "Energia(kcal)": "306.95",
+    "Proteína(g)": "10.18",
+    "Lipídeos(g)": "25.59",
+    "Carboidrato(g)": "14.11"
+  },
+  {
+    "Número": "556",
+    "Grupo": "Alimentos preparados",
+    "Descrição do Alimento": "Yakisoba",
+    "Energia(kcal)": "112.80",
+    "Proteína(g)": "7.52",
+    "Lipídeos(g)": "2.61",
+    "Carboidrato(g)": "18.25"
+  },
+  {
+    "Número": "557",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Amendoim, grão, cru",
+    "Energia(kcal)": "544.05",
+    "Proteína(g)": "27.19",
+    "Lipídeos(g)": "43.85",
+    "Carboidrato(g)": "20.31"
+  },
+  {
+    "Número": "558",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Amendoim, torrado, salgado",
+    "Energia(kcal)": "605.78",
+    "Proteína(g)": "22.48",
+    "Lipídeos(g)": "53.96",
+    "Carboidrato(g)": "18.70"
+  },
+  {
+    "Número": "559",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Ervilha, em vagem",
+    "Energia(kcal)": "88.09",
+    "Proteína(g)": "7.45",
+    "Lipídeos(g)": "0.47",
+    "Carboidrato(g)": "14.23"
+  },
+  {
+    "Número": "560",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Ervilha, enlatada, drenada",
+    "Energia(kcal)": "73.84",
+    "Proteína(g)": "4.60",
+    "Lipídeos(g)": "0.38",
+    "Carboidrato(g)": "13.44"
+  },
+  {
+    "Número": "561",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, carioca, cozido",
+    "Energia(kcal)": "76.42",
+    "Proteína(g)": "4.78",
+    "Lipídeos(g)": "0.54",
+    "Carboidrato(g)": "13.59"
+  },
+  {
+    "Número": "562",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, carioca, cru",
+    "Energia(kcal)": "329.03",
+    "Proteína(g)": "19.98",
+    "Lipídeos(g)": "1.26",
+    "Carboidrato(g)": "61.22"
+  },
+  {
+    "Número": "563",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, fradinho, cozido",
+    "Energia(kcal)": "78.01",
+    "Proteína(g)": "5.09",
+    "Lipídeos(g)": "0.64",
+    "Carboidrato(g)": "13.50"
+  },
+  {
+    "Número": "564",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, fradinho, cru",
+    "Energia(kcal)": "339.16",
+    "Proteína(g)": "20.21",
+    "Lipídeos(g)": "2.37",
+    "Carboidrato(g)": "61.24"
+  },
+  {
+    "Número": "565",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, jalo, cozido",
+    "Energia(kcal)": "92.74",
+    "Proteína(g)": "6.14",
+    "Lipídeos(g)": "0.51",
+    "Carboidrato(g)": "16.50"
+  },
+  {
+    "Número": "566",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, jalo, cru",
+    "Energia(kcal)": "327.91",
+    "Proteína(g)": "20.10",
+    "Lipídeos(g)": "0.95",
+    "Carboidrato(g)": "61.48"
+  },
+  {
+    "Número": "567",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, preto, cozido",
+    "Energia(kcal)": "77.03",
+    "Proteína(g)": "4.48",
+    "Lipídeos(g)": "0.54",
+    "Carboidrato(g)": "14.01"
+  },
+  {
+    "Número": "568",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, preto, cru",
+    "Energia(kcal)": "323.57",
+    "Proteína(g)": "21.34",
+    "Lipídeos(g)": "1.24",
+    "Carboidrato(g)": "58.75"
+  },
+  {
+    "Número": "569",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, rajado, cozido",
+    "Energia(kcal)": "84.70",
+    "Proteína(g)": "5.54",
+    "Lipídeos(g)": "0.40",
+    "Carboidrato(g)": "15.27"
+  },
+  {
+    "Número": "570",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, rajado, cru",
+    "Energia(kcal)": "325.84",
+    "Proteína(g)": "17.27",
+    "Lipídeos(g)": "1.17",
+    "Carboidrato(g)": "62.93"
+  },
+  {
+    "Número": "571",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, rosinha, cozido",
+    "Energia(kcal)": "67.87",
+    "Proteína(g)": "4.54",
+    "Lipídeos(g)": "0.48",
+    "Carboidrato(g)": "11.82"
+  },
+  {
+    "Número": "572",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, rosinha, cru",
+    "Energia(kcal)": "336.96",
+    "Proteína(g)": "20.92",
+    "Lipídeos(g)": "1.33",
+    "Carboidrato(g)": "62.22"
+  },
+  {
+    "Número": "573",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, roxo, cozido",
+    "Energia(kcal)": "76.89",
+    "Proteína(g)": "5.72",
+    "Lipídeos(g)": "0.54",
+    "Carboidrato(g)": "12.91"
+  },
+  {
+    "Número": "574",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Feijão, roxo, cru",
+    "Energia(kcal)": "331.41",
+    "Proteína(g)": "22.17",
+    "Lipídeos(g)": "1.24",
+    "Carboidrato(g)": "59.99"
+  },
+  {
+    "Número": "575",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Grão-de-bico, cru",
+    "Energia(kcal)": "354.70",
+    "Proteína(g)": "21.23",
+    "Lipídeos(g)": "5.43",
+    "Carboidrato(g)": "57.88"
+  },
+  {
+    "Número": "576",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Guandu, cru",
+    "Energia(kcal)": "344.13",
+    "Proteína(g)": "18.96",
+    "Lipídeos(g)": "2.13",
+    "Carboidrato(g)": "64.00"
+  },
+  {
+    "Número": "577",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Lentilha, cozida",
+    "Energia(kcal)": "92.64",
+    "Proteína(g)": "6.31",
+    "Lipídeos(g)": "0.52",
+    "Carboidrato(g)": "16.30"
+  },
+  {
+    "Número": "578",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Lentilha, crua",
+    "Energia(kcal)": "339.14",
+    "Proteína(g)": "23.15",
+    "Lipídeos(g)": "0.77",
+    "Carboidrato(g)": "62.00"
+  },
+  {
+    "Número": "579",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Paçoca, amendoim",
+    "Energia(kcal)": "486.93",
+    "Proteína(g)": "16.00",
+    "Lipídeos(g)": "26.08",
+    "Carboidrato(g)": "52.38"
+  },
+  {
+    "Número": "580",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Pé-de-moleque, amendoim",
+    "Energia(kcal)": "503.19",
+    "Proteína(g)": "13.16",
+    "Lipídeos(g)": "28.05",
+    "Carboidrato(g)": "54.73"
+  },
+  {
+    "Número": "581",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Soja, farinha",
+    "Energia(kcal)": "403.96",
+    "Proteína(g)": "36.03",
+    "Lipídeos(g)": "14.63",
+    "Carboidrato(g)": "38.44"
+  },
+  {
+    "Número": "582",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Soja, extrato solúvel, natural, fluido",
+    "Energia(kcal)": "39.10",
+    "Proteína(g)": "2.38",
+    "Lipídeos(g)": "1.61",
+    "Carboidrato(g)": "4.28"
+  },
+  {
+    "Número": "583",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Soja, extrato solúvel, pó",
+    "Energia(kcal)": "458.90",
+    "Proteína(g)": "35.69",
+    "Lipídeos(g)": "26.18",
+    "Carboidrato(g)": "28.48"
+  },
+  {
+    "Número": "584",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Soja, queijo (tofu)",
+    "Energia(kcal)": "64.49",
+    "Proteína(g)": "6.55",
+    "Lipídeos(g)": "3.95",
+    "Carboidrato(g)": "2.13"
+  },
+  {
+    "Número": "585",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Tremoço, cru",
+    "Energia(kcal)": "381.28",
+    "Proteína(g)": "33.58",
+    "Lipídeos(g)": "10.34",
+    "Carboidrato(g)": "43.79"
+  },
+  {
+    "Número": "586",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Tremoço, em conserva",
+    "Energia(kcal)": "120.64",
+    "Proteína(g)": "11.11",
+    "Lipídeos(g)": "3.78",
+    "Carboidrato(g)": "12.39"
+  },
+  {
+    "Número": "587",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Amêndoa, torrada, salgada",
+    "Energia(kcal)": "580.75",
+    "Proteína(g)": "18.55",
+    "Lipídeos(g)": "47.32",
+    "Carboidrato(g)": "29.55"
+  },
+  {
+    "Número": "588",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Castanha-de-caju, torrada, salgada",
+    "Energia(kcal)": "570.17",
+    "Proteína(g)": "18.51",
+    "Lipídeos(g)": "46.28",
+    "Carboidrato(g)": "29.13"
+  },
+  {
+    "Número": "589",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Castanha-do-Brasil, crua",
+    "Energia(kcal)": "642.96",
+    "Proteína(g)": "14.54",
+    "Lipídeos(g)": "63.46",
+    "Carboidrato(g)": "15.08"
+  },
+  {
+    "Número": "590",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Coco, cru",
+    "Energia(kcal)": "406.49",
+    "Proteína(g)": "3.69",
+    "Lipídeos(g)": "41.98",
+    "Carboidrato(g)": "10.40"
+  },
+  {
+    "Número": "591",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Coco,  verde, cru",
+    "Energia(kcal)": "*",
+    "Proteína(g)": "*",
+    "Lipídeos(g)": "*",
+    "Carboidrato(g)": "*"
+  },
+  {
+    "Número": "592",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Farinha, de mesocarpo de babaçu, crua",
+    "Energia(kcal)": "328.77",
+    "Proteína(g)": "1.41",
+    "Lipídeos(g)": "0.20",
+    "Carboidrato(g)": "79.17"
+  },
+  {
+    "Número": "593",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Gergelim, semente",
+    "Energia(kcal)": "583.55",
+    "Proteína(g)": "21.16",
+    "Lipídeos(g)": "50.43",
+    "Carboidrato(g)": "21.62"
+  },
+  {
+    "Número": "594",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Linhaça, semente",
+    "Energia(kcal)": "495.10",
+    "Proteína(g)": "14.08",
+    "Lipídeos(g)": "32.25",
+    "Carboidrato(g)": "43.31"
+  },
+  {
+    "Número": "595",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Pinhão, cozido",
+    "Energia(kcal)": "174.37",
+    "Proteína(g)": "2.98",
+    "Lipídeos(g)": "0.75",
+    "Carboidrato(g)": "43.92"
+  },
+  {
+    "Número": "596",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Pupunha, cozida",
+    "Energia(kcal)": "218.53",
+    "Proteína(g)": "2.52",
+    "Lipídeos(g)": "12.76",
+    "Carboidrato(g)": "29.57"
+  },
+  {
+    "Número": "597",
+    "Grupo": "Leguminosas e derivados",
+    "Descrição do Alimento": "Noz, crua",
+    "Energia(kcal)": "620.06",
+    "Proteína(g)": "13.97",
+    "Lipídeos(g)": "59.36",
+    "Carboidrato(g)": "18.36"
+  }
+]
