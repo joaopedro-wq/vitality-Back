@@ -27,7 +27,9 @@ class AlimentoController extends Controller
             'proteina' => 'required|numeric',
             'gordura' => 'required|numeric',
             'carbo' => 'required|numeric',
+            'caloria' => 'required|numeric',
             'qtd' => 'required|numeric',
+
 
         ]);
 
@@ -36,6 +38,7 @@ class AlimentoController extends Controller
             'proteina' => $request->proteina,
             'gordura' => $request->gordura,
             'carbo' => $request->carbo,
+            'caloria' => $request->caloria,
             'qtd' => $request->qtd,
 
         ]);
@@ -110,21 +113,22 @@ class AlimentoController extends Controller
 
     public function show(string $id)
     {
-        $alimento = Alimento::with('alimento')->find($id);
-
+        $alimento = Alimento::find($id);
+    
         if (!$alimento) {
             return response()->json([
                 'message' => 'Alimento não encontrado na base de dados',
                 'success' => false
             ], 404);
         }
-
+    
         return response()->json([
             'message' => 'Alimento carregado com sucesso',
             'data' => $alimento,
             'success' => true
         ]);
     }
+    
 
     public function update(Request $request, $id)
     {
@@ -142,6 +146,7 @@ class AlimentoController extends Controller
             'proteina' => 'required|numeric',
             'gordura' => 'required|numeric',
             'carbo' => 'required|numeric',
+            'caloria' => 'required|numeric',
             'qtd' => 'required|numeric',
         ]);
 
@@ -150,6 +155,7 @@ class AlimentoController extends Controller
             'proteina' => $request->proteina,
             'gordura' => $request->gordura,
             'carbo' => $request->carbo,
+            'caloria' => $request->caloria,
             'qtd' => $request->qtd,
         ]);
 
