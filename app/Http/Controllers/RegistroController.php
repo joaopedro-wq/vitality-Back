@@ -12,8 +12,17 @@ class RegistroController extends Controller
      */
     public function index()
     {
+        /* $goals = Goal::with(['category', 'alternative', 'contract.company'])->get()->map(function ($goal) {
+            $goal->descricao_categoria = $goal->category->descricao;
+            $goal->descricao_contrato = $goal->contract->descricao;
+            $goal->descricao_alternativa = $goal->alternative->descricao;
+            $goal->empresa_razao_social = $goal->contract->company->razao;
+            unset($goal->category);
+            return $goal;
+        }); */
         $registro = Registro::with(['alimento'])->get()->map(function ($registro) {
-           
+            $registro->descricao_alimento = $registro->alimento->descricao;
+            
             return $registro;
         });
 
