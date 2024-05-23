@@ -10,13 +10,20 @@ class Registro extends Model
     use HasFactory;
 
     protected $fillable = [
-        'descricao',
         'data',
         'qtd',
         'id_alimento',
+        'id_refeicao',
+
     ];
+
     public function alimento()
     {
         return $this->belongsTo(Alimento::class, 'id_alimento');
+    }
+
+    public function refeicao()
+    {
+        return $this->belongsTo(Refeicao::class, 'id_refeicao');
     }
 }

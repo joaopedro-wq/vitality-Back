@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
-            $table->string('descricao')->nullable(false);
+   
             $table->date('data')->nullable(false);
             $table->float('qtd')->nullable(false);
-
             $table->unsignedBigInteger('id_alimento');
-
-          
+            $table->unsignedBigInteger('id_refeicao');
+            
             $table->foreign('id_alimento')->references('id')->on('alimentos');
+            $table->foreign('id_refeicao')->references('id')->on('refeicaos');
+        
             $table->timestamps();
         });
     }

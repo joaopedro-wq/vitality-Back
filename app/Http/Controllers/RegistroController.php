@@ -12,25 +12,25 @@ class RegistroController extends Controller
      */
     public function index()
     {
-        /* $goals = Goal::with(['category', 'alternative', 'contract.company'])->get()->map(function ($goal) {
-            $goal->descricao_categoria = $goal->category->descricao;
-            $goal->descricao_contrato = $goal->contract->descricao;
-            $goal->descricao_alternativa = $goal->alternative->descricao;
-            $goal->empresa_razao_social = $goal->contract->company->razao;
-            unset($goal->category);
-            return $goal;
-        }); */
-        $registro = Registro::with(['alimento'])->get()->map(function ($registro) {
+        $registros = Registro::with(['alimento', 'refeicao'])->get()->map(function ($registro) {
             $registro->descricao_alimento = $registro->alimento->descricao;
-            
+            $registro->descricao_refeicao = $registro->refeicao->descricao;
+
             return $registro;
         });
 
+        
+        $caloriaTotal = $registros->reduce(function ($carry, $registro) {
+            return $carry + ($registro->alimento->caloria * ($registro->qtd / $registro->alimento->qtd));
+        }, 0);
+
         return response()->json([
-            'data' => $registro,
+            'data' => $registros,
+            'caloria_total' => $caloriaTotal, 
             'success' => true
         ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -38,32 +38,49 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'descricao' => 'required|string',
-            'qtd' => 'required|numeric',
+            'qtd' => 'required|array',
+            'qtd.*' => 'required|numeric',
             'data' => 'required|date',
-            'id_alimento' => 'required|integer',
+            'id_alimento' => 'required|array',
+            'id_alimento.*' => 'required|integer',
+            'id_refeicao' => 'required|integer',
         ]);
 
-        $registro = Registro::create([
-            'descricao' => $request->descricao,
-            'qtd' => $request->qtd,
-            'data' => $request->data,
-            'id_alimento' => $request->id_alimento,
-        ]);
+        $registros = collect();
+
+        
+        if (count($request->qtd) != count($request->id_alimento)) {
+            return response()->json([
+                'message' => 'Os arrays de qtd e id_alimento devem ter o mesmo tamanho',
+                'success' => false
+            ], 400);
+        }
+
+        foreach ($request->qtd as $index => $qtd) {
+            $registro = Registro::create([
+                'qtd' => $qtd,
+                'data' => $request->data,
+                'id_alimento' => $request->id_alimento[$index],
+                'id_refeicao' => $request->id_refeicao,
+            ]);
+
+            $registros->push($registro);
+        }
 
         return response()->json([
-            'message' => 'registro  registrada com sucesso',
-            'data' => $registro,
+            'message' => 'Registros registrados com sucesso',
+            'data' => $registros,
             'success' => true
         ]);
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $registro = Registro::with([ 'alimento'])->find($id);
+        $registro = Registro::with(['alimento'])->find($id);
 
         if (!$registro) {
             return response()->json([
@@ -72,7 +89,7 @@ class RegistroController extends Controller
             ], 404);
         }
 
-    
+
         return response()->json([
             'message' => 'Resposta da Meta carregada com sucesso',
             'data' => $registro,
@@ -95,17 +112,19 @@ class RegistroController extends Controller
         }
 
         $request->validate([
-            'descricao' => 'required|string',
             'qtd' => 'required|numeric',
             'data' => 'required|date',
             'id_alimento' => 'required|integer',
+            'id_refeicao' => 'required|integer',
+
         ]);
 
         $registro->update([
-            'descricao' => $request->descricao,
             'qtd' => $request->qtd,
             'data' => $request->data,
             'id_alimento' => $request->id_alimento,
+            'id_refeicao' => $request->id_refeicao,
+
         ]);
 
         return response()->json([
@@ -135,5 +154,5 @@ class RegistroController extends Controller
             'message' => 'registroexcluída com sucesso',
             'success' => true
         ]);
-    } 
+    }
 }
