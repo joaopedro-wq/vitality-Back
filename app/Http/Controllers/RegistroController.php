@@ -37,6 +37,10 @@ class RegistroController extends Controller
      */
     public function store(Request $request)
     {
+
+
+
+
         $request->validate([
             'qtd' => 'required|array',
             'qtd.*' => 'required|numeric',
@@ -45,8 +49,8 @@ class RegistroController extends Controller
             'id_alimento.*' => 'required|integer',
             'id_refeicao' => 'required|integer',
         ]);
+    
 
-        $registros = collect();
 
         
         if (count($request->qtd) != count($request->id_alimento)) {
@@ -55,7 +59,9 @@ class RegistroController extends Controller
                 'success' => false
             ], 400);
         }
-
+    
+        $registros = collect();
+    
         foreach ($request->qtd as $index => $qtd) {
             $registro = Registro::create([
                 'qtd' => $qtd,
@@ -63,17 +69,43 @@ class RegistroController extends Controller
                 'id_alimento' => $request->id_alimento[$index],
                 'id_refeicao' => $request->id_refeicao,
             ]);
-
+    
             $registros->push($registro);
         }
-
+    
+        $response = $registros->map(function ($registro) {
+            return [
+                'id' => $registro->id,
+                'data' => $registro->data,
+                'qtd' => $registro->qtd,
+                'id_alimento' => $registro->id_alimento,
+                'id_refeicao' => $registro->id_refeicao,
+                'descricao_alimento' => $registro->alimento->descricao,
+                'descricao_refeicao' => $registro->refeicao->descricao,
+                'alimento' => $registro->alimento,
+                'refeicao' => $registro->refeicao,
+            ];
+        });
+    
         return response()->json([
             'message' => 'Registros registrados com sucesso',
-            'data' => $registros,
+            'data' => $response,
             'success' => true
         ]);
     }
+    
+    public function getRegistro($id)
+{
+    $registro = Registro::with(['alimento', 'refeicao'])
+                    ->where('id', $id)
+                    ->first();
 
+    return response()->json([
+        'message' => 'Registro encontrado com sucesso',
+        'data' => $registro,
+        'success' => true
+    ]);
+}
 
     /**
      * Display the specified resource.
