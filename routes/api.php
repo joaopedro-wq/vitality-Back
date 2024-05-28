@@ -9,12 +9,12 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\UserController;
 
  
-Route::post('/login', [AuthController::class,'login']);
-Route::post('/cadastro', [UserController::class, 'store']);
+/* Route::post('/login', [AuthController::class,'login']);
+Route::post('/cadastro', [UserController::class, 'store']); */
 
-Route::group(['middleware' => ['auth:sanctum']], function(){
+Route::middleware('auth:sanctum')->group(function () {
 
-    Route::post('/logout/{user}', [AuthController::class,'logout']);
+   /*  Route::post('/logout/{user}', [AuthController::class,'logout']); */
 
     
     Route::get('/users', [UserController::class, 'index']);
