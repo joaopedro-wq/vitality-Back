@@ -15,21 +15,28 @@ class RegistroController extends Controller
         $registros = Registro::with(['alimento', 'refeicao'])->get()->map(function ($registro) {
             $registro->descricao_alimento = $registro->alimento->descricao;
             $registro->descricao_refeicao = $registro->refeicao->descricao;
-
+    
+            // Calcular os nutrientes com base na quantidade solicitada
+            $fator = $registro->qtd / $registro->alimento->qtd;
+            $registro->alimento->proteina *= $fator;
+            $registro->alimento->gordura *= $fator;
+            $registro->alimento->caloria *= $fator;
+            $registro->alimento->carbo *= $fator;
+    
             return $registro;
         });
-
-        
+    
         $caloriaTotal = $registros->reduce(function ($carry, $registro) {
-            return $carry + ($registro->alimento->caloria * ($registro->qtd / $registro->alimento->qtd));
+            return $carry + $registro->alimento->caloria;
         }, 0);
-
+    
         return response()->json([
             'data' => $registros,
             'caloria_total' => $caloriaTotal, 
             'success' => true
         ]);
     }
+    
 
 
     /**
@@ -37,9 +44,6 @@ class RegistroController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
 
         $request->validate([
             'qtd' => 'required|array',
@@ -51,8 +55,6 @@ class RegistroController extends Controller
         ]);
     
 
-
-        
         if (count($request->qtd) != count($request->id_alimento)) {
             return response()->json([
                 'message' => 'Os arrays de qtd e id_alimento devem ter o mesmo tamanho',
@@ -135,37 +137,65 @@ class RegistroController extends Controller
     public function update(Request $request, string $id)
     {
         $registro = Registro::find($id);
-
+    
         if (!$registro) {
             return response()->json([
-                'message' => 'registro não encontrada na base de dados',
+                'message' => 'Registro não encontrado na base de dados',
                 'success' => false
             ], 404);
         }
-
+    
         $request->validate([
-            'qtd' => 'required|numeric',
+            'qtd' => 'required|array',
+            'qtd.*' => 'required|numeric',
             'data' => 'required|date',
-            'id_alimento' => 'required|integer',
+            'id_alimento' => 'required|array',
+            'id_alimento.*' => 'required|integer',
             'id_refeicao' => 'required|integer',
-
         ]);
-
-        $registro->update([
-            'qtd' => $request->qtd,
-            'data' => $request->data,
-            'id_alimento' => $request->id_alimento,
-            'id_refeicao' => $request->id_refeicao,
-
-        ]);
-
+    
+        if (count($request->qtd) != count($request->id_alimento)) {
+            return response()->json([
+                'message' => 'Os arrays de qtd e id_alimento devem ter o mesmo tamanho',
+                'success' => false
+            ], 400);
+        }
+    
+        // Deletar registros antigos associados à refeição e data específicos
+        Registro::where('data', $registro->data)
+                ->where('id_refeicao', $registro->id_refeicao)
+                ->delete();
+    
+        $registros = collect();
+    
+        foreach ($request->qtd as $index => $qtd) {
+            $novoRegistro = Registro::create([
+                'qtd' => $qtd,
+                'data' => $request->data,
+                'id_alimento' => $request->id_alimento[$index],
+                'id_refeicao' => $request->id_refeicao,
+            ]);
+    
+            $novoRegistro->descricao_alimento = $novoRegistro->alimento->descricao;
+            $novoRegistro->descricao_refeicao = $novoRegistro->refeicao->descricao;
+    
+            // Calcular os nutrientes com base na quantidade solicitada
+            $fator = $novoRegistro->qtd / $novoRegistro->alimento->qtd;
+            $novoRegistro->alimento->proteina *= $fator;
+            $novoRegistro->alimento->gordura *= $fator;
+            $novoRegistro->alimento->caloria *= $fator;
+            $novoRegistro->alimento->carbo *= $fator;
+    
+            $registros->push($novoRegistro);
+        }
+    
         return response()->json([
-            'message' => 'registro atualizada com sucesso',
-            'data' => $registro,
+            'message' => 'Registros atualizados com sucesso',
+            'data' => $registros,
             'success' => true
         ]);
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */

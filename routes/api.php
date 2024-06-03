@@ -30,13 +30,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/registro/{id}', [RegistroController::class, 'show']);
     Route::put('/registro/{id}', [RegistroController::class, 'update']);
     Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
-    Route::get('/adicionar-alimentos', [AlimentoController::class, 'adicionarAlimentosDoJson']);
     
     Route::get('/refeicao', [RefeicaoController::class, 'index']);
     Route::post('/refeicao', [RefeicaoController::class, 'store']);
     Route::get('/refeicao/{id}', [RefeicaoController::class, 'show']);
     Route::put('/refeicao/{id}', [RefeicaoController::class, 'update']);
     Route::delete('/refeicao/{id}', [RefeicaoController::class, 'destroy']);
-    Route::get('/adicionar-refeicao', [RefeicaoController::class, 'adicionarRefeicaoDoJson']);
 });
 
+
+Route::get('/adicionar-refeicao', [RefeicaoController::class, 'adicionarRefeicaoDoJson']);
+Route::get('/adicionar-alimentos', [AlimentoController::class, 'adicionarAlimentosDoJson']);
