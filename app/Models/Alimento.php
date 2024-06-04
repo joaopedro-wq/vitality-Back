@@ -17,4 +17,10 @@ class Alimento extends Model
         'carbo',
         'qtd',
     ];
+
+
+    public function dietas()
+    {
+        return $this->belongsToMany(Dieta::class, 'dieta_alimento', 'alimento_id', 'dieta_id');
+    }
 }
