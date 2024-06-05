@@ -14,6 +14,8 @@ class Registro extends Model
         'qtd',
         'id_alimento',
         'id_refeicao',
+        'id_dieta',
+
 
     ];
 
@@ -26,4 +28,9 @@ class Registro extends Model
     {
         return $this->belongsTo(Refeicao::class, 'id_refeicao');
     }
+    public function dieta()
+    {
+        return $this->belongsTo(Dieta::class, 'id_dieta');
+    }
 }
+

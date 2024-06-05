@@ -26,13 +26,12 @@ class RegistroController extends Controller
             return $registro;
         });
     
-        $caloriaTotal = $registros->reduce(function ($carry, $registro) {
+        /* $caloriaTotal = $registros->reduce(function ($carry, $registro) {
             return $carry + $registro->alimento->caloria;
-        }, 0);
+        }, 0); */
     
         return response()->json([
             'data' => $registros,
-            'caloria_total' => $caloriaTotal, 
             'success' => true
         ]);
     }
@@ -70,6 +69,8 @@ class RegistroController extends Controller
                 'data' => $request->data,
                 'id_alimento' => $request->id_alimento[$index],
                 'id_refeicao' => $request->id_refeicao,
+                /* 'id_dieta' => $request->id_dieta, */
+
             ]);
     
             $registros->push($registro);
@@ -82,10 +83,14 @@ class RegistroController extends Controller
                 'qtd' => $registro->qtd,
                 'id_alimento' => $registro->id_alimento,
                 'id_refeicao' => $registro->id_refeicao,
+                'id_dieta' => $registro->id_dieta,
                 'descricao_alimento' => $registro->alimento->descricao,
                 'descricao_refeicao' => $registro->refeicao->descricao,
                 'alimento' => $registro->alimento,
                 'refeicao' => $registro->refeicao,
+                'dieta' => $registro->dieta,
+
+
             ];
         });
     
