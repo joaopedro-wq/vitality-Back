@@ -1,15 +1,25 @@
 [
     {
-        "descricao":"Café da manhã"
+        "descricao":"Café da manhã",
+        "horario": "08:00"
+
     },
     {
-        "descricao":"Almoço"
+        "descricao":"Almoço",
+        "horario": "11:30"
     },
     {
-        "descricao":"Lanche da tarde"
+        "descricao":"Lanche da tarde",
+        "horario": "16:00"
     },
     {
-        "descricao":"Jantar"
+        "descricao":"Jantar",
+        "horario": "20:00"
+
+    },
+    {
+        "descricao":"Ceia",
+        "horario": "22:00"
 
     }
 

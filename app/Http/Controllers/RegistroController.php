@@ -26,10 +26,7 @@ class RegistroController extends Controller
             return $registro;
         });
     
-        /* $caloriaTotal = $registros->reduce(function ($carry, $registro) {
-            return $carry + $registro->alimento->caloria;
-        }, 0); */
-    
+       
         return response()->json([
             'data' => $registros,
             'success' => true
@@ -88,7 +85,7 @@ class RegistroController extends Controller
                 'descricao_refeicao' => $registro->refeicao->descricao,
                 'alimento' => $registro->alimento,
                 'refeicao' => $registro->refeicao,
-                'dieta' => $registro->dieta,
+                /* 'dieta' => $registro->dieta, */
 
 
             ];

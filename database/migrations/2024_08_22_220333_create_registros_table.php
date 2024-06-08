@@ -18,11 +18,11 @@ return new class extends Migration
             $table->float('qtd')->nullable(false);
             $table->unsignedBigInteger('id_alimento');
             $table->unsignedBigInteger('id_refeicao');
-            $table->unsignedBigInteger('id_dieta');
+           /*  $table->unsignedBigInteger('id_dieta'); */
 
             
             $table->foreign('id_alimento')->references('id')->on('alimentos');
-            $table->foreign('id_dieta')->references('id')->on('dietas');
+           /*  $table->foreign('id_dieta')->references('id')->on('dietas'); */
 
             $table->foreign('id_refeicao')->references('id')->on('refeicaos');
         

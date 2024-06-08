@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('refeicaos', function (Blueprint $table) {
             $table->id();
             $table->string('descricao')->nullable(false);
+            $table->time('horario');
             $table->timestamps();
         });
     }

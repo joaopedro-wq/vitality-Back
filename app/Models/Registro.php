@@ -14,8 +14,7 @@ class Registro extends Model
         'qtd',
         'id_alimento',
         'id_refeicao',
-        'id_dieta',
-
+        
 
     ];
 

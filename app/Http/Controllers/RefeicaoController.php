@@ -31,11 +31,14 @@ class RefeicaoController extends Controller
         
         $request->validate([
             'descricao' => 'required|string',
+            'horario' => 'required|date_format:H:i',
             
         ]);
 
         $refeicao = Refeicao::create([
             'descricao' => $request->descricao,
+            'horario' => $request->horario,
+
         ]);
 
         return response()->json([
@@ -82,11 +85,14 @@ class RefeicaoController extends Controller
 
         $request->validate([
             'descricao' => 'required|string',
+            'horario' => 'required|date_format:H:i',
             
         ]);
 
         $refeicao->update([
             'descricao' => $request->descricao,
+            'horario' => $request->horario,
+
             
         ]);
 
@@ -123,7 +129,6 @@ class RefeicaoController extends Controller
 
     public function adicionarRefeicaoDoJson()
     {
-
         $caminhoArquivo = base_path('refeicao.json');
 
         if (!file_exists($caminhoArquivo)) {
@@ -135,9 +140,7 @@ class RefeicaoController extends Controller
 
         $json = file_get_contents($caminhoArquivo);
 
-
         $dadosJson = json_decode($json, true);
-
 
         if ($dadosJson === null) {
             return response()->json([
@@ -146,11 +149,9 @@ class RefeicaoController extends Controller
             ], 400);
         }
 
-
         try {
             foreach ($dadosJson as $item) {
-
-                if (!isset($item['descricao'])) {
+                if (!isset($item['descricao']) || !isset($item['horario'])) {
                     return response()->json([
                         'message' => 'Dados incompletos no JSON',
                         'success' => false
@@ -159,6 +160,7 @@ class RefeicaoController extends Controller
 
                 Refeicao::create([
                     'descricao' => $item['descricao'],
+                    'horario' => $item['horario'],
                 ]);
             }
         } catch (\Exception $e) {

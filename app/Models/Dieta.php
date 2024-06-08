@@ -12,6 +12,7 @@ class Dieta extends Model
     protected $fillable = [
         'descricao',
         'id_refeicao',
+       
 
     ];
 

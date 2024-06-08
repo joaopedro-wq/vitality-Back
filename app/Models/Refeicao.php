@@ -10,5 +10,6 @@ class Refeicao extends Model
     use HasFactory;
     protected $fillable = [
         'descricao',
+        'horario',
     ];
 }

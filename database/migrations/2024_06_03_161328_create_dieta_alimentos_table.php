@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('dieta_id');
             $table->unsignedBigInteger('alimento_id');
             
+
             
             
             
