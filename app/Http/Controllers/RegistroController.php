@@ -38,7 +38,7 @@ class RegistroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+     public function store(Request $request)
     {
 
         $request->validate([
@@ -66,7 +66,7 @@ class RegistroController extends Controller
                 'data' => $request->data,
                 'id_alimento' => $request->id_alimento[$index],
                 'id_refeicao' => $request->id_refeicao,
-                /* 'id_dieta' => $request->id_dieta, */
+               
 
             ]);
     
@@ -85,7 +85,7 @@ class RegistroController extends Controller
                 'descricao_refeicao' => $registro->refeicao->descricao,
                 'alimento' => $registro->alimento,
                 'refeicao' => $registro->refeicao,
-                /* 'dieta' => $registro->dieta, */
+              
 
 
             ];
@@ -96,7 +96,9 @@ class RegistroController extends Controller
             'data' => $response,
             'success' => true
         ]);
-    }
+    } 
+   
+
     
     public function getRegistro($id)
 {

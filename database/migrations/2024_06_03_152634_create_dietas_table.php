@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('descricao')->nullable(false);
            
             $table->unsignedBigInteger('id_refeicao');
-            $table->float('qtd')->nullable(true);
+            
             
             
             $table->foreign('id_refeicao')->references('id')->on('refeicaos');

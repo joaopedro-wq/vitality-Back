@@ -18,12 +18,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users', [UserController::class, 'index']);
     
     
-    Route::get('/food', [AlimentoController::class, 'index']);
-    Route::post('/food', [AlimentoController::class, 'store']);
-    Route::get('/food/{id}', [AlimentoController::class, 'show']);
-    Route::put('/food/{id}', [AlimentoController::class, 'update']);
-    Route::delete('/food/{id}', [AlimentoController::class, 'destroy']);
-    
     Route::get('/dieta/{id}', [DietaController::class, 'show']);
     Route::delete('/dieta/{id}', [DietaController::class, 'destroy']);
     Route::put('/dieta/{id}', [DietaController::class, 'update']);
@@ -35,6 +29,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/registro/{id}', [RegistroController::class, 'show']);
     Route::put('/registro/{id}', [RegistroController::class, 'update']);
     Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
+    
+    Route::get('/food', [AlimentoController::class, 'index']);
+    Route::post('/food', [AlimentoController::class, 'store']);
+    Route::get('/food/{id}', [AlimentoController::class, 'show']);
+    Route::put('/food/{id}', [AlimentoController::class, 'update']);
+    Route::delete('/food/{id}', [AlimentoController::class, 'destroy']);
+    
     
     Route::get('/refeicao', [RefeicaoController::class, 'index']);
     Route::post('/refeicao', [RefeicaoController::class, 'store']);
