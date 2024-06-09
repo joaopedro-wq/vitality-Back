@@ -16,10 +16,7 @@ class Dieta extends Model
 
     ];
 
-  /*   public function alimentos()
-    {
-        return $this->belongsToMany(Alimento::class, 'dieta_alimentos', 'dieta_id', 'alimento_id');
-    } */
+
     public function alimentos()
     {
         return $this->belongsToMany(Alimento::class, 'dieta_alimentos', 'dieta_id', 'alimento_id')->withPivot('qtd');

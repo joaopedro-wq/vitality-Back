@@ -19,14 +19,15 @@ class Alimento extends Model
     ];
 
 
-  /*   public function dietas()
-    {
-        return $this->belongsToMany(Dieta::class, 'dieta_alimento', 'alimento_id', 'dieta_id');
-        
-    } */
 
     public function dietas()
     {
         return $this->belongsToMany(Dieta::class, 'dieta_alimentos', 'alimento_id', 'dieta_id')->withPivot('qtd');
     }
+
+    public function registros()
+    {
+        return $this->belongsToMany(Registro::class, 'registro_alimentos')->withPivot('qtd');
+    }
+
 }

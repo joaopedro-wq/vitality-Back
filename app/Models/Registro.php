@@ -12,8 +12,8 @@ class Registro extends Model
     protected $fillable = [
         'data',
         'qtd',
-        'id_alimento',
         'id_refeicao',
+   
         
 
     ];
@@ -27,9 +27,18 @@ class Registro extends Model
     {
         return $this->belongsTo(Refeicao::class, 'id_refeicao');
     }
+
     public function dieta()
     {
         return $this->belongsTo(Dieta::class, 'id_dieta');
     }
+
+    public function alimentos()
+    {
+        return $this->belongsToMany(Alimento::class, 'registro_alimentos')->withPivot('qtd');
+    }
+   
+
+    
 }
 

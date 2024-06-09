@@ -13,7 +13,7 @@ class DietaController extends Controller
     public function index()
     {
         $dietas = Dieta::with(['alimentos', 'refeicao'])->get();
-    
+
         $dietas->transform(function ($dieta) {
             $totalCarbo = 0;
             $totalGordura = 0;
@@ -28,41 +28,44 @@ class DietaController extends Controller
                 $totalCaloria += ($alimento->caloria * $qtd) / 100;
                 $totalQtd += $qtd;
             }
-    
+
             $dieta->total_carbo = round($totalCarbo, 2);
             $dieta->total_gordura = round($totalGordura, 2);
             $dieta->total_proteina = round($totalProteina, 2);
             $dieta->total_caloria = round($totalCaloria, 2);
             $dieta->totalQtd = round($totalQtd, 2);
-    
+
             return $dieta;
         });
-    
+
         return response()->json([
             'data' => $dietas,
             'success' => true
         ]);
     }
-    
-    
+
+
 
     /**
      * Store a newly created resource in storage.
      */
-   /*   public function store(Request $request)
+
+
+    public function store(Request $request)
     {
         $dieta = Dieta::create([
             'descricao' => $request->descricao,
             'id_refeicao' => $request->id_refeicao,
-            
-
         ]);
-    
-        $dieta->alimentos()->attach($request->alimentos);
-    
+
+        $alimentos = $request->alimentos;
+        foreach ($alimentos as $alimento) {
+            $dieta->alimentos()->attach($alimento['id'], ['qtd' => $alimento['qtd']]);
+        }
+
         $alimentos_descricao = $dieta->alimentos->pluck('descricao')->toArray();
         $refeicao_descricao = $dieta->refeicao->descricao;
-    
+
         return response()->json([
             'message' => 'Refeição registrada com sucesso',
             'data' => $dieta,
@@ -70,33 +73,8 @@ class DietaController extends Controller
             'descricao_alimentos' => $alimentos_descricao,
             'descricao_refeicao' => $refeicao_descricao,
         ]);
-    } 
- */
-    
- public function store(Request $request)
- {
-     $dieta = Dieta::create([
-         'descricao' => $request->descricao,
-         'id_refeicao' => $request->id_refeicao,
-     ]);
- 
-     $alimentos = $request->alimentos;
-     foreach ($alimentos as $alimento) {
-         $dieta->alimentos()->attach($alimento['id'], ['qtd' => $alimento['qtd']]);
-     }
- 
-     $alimentos_descricao = $dieta->alimentos->pluck('descricao')->toArray();
-     $refeicao_descricao = $dieta->refeicao->descricao;
- 
-     return response()->json([
-         'message' => 'Refeição registrada com sucesso',
-         'data' => $dieta,
-         'success' => true,
-         'descricao_alimentos' => $alimentos_descricao,
-         'descricao_refeicao' => $refeicao_descricao,
-     ]);
- }
- 
+    }
+
     /**
      * Display the specified resource.
      */
@@ -128,19 +106,19 @@ class DietaController extends Controller
     public function update(Request $request, string $id)
     {
         $dieta = Dieta::find($id);
-    
+
         if (!$dieta) {
             return response()->json([
                 'message' => 'Dieta não encontrada na base de dados',
                 'success' => false
             ], 404);
         }
-    
+
         // Atualizar os campos da dieta
         $dieta->descricao = $request->descricao;
         $dieta->id_refeicao = $request->id_refeicao;
         $dieta->save();
-    
+
         // Atualizar os alimentos associados com quantidade
         if ($request->has('alimentos')) {
             $alimentos = [];
@@ -149,10 +127,10 @@ class DietaController extends Controller
             }
             $dieta->alimentos()->sync($alimentos);
         }
-    
+
         $alimentos_descricao = $dieta->alimentos->pluck('descricao')->toArray();
         $refeicao_descricao = $dieta->refeicao->descricao;
-    
+
         return response()->json([
             'message' => 'Dieta atualizada com sucesso',
             'data' => $dieta,
@@ -161,7 +139,7 @@ class DietaController extends Controller
             'descricao_refeicao' => $refeicao_descricao,
         ]);
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */

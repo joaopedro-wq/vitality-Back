@@ -24,11 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/dieta', [DietaController::class, 'store']);
     Route::get('/dieta', [DietaController::class, 'index']);
     
-    Route::get('/registro', [RegistroController::class, 'index']);
-    Route::post('/registro', [RegistroController::class, 'store']);
-    Route::get('/registro/{id}', [RegistroController::class, 'show']);
-    Route::put('/registro/{id}', [RegistroController::class, 'update']);
-    Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
     
     Route::get('/food', [AlimentoController::class, 'index']);
     Route::post('/food', [AlimentoController::class, 'store']);
@@ -47,3 +42,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::get('/adicionar-refeicao', [RefeicaoController::class, 'adicionarRefeicaoDoJson']);
 Route::get('/adicionar-alimentos', [AlimentoController::class, 'adicionarAlimentosDoJson']);
+
+Route::get('/registro', [RegistroController::class, 'index']);
+Route::post('/registro', [RegistroController::class, 'store']);
+Route::get('/registro/{id}', [RegistroController::class, 'show']);
+Route::put('/registro/{id}', [RegistroController::class, 'update']);
+Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
