@@ -16,6 +16,12 @@ use App\Http\Controllers\DietaController;
 Route::middleware('auth:sanctum')->group(function () {
     
     Route::get('/users', [UserController::class, 'index']);
+    Route::get('/user/get-with-token', [UserController::class, 'getWithToken']);
+    Route::post('/user/update-profile-pic/{id}', [UserController::class, 'updateProfilePic']);
+    Route::delete('/user/delete-profile-pic/{id}', [UserController::class, 'deleteProfilePic']);
+    Route::post('/user', [UserController::class, 'store']);
+    Route::put('/user/{id}', [UserController::class, 'update']);
+   
     
     
     Route::get('/dieta/{id}', [DietaController::class, 'show']);
