@@ -8,10 +8,7 @@ use App\Http\Controllers\RefeicaoController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DietaController;
-
-
- 
-
+use App\Http\Controllers\MetaDiariaController;
 
 Route::middleware('auth:sanctum')->group(function () {
     
@@ -22,6 +19,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user', [UserController::class, 'store']);
     Route::put('/user/{id}', [UserController::class, 'update']);
    
+    Route::get('/registro', [RegistroController::class, 'index']);
+    Route::post('/registro', [RegistroController::class, 'store']);
+    Route::get('/registro/{id}', [RegistroController::class, 'show']);
+    Route::put('/registro/{id}', [RegistroController::class, 'update']);
+    Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
+    
+    Route::get('/meta', [MetaDiariaController::class, 'index']);
+    Route::post('/meta', [MetaDiariaController::class, 'store']);
+    Route::get('/meta/{id}', [MetaDiariaController::class, 'show']);
+    Route::put('/meta/{id}', [MetaDiariaController::class, 'update']);
+    Route::delete('/meta/{id}', [MetaDiariaController::class, 'destroy']);
     
     
     Route::get('/dieta/{id}', [DietaController::class, 'show']);
@@ -48,9 +56,3 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::get('/adicionar-refeicao', [RefeicaoController::class, 'adicionarRefeicaoDoJson']);
 Route::get('/adicionar-alimentos', [AlimentoController::class, 'adicionarAlimentosDoJson']);
-
-Route::get('/registro', [RegistroController::class, 'index']);
-Route::post('/registro', [RegistroController::class, 'store']);
-Route::get('/registro/{id}', [RegistroController::class, 'show']);
-Route::put('/registro/{id}', [RegistroController::class, 'update']);
-Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
