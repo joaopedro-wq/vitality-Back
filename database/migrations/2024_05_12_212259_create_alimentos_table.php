@@ -19,6 +19,9 @@ return new class extends Migration
             $table->float('caloria')->nullable(false); 
             $table->float('carbo')->nullable(false);
             $table->float('qtd')->nullable(false);
+            $table->unsignedBigInteger('id_usuario')->nullable();
+
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();
         });
     }

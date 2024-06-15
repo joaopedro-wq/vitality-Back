@@ -13,6 +13,8 @@ class Registro extends Model
         'data',
         'qtd',
         'id_refeicao',
+        'id_usuario',
+
    
         
 
@@ -31,6 +33,10 @@ class Registro extends Model
     public function dieta()
     {
         return $this->belongsTo(Dieta::class, 'id_dieta');
+    }
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 
     public function alimentos()

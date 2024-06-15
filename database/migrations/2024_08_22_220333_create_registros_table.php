@@ -16,10 +16,10 @@ return new class extends Migration
    
             $table->date('data')->nullable(false);
             $table->float('qtd')->nullable(true);
-         
             $table->unsignedBigInteger('id_refeicao');
-   
+            $table->unsignedBigInteger('id_usuario');
 
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->foreign('id_refeicao')->references('id')->on('refeicaos');
         
             $table->timestamps();

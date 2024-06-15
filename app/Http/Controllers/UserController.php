@@ -36,7 +36,7 @@ class UserController extends Controller
             'password' => 'required|string|confirmed',
             'genero' => 'nullable|char',
             'peso' => 'nullable|numeric',
-            'data_nascimento' => 'required|date',
+            'data_nascimento' => 'nullable|date',
             'altura' => 'nullable|numeric',
             'avatar' => 'nullable|string',
             'nivel_atividade' => 'nullable|string',
@@ -163,38 +163,47 @@ class UserController extends Controller
             'success' => true
         ]);
     }
+
+    
     public function updateProfilePic(Request $request, $id)
     {
+        // Procurar o usuário pelo ID
         $user = User::find($id);
-
+    
+        // Verificar se o usuário existe
         if (!$user) {
             return response()->json([
                 'message' => 'Usuário não encontrado na base de dados',
                 'success' => false
             ], 404);
         }
-
+    
+        // Validar a requisição
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        $avatarPath = null;
-
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $avatarPath = $avatar->store('avatars', 'public');
+    
+        // Apagar a foto de perfil anterior se existir
+        if ($user->avatar) {
+            Storage::disk('public')->delete($user->avatar);
         }
-
+    
+        // Salvar a nova foto de perfil
+        $avatarPath = $request->file('avatar')->store('avatars', 'public');
+    
+        // Atualizar o usuário com o caminho do novo avatar
         $user->update([
             'avatar' => $avatarPath,
         ]);
-
+    
+        // Retornar uma resposta de sucesso
         return response()->json([
             'message' => 'Foto de perfil atualizada com sucesso',
             'data' => $user,
             'success' => true
         ]);
     }
+    
 
     public function deleteProfilePic($id)
     {

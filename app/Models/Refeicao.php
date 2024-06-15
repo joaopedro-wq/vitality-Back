@@ -11,5 +11,13 @@ class Refeicao extends Model
     protected $fillable = [
         'descricao',
         'horario',
+        'id_usuario',
     ];
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
+    }   
+
+    
 }

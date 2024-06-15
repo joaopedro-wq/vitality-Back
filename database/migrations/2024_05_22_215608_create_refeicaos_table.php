@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('descricao')->nullable(false);
             $table->time('horario');
+            $table->unsignedBigInteger('id_usuario')->nullable();
+
+            $table->foreign('id_usuario')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

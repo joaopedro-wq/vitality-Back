@@ -12,7 +12,7 @@ class Dieta extends Model
     protected $fillable = [
         'descricao',
         'id_refeicao',
-       
+        'id_usuario',
 
     ];
 
@@ -25,6 +25,11 @@ class Dieta extends Model
     public function refeicao()
     {
         return $this->belongsTo(Refeicao::class, 'id_refeicao');
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 
     public function alimento()

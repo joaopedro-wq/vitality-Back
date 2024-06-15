@@ -10,15 +10,23 @@ class RefeicaoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $refeicao = Refeicao::all()->map(function ($refeicao) {
+        $user = $request->user();
 
-            return $refeicao;
-        });
+        if (!$user) {
+            return response()->json([
+                'message' => 'Usuário não encontrado na base de dados',
+                'success' => false
+            ], 404);
+        }
+
+        $refeicoes = Refeicao::where('id_usuario', $user->id)
+                            ->orWhereNull('id_usuario')
+                            ->get();
 
         return response()->json([
-            'data' => $refeicao,
+            'data' => $refeicoes,
             'success' => true
         ]);
     }
@@ -28,17 +36,17 @@ class RefeicaoController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $user = $request->user();
+
         $request->validate([
             'descricao' => 'required|string',
-            'horario' => 'required|date_format:H:i',
-            
+            'horario' => 'required|date_format:H:i:s',
         ]);
 
         $refeicao = Refeicao::create([
             'descricao' => $request->descricao,
             'horario' => $request->horario,
-
+            'id_usuario' => $user->id,
         ]);
 
         return response()->json([
@@ -74,30 +82,31 @@ class RefeicaoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $refeicao = Refeicao::find($id);
+        $user = $request->user();
+
+        $refeicao = Refeicao::where('id', $id)
+                            ->where('id_usuario', $user->id)
+                            ->first();
 
         if (!$refeicao) {
             return response()->json([
-                'message' => 'Refeição não encontrado na base de dados',
+                'message' => 'Refeição não encontrada na base de dados',
                 'success' => false
             ], 404);
         }
 
         $request->validate([
             'descricao' => 'required|string',
-            'horario' => 'required|date_format:H:i',
-            
+            'horario' => 'required|date_format:H:i:s',
         ]);
 
         $refeicao->update([
             'descricao' => $request->descricao,
             'horario' => $request->horario,
-
-            
         ]);
 
         return response()->json([
-            'message' => 'Refeição atualizado com sucesso',
+            'message' => 'Refeição atualizada com sucesso',
             'data' => $refeicao,
             'success' => true
         ]);

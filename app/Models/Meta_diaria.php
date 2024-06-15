@@ -15,5 +15,13 @@ class Meta_diaria extends Model
         'meta_proteinas',
         'meta_carboidratos',
         'meta_gorduras',
+        'id_usuario',
+
     ];
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
+    }   
+
 }

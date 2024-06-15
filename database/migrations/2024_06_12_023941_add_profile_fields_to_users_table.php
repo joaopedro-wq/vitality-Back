@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->date('data_nascimento')->nullable();
-            $table->char('genero', 1)->nullable(); 
-            $table->float('peso')->nullable();
-            
-            $table->integer('altura')->nullable();
-            $table->string('nivel_atividade')->nullable();
+            $table->date('data_nascimento')->nullable(true);
+            $table->char('genero', 1)->nullable(true); 
+            $table->float('peso')->nullable(true);
+            $table->integer('altura')->nullable(true);
+            $table->string('nivel_atividade')->nullable(true);
         });
     }
 
@@ -30,7 +29,6 @@ return new class extends Migration
             $table->dropColumn('data_nascimento');
             $table->dropColumn('genero');
             $table->dropColumn('peso');
-           
             $table->dropColumn('altura');
             $table->dropColumn('nivel_atividade');
             

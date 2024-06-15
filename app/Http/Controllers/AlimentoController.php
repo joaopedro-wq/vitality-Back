@@ -7,12 +7,22 @@ use Illuminate\Http\Request;
 
 class AlimentoController extends Controller
 {
-    public function index()
-    {
-        $alimento = Alimento::all()->map(function ($alimento) {
+   
 
-            return $alimento;
-        });
+    public function index(Request $request)
+    {
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Usuário não encontrado na base de dados',
+                'success' => false
+            ], 404);
+        }
+
+        $alimento = Alimento::where('id_usuario', $user->id)
+                            ->orWhereNull('id_usuario')
+                            ->get();
 
         return response()->json([
             'data' => $alimento,
@@ -20,8 +30,11 @@ class AlimentoController extends Controller
         ]);
     }
 
+
     public function store(Request $request)
     {
+        $user = $request->user();
+
         $request->validate([
             'descricao' => 'required|string',
             'proteina' => 'required|numeric',
@@ -40,6 +53,8 @@ class AlimentoController extends Controller
             'carbo' => $request->carbo,
             'caloria' => $request->caloria,
             'qtd' => $request->qtd,
+            'id_usuario' => $user->id,
+
 
         ]);
 
@@ -49,6 +64,8 @@ class AlimentoController extends Controller
             'success' => true
         ]);
     }
+
+   
 
     public function adicionarAlimentosDoJson()
     {

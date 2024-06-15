@@ -10,10 +10,23 @@ class MetaDiariaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $metas = Meta_diaria::all();
-        return response()->json(['data' => $metas, 'success' => true]);
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Usuário não encontrado na base de dados',
+                'success' => false
+            ], 404);
+        }
+
+        $metas = Meta_diaria::where('id_usuario', $user->id)->get();
+
+        return response()->json([
+            'data' => $metas,
+            'success' => true
+        ]);
     }
 
     /**
@@ -28,9 +41,28 @@ class MetaDiariaController extends Controller
             'meta_gorduras' => 'required|numeric',
         ]);
 
-        $meta = Meta_diaria::create($request->all());
+        $user = $request->user();
 
-        return response()->json(['data' => $meta, 'success' => true, 'message' => 'Meta diária registrada com sucesso']);
+        if (!$user) {
+            return response()->json([
+                'message' => 'Usuário não encontrado na base de dados',
+                'success' => false
+            ], 404);
+        }
+
+        $meta = Meta_diaria::create([
+            'meta_calorias' => $request->meta_calorias,
+            'meta_proteinas' => $request->meta_proteinas,
+            'meta_carboidratos' => $request->meta_carboidratos,
+            'meta_gorduras' => $request->meta_gorduras,
+            'id_usuario' => $user->id,
+        ]);
+
+        return response()->json([
+            'data' => $meta,
+            'success' => true,
+            'message' => 'Meta diária registrada com sucesso'
+        ]);
     }
 
     /**

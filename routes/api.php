@@ -12,18 +12,17 @@ use App\Http\Controllers\MetaDiariaController;
 
 Route::middleware('auth:sanctum')->group(function () {
     
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/user/get-with-token', [UserController::class, 'getWithToken']);
-    Route::post('/user/update-profile-pic/{id}', [UserController::class, 'updateProfilePic']);
-    Route::delete('/user/delete-profile-pic/{id}', [UserController::class, 'deleteProfilePic']);
-    Route::post('/user', [UserController::class, 'store']);
-    Route::put('/user/{id}', [UserController::class, 'update']);
-   
+    
     Route::get('/registro', [RegistroController::class, 'index']);
     Route::post('/registro', [RegistroController::class, 'store']);
     Route::get('/registro/{id}', [RegistroController::class, 'show']);
     Route::put('/registro/{id}', [RegistroController::class, 'update']);
+    
     Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
+    Route::get('/user/get-with-token', [UserController::class, 'getWithToken']);
+    Route::post('/user/update-profile-pic/{id}', [UserController::class, 'updateProfilePic']);
+    Route::delete('/user/delete-profile-pic/{id}', [UserController::class, 'deleteProfilePic']);
+    Route::put('/user/{id}', [UserController::class, 'update']);
     
     Route::get('/meta', [MetaDiariaController::class, 'index']);
     Route::post('/meta', [MetaDiariaController::class, 'store']);
@@ -56,3 +55,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::get('/adicionar-refeicao', [RefeicaoController::class, 'adicionarRefeicaoDoJson']);
 Route::get('/adicionar-alimentos', [AlimentoController::class, 'adicionarAlimentosDoJson']);
+
+Route::get('/users', [UserController::class, 'index']);
+Route::post('/user', [UserController::class, 'store']);

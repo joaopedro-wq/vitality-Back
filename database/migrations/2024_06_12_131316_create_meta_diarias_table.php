@@ -18,6 +18,9 @@ return new class extends Migration
             $table->float('meta_proteinas')->nullable(false);
             $table->float('meta_carboidratos')->nullable(false);
             $table->float('meta_gorduras')->nullable(false);
+            $table->unsignedBigInteger('id_usuario');
+
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();
         });
     }

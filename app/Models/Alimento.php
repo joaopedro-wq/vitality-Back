@@ -16,6 +16,8 @@ class Alimento extends Model
         'caloria',
         'carbo',
         'qtd',
+        'id_usuario',
+
     ];
 
 
@@ -28,6 +30,10 @@ class Alimento extends Model
     public function registros()
     {
         return $this->belongsToMany(Registro::class, 'registro_alimentos')->withPivot('qtd');
+    }
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 
 }

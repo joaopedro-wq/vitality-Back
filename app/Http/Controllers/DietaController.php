@@ -10,9 +10,21 @@ class DietaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dietas = Dieta::with(['alimentos', 'refeicao'])->get();
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Usuário não encontrado na base de dados',
+                'success' => false
+            ], 404);
+        } 
+
+        
+        $dietas = Dieta::where('id_usuario', $user->id)
+                       ->with(['alimentos', 'refeicao'])
+                       ->get();
 
         $dietas->transform(function ($dieta) {
             $totalCarbo = 0;
@@ -50,30 +62,33 @@ class DietaController extends Controller
      * Store a newly created resource in storage.
      */
 
-
-    public function store(Request $request)
-    {
-        $dieta = Dieta::create([
-            'descricao' => $request->descricao,
-            'id_refeicao' => $request->id_refeicao,
-        ]);
-
-        $alimentos = $request->alimentos;
-        foreach ($alimentos as $alimento) {
-            $dieta->alimentos()->attach($alimento['id'], ['qtd' => $alimento['qtd']]);
-        }
-
-        $alimentos_descricao = $dieta->alimentos->pluck('descricao')->toArray();
-        $refeicao_descricao = $dieta->refeicao->descricao;
-
-        return response()->json([
-            'message' => 'Refeição registrada com sucesso',
-            'data' => $dieta,
-            'success' => true,
-            'descricao_alimentos' => $alimentos_descricao,
-            'descricao_refeicao' => $refeicao_descricao,
-        ]);
-    }
+     public function store(Request $request)
+     {
+         $user = $request->user();
+ 
+         $dieta = Dieta::create([
+             'descricao' => $request->descricao,
+             'id_refeicao' => $request->id_refeicao,
+             'id_usuario' => $user->id,
+         ]);
+ 
+         $alimentos = $request->alimentos;
+         foreach ($alimentos as $alimento) {
+             $dieta->alimentos()->attach($alimento['id'], ['qtd' => $alimento['qtd']]);
+         }
+ 
+         $alimentos_descricao = $dieta->alimentos->pluck('descricao')->toArray();
+         $refeicao_descricao = $dieta->refeicao->descricao;
+ 
+         return response()->json([
+             'message' => 'Refeição registrada com sucesso',
+             'data' => $dieta,
+             'success' => true,
+             'descricao_alimentos' => $alimentos_descricao,
+             'descricao_refeicao' => $refeicao_descricao,
+             'id_usuario' => $user->id,
+         ]);
+     }
 
     /**
      * Display the specified resource.
