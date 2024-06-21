@@ -101,23 +101,23 @@ class UserController extends Controller
                 'success' => false
             ], 404);
         }
-       
 
+       
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'genero' => 'nullable|char,' . $user->genero,
-            'peso' => 'nullable|numeric,' . $user->peso,
-            'data_nascimento' => 'required|date',
-            'altura' => 'nullable|boolean',
+            'genero' => 'nullable',
+            'peso' => 'nullable|numeric',
+            'data_nascimento' => 'nullable|date',
+            'altura' => 'nullable|numeric', // Corrigido para numeric em vez de boolean
             'avatar' => 'nullable|string',
             'nivel_atividade' => 'nullable|string',
         ]);
 
+        // Atualiza os dados do usuário, exceto a senha que só será alterada se fornecida
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
             'genero' => $request->genero,
             'peso' => $request->peso,
             'data_nascimento' => $request->data_nascimento,
@@ -125,6 +125,13 @@ class UserController extends Controller
             'avatar' => $request->avatar,
             'nivel_atividade' => $request->nivel_atividade,
         ]);
+
+        // Atualiza a senha apenas se ela foi fornecida
+        if ($request->filled('password')) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
 
         return response()->json([
             'message' => 'Usuário atualizado com sucesso',

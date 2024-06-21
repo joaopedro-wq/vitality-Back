@@ -16,7 +16,7 @@ class Registro extends Model
         'id_usuario',
 
    
-        
+                    
 
     ];
 

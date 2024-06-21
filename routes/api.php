@@ -18,12 +18,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/registro/{id}', [RegistroController::class, 'show']);
     Route::put('/registro/{id}', [RegistroController::class, 'update']);
     
-    Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
-    Route::get('/user/get-with-token', [UserController::class, 'getWithToken']);
-    Route::post('/user/update-profile-pic/{id}', [UserController::class, 'updateProfilePic']);
-    Route::delete('/user/delete-profile-pic/{id}', [UserController::class, 'deleteProfilePic']);
-    Route::put('/user/{id}', [UserController::class, 'update']);
-    
     Route::get('/meta', [MetaDiariaController::class, 'index']);
     Route::post('/meta', [MetaDiariaController::class, 'store']);
     Route::get('/meta/{id}', [MetaDiariaController::class, 'show']);
@@ -58,3 +52,9 @@ Route::get('/adicionar-alimentos', [AlimentoController::class, 'adicionarAliment
 
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/user', [UserController::class, 'store']);
+
+Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
+Route::get('/user/get-with-token', [UserController::class, 'getWithToken']);
+Route::post('/user/update-profile-pic/{id}', [UserController::class, 'updateProfilePic']);
+Route::delete('/user/delete-profile-pic/{id}', [UserController::class, 'deleteProfilePic']);
+Route::put('/user/{id}', [UserController::class, 'update']);

@@ -61,6 +61,7 @@ class RefeicaoController extends Controller
      */
     public function show(string $id)
     {
+
         $refeicao = Refeicao::find($id);
     
         if (!$refeicao) {
@@ -82,11 +83,12 @@ class RefeicaoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $user = $request->user();
+     /*    $user = $request->user(); */
 
-        $refeicao = Refeicao::where('id', $id)
+        /*  $refeicao = Refeicao::where('id', $id)
                             ->where('id_usuario', $user->id)
-                            ->first();
+                            ->first();  */
+         $refeicao = Refeicao::find($id);    
 
         if (!$refeicao) {
             return response()->json([
@@ -103,6 +105,8 @@ class RefeicaoController extends Controller
         $refeicao->update([
             'descricao' => $request->descricao,
             'horario' => $request->horario,
+            
+
         ]);
 
         return response()->json([
