@@ -17,6 +17,8 @@ return new class extends Migration
             $table->float('peso')->nullable(true);
             $table->integer('altura')->nullable(true);
             $table->string('nivel_atividade')->nullable(true);
+            $table->string('objetivo')->nullable(true);
+
         });
     }
 
@@ -31,6 +33,8 @@ return new class extends Migration
             $table->dropColumn('peso');
             $table->dropColumn('altura');
             $table->dropColumn('nivel_atividade');
+            $table->dropColumn('objetivo');
+
             
 
         });

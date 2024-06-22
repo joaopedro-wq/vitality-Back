@@ -9,6 +9,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\MetaDiariaController;
+use App\Http\Controllers\NutricaoRecomendadaController;
 
 Route::middleware('auth:sanctum')->group(function () {
     
@@ -23,6 +24,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/meta/{id}', [MetaDiariaController::class, 'show']);
     Route::put('/meta/{id}', [MetaDiariaController::class, 'update']);
     Route::delete('/meta/{id}', [MetaDiariaController::class, 'destroy']);
+
+    Route::get('/recomendacao', [NutricaoRecomendadaController::class, 'index']);
+    Route::post('/recomendacao', [NutricaoRecomendadaController::class, 'store']);
+    Route::get('/recomendacao/{id}', [NutricaoRecomendadaController::class, 'show']);
+    Route::put('/recomendacao/{id}', [NutricaoRecomendadaController::class, 'update']);
+    Route::delete('/recomendacao/{id}', [NutricaoRecomendadaController::class, 'destroy']);
+    
     
     
     Route::get('/dieta/{id}', [DietaController::class, 'show']);

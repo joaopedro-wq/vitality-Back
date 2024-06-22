@@ -27,6 +27,9 @@ class User extends Authenticatable
         'altura',
         'avatar',
         'nivel_atividade',
+        'objetivo',
+
+        
     ];
 
     /**

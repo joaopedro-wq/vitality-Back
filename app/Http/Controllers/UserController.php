@@ -40,6 +40,8 @@ class UserController extends Controller
             'altura' => 'nullable|numeric',
             'avatar' => 'nullable|string',
             'nivel_atividade' => 'nullable|string',
+            'objetivo' => 'nullable|string',
+
         ]);
 
        
@@ -54,6 +56,8 @@ class UserController extends Controller
             'altura' => $request->altura,
             'avatar' => $request->avatar,
             'nivel_atividade' => $request->nivel_atividade,
+            'objetivo' => $request->objetivo,
+            
         ]);
 
        
@@ -112,6 +116,8 @@ class UserController extends Controller
             'altura' => 'nullable|numeric', // Corrigido para numeric em vez de boolean
             'avatar' => 'nullable|string',
             'nivel_atividade' => 'nullable|string',
+            'objetivo' => 'nullable|string',
+
         ]);
 
         // Atualiza os dados do usuário, exceto a senha que só será alterada se fornecida
@@ -124,6 +130,8 @@ class UserController extends Controller
             'altura' => $request->altura,
             'avatar' => $request->avatar,
             'nivel_atividade' => $request->nivel_atividade,
+            'objetivo' => $request->objetivo,
+
         ]);
 
         // Atualiza a senha apenas se ela foi fornecida
