@@ -31,7 +31,7 @@ class NutricaoRecomendadaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    /*  public function store(Request $request)
     {
         $request->validate([
             'get' => 'required|numeric',
@@ -39,6 +39,8 @@ class NutricaoRecomendadaController extends Controller
             'caloria' => 'required|numeric',
             'proteina' => 'required|numeric', 
             'carbo' => 'required|numeric',
+            'gordura' => 'required|numeric',
+
 
         ]);
 
@@ -57,6 +59,8 @@ class NutricaoRecomendadaController extends Controller
             'caloria' => $request->caloria,
             'proteina' => $request->proteina,
             'carbo' => $request->carbo,
+            'gordura' => $request->gordura,
+
 
             'id_usuario' => $user->id,
         ]);
@@ -66,7 +70,56 @@ class NutricaoRecomendadaController extends Controller
             'success' => true,
             'message' => 'Meta diária registrada com sucesso'
         ]);
+    } */
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'get' => 'required|numeric',
+            'tmb' => 'required|numeric',
+            'caloria' => 'required|numeric',
+            'proteina' => 'required|numeric',
+            'carbo' => 'required|numeric',
+            'gordura' => 'required|numeric',
+        ]);
+
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Usuário não encontrado na base de dados',
+                'success' => false
+            ], 404);
+        }
+
+        $existingRecommendation = NutricaoRecomendada::where('id_usuario', $user->id)->first();
+
+        if ($existingRecommendation) {
+            return response()->json([
+                'message' => 'Já existe uma recomendação nutricional para este usuário',
+                'success' => false
+            ], 400);
+        }
+
+        $recomendacaoNutricional = NutricaoRecomendada::create([
+            'get' => $request->get,
+            'tmb' => $request->tmb,
+            'caloria' => $request->caloria,
+            'proteina' => $request->proteina,
+            'carbo' => $request->carbo,
+            'gordura' => $request->gordura,
+            'id_usuario' => $user->id,
+        ]);
+
+        return response()->json([
+            'data' => $recomendacaoNutricional,
+            'success' => true,
+            'message' => 'Meta diária registrada com sucesso'
+        ]);
     }
+
 
     /**
      * Display the specified resource.
@@ -100,6 +153,8 @@ class NutricaoRecomendadaController extends Controller
             'caloria' => 'required|numeric',
             'proteina' => 'required|numeric',
             'carbo' => 'required|numeric',
+            'gordura' => 'required|numeric',
+
 
         ]);
 
@@ -123,4 +178,6 @@ class NutricaoRecomendadaController extends Controller
 
         return response()->json(['message' => 'Meta diária excluída com sucesso', 'success' => true]);
     }
+
+    
 }

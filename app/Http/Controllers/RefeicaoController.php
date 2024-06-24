@@ -140,7 +140,7 @@ class RefeicaoController extends Controller
         ]);
     }
 
-    public function adicionarRefeicaoDoJson()
+    public function adicionarRefeicaoDoJson($userId)
     {
         $caminhoArquivo = base_path('refeicao.json');
 
@@ -152,7 +152,6 @@ class RefeicaoController extends Controller
         }
 
         $json = file_get_contents($caminhoArquivo);
-
         $dadosJson = json_decode($json, true);
 
         if ($dadosJson === null) {
@@ -174,6 +173,7 @@ class RefeicaoController extends Controller
                 Refeicao::create([
                     'descricao' => $item['descricao'],
                     'horario' => $item['horario'],
+                    'id_usuario' => $userId
                 ]);
             }
         } catch (\Exception $e) {
@@ -188,4 +188,5 @@ class RefeicaoController extends Controller
             'success' => true
         ]);
     }
+
 }

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->float('caloria')->nullable(false);
             $table->float('proteina')->nullable(false);
             $table->float('carbo')->nullable(false);
+            $table->float('gordura')->nullable(false);
+
             $table->unsignedBigInteger('id_usuario');
 
             $table->foreign('id_usuario')->references('id')->on('users');

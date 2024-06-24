@@ -13,14 +13,14 @@ class RegistroController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-    
+
         if (!$user) {
             return response()->json([
                 'message' => 'Usuário não encontrado na base de dados',
                 'success' => false
             ], 404);
         }
-        
+
         $registros = Registro::with(['alimentos', 'refeicao'])
             ->where('id_usuario', $user->id)
             ->orWhereNull('id_usuario')
@@ -34,10 +34,10 @@ class RegistroController extends Controller
                     'carbo' => 0,
                     'qtd' => 0,
                 ];
-    
+
                 foreach ($registro->alimentos as $alimento) {
                     $fator = $alimento->pivot->qtd / $alimento->qtd;
-    
+
                     $alimentos_detalhes[] = [
                         'descricao' => $alimento->descricao,
                         'qtd' => round($alimento->pivot->qtd, 3),
@@ -45,20 +45,20 @@ class RegistroController extends Controller
                         'gordura' => round($alimento->gordura * $fator, 3),
                         'caloria' => round($alimento->caloria * $fator, 3),
                         'carbo' => round($alimento->carbo * $fator, 3),
-                        'alimento' => $alimento, 
+                        'alimento' => $alimento,
                     ];
-    
+
                     $nutrientes_totais['proteina'] += $alimento->proteina * $fator;
                     $nutrientes_totais['gordura'] += $alimento->gordura * $fator;
                     $nutrientes_totais['caloria'] += $alimento->caloria * $fator;
                     $nutrientes_totais['carbo'] += $alimento->carbo * $fator;
                     $nutrientes_totais['qtd'] += $alimento->pivot->qtd;
                 }
-    
+
                 foreach ($nutrientes_totais as $key => $value) {
                     $nutrientes_totais[$key] = round($value, 3);
                 }
-    
+
                 return [
                     'id' => $registro->id,
                     'data' => $registro->data,
@@ -67,13 +67,13 @@ class RegistroController extends Controller
                     'nutrientes_totais' => $nutrientes_totais,
                 ];
             });
-    
+
         return response()->json([
             'data' => $registros,
             'success' => true
         ]);
     }
-    
+
 
 
 

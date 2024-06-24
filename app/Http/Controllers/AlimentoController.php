@@ -65,11 +65,10 @@ class AlimentoController extends Controller
         ]);
     }
 
-   
 
-    public function adicionarAlimentosDoJson()
+
+    public function adicionarAlimentosDoJson($userId)
     {
-
         $caminhoArquivo = base_path('taco.json');
 
         if (!file_exists($caminhoArquivo)) {
@@ -80,10 +79,7 @@ class AlimentoController extends Controller
         }
 
         $json = file_get_contents($caminhoArquivo);
-
-
         $dadosJson = json_decode($json, true);
-
 
         if ($dadosJson === null) {
             return response()->json([
@@ -92,10 +88,8 @@ class AlimentoController extends Controller
             ], 400);
         }
 
-
         try {
             foreach ($dadosJson as $item) {
-
                 if (!isset($item['Descrição do Alimento'], $item['Proteína(g)'], $item['Lipídeos(g)'], $item['Energia(kcal)'], $item['Carboidrato(g)'])) {
                     return response()->json([
                         'message' => 'Dados incompletos no JSON',
@@ -110,6 +104,7 @@ class AlimentoController extends Controller
                     'caloria' => (float) $item['Energia(kcal)'],
                     'carbo' => (float) $item['Carboidrato(g)'],
                     'qtd' => 100,
+                    'id_usuario' => $userId,
                 ]);
             }
         } catch (\Exception $e) {
@@ -124,7 +119,6 @@ class AlimentoController extends Controller
             'success' => true
         ]);
     }
-
 
 
 

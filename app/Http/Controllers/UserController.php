@@ -44,8 +44,6 @@ class UserController extends Controller
 
         ]);
 
-       
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -57,10 +55,15 @@ class UserController extends Controller
             'avatar' => $request->avatar,
             'nivel_atividade' => $request->nivel_atividade,
             'objetivo' => $request->objetivo,
-            
+
         ]);
 
-       
+        // Chama os métodos das rotas
+        $refeicaoController = new RefeicaoController();
+        $refeicaoController->adicionarRefeicaoDoJson($user->id);
+
+        $alimentoController = new AlimentoController();
+        $alimentoController->adicionarAlimentosDoJson($user->id);
 
         return response()->json([
             'message' => 'Usuário registrado com sucesso',
@@ -68,6 +71,7 @@ class UserController extends Controller
             'success' => true
         ]);
     }
+
 
     /**
      * Display the specified resource.
@@ -169,7 +173,7 @@ class UserController extends Controller
 
         // Retornando o caminho de acesso da imagem de avatar caso exista
         if ($user->avatar) {
-            $user->avatar = Storage::url($user->avatar);
+            $user->avatar = asset('storage/' . $user->avatar);
         }
 
         return response()->json([
@@ -179,12 +183,12 @@ class UserController extends Controller
         ]);
     }
 
-    
+
     public function updateProfilePic(Request $request, $id)
     {
         // Procurar o usuário pelo ID
         $user = User::find($id);
-    
+
         // Verificar se o usuário existe
         if (!$user) {
             return response()->json([
@@ -192,32 +196,35 @@ class UserController extends Controller
                 'success' => false
             ], 404);
         }
-    
+
         // Validar a requisição
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
+
         // Apagar a foto de perfil anterior se existir
         if ($user->avatar) {
             Storage::disk('public')->delete($user->avatar);
         }
-    
+
         // Salvar a nova foto de perfil
         $avatarPath = $request->file('avatar')->store('avatars', 'public');
-    
+
         // Atualizar o usuário com o caminho do novo avatar
         $user->update([
             'avatar' => $avatarPath,
         ]);
-    
-        // Retornar uma resposta de sucesso
+
+        // Retornar uma resposta de sucesso com a URL completa do novo avatar
+        $user->avatar = asset('storage/' . $avatarPath);
+
         return response()->json([
             'message' => 'Foto de perfil atualizada com sucesso',
             'data' => $user,
             'success' => true
         ]);
     }
+
     
 
     public function deleteProfilePic($id)

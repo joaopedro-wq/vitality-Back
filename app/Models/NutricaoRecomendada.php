@@ -14,6 +14,8 @@ class NutricaoRecomendada extends Model
         'caloria',
         'proteina',
         'carbo',
+        'gordura',
+
         'id_usuario',
 
 
