@@ -61,6 +61,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/refeicao/{id}', [RefeicaoController::class, 'show']);
     Route::put('/refeicao/{id}', [RefeicaoController::class, 'update']);
     Route::delete('/refeicao/{id}', [RefeicaoController::class, 'destroy']);
+
 });
 
 

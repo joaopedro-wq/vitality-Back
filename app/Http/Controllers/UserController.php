@@ -255,4 +255,41 @@ class UserController extends Controller
             'success' => false
         ], 404);
     }
+
+
+    public function storeUser(Request $request){
+
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'unique:users|email|lowercase',
+            'password' => 'required|string|confirmed',
+        
+        ], [
+            'name.required' => 'O campo nome é obrigatório.',
+            'email.required' => 'O campo email é obrigatório.',
+            'email.unique' => 'O email já está sendo utilizado por outro usuário.',
+            'email.lowercase' => 'O email deve estar em minusculas.',
+            'email.email' => 'O email informado é inválido.',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            
+
+        ]);
+
+        $refeicaoController = new RefeicaoController();
+        $refeicaoController->adicionarRefeicaoDoJson($user->id);
+
+        $alimentoController = new AlimentoController();
+        $alimentoController->adicionarAlimentosDoJson($user->id);
+        
+        return response()->json([
+            'message' => 'Usuário criado com sucesso',
+            'data' => $user,
+            'success' => true
+        ]);
+    }
 }

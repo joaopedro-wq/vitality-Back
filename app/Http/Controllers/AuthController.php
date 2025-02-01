@@ -20,28 +20,35 @@ class AuthController extends Controller
      * @return [string] message
      */
     public function login(Request $request)
-    {
+{
+    // Verifica se o e-mail existe
+    $user = User::where('email', $request->email)->first();
 
+    if ($user) {
+        // Verifica se a senha está correta
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-
-
-            $user = Auth::user();
-            $token = $request->user()->createToken('api-token')->plainTextToken;
+            $token = $user->createToken('api-token')->plainTextToken;
 
             return response()->json([
                 'status' => true,
                 'token' => $token,
-
                 'user' => $user,
                 'message' => 'Login sucesso.',
             ], 201);
         } else {
             return response()->json([
                 'status' => false,
-                'message' => 'Login ou senha incorretos.',
-            ], 404);
+                'message' => 'Senha incorreta.',
+            ], 401);  // Código HTTP para erro de autenticação
         }
+    } else {
+        return response()->json([
+            'status' => false,
+            'message' => 'E-mail não encontrado.',
+        ], 404);  // Código HTTP para recurso não encontrado
     }
+}
+
 
     public function logout(User $user)
     {
