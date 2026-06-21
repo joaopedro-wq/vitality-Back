@@ -87,11 +87,15 @@ class UserController extends Controller
             ], 404);
         }
 
-       
+        $userData = $user->toArray();
+
+        if (!empty($userData['avatar'])) {
+            $userData['avatar'] = asset('storage/' . $userData['avatar']);
+        }
 
         return response()->json([
             'message' => 'Usuário carregado com sucesso',
-            'data' => $user,
+            'data' => $userData,
             'success' => true
         ]);
     }
@@ -117,12 +121,25 @@ class UserController extends Controller
             'genero' => 'nullable',
             'peso' => 'nullable|numeric',
             'data_nascimento' => 'nullable|date',
-            'altura' => 'nullable|numeric', // Corrigido para numeric em vez de boolean
-            'avatar' => 'nullable|string',
+            'altura' => 'nullable|numeric',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'nivel_atividade' => 'nullable|string',
             'objetivo' => 'nullable|string',
-
         ]);
+
+        // Processa o upload do avatar, se fornecido
+        $avatarUrl = $user->avatar;
+        if ($request->hasFile('avatar')) {
+            // Remove o avatar anterior se existir
+            if ($user->avatar) {
+                $oldPath = str_replace(asset('storage/'), '', $user->avatar);
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            // Salva a nova imagem em avatars/{id}/
+            $avatarPath = $request->file('avatar')->store('avatars/' . $id, 'public');
+            $avatarUrl = asset('storage/' . $avatarPath);
+        }
 
         // Atualiza os dados do usuário, exceto a senha que só será alterada se fornecida
         $user->update([
@@ -132,10 +149,9 @@ class UserController extends Controller
             'peso' => $request->peso,
             'data_nascimento' => $request->data_nascimento,
             'altura' => $request->altura,
-            'avatar' => $request->avatar,
+            'avatar' => $avatarUrl,
             'nivel_atividade' => $request->nivel_atividade,
             'objetivo' => $request->objetivo,
-
         ]);
 
         // Atualiza a senha apenas se ela foi fornecida
