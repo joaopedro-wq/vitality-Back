@@ -141,18 +141,15 @@ class UserController extends Controller
             $avatarUrl = asset('storage/' . $avatarPath);
         }
 
-        // Atualiza os dados do usuário, exceto a senha que só será alterada se fornecida
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'genero' => $request->genero,
-            'peso' => $request->peso,
-            'data_nascimento' => $request->data_nascimento,
-            'altura' => $request->altura,
-            'avatar' => $avatarUrl,
-            'nivel_atividade' => $request->nivel_atividade,
-            'objetivo' => $request->objetivo,
+        
+        $dados = $request->only([
+            'name', 'email', 'genero', 'peso', 'data_nascimento', 'altura',
+            'nivel_atividade', 'objetivo',
         ]);
+        if ($avatarUrl !== $user->avatar) {
+            $dados['avatar'] = $avatarUrl;
+        }
+        $user->update($dados);
 
         // Atualiza a senha apenas se ela foi fornecida
         if ($request->filled('password')) {
