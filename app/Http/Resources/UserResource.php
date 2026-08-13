@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'avatar' => $this->avatarUrl(),
             'nivel_atividade' => $this->nivel_atividade,
             'objetivo' => $this->objetivo,
+            'is_admin' => $this->is_admin,
         ];
     }
 

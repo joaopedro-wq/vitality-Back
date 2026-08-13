@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dieta;
 use Illuminate\Http\Request;
+use App\Models\Alimento;
 
 class DietaController extends Controller
 {
@@ -73,6 +74,9 @@ class DietaController extends Controller
          ]);
  
          $alimentos = $request->alimentos;
+         if (Alimento::whereIn('id', collect($alimentos)->pluck('id'))->where('status', 'ativo')->count() !== count($alimentos)) {
+             return response()->json(['message' => 'Um ou mais alimentos não estão disponíveis.', 'success' => false], 422);
+         }
          foreach ($alimentos as $alimento) {
              $dieta->alimentos()->attach($alimento['id'], ['qtd' => $alimento['qtd']]);
          }
@@ -137,6 +141,9 @@ class DietaController extends Controller
         // Atualizar os alimentos associados com quantidade
         if ($request->has('alimentos')) {
             $alimentos = [];
+            if (Alimento::whereIn('id', collect($request->alimentos)->pluck('id'))->where('status', 'ativo')->count() !== count($request->alimentos)) {
+                return response()->json(['message' => 'Um ou mais alimentos não estão disponíveis.', 'success' => false], 422);
+            }
             foreach ($request->alimentos as $alimento) {
                 $alimentos[$alimento['id']] = ['qtd' => $alimento['qtd']];
             }

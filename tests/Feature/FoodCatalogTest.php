@@ -1,0 +1,49 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\Alimento;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
+use Tests\TestCase;
+
+class FoodCatalogTest extends TestCase
+{
+    use RefreshDatabase;
+
+    private function food(array $attributes = []): Alimento
+    {
+        return Alimento::create(array_merge([
+            'descricao' => 'Arroz integral cozido', 'nome_normalizado' => 'arroz integral cozido',
+            'fonte' => 'taco', 'source_reference' => 'test-1', 'status' => 'ativo', 'grupo' => 'Cereais',
+            'proteina' => 2.6, 'gordura' => 1, 'carbo' => 25.8, 'caloria' => 123.5, 'qtd' => 100,
+        ], $attributes));
+    }
+
+    public function test_user_can_search_active_catalog_and_manage_own_favorites(): void
+    {
+        $food = $this->food();
+        $archived = $this->food(['descricao' => 'Item arquivado', 'nome_normalizado' => 'item arquivado', 'source_reference' => 'test-2', 'status' => 'arquivado']);
+        $user = User::factory()->create();
+        Sanctum::actingAs($user);
+
+        $this->getJson('/api/foods?search=arroz')->assertOk()->assertJsonPath('data.0.id', $food->id);
+        $this->postJson("/api/foods/{$food->id}/favorite")->assertOk()->assertJsonPath('data.is_favorite', true);
+        $this->getJson('/api/foods?tab=favorites')->assertOk()->assertJsonCount(1, 'data')->assertJsonPath('data.0.id', $food->id);
+        $this->deleteJson("/api/foods/{$food->id}/favorite")->assertNoContent();
+        $this->getJson('/api/foods?tab=favorites')->assertOk()->assertJsonCount(0, 'data');
+        $this->getJson("/api/foods/{$archived->id}")->assertNotFound();
+    }
+
+    public function test_only_admin_can_manage_catalog(): void
+    {
+        $payload = ['descricao' => 'Iogurte natural', 'grupo' => 'Laticínios', 'proteina' => 4, 'gordura' => 3, 'carbo' => 5, 'caloria' => 65, 'qtd' => 100];
+        Sanctum::actingAs(User::factory()->create());
+        $this->postJson('/api/admin/foods', $payload)->assertForbidden();
+
+        Sanctum::actingAs(User::factory()->create(['is_admin' => true]));
+        $this->postJson('/api/admin/foods', $payload)->assertCreated()->assertJsonPath('data.fonte', 'manual');
+        $this->assertDatabaseHas('alimentos', ['descricao' => 'Iogurte natural', 'fonte' => 'manual', 'status' => 'ativo']);
+    }
+}

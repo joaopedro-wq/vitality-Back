@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AlimentoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RefeicaoController;
 use App\Http\Controllers\RegistroController;
@@ -10,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\MetaDiariaController;
 use App\Http\Controllers\NutricaoRecomendadaController;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\Admin\FoodAdminController;
 
 
 Route::middleware('guest')->group(function () {
@@ -58,11 +59,20 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dieta', [DietaController::class, 'index']);
     
     
-    Route::get('/food', [AlimentoController::class, 'index']);
-    Route::post('/food', [AlimentoController::class, 'store']);
-    Route::get('/food/{id}', [AlimentoController::class, 'show']);
-    Route::put('/food/{id}', [AlimentoController::class, 'update']);
-    Route::delete('/food/{id}', [AlimentoController::class, 'destroy']);
+    Route::get('/foods', [FoodController::class, 'index']);
+    Route::get('/foods/{food}', [FoodController::class, 'show']);
+    Route::post('/foods/{food}/favorite', [FoodController::class, 'favorite']);
+    Route::delete('/foods/{food}/favorite', [FoodController::class, 'unfavorite']);
+
+    Route::middleware('admin')->prefix('admin')->group(function () {
+        Route::get('/foods', [FoodAdminController::class, 'index']);
+        Route::get('/foods/duplicates', [FoodAdminController::class, 'duplicates']);
+        Route::post('/foods', [FoodAdminController::class, 'store']);
+        Route::put('/foods/{food}', [FoodAdminController::class, 'update']);
+        Route::post('/foods/{food}/archive', [FoodAdminController::class, 'archive']);
+        Route::post('/foods/{food}/restore', [FoodAdminController::class, 'restore']);
+        Route::post('/foods/import-taco', [FoodAdminController::class, 'importTaco']);
+    });
     
     
     Route::get('/refeicao', [RefeicaoController::class, 'index']);
@@ -75,4 +85,3 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 Route::get('/adicionar-refeicao', [RefeicaoController::class, 'adicionarRefeicaoDoJson']);
-Route::get('/adicionar-alimentos', [AlimentoController::class, 'adicionarAlimentosDoJson']);

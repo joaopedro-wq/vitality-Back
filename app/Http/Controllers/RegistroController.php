@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Registro;
 use Illuminate\Http\Request;
+use App\Models\Alimento;
 
 class RegistroController extends Controller
 {
@@ -36,22 +37,28 @@ class RegistroController extends Controller
                 ];
 
                 foreach ($registro->alimentos as $alimento) {
-                    $fator = $alimento->pivot->qtd / $alimento->qtd;
+                    $base = $alimento->pivot->qtd_base_snapshot ?? $alimento->qtd;
+                    $proteina = $alimento->pivot->proteina_snapshot ?? $alimento->proteina;
+                    $gordura = $alimento->pivot->gordura_snapshot ?? $alimento->gordura;
+                    $caloria = $alimento->pivot->caloria_snapshot ?? $alimento->caloria;
+                    $carbo = $alimento->pivot->carbo_snapshot ?? $alimento->carbo;
+                    $descricao = $alimento->pivot->descricao_snapshot ?? $alimento->descricao;
+                    $fator = $alimento->pivot->qtd / $base;
 
                     $alimentos_detalhes[] = [
-                        'descricao' => $alimento->descricao,
+                        'descricao' => $descricao,
                         'qtd' => round($alimento->pivot->qtd, 3),
-                        'proteina' => round($alimento->proteina * $fator, 3),
-                        'gordura' => round($alimento->gordura * $fator, 3),
-                        'caloria' => round($alimento->caloria * $fator, 3),
-                        'carbo' => round($alimento->carbo * $fator, 3),
+                        'proteina' => round($proteina * $fator, 3),
+                        'gordura' => round($gordura * $fator, 3),
+                        'caloria' => round($caloria * $fator, 3),
+                        'carbo' => round($carbo * $fator, 3),
                         'alimento' => $alimento,
                     ];
 
-                    $nutrientes_totais['proteina'] += $alimento->proteina * $fator;
-                    $nutrientes_totais['gordura'] += $alimento->gordura * $fator;
-                    $nutrientes_totais['caloria'] += $alimento->caloria * $fator;
-                    $nutrientes_totais['carbo'] += $alimento->carbo * $fator;
+                    $nutrientes_totais['proteina'] += $proteina * $fator;
+                    $nutrientes_totais['gordura'] += $gordura * $fator;
+                    $nutrientes_totais['caloria'] += $caloria * $fator;
+                    $nutrientes_totais['carbo'] += $carbo * $fator;
                     $nutrientes_totais['qtd'] += $alimento->pivot->qtd;
                 }
 
@@ -91,6 +98,11 @@ class RegistroController extends Controller
             'id_refeicao' => 'required|integer',
         ]);
 
+        $foods = Alimento::whereIn('id', collect($request->alimentos)->pluck('id'))->where('status', 'ativo')->get()->keyBy('id');
+        if ($foods->count() !== count($request->alimentos)) {
+            return response()->json(['message' => 'Um ou mais alimentos não estão disponíveis.', 'success' => false], 422);
+        }
+
         $registro = Registro::create([
             'data' => $request->data,
             'id_refeicao' => $request->id_refeicao,
@@ -99,7 +111,13 @@ class RegistroController extends Controller
         ]);
 
         foreach ($request->alimentos as $alimento) {
-            $registro->alimentos()->attach($alimento['id'], ['qtd' => $alimento['qtd']]);
+            $food = $foods[$alimento['id']];
+            $registro->alimentos()->attach($food->id, [
+                'qtd' => $alimento['qtd'], 'descricao_snapshot' => $food->descricao,
+                'qtd_base_snapshot' => $food->qtd, 'proteina_snapshot' => $food->proteina,
+                'gordura_snapshot' => $food->gordura, 'carbo_snapshot' => $food->carbo,
+                'caloria_snapshot' => $food->caloria,
+            ]);
         }
 
         $registro->load('alimentos', 'refeicao');
@@ -162,6 +180,11 @@ class RegistroController extends Controller
             'id_refeicao' => 'required|integer',
         ]);
 
+        $foods = Alimento::whereIn('id', collect($request->alimentos)->pluck('id'))->where('status', 'ativo')->get()->keyBy('id');
+        if ($foods->count() !== count($request->alimentos)) {
+            return response()->json(['message' => 'Um ou mais alimentos não estão disponíveis.', 'success' => false], 422);
+        }
+
         // Atualizar o registro com novos dados
         $registro->update([
             'data' => $request->data,
@@ -173,7 +196,13 @@ class RegistroController extends Controller
 
         // Adicionar os novos alimentos ao registro
         foreach ($request->alimentos as $alimento) {
-            $registro->alimentos()->attach($alimento['id'], ['qtd' => $alimento['qtd']]);
+            $food = $foods[$alimento['id']];
+            $registro->alimentos()->attach($food->id, [
+                'qtd' => $alimento['qtd'], 'descricao_snapshot' => $food->descricao,
+                'qtd_base_snapshot' => $food->qtd, 'proteina_snapshot' => $food->proteina,
+                'gordura_snapshot' => $food->gordura, 'carbo_snapshot' => $food->carbo,
+                'caloria_snapshot' => $food->caloria,
+            ]);
         }
 
         // Carregar os relacionamentos novamente

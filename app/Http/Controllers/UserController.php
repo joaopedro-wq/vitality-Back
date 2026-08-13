@@ -47,7 +47,6 @@ class UserController extends Controller
         ]);
 
         (new RefeicaoController())->adicionarRefeicaoDoJson($user->id);
-        (new AlimentoController())->adicionarAlimentosDoJson($user->id);
 
         return UserResource::make($user)->additional([
             'message' => 'Usuário registrado com sucesso',
@@ -170,7 +169,6 @@ class UserController extends Controller
         ]);
 
         (new RefeicaoController())->adicionarRefeicaoDoJson($user->id);
-        (new AlimentoController())->adicionarAlimentosDoJson($user->id);
 
         return UserResource::make($user)->additional([
             'message' => 'Usuário criado com sucesso',

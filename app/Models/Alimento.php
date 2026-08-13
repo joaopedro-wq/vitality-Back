@@ -17,6 +17,13 @@ class Alimento extends Model
         'carbo',
         'qtd',
         'id_usuario',
+        'fonte',
+        'source_reference',
+        'grupo',
+        'nome_normalizado',
+        'status',
+        'created_by',
+        'updated_by',
 
     ];
 
@@ -34,6 +41,21 @@ class Alimento extends Model
     public function usuario()
     {
         return $this->belongsTo(User::class, 'id_usuario');
+    }
+
+    public function userPreferences()
+    {
+        return $this->hasMany(UserFood::class, 'food_id');
+    }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
     }
 
 }

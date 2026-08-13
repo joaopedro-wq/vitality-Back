@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Exception;
 use Validator;
+use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
@@ -32,7 +33,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'token' => $token,
-                'user' => $user,
+                'user' => (new UserResource($user))->resolve(),
                 'message' => 'Login sucesso.',
             ], 201);
         } else {

@@ -16,7 +16,8 @@ class UserSeeder extends Seeder
             $superAdmin = User::create([
                 'name' => 'João Pedro',
                 'email' => 'joao.bandeira@gmail.com.br',
-                'password' => Hash::make('12345678a', ['rounds' => 12])
+                'password' => Hash::make('12345678a', ['rounds' => 12]),
+                'is_admin' => true,
             ]);
         }
     }
