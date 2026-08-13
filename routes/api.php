@@ -42,8 +42,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user', [UserController::class, 'store']);
     // Rotas estáticas ANTES das paramétricas para evitar conflito de match
     Route::get('/user/get-with-token', [UserController::class, 'getWithToken']);
-    Route::post('/user/update-profile-pic/{id}', [UserController::class, 'updateProfilePic']);
-    Route::delete('/user/delete-profile-pic/{id}', [UserController::class, 'deleteProfilePic']);
+    Route::post('/user/avatar', [UserController::class, 'updateAvatar']);
+    Route::delete('/user/avatar', [UserController::class, 'destroyAvatar']);
     Route::get('/user/{id}', [UserController::class, 'show']);
     Route::put('/atualizar-user/{id}', [UserController::class, 'update']);
     Route::put('/user/{id}', [UserController::class, 'update']);
