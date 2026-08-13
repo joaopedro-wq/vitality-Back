@@ -24,6 +24,8 @@ class Alimento extends Model
         'status',
         'created_by',
         'updated_by',
+        'source_version',
+        'source_checksum',
 
     ];
 
@@ -56,6 +58,12 @@ class Alimento extends Model
     public function updatedBy()
     {
         return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function nutrientes()
+    {
+        return $this->belongsToMany(Nutriente::class, 'alimento_nutrientes', 'alimento_id', 'nutriente_id')
+            ->withPivot(['valor', 'tipo_dado']);
     }
 
 }

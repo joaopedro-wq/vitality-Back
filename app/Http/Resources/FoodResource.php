@@ -24,6 +24,14 @@ class FoodResource extends JsonResource
             'status' => $this->status,
             'is_favorite' => (bool) ($this->is_favorite ?? false),
             'updated_at' => $this->updated_at?->toISOString(),
+            'nutrientes' => $this->whenLoaded('nutrientes', fn () => $this->nutrientes->map(fn ($nutriente) => [
+                'codigo' => $nutriente->codigo,
+                'nome' => $nutriente->nome,
+                'unidade' => $nutriente->unidade,
+                'categoria' => $nutriente->categoria,
+                'valor' => (float) $nutriente->pivot->valor,
+                'tipo_dado' => $nutriente->pivot->tipo_dado,
+            ])),
         ];
     }
 }

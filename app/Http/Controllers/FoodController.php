@@ -31,6 +31,7 @@ class FoodController extends Controller
     public function show(Request $request, Alimento $food)
     {
         abort_unless($food->status === 'ativo', 404);
+        $food->load('nutrientes');
         $food->loadExists(['userPreferences as is_favorite' => fn ($preference) => $preference->where('user_id', $request->user()->id)->where('is_favorite', true)]);
         return new FoodResource($food);
     }

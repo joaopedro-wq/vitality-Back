@@ -16,7 +16,7 @@ class FoodAdminController extends Controller
     {
         $filters = $request->validate([
             'search' => ['nullable', 'string', 'max:120'],
-            'fonte' => ['nullable', 'in:taco,manual,legado'],
+            'fonte' => ['nullable', 'in:taco,manual,legado,usda'],
             'status' => ['nullable', 'in:ativo,pendente,arquivado'],
         ]);
         $foods = Alimento::query()
