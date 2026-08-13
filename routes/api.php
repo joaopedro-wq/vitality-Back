@@ -11,6 +11,12 @@ use App\Http\Controllers\DietaController;
 use App\Http\Controllers\MetaDiariaController;
 use App\Http\Controllers\NutricaoRecomendadaController;
 
+
+Route::middleware('guest')->group(function () {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/criar-usuario', [UserController::class, 'storeUser']);
+});
+
 Route::middleware('auth:sanctum')->group(function () {
     
     
