@@ -15,17 +15,45 @@ class FoodController extends Controller
             'search' => ['nullable', 'string', 'max:120'],
             'tab' => ['nullable', 'in:all,favorites'],
             'page' => ['nullable', 'integer', 'min:1'],
+            'grupo' => ['nullable', 'array'],
+            'grupo.*' => ['string', 'max:120'],
+            'caloria_min' => ['nullable', 'numeric', 'min:0'],
+            'caloria_max' => ['nullable', 'numeric', 'min:0', 'gte:caloria_min'],
+            'sort_field' => ['nullable', 'in:descricao,grupo,caloria,proteina,carbo,gordura'],
+            'sort_order' => ['nullable', 'in:asc,desc'],
         ]);
         $user = $request->user();
         $foods = Alimento::query()
             ->where('status', 'ativo')
             ->when($validated['search'] ?? null, fn ($query, $search) => $query->where('nome_normalizado', 'like', '%'.app(\App\Services\FoodCatalogService::class)->normalizeName($search).'%'))
             ->when(($validated['tab'] ?? 'all') === 'favorites', fn ($query) => $query->whereHas('userPreferences', fn ($preference) => $preference->where('user_id', $user->id)->where('is_favorite', true)))
+            ->when($validated['grupo'] ?? null, fn ($query, $grupos) => $query->whereIn('grupo', $grupos))
+            ->when($validated['caloria_min'] ?? null, fn ($query, $min) => $query->where('caloria', '>=', $min))
+            ->when($validated['caloria_max'] ?? null, fn ($query, $max) => $query->where('caloria', '<=', $max))
             ->withExists(['userPreferences as is_favorite' => fn ($preference) => $preference->where('user_id', $user->id)->where('is_favorite', true)])
-            ->orderBy('descricao')
+            ->orderBy($validated['sort_field'] ?? 'descricao', $validated['sort_order'] ?? 'asc')
             ->paginate(20);
 
         return FoodResource::collection($foods);
+    }
+
+   
+    public function groups()
+    {
+        $grupos = Alimento::query()
+            ->where('status', 'ativo')
+            ->whereNotNull('grupo')
+            ->where('grupo', '!=', '')
+            ->select('grupo')
+            ->selectRaw('count(*) as total')
+            ->groupBy('grupo')
+            ->orderBy('grupo')
+            ->get();
+
+        return response()->json([
+            'data' => $grupos,
+            'success' => true,
+        ]);
     }
 
     public function show(Request $request, Alimento $food)

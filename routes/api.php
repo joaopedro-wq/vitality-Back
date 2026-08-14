@@ -60,6 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     
     Route::get('/foods', [FoodController::class, 'index']);
+    Route::get('/foods/groups', [FoodController::class, 'groups']);
     Route::get('/foods/{food}', [FoodController::class, 'show']);
     Route::post('/foods/{food}/favorite', [FoodController::class, 'favorite']);
     Route::delete('/foods/{food}/favorite', [FoodController::class, 'unfavorite']);
