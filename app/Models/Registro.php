@@ -11,13 +11,11 @@ class Registro extends Model
 
     protected $fillable = [
         'data',
-        'qtd',
         'id_refeicao',
         'id_usuario',
-
-   
-                    
-
+        'consumed_at',
+        'descricao_refeicao_snapshot',
+        'horario_refeicao_snapshot',
     ];
 
     public function alimento()
@@ -41,10 +39,20 @@ class Registro extends Model
 
     public function alimentos()
     {
-        return $this->belongsToMany(Alimento::class, 'registro_alimentos')->withPivot('qtd');
+        return $this->belongsToMany(Alimento::class, 'registro_alimentos')
+            ->using(DiaryEntryItem::class)
+            ->withPivot([
+                'qtd', 'descricao_snapshot', 'qtd_base_snapshot', 'proteina_snapshot',
+                'gordura_snapshot', 'carbo_snapshot', 'caloria_snapshot', 'nutrientes_snapshot',
+            ]);
     }
-   
 
-    
+    protected function casts(): array
+    {
+        return [
+            'data' => 'date:Y-m-d',
+            'consumed_at' => 'immutable_datetime',
+            'horario_refeicao_snapshot' => 'datetime:H:i:s',
+        ];
+    }
 }
-

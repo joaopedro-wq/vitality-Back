@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserAvatarRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Services\MealPresetService;
 use App\Services\UserAvatarService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, MealPresetService $mealPresets)
     {
         $request->validate([
             'name' => 'required|string',
@@ -46,7 +47,7 @@ class UserController extends Controller
             'objetivo' => $request->objetivo,
         ]);
 
-        (new RefeicaoController())->adicionarRefeicaoDoJson($user->id);
+        $mealPresets->ensureFor($user);
 
         return UserResource::make($user)->additional([
             'message' => 'Usuário registrado com sucesso',
@@ -148,7 +149,7 @@ class UserController extends Controller
         return response()->noContent();
     }
 
-    public function storeUser(Request $request)
+    public function storeUser(Request $request, MealPresetService $mealPresets)
     {
         $request->validate([
             'name' => 'required|string',
@@ -168,7 +169,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        (new RefeicaoController())->adicionarRefeicaoDoJson($user->id);
+        $mealPresets->ensureFor($user);
 
         return UserResource::make($user)->additional([
             'message' => 'Usuário criado com sucesso',

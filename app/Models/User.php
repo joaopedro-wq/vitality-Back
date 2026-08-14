@@ -43,6 +43,16 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function refeicoes()
+    {
+        return $this->hasMany(Refeicao::class, 'id_usuario');
+    }
+
+    public function registros()
+    {
+        return $this->hasMany(Registro::class, 'id_usuario');
+    }
+
     /**
      * Get the attributes that should be cast.
      *

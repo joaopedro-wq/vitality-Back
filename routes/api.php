@@ -11,6 +11,8 @@ use App\Http\Controllers\MetaDiariaController;
 use App\Http\Controllers\NutricaoRecomendadaController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\Admin\FoodAdminController;
+use App\Http\Controllers\DiaryEntryController;
+use App\Http\Controllers\DiaryMealController;
 
 
 Route::middleware('guest')->group(function () {
@@ -21,10 +23,23 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     
     
-    Route::get('/registro', [RegistroController::class, 'index']);
-    Route::post('/registro', [RegistroController::class, 'store']);
-    Route::get('/registro/{id}', [RegistroController::class, 'show']);
-    Route::put('/registro/{id}', [RegistroController::class, 'update']);
+    
+    Route::get('/diary/day', [DiaryEntryController::class, 'day']);
+    Route::post('/diary/entries', [DiaryEntryController::class, 'store']);
+    Route::get('/diary/entries/{entry}', [DiaryEntryController::class, 'show']);
+    Route::patch('/diary/entries/{entry}', [DiaryEntryController::class, 'update']);
+    Route::delete('/diary/entries/{entry}', [DiaryEntryController::class, 'destroy']);
+    Route::get('/diary/meals', [DiaryMealController::class, 'index']);
+    Route::post('/diary/meals', [DiaryMealController::class, 'store']);
+    Route::get('/diary/meals/{meal}', [DiaryMealController::class, 'show']);
+    Route::patch('/diary/meals/{meal}', [DiaryMealController::class, 'update']);
+    Route::delete('/diary/meals/{meal}', [DiaryMealController::class, 'destroy']);
+
+    // Compatibilidade temporária para consumidores do contrato antigo.
+    Route::get('/registro', [DiaryEntryController::class, 'legacyIndex']);
+    Route::post('/registro', [DiaryEntryController::class, 'legacyStore']);
+    Route::get('/registro/{entry}', [DiaryEntryController::class, 'show']);
+    Route::put('/registro/{entry}', [DiaryEntryController::class, 'legacyUpdate']);
     
     Route::get('/meta', [MetaDiariaController::class, 'index']);
     Route::post('/meta', [MetaDiariaController::class, 'store']);
@@ -49,7 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/atualizar-user/{id}', [UserController::class, 'update']);
     Route::put('/user/{id}', [UserController::class, 'update']);
     
-    Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
+    Route::delete('/registro/{entry}', [DiaryEntryController::class, 'destroy']);
     
     
     Route::get('/dieta/{id}', [DietaController::class, 'show']);
@@ -76,13 +91,10 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     
     
-    Route::get('/refeicao', [RefeicaoController::class, 'index']);
-    Route::post('/refeicao', [RefeicaoController::class, 'store']);
-    Route::get('/refeicao/{id}', [RefeicaoController::class, 'show']);
-    Route::put('/refeicao/{id}', [RefeicaoController::class, 'update']);
-    Route::delete('/refeicao/{id}', [RefeicaoController::class, 'destroy']);
+    Route::get('/refeicao', [DiaryMealController::class, 'index']);
+    Route::post('/refeicao', [DiaryMealController::class, 'store']);
+    Route::get('/refeicao/{meal}', [DiaryMealController::class, 'show']);
+    Route::put('/refeicao/{meal}', [DiaryMealController::class, 'update']);
+    Route::delete('/refeicao/{meal}', [DiaryMealController::class, 'destroy']);
 
 });
-
-
-Route::get('/adicionar-refeicao', [RefeicaoController::class, 'adicionarRefeicaoDoJson']);
