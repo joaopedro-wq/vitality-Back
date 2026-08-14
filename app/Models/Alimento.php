@@ -66,4 +66,14 @@ class Alimento extends Model
             ->withPivot(['valor', 'tipo_dado']);
     }
 
+    public function images()
+    {
+        return $this->hasMany(FoodImage::class, 'alimento_id');
+    }
+
+    public function publishedImage()
+    {
+        return $this->hasOne(FoodImage::class, 'alimento_id')->where('status', 'published');
+    }
+
 }

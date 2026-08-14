@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Alimento;
+use App\Models\FoodImage;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
@@ -45,5 +46,17 @@ class FoodCatalogTest extends TestCase
         Sanctum::actingAs(User::factory()->create(['is_admin' => true]));
         $this->postJson('/api/admin/foods', $payload)->assertCreated()->assertJsonPath('data.fonte', 'manual');
         $this->assertDatabaseHas('alimentos', ['descricao' => 'Iogurte natural', 'fonte' => 'manual', 'status' => 'ativo']);
+    }
+
+    public function test_catalog_exposes_a_published_food_image_url(): void
+    {
+        $food = $this->food();
+        FoodImage::create([
+            'alimento_id' => $food->id, 'commons_filename' => 'Rice.jpg', 'path' => 'food-images/test/rice.jpg',
+            'source_license' => 'CC0', 'status' => 'published', 'match_score' => 100,
+        ]);
+        Sanctum::actingAs(User::factory()->create());
+
+        $this->getJson('/api/foods')->assertOk()->assertJsonPath('data.0.image_url', '/storage/food-images/test/rice.jpg');
     }
 }

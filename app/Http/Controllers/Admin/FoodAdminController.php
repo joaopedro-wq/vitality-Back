@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreFoodRequest;
 use App\Http\Requests\Admin\UpdateFoodRequest;
 use App\Http\Resources\FoodResource;
+use App\Http\Resources\FoodImageResource;
 use App\Models\Alimento;
+use App\Models\FoodImage;
 use App\Services\FoodCatalogService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FoodAdminController extends Controller
 {
@@ -23,6 +26,7 @@ class FoodAdminController extends Controller
             ->when($filters['search'] ?? null, fn ($query, $search) => $query->where('nome_normalizado', 'like', '%'.$catalog->normalizeName($search).'%'))
             ->when($filters['fonte'] ?? null, fn ($query, $fonte) => $query->where('fonte', $fonte))
             ->when($filters['status'] ?? null, fn ($query, $status) => $query->where('status', $status))
+            ->with('publishedImage')
             ->orderBy('descricao')->paginate(30);
         return FoodResource::collection($foods);
     }
@@ -67,5 +71,38 @@ class FoodAdminController extends Controller
     public function importTaco(FoodCatalogService $catalog)
     {
         return response()->json(['data' => $catalog->importTaco(), 'success' => true]);
+    }
+
+    public function images(Request $request)
+    {
+        $filters = $request->validate(['status' => ['nullable', 'in:pending,published,rejected,failed,superseded']]);
+        $images = FoodImage::query()->with(['alimento.publishedImage'])
+            ->when($filters['status'] ?? null, fn ($query, $status) => $query->where('status', $status))
+            ->orderByDesc('updated_at')->paginate(30);
+        return FoodImageResource::collection($images);
+    }
+
+    public function approveImage(Request $request, FoodImage $image)
+    {
+        abort_unless($image->path, 422, 'A imagem ainda não está disponível no storage.');
+        DB::transaction(function () use ($request, $image): void {
+            FoodImage::where('alimento_id', $image->alimento_id)->where('status', 'published')
+                ->where('id', '!=', $image->id)->update(['status' => 'superseded', 'rejection_reason' => 'Substituída por aprovação administrativa.']);
+            $image->update(['status' => 'published', 'rejection_reason' => null, 'reviewed_by' => $request->user()->id, 'reviewed_at' => now()]);
+        });
+        return (new FoodImageResource($image->fresh('alimento.publishedImage')))->additional(['success' => true]);
+    }
+
+    public function rejectImage(Request $request, FoodImage $image)
+    {
+        $data = $request->validate(['reason' => ['nullable', 'string', 'max:255']]);
+        $image->update(['status' => 'rejected', 'rejection_reason' => $data['reason'] ?? 'Recusada por administrador.', 'reviewed_by' => $request->user()->id, 'reviewed_at' => now()]);
+        return (new FoodImageResource($image))->additional(['success' => true]);
+    }
+
+    public function removeImage(Request $request, Alimento $food)
+    {
+        $food->publishedImage?->update(['status' => 'superseded', 'rejection_reason' => 'Removida por administrador.', 'reviewed_by' => $request->user()->id, 'reviewed_at' => now()]);
+        return response()->noContent();
     }
 }

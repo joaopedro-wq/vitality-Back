@@ -23,6 +23,7 @@ class FoodResource extends JsonResource
             'grupo' => $this->grupo,
             'status' => $this->status,
             'is_favorite' => (bool) ($this->is_favorite ?? false),
+            'image_url' => $this->relationLoaded('publishedImage') ? $this->publishedImage?->url() : null,
             'updated_at' => $this->updated_at?->toISOString(),
             'nutrientes' => $this->whenLoaded('nutrientes', fn () => $this->nutrientes->map(fn ($nutriente) => [
                 'codigo' => $nutriente->codigo,

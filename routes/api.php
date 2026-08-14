@@ -88,6 +88,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/foods/{food}/archive', [FoodAdminController::class, 'archive']);
         Route::post('/foods/{food}/restore', [FoodAdminController::class, 'restore']);
         Route::post('/foods/import-taco', [FoodAdminController::class, 'importTaco']);
+        Route::get('/food-images', [FoodAdminController::class, 'images']);
+        Route::post('/food-images/{image}/approve', [FoodAdminController::class, 'approveImage']);
+        Route::post('/food-images/{image}/reject', [FoodAdminController::class, 'rejectImage']);
+        Route::delete('/foods/{food}/image', [FoodAdminController::class, 'removeImage']);
     });
     
     

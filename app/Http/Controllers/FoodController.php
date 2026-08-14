@@ -31,6 +31,7 @@ class FoodController extends Controller
             ->when($validated['caloria_min'] ?? null, fn ($query, $min) => $query->where('caloria', '>=', $min))
             ->when($validated['caloria_max'] ?? null, fn ($query, $max) => $query->where('caloria', '<=', $max))
             ->withExists(['userPreferences as is_favorite' => fn ($preference) => $preference->where('user_id', $user->id)->where('is_favorite', true)])
+            ->with('publishedImage')
             ->orderBy($validated['sort_field'] ?? 'descricao', $validated['sort_order'] ?? 'asc')
             ->paginate(20);
 
@@ -59,7 +60,7 @@ class FoodController extends Controller
     public function show(Request $request, Alimento $food)
     {
         abort_unless($food->status === 'ativo', 404);
-        $food->load('nutrientes');
+        $food->load('nutrientes', 'publishedImage');
         $food->loadExists(['userPreferences as is_favorite' => fn ($preference) => $preference->where('user_id', $request->user()->id)->where('is_favorite', true)]);
         return new FoodResource($food);
     }
@@ -69,6 +70,7 @@ class FoodController extends Controller
         abort_unless($food->status === 'ativo', 404);
         UserFood::updateOrCreate(['user_id' => $request->user()->id, 'food_id' => $food->id], ['is_favorite' => true]);
         $food->setAttribute('is_favorite', true);
+        $food->load('publishedImage');
         return (new FoodResource($food))->additional(['success' => true]);
     }
 
