@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     
     Route::get('/diary/day', [DiaryEntryController::class, 'day']);
+    Route::get('/diary/recent-foods', [DiaryEntryController::class, 'recentFoods']);
     Route::post('/diary/entries', [DiaryEntryController::class, 'store']);
     Route::get('/diary/entries/{entry}', [DiaryEntryController::class, 'show']);
     Route::patch('/diary/entries/{entry}', [DiaryEntryController::class, 'update']);

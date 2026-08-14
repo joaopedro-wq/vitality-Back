@@ -20,6 +20,7 @@ class Alimento extends Model
         'fonte',
         'source_reference',
         'grupo',
+        'illustration_key',
         'nome_normalizado',
         'status',
         'created_by',

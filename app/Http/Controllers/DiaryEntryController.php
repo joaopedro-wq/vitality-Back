@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Diary\StoreDiaryEntryRequest;
 use App\Http\Requests\Diary\UpdateDiaryEntryRequest;
 use App\Http\Resources\DiaryEntryResource;
+use App\Http\Resources\FoodResource;
+use App\Models\Alimento;
 use App\Models\Registro;
 use App\Models\Refeicao;
 use App\Services\DiaryEntryService;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 class DiaryEntryController extends Controller
 {
@@ -32,6 +35,32 @@ class DiaryEntryController extends Controller
             'data' => ['date' => $date, 'entries' => $resources->values(), 'totals' => collect($totals)->map(fn ($value) => round($value, 3))],
             'success' => true,
         ]);
+    }
+
+    public function recentFoods(Request $request)
+    {
+        $data = $request->validate(['limit' => ['nullable', 'integer', 'min:1', 'max:8']]);
+        $limit = $data['limit'] ?? 8;
+        $foodIds = DB::table('registro_alimentos')
+            ->join('registros', 'registros.id', '=', 'registro_alimentos.registro_id')
+            ->where('registros.id_usuario', $request->user()->id)
+            ->select('registro_alimentos.alimento_id')
+            ->selectRaw('max(registros.consumed_at) as last_consumed_at')
+            ->groupBy('registro_alimentos.alimento_id')
+            ->orderByDesc('last_consumed_at')
+            ->limit($limit)
+            ->pluck('alimento_id');
+
+        $foods = Alimento::query()
+            ->whereIn('id', $foodIds)
+            ->where('status', 'ativo')
+            ->withExists(['userPreferences as is_favorite' => fn ($preference) => $preference->where('user_id', $request->user()->id)->where('is_favorite', true)])
+            ->with('publishedImage')
+            ->get()
+            ->sortBy(fn (Alimento $food) => $foodIds->search($food->id))
+            ->values();
+
+        return FoodResource::collection($foods)->additional(['success' => true]);
     }
 
     public function store(StoreDiaryEntryRequest $request, DiaryEntryService $diary)

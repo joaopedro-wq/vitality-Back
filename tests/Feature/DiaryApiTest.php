@@ -115,4 +115,40 @@ class DiaryApiTest extends TestCase
             'items' => [['food_id' => $food->id, 'quantity' => 100]],
         ])->assertUnprocessable();
     }
+    public function test_recent_foods_are_distinct_ordered_and_scoped_to_the_authenticated_user(): void
+    {
+        $user = User::factory()->create();
+        $meal = $this->mealFor($user);
+        $first = $this->food();
+        $second = Alimento::create([
+            'descricao' => 'Banana prata', 'nome_normalizado' => 'banana prata',
+            'fonte' => 'taco', 'source_reference' => 'recent-test', 'status' => 'ativo', 'grupo' => 'Frutas',
+            'proteina' => 1, 'gordura' => 0, 'carbo' => 20, 'caloria' => 90, 'qtd' => 100,
+        ]);
+        Sanctum::actingAs($user);
+
+        foreach ([[$first, 30], [$second, 20], [$first, 10]] as [$food, $minutes]) {
+            $this->postJson('/api/diary/entries', [
+                'meal_id' => $meal->id,
+                'consumed_at' => now()->subMinutes($minutes)->toIso8601String(),
+                'items' => [['food_id' => $food->id, 'quantity' => 100]],
+            ])->assertCreated();
+        }
+
+        $otherUser = User::factory()->create();
+        $otherMeal = $this->mealFor($otherUser);
+        Sanctum::actingAs($otherUser);
+        $this->postJson('/api/diary/entries', [
+            'meal_id' => $otherMeal->id,
+            'consumed_at' => now()->subMinute()->toIso8601String(),
+            'items' => [['food_id' => $second->id, 'quantity' => 100]],
+        ])->assertCreated();
+
+        Sanctum::actingAs($user);
+        $this->getJson('/api/diary/recent-foods?limit=8')
+            ->assertOk()
+            ->assertJsonPath('data.0.id', $first->id)
+            ->assertJsonPath('data.1.id', $second->id)
+            ->assertJsonCount(2, 'data');
+    }
 }

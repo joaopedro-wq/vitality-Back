@@ -61,14 +61,14 @@ class DiaryEntryService
         return Registro::query()
             ->where('id_usuario', $user->id)
             ->whereDate('data', $date)
-            ->with(['alimentos', 'refeicao'])
+            ->with(['alimentos.publishedImage', 'refeicao'])
             ->orderBy('consumed_at')
             ->get();
     }
 
     public function load(Registro $entry): Registro
     {
-        return $entry->fresh(['alimentos', 'refeicao']);
+        return $entry->fresh(['alimentos.publishedImage', 'refeicao']);
     }
 
     private function activeMealFor(User $user, int $mealId): Refeicao
