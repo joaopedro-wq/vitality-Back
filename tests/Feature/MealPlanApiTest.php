@@ -27,12 +27,16 @@ class MealPlanApiTest extends TestCase
             $protein = $catalog->first(fn ($food) => $food['proteina_g'] >= 100);
             $carb = $catalog->first(fn ($food) => $food['carbo_g'] >= 100);
             $fat = $catalog->first(fn ($food) => $food['gordura_g'] >= 80);
-            return Http::response(['output_text' => json_encode([
+            $answer = [
                 'summary' => 'Plano prático montado com alimentos do seu catálogo.',
                 'meals' => collect($input['refeicoes'])->map(fn ($meal) => ['position' => $meal['position'], 'explanation' => 'Combinação equilibrada para este horário.', 'items' => [
                     ['food_id' => $protein['id'], 'quantity_g' => $meal['target']['proteina']], ['food_id' => $carb['id'], 'quantity_g' => $meal['target']['carbo']], ['food_id' => $fat['id'], 'quantity_g' => $meal['target']['gordura'] / .8],
                 ]])->all(),
-            ])]);
+            ];
+
+            return Http::response(['steps' => [[
+                'type' => 'model_output', 'content' => [['type' => 'text', 'text' => json_encode($answer)]],
+            ]]]);
         }]);
     }
 
@@ -47,7 +51,9 @@ class MealPlanApiTest extends TestCase
         $this->food('Proteína alternativa', 100, 0, 0, 400);
         $this->food('Carboidrato alternativo', 0, 100, 0, 400);
         $this->food('Gordura alternativa', 0, 0, 80, 720);
-        foreach (range(1, 2) as $number) $this->food("Extra {$number}", 5, 5, 5, 80);
+        foreach (range(1, 2) as $number) {
+            $this->food("Extra {$number}", 5, 5, 5, 80);
+        }
         $this->fakeGemini($protein, $carb, $fat);
         Sanctum::actingAs($user);
 

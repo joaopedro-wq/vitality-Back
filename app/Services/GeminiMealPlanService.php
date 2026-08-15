@@ -21,8 +21,7 @@ class GeminiMealPlanService
         $target = $this->macros($meta->meta_calorias, $meta->meta_proteinas, $meta->meta_carboidratos, $meta->meta_gorduras);
         $meals = $this->mealDefinitions($preferences, $target);
         $foods = $this->candidates($preferences);
-        $answer = $this->generate($target, $preferences, $foods, $meals, null);
-        $payload = $this->validatePlan($answer, $foods, $target, $meals, $preferences);
+        $payload = $this->validatedGeneration($target, $preferences, $foods, $meals, null);
 
         return MealPlanDraft::create([
             'user_id' => $user->id,
@@ -48,11 +47,10 @@ class GeminiMealPlanService
             ...collect($existing['items'] ?? [])->pluck('food_id')->all(),
         ]));
         $foods = $this->candidates($preferences, 3);
-        $answer = $this->generate($draft->payload['target'], $preferences, $foods, collect([$definition]), $instruction);
-        $replacement = $this->validatePlan($answer, $foods, $definition['target'], collect([$definition]), $preferences);
+        $replacement = $this->validatedGeneration($definition['target'], $preferences, $foods, collect([$definition]), $instruction);
 
         $payload = $draft->payload;
-        $payload['summary'] = $answer['summary'];
+        $payload['summary'] = $replacement['summary'];
         $payload['meals'] = collect($payload['meals'])->map(fn (array $meal) => $meal['position'] === $position ? $replacement['meals'][0] : $meal)->values()->all();
         $payload['totals'] = $this->sum(collect($payload['meals'])->pluck('totals')->all());
         if (! $this->withinTarget($payload['target'], $payload['totals'])) {
@@ -135,7 +133,7 @@ class GeminiMealPlanService
         ])->all();
         $prompt = json_encode([
             'papel' => 'Você é um assistente de planejamento alimentar geral. Não dê aconselhamento médico.',
-            'regras' => ['Use exclusivamente IDs do catálogo fornecido.', 'Respeite as metas de cada refeição.', 'Prefira variedade, alimentos base e a preferência de estilo.', 'Não escreva recomendações clínicas.'],
+            'regras' => ['Use exclusivamente IDs do catálogo fornecido.', 'Informe a quantidade em gramas entre 1 e 800; condimentos e gorduras podem usar porções pequenas.', 'Respeite as metas de cada refeição.', 'Prefira variedade, alimentos base e a preferência de estilo.', 'Não escreva recomendações clínicas.'],
             'meta_do_dia' => $target,
             'preferencias' => collect($preferences)->except(['excluded_food_ids'])->all(),
             'instrucao_de_troca' => $instruction,
@@ -147,9 +145,11 @@ class GeminiMealPlanService
             $response = Http::acceptJson()->withHeaders(['x-goog-api-key' => config('gemini.api_key')])
                 ->timeout(config('gemini.timeout'))->post(config('gemini.endpoint'), [
                     'model' => config('gemini.model'), 'input' => $prompt,
-                    'response_format' => ['type' => 'text', 'mime_type' => 'application/json', 'schema' => $this->schema($definitions->count())],
+                    'response_format' => [['type' => 'text', 'mime_type' => 'application/json', 'schema' => $this->schema($definitions->count())]],
                 ])->throw()->json();
-            $raw = data_get($response, 'output_text');
+            $lastOutput = collect($response['steps'] ?? [])->reverse()
+                ->first(fn (array $step) => ($step['type'] ?? null) === 'model_output');
+            $raw = data_get($response, 'output_text') ?? data_get($lastOutput, 'content.0.text');
             if (! is_string($raw)) {
                 throw new \RuntimeException('Gemini não retornou conteúdo estruturado.');
             }
@@ -160,6 +160,20 @@ class GeminiMealPlanService
         } catch (\Throwable $exception) {
             Log::warning('meal_plan.ai.failed', ['provider' => 'gemini', 'duration_ms' => (int) ((microtime(true) - $started) * 1000), 'error' => $exception->getMessage()]);
             throw ValidationException::withMessages(['ai' => 'Não foi possível gerar seu plano com IA agora. Tente novamente.']);
+        }
+    }
+
+    private function validatedGeneration(array $target, array $preferences, Collection $foods, Collection $definitions, ?string $instruction): array
+    {
+        $answer = $this->generate($target, $preferences, $foods, $definitions, $instruction);
+        try {
+            return $this->validatePlan($answer, $foods, $target, $definitions, $preferences);
+        } catch (ValidationException) {
+            $retryPreferences = $preferences + [];
+            $retryPreferences['internal_retry'] = 'A resposta anterior foi recusada. Refaça o plano usando somente IDs do catálogo, sem repetir alimento na mesma refeição e quantidades entre 1 e 800 gramas.';
+            $answer = $this->generate($target, $retryPreferences, $foods, $definitions, $instruction);
+
+            return $this->validatePlan($answer, $foods, $target, $definitions, $preferences);
         }
     }
 
@@ -180,7 +194,7 @@ class GeminiMealPlanService
                 $id = (int) ($item['food_id'] ?? 0);
                 $quantity = (float) ($item['quantity_g'] ?? 0);
                 $food = $foodById->get($id);
-                if (! $food || in_array($id, $ids, true) || $quantity < 20 || $quantity > 800) {
+                if (! $food || in_array($id, $ids, true) || $quantity < 1 || $quantity > 800) {
                     throw ValidationException::withMessages(['ai' => 'A IA escolheu um alimento ou porção inválida. Tente novamente.']);
                 }
                 $ids[] = $id;
