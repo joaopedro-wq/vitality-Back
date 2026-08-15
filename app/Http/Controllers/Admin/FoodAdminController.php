@@ -9,6 +9,8 @@ use App\Http\Resources\FoodResource;
 use App\Http\Resources\FoodImageResource;
 use App\Models\Alimento;
 use App\Models\FoodImage;
+use App\Models\FoodPlanTag;
+use App\Models\FoodRestriction;
 use App\Services\FoodCatalogService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +28,7 @@ class FoodAdminController extends Controller
             ->when($filters['search'] ?? null, fn ($query, $search) => $query->where('nome_normalizado', 'like', '%'.$catalog->normalizeName($search).'%'))
             ->when($filters['fonte'] ?? null, fn ($query, $fonte) => $query->where('fonte', $fonte))
             ->when($filters['status'] ?? null, fn ($query, $status) => $query->where('status', $status))
-            ->with('publishedImage')
+            ->with(['publishedImage', 'planTags', 'restrictions'])
             ->orderBy('descricao')->paginate(30);
         return FoodResource::collection($foods);
     }
@@ -71,6 +73,31 @@ class FoodAdminController extends Controller
     public function importTaco(FoodCatalogService $catalog)
     {
         return response()->json(['data' => $catalog->importTaco(), 'success' => true]);
+    }
+
+    public function planTags()
+    {
+        return response()->json(['data' => FoodPlanTag::query()->orderBy('label')->get(['id', 'slug', 'label']), 'success' => true]);
+    }
+
+    public function updatePlanTags(Request $request, Alimento $food)
+    {
+        $data = $request->validate(['slugs' => ['present', 'array'], 'slugs.*' => ['string', 'exists:food_plan_tags,slug']]);
+        $ids = FoodPlanTag::query()->whereIn('slug', $data['slugs'])->pluck('id');
+        $food->planTags()->sync($ids);
+        return (new FoodResource($food->fresh('planTags')))->additional(['success' => true]);
+    }
+
+    public function restrictions()
+    {
+        return response()->json(['data' => FoodRestriction::query()->orderBy('type')->orderBy('label')->get(['id', 'slug', 'label', 'type']), 'success' => true]);
+    }
+
+    public function updateRestrictions(Request $request, Alimento $food)
+    {
+        $data = $request->validate(['slugs' => ['present', 'array'], 'slugs.*' => ['string', 'exists:food_restrictions,slug']]);
+        $food->restrictions()->sync(FoodRestriction::query()->whereIn('slug', $data['slugs'])->pluck('id'));
+        return (new FoodResource($food->fresh('restrictions')))->additional(['success' => true]);
     }
 
     public function images(Request $request)

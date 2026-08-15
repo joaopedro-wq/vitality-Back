@@ -24,6 +24,80 @@ class FoodIllustrationResolver
         'fruit-tucuma' => ['tucumã'], 'fruit-umbu' => ['umbu'], 'fruit-grape' => ['uva'],
     ];
 
+    /** @var array<string, array<string, list<string>>> */
+    private const GROUP_KEYWORDS = [
+        'Ovos e derivados' => [
+        'egg-omelette' => ['omelete'],
+        'egg-quail' => ['ovo, de codorna'],
+        'egg-white' => ['ovo, de galinha, clara'],
+        'egg-yolk' => ['ovo, de galinha, gema'],
+        'egg-boiled' => ['ovo, de galinha, inteiro, cozido'],
+        'egg-fried' => ['ovo, de galinha, inteiro, frito'],
+        'egg-raw' => ['ovo, de galinha, inteiro, cru'],
+        ],
+        'Carnes e derivados' => [
+        'meat-burger' => ['hambúrguer', 'hamburguer'],
+        'meat-sausage' => ['linguiça', 'lingüiça', 'linguica'],
+        'meat-ham' => ['presunto', 'apresuntado'],
+        'meat-salami' => ['salame', 'mortadela'],
+        'meat-kibbeh' => ['quibe'],
+        'meat-meatball' => ['almôndega', 'almondega'],
+        ],
+        'Cereais e derivados' => [
+        'cereal-breakfast' => ['cereal matinal', 'mingau'],
+        'cereal-flour' => ['farinha', 'fubá', 'fuba'],
+        'cereal-corn' => ['milho', 'curau', 'pamonha'],
+        'cereal-cookie' => ['biscoito', 'wafer', 'cream cracker'],
+        'cereal-cake' => ['bolo'],
+        'cereal-popcorn' => ['pipoca'],
+        ],
+        'Alimentos preparados' => [
+        'prepared-cuscuz' => ['cuscuz'],
+        'prepared-feijoada' => ['feijoada'],
+        'prepared-stroganoff' => ['estrogonofe'],
+        'prepared-tapioca' => ['tapioca'],
+        'prepared-carreteiro' => ['arroz carreteiro'],
+        'prepared-tacaca' => ['tacacá', 'tacaca'],
+        'prepared-salad' => ['salada'],
+        'prepared-soup' => ['sopa'],
+        'prepared-stew' => ['ensopado'],
+        'prepared-yakisoba' => ['yakisoba'],
+        'prepared-acaraje' => ['acarajé', 'acaraje'],
+        'prepared-vatapa' => ['vatapá', 'vatapa'],
+        ],
+        'Produtos açucarados' => [
+        'sweet-chocolate' => ['chocolate'],
+        'sweet-sugar' => ['açúcar', 'acucar'],
+        'sweet-cocada' => ['cocada'],
+        'sweet-pumpkin-jam' => ['doce, de abóbora', 'doce, de abobora'],
+        'sweet-dulce-de-leche' => ['doce, de leite'],
+        'sweet-rapadura' => ['rapadura'],
+        ],
+        'Verduras, hortaliças e derivados' => [
+        'vegetable-lettuce' => ['alface'],
+        'vegetable-kale' => ['couve'],
+        'vegetable-cabbage' => ['repolho'],
+        'vegetable-eggplant' => ['berinjela'],
+        'vegetable-pepper' => ['pimentão', 'pimentao'],
+        'vegetable-spinach' => ['espinafre'],
+        ],
+        'Miscelâneas' => [
+        'misc-coffee' => ['café, pó', 'cafe, po'],
+        'misc-cappuccino' => ['capuccino'],
+        'misc-baking-powder' => ['fermento em pó', 'fermento em po'],
+        'misc-yeast' => ['fermento, biológico', 'fermento, biologico', 'levedura'],
+        'misc-gelatin' => ['gelatina'],
+        'misc-salt' => ['sal,', 'shoyu', 'tempero'],
+        ],
+        'Outros alimentos industrializados' => [
+        'industrial-black-olive' => ['azeitona, preta'],
+        'industrial-green-olive' => ['azeitona, verde'],
+        'industrial-whipped-cream' => ['chantilly'],
+        'industrial-coconut-milk' => ['leite, de coco'],
+        'industrial-mayonnaise' => ['maionese'],
+        ],
+    ];
+
     /** @var array<string, list<string>> */
     private const KEYWORDS = [
         'dairy-requeijao' => ['requeijão', 'requeijao'],
@@ -99,6 +173,8 @@ class FoodIllustrationResolver
         'Bebidas (alcoólicas e não alcoólicas)' => 'drink',
         'Gorduras e óleos' => 'oil',
         'Ovos e derivados' => 'egg',
+        'Miscelâneas' => 'misc-salt',
+        'Outros alimentos industrializados' => 'industrialized',
     ];
 
     public function resolve(string $description, ?string $group): string
@@ -111,6 +187,14 @@ class FoodIllustrationResolver
                     if (str_contains($name, $keyword)) {
                         return $key;
                     }
+                }
+            }
+        }
+
+        foreach (self::GROUP_KEYWORDS[$group ?? ''] ?? [] as $key => $keywords) {
+            foreach ($keywords as $keyword) {
+                if (str_contains($name, $keyword)) {
+                    return $key;
                 }
             }
         }

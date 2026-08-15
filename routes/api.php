@@ -13,6 +13,8 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\Admin\FoodAdminController;
 use App\Http\Controllers\DiaryEntryController;
 use App\Http\Controllers\DiaryMealController;
+use App\Http\Controllers\MealPlanController;
+use App\Http\Controllers\MealPlanProfileController;
 
 
 Route::middleware('guest')->group(function () {
@@ -73,6 +75,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/dieta/{id}', [DietaController::class, 'update']);
     Route::post('/dieta', [DietaController::class, 'store']);
     Route::get('/dieta', [DietaController::class, 'index']);
+
+    Route::get('/meal-plans', [MealPlanController::class, 'index']);
+    Route::get('/meal-plan-profile', [MealPlanProfileController::class, 'show']);
+    Route::put('/meal-plan-profile', [MealPlanProfileController::class, 'update']);
+    Route::get('/meal-plan-restrictions', [MealPlanProfileController::class, 'restrictions']);
+    Route::post('/meal-plans/preview', [MealPlanController::class, 'preview']);
+    Route::post('/meal-plans/preview/meal/{position}', [MealPlanController::class, 'regenerateMeal']);
+    Route::post('/meal-plans', [MealPlanController::class, 'store']);
+    Route::post('/meal-plans/{mealPlan}/archive', [MealPlanController::class, 'archive']);
     
     
     Route::get('/foods', [FoodController::class, 'index']);
@@ -89,6 +100,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/foods/{food}/archive', [FoodAdminController::class, 'archive']);
         Route::post('/foods/{food}/restore', [FoodAdminController::class, 'restore']);
         Route::post('/foods/import-taco', [FoodAdminController::class, 'importTaco']);
+        Route::get('/food-plan-tags', [FoodAdminController::class, 'planTags']);
+        Route::put('/foods/{food}/plan-tags', [FoodAdminController::class, 'updatePlanTags']);
+        Route::get('/food-restrictions', [FoodAdminController::class, 'restrictions']);
+        Route::put('/foods/{food}/restrictions', [FoodAdminController::class, 'updateRestrictions']);
         Route::get('/food-images', [FoodAdminController::class, 'images']);
         Route::post('/food-images/{image}/approve', [FoodAdminController::class, 'approveImage']);
         Route::post('/food-images/{image}/reject', [FoodAdminController::class, 'rejectImage']);

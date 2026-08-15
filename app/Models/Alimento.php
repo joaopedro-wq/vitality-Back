@@ -77,4 +77,14 @@ class Alimento extends Model
         return $this->hasOne(FoodImage::class, 'alimento_id')->where('status', 'published');
     }
 
+    public function planTags()
+    {
+        return $this->belongsToMany(FoodPlanTag::class, 'alimento_food_plan_tag');
+    }
+
+    public function restrictions()
+    {
+        return $this->belongsToMany(FoodRestriction::class, 'alimento_food_restriction');
+    }
+
 }
