@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Alimento;
 use App\Models\AlimentoNutriente;
 use App\Models\Nutriente;
-use Illuminate\Support\Facades\DB;
 
 class UsdaFoodImportService
 {
@@ -16,19 +15,27 @@ class UsdaFoodImportService
     /** @return array{created:int,updated:int,nutrients:int} */
     public function import(string $path, string $dataset, string $version): array
     {
-        if (! file_exists($path)) throw new \RuntimeException("Arquivo USDA não encontrado: {$path}");
+        if (! file_exists($path)) {
+            throw new \RuntimeException("Arquivo USDA não encontrado: {$path}");
+        }
         $contents = file_get_contents($path);
-        if ($contents === false) throw new \RuntimeException('Não foi possível ler o arquivo USDA.');
+        if ($contents === false) {
+            throw new \RuntimeException('Não foi possível ler o arquivo USDA.');
+        }
         $document = json_decode($contents, true, flags: JSON_THROW_ON_ERROR);
         $foods = $document[$dataset === 'sr-legacy' ? 'SRLegacyFoods' : 'FoundationFoods'] ?? null;
-        if (! is_array($foods)) throw new \RuntimeException('Formato USDA incompatível com o conjunto informado.');
+        if (! is_array($foods)) {
+            throw new \RuntimeException('Formato USDA incompatível com o conjunto informado.');
+        }
 
         $checksum = hash('sha256', $contents);
         $created = $updated = $nutrients = 0;
         foreach ($foods as $data) {
             $fdcId = (string) ($data['fdcId'] ?? '');
             $description = trim((string) ($data['description'] ?? ''));
-            if ($fdcId === '' || $description === '') continue;
+            if ($fdcId === '' || $description === '') {
+                continue;
+            }
 
             $core = $this->coreValues($data['foodNutrients'] ?? []);
             $attributes = [
@@ -45,8 +52,13 @@ class UsdaFoodImportService
                 'source_checksum' => $checksum,
             ];
             $food = Alimento::where('fonte', 'usda')->where('source_reference', $fdcId)->first();
-            if ($food) { $food->update($attributes); $updated++; }
-            else { $food = Alimento::create($attributes + ['fonte' => 'usda', 'source_reference' => $fdcId, 'id_usuario' => null]); $created++; }
+            if ($food) {
+                $food->update($attributes);
+                $updated++;
+            } else {
+                $food = Alimento::create($attributes + ['fonte' => 'usda', 'source_reference' => $fdcId, 'id_usuario' => null]);
+                $created++;
+            }
             $nutrients += $this->syncNutrients($food, $data['foodNutrients'] ?? []);
         }
 
@@ -59,8 +71,11 @@ class UsdaFoodImportService
         $values = [];
         foreach ($foodNutrients as $row) {
             $number = (string) data_get($row, 'nutrient.number', '');
-            if (isset(self::CORE[$number]) && isset($row['amount'])) $values[self::CORE[$number]] = (float) $row['amount'];
+            if (isset(self::CORE[$number]) && isset($row['amount'])) {
+                $values[self::CORE[$number]] = (float) $row['amount'];
+            }
         }
+
         return $values;
     }
 
@@ -70,7 +85,9 @@ class UsdaFoodImportService
         $count = 0;
         foreach ($rows as $row) {
             $definition = $row['nutrient'] ?? null;
-            if (! is_array($definition) || ! isset($definition['number'], $definition['name'], $definition['unitName'], $row['amount'])) continue;
+            if (! is_array($definition) || ! isset($definition['number'], $definition['name'], $definition['unitName'], $row['amount'])) {
+                continue;
+            }
             $nutrient = Nutriente::updateOrCreate(
                 ['codigo' => 'usda:'.(string) $definition['number']],
                 ['nome' => (string) $definition['name'], 'unidade' => $this->unit((string) $definition['unitName']), 'categoria' => $this->category((string) $definition['number'], (string) $definition['name'])],
@@ -81,6 +98,7 @@ class UsdaFoodImportService
             );
             $count++;
         }
+
         return $count;
     }
 
@@ -91,10 +109,19 @@ class UsdaFoodImportService
 
     private function category(string $number, string $name): string
     {
-        if (in_array($number, ['203', '204', '205', '208', '291', '269'], true)) return 'macro';
-        if (in_array($number, ['301', '303', '304', '305', '306', '307', '309', '312', '315'], true)) return 'mineral';
-        if (str_contains(strtolower($name), 'vitamin') || in_array($number, ['404', '405', '406', '415', '417', '418'], true)) return 'vitamina';
-        if (str_contains(strtolower($name), 'fatty') || $number === '601') return 'lipidio';
+        if (in_array($number, ['203', '204', '205', '208', '291', '269'], true)) {
+            return 'macro';
+        }
+        if (in_array($number, ['301', '303', '304', '305', '306', '307', '309', '312', '315'], true)) {
+            return 'mineral';
+        }
+        if (str_contains(strtolower($name), 'vitamin') || in_array($number, ['404', '405', '406', '415', '417', '418'], true)) {
+            return 'vitamina';
+        }
+        if (str_contains(strtolower($name), 'fatty') || $number === '601') {
+            return 'lipidio';
+        }
+
         return 'outro';
     }
 }

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Exception;
-use Validator;
-use App\Http\Resources\UserResource;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -21,35 +20,34 @@ class AuthController extends Controller
      * @return [string] message
      */
     public function login(Request $request)
-{
-    // Verifica se o e-mail existe
-    $user = User::where('email', $request->email)->first();
+    {
+        // Verifica se o e-mail existe
+        $user = User::where('email', $request->email)->first();
 
-    if ($user) {
-        // Verifica se a senha está correta
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $token = $user->createToken('api-token')->plainTextToken;
+        if ($user) {
+            // Verifica se a senha está correta
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                $token = $user->createToken('api-token')->plainTextToken;
 
-            return response()->json([
-                'status' => true,
-                'token' => $token,
-                'user' => (new UserResource($user))->resolve(),
-                'message' => 'Login sucesso.',
-            ], 201);
+                return response()->json([
+                    'status' => true,
+                    'token' => $token,
+                    'user' => (new UserResource($user))->resolve(),
+                    'message' => 'Login sucesso.',
+                ], 201);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Senha incorreta.',
+                ], 401);  // Código HTTP para erro de autenticação
+            }
         } else {
             return response()->json([
                 'status' => false,
-                'message' => 'Senha incorreta.',
-            ], 401);  // Código HTTP para erro de autenticação
+                'message' => 'E-mail não encontrado.',
+            ], 404);  // Código HTTP para recurso não encontrado
         }
-    } else {
-        return response()->json([
-            'status' => false,
-            'message' => 'E-mail não encontrado.',
-        ], 404);  // Código HTTP para recurso não encontrado
     }
-}
-
 
     public function logout(User $user)
     {

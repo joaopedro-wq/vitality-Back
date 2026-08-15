@@ -14,10 +14,10 @@ class MetaDiariaController extends Controller
     {
         $user = $request->user();
 
-        if (!$user) {
+        if (! $user) {
             return response()->json([
                 'message' => 'Usuário não encontrado na base de dados',
-                'success' => false
+                'success' => false,
             ], 404);
         }
 
@@ -25,7 +25,7 @@ class MetaDiariaController extends Controller
 
         return response()->json([
             'data' => $metas,
-            'success' => true
+            'success' => true,
         ]);
     }
 
@@ -43,10 +43,10 @@ class MetaDiariaController extends Controller
 
         $user = $request->user();
 
-        if (!$user) {
+        if (! $user) {
             return response()->json([
                 'message' => 'Usuário não encontrado na base de dados',
-                'success' => false
+                'success' => false,
             ], 404);
         }
 
@@ -61,7 +61,7 @@ class MetaDiariaController extends Controller
         return response()->json([
             'data' => $meta,
             'success' => true,
-            'message' => 'Meta diária registrada com sucesso'
+            'message' => 'Meta diária registrada com sucesso',
         ]);
     }
 
@@ -72,7 +72,7 @@ class MetaDiariaController extends Controller
     {
         $meta = Meta_diaria::find($id);
 
-        if (!$meta) {
+        if (! $meta) {
             return response()->json(['message' => 'Meta diária não encontrada', 'success' => false], 404);
         }
 
@@ -86,7 +86,7 @@ class MetaDiariaController extends Controller
     {
         $meta = Meta_diaria::find($id);
 
-        if (!$meta) {
+        if (! $meta) {
             return response()->json(['message' => 'Meta diária não encontrada', 'success' => false], 404);
         }
 
@@ -109,7 +109,7 @@ class MetaDiariaController extends Controller
     {
         $meta = Meta_diaria::find($id);
 
-        if (!$meta) {
+        if (! $meta) {
             return response()->json(['message' => 'Meta diária não encontrada', 'success' => false], 404);
         }
 

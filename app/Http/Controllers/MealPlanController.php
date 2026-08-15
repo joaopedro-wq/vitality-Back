@@ -12,12 +12,14 @@ class MealPlanController extends Controller
     public function index(Request $request)
     {
         $plans = MealPlan::query()->where('user_id', $request->user()->id)->whereNull('archived_at')->with('meals.items')->latest()->get()->map(fn (MealPlan $plan) => $this->serialize($plan));
+
         return response()->json(['data' => $plans, 'success' => true]);
     }
 
     public function preview(Request $request, GeminiMealPlanService $generator)
     {
         $draft = $generator->preview($request->user(), $this->preferences($request));
+
         return response()->json(['data' => ['draft_id' => $draft->id, ...$draft->payload], 'success' => true]);
     }
 
@@ -25,8 +27,11 @@ class MealPlanController extends Controller
     {
         $data = $request->validate(['draft_id' => ['required', 'uuid'], 'instruction' => ['nullable', 'string', 'max:350']]);
         $draft = MealPlanDraft::query()->whereKey($data['draft_id'])->where('user_id', $request->user()->id)->firstOrFail();
-        if ($draft->expires_at->isPast()) abort(422, 'Esta prévia expirou. Gere um novo plano.');
+        if ($draft->expires_at->isPast()) {
+            abort(422, 'Esta prévia expirou. Gere um novo plano.');
+        }
         $draft = $generator->replaceMeal($request->user(), $draft, $position, $data['instruction'] ?? null);
+
         return response()->json(['data' => ['draft_id' => $draft->id, ...$draft->payload], 'success' => true]);
     }
 
@@ -35,6 +40,7 @@ class MealPlanController extends Controller
         $data = $request->validate(['titulo' => ['required', 'string', 'max:120'], 'draft_id' => ['required', 'uuid']]);
         $draft = MealPlanDraft::query()->whereKey($data['draft_id'])->where('user_id', $request->user()->id)->firstOrFail();
         $plan = $generator->save($request->user(), $draft, $data['titulo']);
+
         return response()->json(['data' => $this->serialize($plan), 'success' => true], 201);
     }
 
@@ -42,6 +48,7 @@ class MealPlanController extends Controller
     {
         abort_unless($mealPlan->user_id === $request->user()->id, 404);
         $mealPlan->update(['archived_at' => now()]);
+
         return response()->noContent();
     }
 

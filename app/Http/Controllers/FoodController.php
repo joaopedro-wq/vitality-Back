@@ -38,7 +38,6 @@ class FoodController extends Controller
         return FoodResource::collection($foods);
     }
 
-   
     public function groups()
     {
         $grupos = Alimento::query()
@@ -62,6 +61,7 @@ class FoodController extends Controller
         abort_unless($food->status === 'ativo', 404);
         $food->load('nutrientes', 'publishedImage');
         $food->loadExists(['userPreferences as is_favorite' => fn ($preference) => $preference->where('user_id', $request->user()->id)->where('is_favorite', true)]);
+
         return new FoodResource($food);
     }
 
@@ -71,12 +71,14 @@ class FoodController extends Controller
         UserFood::updateOrCreate(['user_id' => $request->user()->id, 'food_id' => $food->id], ['is_favorite' => true]);
         $food->setAttribute('is_favorite', true);
         $food->load('publishedImage');
+
         return (new FoodResource($food))->additional(['success' => true]);
     }
 
     public function unfavorite(Request $request, Alimento $food)
     {
         UserFood::where('user_id', $request->user()->id)->where('food_id', $food->id)->delete();
+
         return response()->noContent();
     }
 }

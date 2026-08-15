@@ -7,9 +7,9 @@ use App\Models\MealPlanDraft;
 use App\Models\Meta_diaria;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -47,7 +47,7 @@ class GeminiMealPlanService
             ...($preferences['excluded_food_ids'] ?? []),
             ...collect($existing['items'] ?? [])->pluck('food_id')->all(),
         ]));
-        $foods = $this->candidates($preferences);
+        $foods = $this->candidates($preferences, 3);
         $answer = $this->generate($draft->payload['target'], $preferences, $foods, collect([$definition]), $instruction);
         $replacement = $this->validatePlan($answer, $foods, $definition['target'], collect([$definition]), $preferences);
 
@@ -59,6 +59,7 @@ class GeminiMealPlanService
             throw ValidationException::withMessages(['plan' => 'A nova refeição não mantém o plano dentro das metas. Tente novamente.']);
         }
         $draft->update(['payload' => $payload, 'expires_at' => now()->addMinutes(config('gemini.draft_ttl_minutes'))]);
+
         return $draft->fresh();
     }
 
@@ -66,7 +67,9 @@ class GeminiMealPlanService
     {
         return DB::transaction(function () use ($user, $draft, $title) {
             $draft = MealPlanDraft::query()->whereKey($draft->id)->where('user_id', $user->id)->lockForUpdate()->firstOrFail();
-            if ($draft->expires_at->isPast()) throw ValidationException::withMessages(['draft_id' => 'Esta prévia expirou. Gere um novo plano.']);
+            if ($draft->expires_at->isPast()) {
+                throw ValidationException::withMessages(['draft_id' => 'Esta prévia expirou. Gere um novo plano.']);
+            }
             $payload = $draft->payload;
             $plan = \App\Models\MealPlan::create([
                 'user_id' => $user->id, 'titulo' => $title, 'style' => $payload['preferences']['style'],
@@ -76,9 +79,12 @@ class GeminiMealPlanService
             ]);
             foreach ($payload['meals'] as $meal) {
                 $stored = $plan->meals()->create(collect($meal)->only(['position', 'descricao', 'horario', 'target', 'totals'])->all());
-                foreach ($meal['items'] as $item) $stored->items()->create(['food_id' => $item['food_id'], 'descricao_snapshot' => $item['descricao'], 'quantity' => $item['quantity'], 'macros' => $item['macros']]);
+                foreach ($meal['items'] as $item) {
+                    $stored->items()->create(['food_id' => $item['food_id'], 'descricao_snapshot' => $item['descricao'], 'quantity' => $item['quantity'], 'macros' => $item['macros']]);
+                }
             }
             $draft->delete();
+
             return $plan->load('meals.items');
         });
     }
@@ -87,11 +93,14 @@ class GeminiMealPlanService
     {
         $meta = Meta_diaria::query()->where('id_usuario', $user->id)
             ->orderByRaw('case when data is null then 0 else 1 end')->orderByDesc('data')->first();
-        if (! $meta) throw ValidationException::withMessages(['meta' => 'Defina sua meta diária antes de gerar um plano.']);
+        if (! $meta) {
+            throw ValidationException::withMessages(['meta' => 'Defina sua meta diária antes de gerar um plano.']);
+        }
+
         return $meta;
     }
 
-    private function candidates(array $preferences): Collection
+    private function candidates(array $preferences, int $minimum = 8): Collection
     {
         $query = Alimento::query()->where('status', 'ativo')->with(['planTags', 'restrictions'])
             ->whereNotIn('id', $preferences['excluded_food_ids'] ?? []);
@@ -103,9 +112,14 @@ class GeminiMealPlanService
                 default => [],
             },
         ]));
-        foreach ($required as $slug) $query->whereHas('restrictions', fn ($relation) => $relation->where('slug', $slug));
+        foreach ($required as $slug) {
+            $query->whereHas('restrictions', fn ($relation) => $relation->where('slug', $slug));
+        }
         $foods = $query->get()->sortByDesc(fn (Alimento $food) => ($food->planTags->contains('slug', 'base_alimentar') ? 1000 : 0) + ($food->planTags->contains('slug', $preferences['style']) ? 100 : 0))->take(160)->values();
-        if ($foods->count() < 8) throw ValidationException::withMessages(['restrictions' => 'Não há alimentos suficientes revisados para essas restrições. Ajuste o perfil ou peça a revisão do catálogo.']);
+        if ($foods->count() < $minimum) {
+            throw ValidationException::withMessages(['restrictions' => 'Não há alimentos suficientes revisados para essas restrições. Ajuste o perfil ou peça a revisão do catálogo.']);
+        }
+
         return $foods;
     }
 
@@ -136,9 +150,12 @@ class GeminiMealPlanService
                     'response_format' => ['type' => 'text', 'mime_type' => 'application/json', 'schema' => $this->schema($definitions->count())],
                 ])->throw()->json();
             $raw = data_get($response, 'output_text');
-            if (! is_string($raw)) throw new \RuntimeException('Gemini não retornou conteúdo estruturado.');
+            if (! is_string($raw)) {
+                throw new \RuntimeException('Gemini não retornou conteúdo estruturado.');
+            }
             $answer = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
             Log::info('meal_plan.ai.generated', ['provider' => 'gemini', 'model' => config('gemini.model'), 'duration_ms' => (int) ((microtime(true) - $started) * 1000)]);
+
             return $answer;
         } catch (\Throwable $exception) {
             Log::warning('meal_plan.ai.failed', ['provider' => 'gemini', 'duration_ms' => (int) ((microtime(true) - $started) * 1000), 'error' => $exception->getMessage()]);
@@ -167,21 +184,32 @@ class GeminiMealPlanService
                     throw ValidationException::withMessages(['ai' => 'A IA escolheu um alimento ou porção inválida. Tente novamente.']);
                 }
                 $ids[] = $id;
+
                 return ['food_id' => $food->id, 'descricao' => $food->descricao, 'quantity' => round($quantity, 1), 'macros' => $this->scale($this->macros($food->caloria, $food->proteina, $food->carbo, $food->gordura), $quantity / max((float) $food->qtd, .001))];
             })->values();
             $totals = $this->sum($items->pluck('macros')->all());
-            if (! $this->withinTarget($definition['target'], $totals)) throw ValidationException::withMessages(['ai' => 'A IA não atingiu a meta desta refeição. Tente novamente.']);
+            if (! $this->withinTarget($definition['target'], $totals)) {
+                throw ValidationException::withMessages(['ai' => 'A IA não atingiu a meta desta refeição. Tente novamente.']);
+            }
             $result[] = ['position' => $definition['position'], 'descricao' => $definition['descricao'], 'horario' => $definition['horario'], 'target' => $definition['target'], 'totals' => $totals, 'explanation' => Str::limit(strip_tags((string) ($aiMeal['explanation'] ?? '')), 220, ''), 'items' => $items->all()];
         }
         $totals = $this->sum(array_column($result, 'totals'));
-        if (! $this->withinTarget($target, $totals)) throw ValidationException::withMessages(['ai' => 'A IA não atingiu a meta diária. Tente novamente.']);
+        if (! $this->withinTarget($target, $totals)) {
+            throw ValidationException::withMessages(['ai' => 'A IA não atingiu a meta diária. Tente novamente.']);
+        }
+
         return ['preferences' => $preferences ?? [], 'target' => $target, 'totals' => $totals, 'within_target' => true, 'warning' => null, 'summary' => Str::limit(strip_tags($answer['summary']), 300, ''), 'meals' => $result];
     }
 
     private function mealDefinitions(array $preferences, array $target): Collection
     {
-        $ratios = match ((int) $preferences['meal_count']) { 3 => [0.25, .4, .35], 4 => [.25, .35, .15, .25], 5 => [.2, .1, .3, .15, .25] };
-        $labels = match ((int) $preferences['meal_count']) { 3 => ['Café da manhã', 'Almoço', 'Jantar'], 4 => ['Café da manhã', 'Almoço', 'Lanche', 'Jantar'], 5 => ['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar'] };
+        $ratios = match ((int) $preferences['meal_count']) {
+            3 => [0.25, .4, .35], 4 => [.25, .35, .15, .25], 5 => [.2, .1, .3, .15, .25]
+        };
+        $labels = match ((int) $preferences['meal_count']) {
+            3 => ['Café da manhã', 'Almoço', 'Jantar'], 4 => ['Café da manhã', 'Almoço', 'Lanche', 'Jantar'], 5 => ['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar']
+        };
+
         return collect($ratios)->map(fn ($ratio, $position) => ['position' => $position, 'descricao' => $labels[$position], 'horario' => $preferences['meal_times'][$position], 'target' => $this->scale($target, $ratio)]);
     }
 
@@ -196,8 +224,36 @@ class GeminiMealPlanService
         ], 'required' => ['summary', 'meals']];
     }
 
-    private function macros(float $caloria, float $proteina, float $carbo, float $gordura): array { return ['caloria' => round($caloria, 3), 'proteina' => round($proteina, 3), 'carbo' => round($carbo, 3), 'gordura' => round($gordura, 3), 'quantidade' => 0.0]; }
-    private function scale(?array $macros, float $factor): array { return collect($macros ?? $this->macros(0, 0, 0, 0))->map(fn ($value, $key) => $key === 'quantidade' ? 0.0 : round($value * $factor, 3))->all(); }
-    private function sum(array $macros): array { $total = $this->macros(0, 0, 0, 0); foreach ($macros as $macro) foreach ($total as $key => $value) $total[$key] = round($value + ($macro[$key] ?? 0), 3); return $total; }
-    private function withinTarget(array $target, array $totals): bool { foreach (['caloria' => .10, 'proteina' => .15, 'carbo' => .15, 'gordura' => .15] as $key => $tolerance) if (($target[$key] ?? 0) > 0 && abs($totals[$key] - $target[$key]) / $target[$key] > $tolerance) return false; return true; }
+    private function macros(float $caloria, float $proteina, float $carbo, float $gordura): array
+    {
+        return ['caloria' => round($caloria, 3), 'proteina' => round($proteina, 3), 'carbo' => round($carbo, 3), 'gordura' => round($gordura, 3), 'quantidade' => 0.0];
+    }
+
+    private function scale(?array $macros, float $factor): array
+    {
+        return collect($macros ?? $this->macros(0, 0, 0, 0))->map(fn ($value, $key) => $key === 'quantidade' ? 0.0 : round($value * $factor, 3))->all();
+    }
+
+    private function sum(array $macros): array
+    {
+        $total = $this->macros(0, 0, 0, 0);
+        foreach ($macros as $macro) {
+            foreach ($total as $key => $value) {
+                $total[$key] = round($value + ($macro[$key] ?? 0), 3);
+            }
+        }
+
+        return $total;
+    }
+
+    private function withinTarget(array $target, array $totals): bool
+    {
+        foreach (['caloria' => .10, 'proteina' => .15, 'carbo' => .15, 'gordura' => .15] as $key => $tolerance) {
+            if (($target[$key] ?? 0) > 0 && abs($totals[$key] - $target[$key]) / $target[$key] > $tolerance) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

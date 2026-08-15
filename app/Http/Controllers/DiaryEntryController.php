@@ -7,13 +7,13 @@ use App\Http\Requests\Diary\UpdateDiaryEntryRequest;
 use App\Http\Resources\DiaryEntryResource;
 use App\Http\Resources\FoodResource;
 use App\Models\Alimento;
-use App\Models\Registro;
 use App\Models\Refeicao;
+use App\Models\Registro;
 use App\Services\DiaryEntryService;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class DiaryEntryController extends Controller
 {
@@ -99,7 +99,6 @@ class DiaryEntryController extends Controller
         return response()->noContent();
     }
 
-    
     public function legacyIndex(Request $request, DiaryEntryService $diary)
     {
         $entries = Registro::query()

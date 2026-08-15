@@ -11,6 +11,7 @@ class MealPlanProfileController extends Controller
     public function show(Request $request)
     {
         $profile = MealPlanProfile::firstOrCreate(['user_id' => $request->user()->id], $this->defaults());
+
         return response()->json(['data' => $this->serialize($profile), 'success' => true]);
     }
 
@@ -21,6 +22,7 @@ class MealPlanProfileController extends Controller
             'diet_type' => $data['diet_type'], 'restriction_slugs' => $data['restriction_slugs'],
             'preferences' => collect($data)->only(['meal_count', 'meal_times', 'style', 'excluded_food_ids'])->all(),
         ]);
+
         return response()->json(['data' => $this->serialize($profile), 'success' => true]);
     }
 

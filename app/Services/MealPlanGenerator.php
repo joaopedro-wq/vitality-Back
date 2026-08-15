@@ -70,6 +70,7 @@ class MealPlanGenerator
         if (! $within) {
             $warning = trim(($warning ? $warning.' ' : '').'Este é um ponto de partida: ajuste porções ou gere novamente para aproximar ainda mais da sua meta.');
         }
+
         return compact('preferences', 'target', 'totals', 'within', 'warning', 'meals');
     }
 
@@ -90,6 +91,7 @@ class MealPlanGenerator
                     ]);
                 }
             }
+
             return $plan->load('meals.items');
         });
     }
@@ -98,19 +100,25 @@ class MealPlanGenerator
     {
         $selected = collect();
         foreach ([['proteina', $target['proteina']], ['carbo', $target['carbo']], ['gordura', $target['gordura']]] as [$metric, $amount]) {
-            if ($amount <= 0) continue;
+            if ($amount <= 0) {
+                continue;
+            }
             $food = $this->bestFood($foods, $metric, $used, $selected->pluck('id')->all());
-            if (! $food || $this->perGram($food, $metric) <= 0) continue;
+            if (! $food || $this->perGram($food, $metric) <= 0) {
+                continue;
+            }
             $quantity = min(800, max(20, $amount / $this->perGram($food, $metric)));
             $selected->push(['id' => $food->id, 'food' => $food, 'quantity' => round($quantity, 1)]);
         }
         if ($selected->isEmpty()) {
             throw ValidationException::withMessages(['catalog' => 'Não foi possível montar uma combinação nutricional com o catálogo atual.']);
         }
+
         return $selected->map(function (array $selection) {
             /** @var Alimento $food */
             $food = $selection['food'];
             $quantity = $selection['quantity'];
+
             return ['food_id' => $food->id, 'descricao' => $food->descricao, 'quantity' => $quantity, 'macros' => $this->scale($this->macros($food->caloria, $food->proteina, $food->carbo, $food->gordura), $quantity / max((float) $food->qtd, 0.001))];
         });
     }
@@ -129,14 +137,49 @@ class MealPlanGenerator
         ];
         foreach ($tiers as $tier) {
             $food = $tier->sortByDesc(fn (Alimento $candidate) => $this->perGram($candidate, $metric))->first();
-            if ($food && $this->perGram($food, $metric) > 0) return $food;
+            if ($food && $this->perGram($food, $metric) > 0) {
+                return $food;
+            }
         }
+
         return null;
     }
 
-    private function perGram(Alimento $food, string $metric): float { return (float) $food->{$metric} / max((float) $food->qtd, 0.001); }
-    private function macros(float $caloria, float $proteina, float $carbo, float $gordura): array { return ['caloria' => round($caloria, 3), 'proteina' => round($proteina, 3), 'carbo' => round($carbo, 3), 'gordura' => round($gordura, 3), 'quantidade' => 0.0]; }
-    private function scale(array $macros, float $factor): array { return collect($macros)->map(fn ($value, $key) => $key === 'quantidade' ? 0.0 : round($value * $factor, 3))->all(); }
-    private function sum(array $macros): array { $total = $this->macros(0, 0, 0, 0); foreach ($macros as $macro) foreach ($total as $key => $value) $total[$key] = round($value + ($macro[$key] ?? 0), 3); return $total; }
-    private function withinTarget(array $target, array $totals): bool { foreach (['caloria' => .10, 'proteina' => .15, 'carbo' => .15, 'gordura' => .15] as $key => $tolerance) if ($target[$key] > 0 && abs($totals[$key] - $target[$key]) / $target[$key] > $tolerance) return false; return true; }
+    private function perGram(Alimento $food, string $metric): float
+    {
+        return (float) $food->{$metric} / max((float) $food->qtd, 0.001);
+    }
+
+    private function macros(float $caloria, float $proteina, float $carbo, float $gordura): array
+    {
+        return ['caloria' => round($caloria, 3), 'proteina' => round($proteina, 3), 'carbo' => round($carbo, 3), 'gordura' => round($gordura, 3), 'quantidade' => 0.0];
+    }
+
+    private function scale(array $macros, float $factor): array
+    {
+        return collect($macros)->map(fn ($value, $key) => $key === 'quantidade' ? 0.0 : round($value * $factor, 3))->all();
+    }
+
+    private function sum(array $macros): array
+    {
+        $total = $this->macros(0, 0, 0, 0);
+        foreach ($macros as $macro) {
+            foreach ($total as $key => $value) {
+                $total[$key] = round($value + ($macro[$key] ?? 0), 3);
+            }
+        }
+
+return $total;
+    }
+
+    private function withinTarget(array $target, array $totals): bool
+    {
+        foreach (['caloria' => .10, 'proteina' => .15, 'carbo' => .15, 'gordura' => .15] as $key => $tolerance) {
+            if ($target[$key] > 0 && abs($totals[$key] - $target[$key]) / $target[$key] > $tolerance) {
+                return false;
+            }
+        }
+
+return true;
+    }
 }

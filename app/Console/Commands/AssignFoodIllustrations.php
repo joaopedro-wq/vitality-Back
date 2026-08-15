@@ -9,6 +9,7 @@ use Illuminate\Console\Command;
 class AssignFoodIllustrations extends Command
 {
     protected $signature = 'foods:assign-illustrations {--dry-run : Apenas mostra a distribuicao, sem gravar}';
+
     protected $description = 'Atribui chaves de ilustracao a todos os alimentos ativos';
 
     public function handle(FoodIllustrationResolver $resolver): int

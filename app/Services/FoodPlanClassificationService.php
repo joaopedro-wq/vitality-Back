@@ -8,11 +8,13 @@ use Illuminate\Support\Str;
 class FoodPlanClassificationService
 {
     private const PROCESSED = ['achocolatado', 'acucar', 'açúcar', 'adocante', 'biscoito', 'bolacha', 'chocolate', 'cocada', 'doce', 'gel', 'refrigerante', 'salgadinho', 'wafer', 'chantilly', 'maionese', 'margarina', 'calda', 'xarope'];
+
     private const QUICK = ['aveia', 'atum', 'iogurte', 'leite', 'ovo', 'pao', 'pão', 'queijo', 'sardinha', 'tapioca', 'cuscuz', 'conserva', 'enlatada'];
+
     private const ECONOMIC = ['arroz', 'aveia', 'batata', 'cenoura', 'couve', 'feijao', 'feijão', 'frango', 'fuba', 'fubá', 'lentilha', 'leite', 'macarrao', 'macarrão', 'milho', 'ovo', 'repolho', 'sardinha', 'tomate'];
 
     /** @return list<string> */
-    public function classify(string|null $group, string $description, float $protein, float $carbs, float $fat): array
+    public function classify(?string $group, string $description, float $protein, float $carbs, float $fat): array
     {
         $group = $this->normalize($group ?? '');
         $name = $this->normalize($description);
@@ -25,16 +27,24 @@ class FoodPlanClassificationService
             $tags[] = 'carboidrato';
         } elseif ($group === 'verduras, hortalicas e derivados') {
             $tags[] = 'vegetal';
-            if ($carbs >= 12) $tags[] = 'carboidrato';
+            if ($carbs >= 12) {
+                $tags[] = 'carboidrato';
+            }
         } elseif ($group === 'frutas e derivados') {
             $tags[] = 'fruta';
         } elseif ($group === 'leguminosas e derivados') {
             $tags[] = 'leguminosa';
-            if ($protein >= 15) $tags[] = 'proteina';
-            if ($fat >= 20) $tags[] = 'gordura';
+            if ($protein >= 15) {
+                $tags[] = 'proteina';
+            }
+            if ($fat >= 20) {
+                $tags[] = 'gordura';
+            }
         } elseif ($group === 'leite e derivados') {
             $tags[] = 'laticinio';
-            if ($protein >= 8) $tags[] = 'proteina';
+            if ($protein >= 8) {
+                $tags[] = 'proteina';
+            }
         } elseif ($group === 'gorduras e oleos') {
             $tags[] = 'gordura';
         } else {
@@ -64,12 +74,32 @@ class FoodPlanClassificationService
     private function dominantRoles(float $protein, float $carbs, float $fat): array
     {
         $tags = [];
-        if ($protein >= 10 && $protein >= $carbs * .45) $tags[] = 'proteina';
-        if ($carbs >= 15 && $carbs >= $protein && $carbs >= $fat) $tags[] = 'carboidrato';
-        if ($fat >= 10 && $fat >= $protein && $fat >= $carbs) $tags[] = 'gordura';
+        if ($protein >= 10 && $protein >= $carbs * .45) {
+            $tags[] = 'proteina';
+        }
+        if ($carbs >= 15 && $carbs >= $protein && $carbs >= $fat) {
+            $tags[] = 'carboidrato';
+        }
+        if ($fat >= 10 && $fat >= $protein && $fat >= $carbs) {
+            $tags[] = 'gordura';
+        }
+
         return $tags;
     }
 
-    private function normalize(string $value): string { return Str::lower(Str::ascii($value)); }
-    private function contains(string $name, array $needles): bool { foreach ($needles as $needle) if (str_contains($name, $this->normalize($needle))) return true; return false; }
+    private function normalize(string $value): string
+    {
+        return Str::lower(Str::ascii($value));
+    }
+
+    private function contains(string $name, array $needles): bool
+    {
+        foreach ($needles as $needle) {
+            if (str_contains($name, $this->normalize($needle))) {
+                return true;
+            }
+        }
+
+return false;
+    }
 }

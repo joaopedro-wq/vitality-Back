@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alimento;
 use App\Models\Registro;
 use Illuminate\Http\Request;
-use App\Models\Alimento;
 
 class RegistroController extends Controller
 {
@@ -15,10 +15,10 @@ class RegistroController extends Controller
     {
         $user = $request->user();
 
-        if (!$user) {
+        if (! $user) {
             return response()->json([
                 'message' => 'Usuário não encontrado na base de dados',
-                'success' => false
+                'success' => false,
             ], 404);
         }
 
@@ -77,14 +77,9 @@ class RegistroController extends Controller
 
         return response()->json([
             'data' => $registros,
-            'success' => true
+            'success' => true,
         ]);
     }
-
-
-
-
-
 
     public function store(Request $request)
     {
@@ -134,7 +129,6 @@ class RegistroController extends Controller
         ]);
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -143,18 +137,17 @@ class RegistroController extends Controller
         $registro = Registro::with(['alimentos', 'refeicao'])->find($id);
         /*  $registro = Registro::with(['alimento'])->find($id);
  */
-        if (!$registro) {
+        if (! $registro) {
             return response()->json([
                 'message' => 'registro não encontrada na base de dados',
-                'success' => false
+                'success' => false,
             ], 404);
         }
-
 
         return response()->json([
             'message' => 'Resposta da Meta carregada com sucesso',
             'data' => $registro,
-            'success' => true
+            'success' => true,
         ]);
     }
 
@@ -165,10 +158,10 @@ class RegistroController extends Controller
     {
         $registro = Registro::find($id);
 
-        if (!$registro) {
+        if (! $registro) {
             return response()->json([
                 'message' => 'Registro não encontrado na base de dados',
-                'success' => false
+                'success' => false,
             ], 404);
         }
 
@@ -216,10 +209,9 @@ class RegistroController extends Controller
                 'descricao_refeicao' => $registro->refeicao->descricao,
                 'alimentos' => $registro->alimentos,
             ],
-            'success' => true
+            'success' => true,
         ]);
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -228,10 +220,10 @@ class RegistroController extends Controller
     {
         $registro = Registro::find($id);
 
-        if (!$registro) {
+        if (! $registro) {
             return response()->json([
                 'message' => 'registro não encontrada na base de dados',
-                'success' => false
+                'success' => false,
             ], 404);
         }
 
@@ -239,7 +231,7 @@ class RegistroController extends Controller
 
         return response()->json([
             'message' => 'registroexcluída com sucesso',
-            'success' => true
+            'success' => true,
         ]);
     }
 }
