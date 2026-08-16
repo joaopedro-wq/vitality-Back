@@ -7,8 +7,11 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
+
 class MealCompositionService
 {
+    public function __construct(private readonly MealFoodCatalogService $catalog) {}
+
     public function definitions(array $preferences, array $target): Collection
     {
         $ratios = match ((int) $preferences['meal_count']) {
@@ -23,39 +26,51 @@ class MealCompositionService
         };
 
         return collect($ratios)->map(function (float $ratio, int $position) use ($labels, $preferences, $target) {
-            $kind = str_contains($labels[$position], 'Café') ? 'cafe' : (str_contains($labels[$position], 'Lanche') ? 'lanche' : 'prato');
+            $label = $labels[$position];
+            $kind = str_contains($label, 'Café') ? 'cafe' : (str_contains($label, 'Lanche') ? 'lanche' : ($label === 'Almoço' ? 'almoco' : 'jantar'));
 
             return [
-                'position' => $position, 'descricao' => $labels[$position], 'horario' => $preferences['meal_times'][$position],
-                'kind' => $kind, 'target' => $this->scale($target, $ratio), 'composition' => $this->template($kind),
+                'position' => $position,
+                'descricao' => $label,
+                'horario' => $preferences['meal_times'][$position],
+                'kind' => $kind,
+                'target' => $this->scale($target, $ratio),
+                'composition' => $this->template($kind),
             ];
         });
     }
 
-    /** @return Collection<string, Collection<int, Alimento>> */
+    /** @return array{required?: list<string>, required_any?: list<list<string>>, optional: list<string>, max_items: int} */
     public function template(string $kind): array
     {
         return match ($kind) {
             'cafe' => ['required' => ['cafe_base', 'cafe_proteina', 'fruta_lanche'], 'optional' => ['lanche_pratico'], 'max_items' => 4],
-            'lanche' => ['required_any' => [['lanche_pratico', 'fruta_lanche'], ['cafe_proteina', 'cafe_base']], 'optional' => ['fruta_lanche', 'cafe_proteina', 'cafe_base'], 'max_items' => 3],
-            default => ['required' => ['prato_proteina', 'prato_base', 'prato_vegetal'], 'optional' => ['prato_leguminosa', 'acompanhamento'], 'max_items' => 4],
+            'lanche' => ['required_any' => [['fruta_lanche', 'lanche_pratico'], ['cafe_base', 'cafe_proteina']], 'optional' => ['fruta_lanche', 'lanche_pratico', 'cafe_proteina'], 'max_items' => 3],
+            'almoco' => ['required' => ['prato_proteina', 'prato_base', 'prato_leguminosa', 'prato_vegetal'], 'optional' => [], 'max_items' => 4],
+            'jantar' => ['required' => ['prato_proteina', 'prato_base', 'prato_vegetal'], 'optional' => ['prato_leguminosa'], 'max_items' => 4],
+            default => throw new \InvalidArgumentException("Tipo de refeição desconhecido: {$kind}"),
         };
     }
 
     /** @return list<string> */
     public function rolesForFood(Alimento $food): array
     {
-        return $food->planTags->pluck('slug')->intersect($this->allRoles())->values()->all();
+        return collect($this->allRoles())->filter(fn (string $role) => $this->catalog->supportsRole($food, $role))->values()->all();
     }
 
-    public function candidatesByRole(Collection $foods, array $definition): Collection
+    /** @return Collection<string, Collection<int, Alimento>> */
+    public function candidatesByRole(Collection $foods, array $definition, array $preferences = []): Collection
     {
         $roles = collect([...(array) ($definition['composition']['required'] ?? []), ...(array) ($definition['composition']['optional'] ?? [])])
-            ->merge(collect($definition['composition']['required_any'] ?? [])->flatten())->unique();
+            ->merge(collect($definition['composition']['required_any'] ?? [])->flatten())
+            ->unique()
+            ->values();
 
-        return $roles->mapWithKeys(fn (string $role) => [$role => $foods->filter(fn (Alimento $food) => $food->planTags->contains('slug', $role))
-            ->sortByDesc(fn (Alimento $food) => $this->candidateScore($food, $role, (string) ($definition['kind'] ?? '')))
-            ->take(24)->values()]);
+        return $roles->mapWithKeys(fn (string $role) => [$role => $foods
+            ->filter(fn (Alimento $food) => $this->catalog->supportsRole($food, $role))
+            ->sortByDesc(fn (Alimento $food) => $this->candidateScore($food, $role, (string) $definition['kind'], (string) ($preferences['style'] ?? 'rapido'), (string) ($preferences['generation_seed'] ?? '')))
+            ->take(16)
+            ->values()]);
     }
 
     public function validate(array $items, array $definition, Collection $foods): void
@@ -65,12 +80,15 @@ class MealCompositionService
             throw ValidationException::withMessages(['ai' => 'A composição da refeição tem uma quantidade inválida de itens.']);
         }
         $foodById = $foods->keyBy('id');
-        $allowedRoles = $this->candidatesByRole($foods, $definition)->keys()->all();
+        $allowedRoles = collect([...(array) ($template['required'] ?? []), ...(array) ($template['optional'] ?? [])])
+            ->merge(collect($template['required_any'] ?? [])->flatten())
+            ->unique()
+            ->all();
         $roles = [];
         foreach ($items as $item) {
             $food = $foodById->get((int) ($item['food_id'] ?? 0));
             $role = (string) ($item['role'] ?? '');
-            if (! $food || ! in_array($role, $allowedRoles, true) || ! in_array($role, $this->rolesForFood($food), true) || in_array($role, $roles, true)) {
+            if (! $food || ! in_array($role, $allowedRoles, true) || ! $this->catalog->supportsRole($food, $role) || in_array($role, $roles, true)) {
                 throw ValidationException::withMessages(['ai' => 'A IA retornou uma composição culinária incompatível.']);
             }
             $roles[] = $role;
@@ -85,33 +103,85 @@ class MealCompositionService
                 throw ValidationException::withMessages(['ai' => 'A refeição não contém uma combinação adequada para este horário.']);
             }
         }
-        $this->ensureBreakfastCoherence($items, $definition, $foodById);
-    }
 
-    private function ensureBreakfastCoherence(array $items, array $definition, Collection $foodById): void
-    {
-        if (($definition['kind'] ?? null) === 'cafe') {
-            $this->validateBreakfastCoherence($items, $foodById);
-        }
+        $this->validateMealCoherence($items, $definition, $foodById);
     }
 
     public function foodFamily(Alimento $food): string
     {
-        $name = $this->normalize($food->descricao);
-        $group = $this->normalize((string) $food->grupo);
+        return $this->catalog->foodFamily($food);
+    }
 
-        return match (true) {
-            str_contains($name, 'leite') && Str::contains($name, [' po', 'po ', ' em po', 'desnatado po', 'integral po']) => 'leite_po',
-            str_contains($name, 'iogurte') => 'iogurte',
-            str_contains($name, 'leite') && str_contains($group, 'leite') => 'leite_liquido',
-            Str::contains($name, ['ovo', 'omelete']) || str_contains($group, 'ovos') => 'ovo',
-            Str::contains($name, ['queijo', 'requeijao', 'ricota', 'tofu']) => 'queijo',
-            Str::contains($name, ['pao', 'torrada']) => 'pao_torrada',
-            str_contains($name, 'tapioca') => 'tapioca',
-            Str::contains($name, ['aveia', 'cereal', 'granola']) => 'aveia_cereal',
-            str_contains($group, 'frutas') || $food->planTags->contains('slug', 'fruta_lanche') => 'fruta',
-            default => str_replace(' ', '_', $group ?: 'outros'),
-        };
+    /** @return array{min: float, max: float, step: float} */
+    public function portionRange(Alimento $food, ?string $role = null): array
+    {
+        return $this->catalog->portionRange($food, $role);
+    }
+
+    public function normalizeQuantity(Alimento $food, float $quantity, ?string $role = null): float
+    {
+        return $this->catalog->normalizeQuantity($food, $quantity, $role);
+    }
+
+    public function quantityIsRealistic(Alimento $food, float $quantity, ?string $role = null): bool
+    {
+        return $this->catalog->quantityIsRealistic($food, $quantity, $role);
+    }
+
+    /** @return array<string, mixed> */
+    public function foodProfile(Alimento $food): array
+    {
+        return $this->catalog->profile($food);
+    }
+
+    private function validateMealCoherence(array $items, array $definition, Collection $foodById): void
+    {
+        $kind = (string) ($definition['kind'] ?? '');
+        $familiesByRole = [];
+        foreach ($items as $item) {
+            $food = $foodById->get((int) ($item['food_id'] ?? 0));
+            if (! $food) continue;
+            $profile = $this->catalog->profile($food);
+            if (! $profile['adequado_para_consumo_direto']) {
+                throw ValidationException::withMessages(['ai' => 'A IA escolheu um ingrediente cru ou que exige preparo para consumo direto.']);
+            }
+            $familiesByRole[(string) $item['role']] = $profile['familia'];
+        }
+
+        if ($kind === 'cafe') {
+            $this->validateBreakfastCoherence($familiesByRole, $foodById, $items);
+            return;
+        }
+
+        if (in_array($kind, ['almoco', 'jantar'], true)) {
+            $protein = $this->foodForRole($items, $foodById, 'prato_proteina');
+            if ($protein && Str::contains($this->normalize($protein->descricao), ['charque', 'carne seca']) && ! isset($familiesByRole['prato_leguminosa'])) {
+                throw ValidationException::withMessages(['ai' => 'Charque precisa vir em um prato completo, com leguminosa e vegetal.']);
+            }
+        }
+    }
+
+    private function validateBreakfastCoherence(array $familiesByRole, Collection $foodById, array $items): void
+    {
+        $families = array_values($familiesByRole);
+        foreach (['pao_torrada', 'iogurte', 'queijo', 'ovo', 'leite_liquido'] as $family) {
+            if (count(array_filter($families, fn (string $value) => $value === $family)) > 1) {
+                throw ValidationException::withMessages(['ai' => 'A IA repetiu alimentos da mesma família no café da manhã.']);
+            }
+        }
+        foreach ($items as $item) {
+            $food = $foodById->get((int) ($item['food_id'] ?? 0));
+            if ($food && $this->isPoorBreakfastFood($food)) {
+                throw ValidationException::withMessages(['ai' => 'A IA escolheu um alimento incoerente para o café da manhã.']);
+            }
+        }
+    }
+
+    private function foodForRole(array $items, Collection $foodById, string $role): ?Alimento
+    {
+        $item = collect($items)->firstWhere('role', $role);
+
+        return $item ? $foodById->get((int) $item['food_id']) : null;
     }
 
     /** @return list<string> */
@@ -120,78 +190,48 @@ class MealCompositionService
         return ['cafe_base', 'cafe_proteina', 'lanche_pratico', 'fruta_lanche', 'prato_proteina', 'prato_base', 'prato_leguminosa', 'prato_vegetal', 'acompanhamento'];
     }
 
-    private function candidateScore(Alimento $food, string $role, string $kind): float
+    private function candidateScore(Alimento $food, string $role, string $kind, string $style, string $generationSeed): float
     {
-        $score = ($food->planTags->contains('slug', 'base_alimentar') ? 1000 : 0) + ($food->planTags->contains('slug', 'caseiro') ? 100 : 0);
-        if ($kind !== 'cafe') {
-            return $score;
-        }
-
-        $family = $this->foodFamily($food);
+        $family = $this->catalog->foodFamily($food);
         $name = $this->normalize($food->descricao);
-        if ($this->isPoorBreakfastFood($food)) {
-            $score -= 900;
+        $score = ($food->planTags->contains('slug', 'base_alimentar') ? 300 : 0) + $this->catalog->scoreForStyle($food, $style);
+
+        if (Str::contains($name, ['charque', 'carne seca', 'frito', 'embutido'])) $score -= 120;
+        if ($kind === 'cafe') {
+            if ($this->isPoorBreakfastFood($food)) $score -= 900;
+            $score += match ($role) {
+                'fruta_lanche' => $family === 'fruta' ? 500 : 0,
+                'cafe_proteina' => match ($family) {
+                    'ovo' => 440, 'iogurte' => 400, 'queijo' => 340, 'leite_liquido' => 260, default => 0,
+                },
+                'cafe_base' => match ($family) {
+                    'aveia_cereal' => 400, 'tapioca' => 380, 'pao_torrada' => 360, 'cuscuz' => 340, default => 0,
+                },
+                'lanche_pratico' => match ($family) {
+                    'iogurte' => 320, 'fruta' => 300, 'leite_liquido' => 260, 'aveia_cereal' => 200, default => 0,
+                },
+                default => 0,
+            };
         }
-        if ($family === 'leite_po') {
-            $score -= 650;
+        if ($kind === 'almoco' || $kind === 'jantar') {
+            $score += match ($role) {
+                'prato_proteina' => in_array($family, ['carne', 'peixe', 'ovo', 'proteina_vegetal'], true) ? 220 : 0,
+                'prato_base' => in_array($family, ['arroz', 'tuberculo', 'massa', 'cuscuz'], true) ? 180 : 0,
+                'prato_leguminosa' => $family === 'leguminosa' ? 180 : 0,
+                'prato_vegetal' => $family === 'vegetal' ? 180 : 0,
+                default => 0,
+            };
         }
 
-        return $score + match ($role) {
-            'fruta_lanche' => $family === 'fruta' ? 360 : 0,
-            'cafe_proteina' => match ($family) {
-                'ovo' => 360,
-                'iogurte' => 330,
-                'queijo' => 260,
-                'leite_liquido' => 200,
-                'leite_po' => -500,
-                default => 0,
-            },
-            'cafe_base' => match (true) {
-                $family === 'aveia_cereal' => 320,
-                $family === 'tapioca' => 300,
-                $family === 'pao_torrada' => 260,
-                str_contains($name, 'cuscuz') => 220,
-                default => 0,
-            },
-            'lanche_pratico' => match ($family) {
-                'iogurte' => 260,
-                'fruta' => 230,
-                'leite_liquido' => 180,
-                'aveia_cereal' => 140,
-                'leite_po' => -450,
-                default => 0,
-            },
-            default => 0,
-        };
-    }
+        // A variação só desempata candidatos com a mesma qualidade culinária; ela nunca supera regras de preparo ou papel.
+        $varietyTieBreaker = $generationSeed === '' ? 0.0 : (crc32($generationSeed.'-'.$food->id) % 100) / 100;
 
-    private function validateBreakfastCoherence(array $items, Collection $foodById): void
-    {
-        $families = [];
-        foreach ($items as $item) {
-            $food = $foodById->get((int) ($item['food_id'] ?? 0));
-            if (! $food) {
-                continue;
-            }
-            if ($this->isPoorBreakfastFood($food)) {
-                throw ValidationException::withMessages(['ai' => 'A IA escolheu um alimento incoerente para o cafe da manha.']);
-            }
-            $families[] = $this->foodFamily($food);
-        }
-
-        $counts = array_count_values($families);
-        foreach (['leite_po', 'pao_torrada', 'iogurte', 'queijo', 'ovo'] as $family) {
-            if (($counts[$family] ?? 0) > 1) {
-                throw ValidationException::withMessages(['ai' => 'A IA repetiu alimentos da mesma familia no cafe da manha.']);
-            }
-        }
+        return $score + $varietyTieBreaker;
     }
 
     private function isPoorBreakfastFood(Alimento $food): bool
     {
-        $name = $this->normalize($food->descricao);
-
-        return Str::contains($name, ['macarrao', 'pastel', 'maionese', 'doce', 'calda', 'xarope', 'chantilly', 'refrigerante']);
+        return Str::contains($this->normalize($food->descricao), ['macarrao', 'pastel', 'maionese', 'doce', 'calda', 'xarope', 'chantilly', 'refrigerante']);
     }
 
     private function normalize(string $value): string

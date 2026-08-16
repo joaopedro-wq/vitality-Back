@@ -55,8 +55,8 @@ class MealPlanApiTest extends TestCase
                         : [
                             ['food_id' => $candidate('prato_proteina')['id'], 'role' => 'prato_proteina', 'quantity_g' => $meal['target']['proteina'] * .65],
                             ['food_id' => $candidate('prato_base')['id'], 'role' => 'prato_base', 'quantity_g' => $meal['target']['carbo'] * .65],
+                            ['food_id' => $candidate('prato_leguminosa')['id'], 'role' => 'prato_leguminosa', 'quantity_g' => 80],
                             ['food_id' => $candidate('prato_vegetal')['id'], 'role' => 'prato_vegetal', 'quantity_g' => 80],
-                            ['food_id' => $candidate('acompanhamento')['id'], 'role' => 'acompanhamento', 'quantity_g' => ($meal['target']['gordura'] / .8) * .65],
                         ];
 
                     return ['position' => $meal['position'], 'explanation' => 'Combinação equilibrada para este horário.', 'items' => $items];
@@ -74,20 +74,20 @@ class MealPlanApiTest extends TestCase
         config()->set('gemini.api_key', 'test-key');
         $user = User::factory()->create();
         Meta_diaria::create(['id_usuario' => $user->id, 'data' => null, 'meta_calorias' => 2000, 'meta_proteinas' => 120, 'meta_carboidratos' => 220, 'meta_gorduras' => 65]);
-        $this->food('Ovos', 100, 0, 54.167, 887.5, ['cafe_proteina']);
-        $this->food('Pão integral', 0, 100, 0, 400, ['cafe_base']);
-        $this->food('Banana', 0, 100, 0, 400, ['fruta_lanche', 'lanche_pratico']);
-        $this->food('Frango', 100, 0, 0, 400, ['prato_proteina']);
-        $this->food('Arroz', 0, 100, 0, 400, ['prato_base']);
-        $this->food('Brócolis', 0, 0, 0, 0, ['prato_vegetal']);
-        $this->food('Azeite', 0, 0, 80, 720, ['acompanhamento']);
-        $this->food('Omelete', 100, 0, 54.167, 887.5, ['cafe_proteina']);
-        $this->food('Tapioca', 0, 100, 0, 400, ['cafe_base']);
-        $this->food('Carne', 100, 0, 0, 400, ['prato_proteina']);
-        $this->food('Peixe', 100, 0, 0, 400, ['prato_proteina']);
-        $this->food('Batata', 0, 100, 0, 400, ['prato_base']);
-        $this->food('Abobrinha', 0, 0, 0, 0, ['prato_vegetal']);
-        $this->food('Óleo', 0, 0, 80, 720, ['acompanhamento']);
+        $this->food('Ovos', 13, 1, 10, 155, ['cafe_proteina']);
+        $this->food('Pão integral', 9, 50, 3, 253, ['cafe_base']);
+        $this->food('Banana', 1, 22, 0, 89, ['fruta_lanche', 'lanche_pratico']);
+        $this->food('Frango', 31, 0, 4, 165, ['prato_proteina']);
+        $this->food('Arroz cozido', 2, 28, 0, 130, ['prato_base']);
+        $this->food('Feijão cozido', 5, 14, 1, 76, ['prato_leguminosa']);
+        $this->food('Brócolis', 3, 7, 0, 35, ['prato_vegetal']);
+        $this->food('Omelete', 13, 1, 10, 155, ['cafe_proteina']);
+        $this->food('Tapioca', 0, 50, 0, 200, ['cafe_base']);
+        $this->food('Carne bovina', 26, 0, 10, 200, ['prato_proteina']);
+        $this->food('Peixe', 26, 0, 4, 145, ['prato_proteina']);
+        $this->food('Batata cozida', 2, 18, 0, 86, ['prato_base']);
+        $this->food('Lentilha cozida', 5, 14, 1, 76, ['prato_leguminosa']);
+        $this->food('Abobrinha', 1, 3, 0, 20, ['prato_vegetal']);
         $this->fakeGemini();
         Sanctum::actingAs($user);
 
@@ -156,5 +156,38 @@ class MealPlanApiTest extends TestCase
         ], $definition, $foods);
 
         $this->assertTrue(true);
+    }
+
+    public function test_lunch_filters_raw_or_ingredient_foods_and_accepts_a_real_brazilian_plate(): void
+    {
+        $composition = app(MealCompositionService::class);
+        $definition = ['kind' => 'almoco', 'composition' => $composition->template('almoco')];
+        $frango = $this->food('Frango grelhado', 31, 0, 4, 165, ['prato_proteina']);
+        $arroz = $this->food('Arroz cozido', 2, 28, 0, 130, ['prato_base']);
+        $feijao = $this->food('Feijão carioca cozido', 5, 14, 1, 76, ['prato_leguminosa']);
+        $couve = $this->food('Couve refogada', 2, 4, 0, 28, ['prato_vegetal']);
+        $feijaoCru = $this->food('Feijão jalo cru', 20, 60, 1, 330, ['prato_leguminosa']);
+        $mandiocaFrita = $this->food('Mandioca frita', 1, 45, 15, 330, ['prato_base']);
+        $farinhaPuba = $this->food('Farinha de puba', 1, 85, 0, 360, ['prato_base']);
+        $foods = Alimento::query()->with('planTags')->get();
+
+        $this->assertNotContains('prato_leguminosa', $composition->rolesForFood($feijaoCru));
+        $this->assertNotContains('prato_base', $composition->rolesForFood($mandiocaFrita));
+        $this->assertNotContains('prato_base', $composition->rolesForFood($farinhaPuba));
+
+        $composition->validate([
+            ['food_id' => $frango->id, 'role' => 'prato_proteina'],
+            ['food_id' => $arroz->id, 'role' => 'prato_base'],
+            ['food_id' => $feijao->id, 'role' => 'prato_leguminosa'],
+            ['food_id' => $couve->id, 'role' => 'prato_vegetal'],
+        ], $definition, $foods);
+
+        $this->expectException(ValidationException::class);
+        $composition->validate([
+            ['food_id' => $frango->id, 'role' => 'prato_proteina'],
+            ['food_id' => $arroz->id, 'role' => 'prato_base'],
+            ['food_id' => $feijaoCru->id, 'role' => 'prato_leguminosa'],
+            ['food_id' => $couve->id, 'role' => 'prato_vegetal'],
+        ], $definition, $foods);
     }
 }
