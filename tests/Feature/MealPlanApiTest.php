@@ -46,14 +46,14 @@ class MealPlanApiTest extends TestCase
                     $candidate = fn (string $role) => collect($meal['candidatos_por_papel'][$role] ?? [])->first();
                     $items = $meal['kind'] === 'cafe'
                         ? [
-                            ['food_id' => $candidate('cafe_proteina')['id'], 'role' => 'cafe_proteina', 'quantity_g' => $meal['target']['proteina']],
-                            ['food_id' => $candidate('cafe_base')['id'], 'role' => 'cafe_base', 'quantity_g' => $meal['target']['carbo']],
+                            ['food_id' => $candidate('cafe_proteina')['id'], 'role' => 'cafe_proteina', 'quantity_g' => $meal['target']['proteina'] * .65],
+                            ['food_id' => $candidate('cafe_base')['id'], 'role' => 'cafe_base', 'quantity_g' => $meal['target']['carbo'] * .65],
                         ]
                         : [
-                            ['food_id' => $candidate('prato_proteina')['id'], 'role' => 'prato_proteina', 'quantity_g' => $meal['target']['proteina']],
-                            ['food_id' => $candidate('prato_base')['id'], 'role' => 'prato_base', 'quantity_g' => $meal['target']['carbo']],
+                            ['food_id' => $candidate('prato_proteina')['id'], 'role' => 'prato_proteina', 'quantity_g' => $meal['target']['proteina'] * .65],
+                            ['food_id' => $candidate('prato_base')['id'], 'role' => 'prato_base', 'quantity_g' => $meal['target']['carbo'] * .65],
                             ['food_id' => $candidate('prato_vegetal')['id'], 'role' => 'prato_vegetal', 'quantity_g' => 80],
-                            ['food_id' => $candidate('acompanhamento')['id'], 'role' => 'acompanhamento', 'quantity_g' => $meal['target']['gordura'] / .8],
+                            ['food_id' => $candidate('acompanhamento')['id'], 'role' => 'acompanhamento', 'quantity_g' => ($meal['target']['gordura'] / .8) * .65],
                         ];
 
                     return ['position' => $meal['position'], 'explanation' => 'Combinação equilibrada para este horário.', 'items' => $items];
@@ -97,7 +97,9 @@ class MealPlanApiTest extends TestCase
             'draft_id' => $draft['draft_id'], 'replacement_food_id' => $suggestion['food_id'], 'quantity' => $suggestion['quantity'],
         ])->assertOk()->assertJsonPath('data.can_undo', true)->json('data');
         $this->postJson('/api/meal-plans/preview/undo', ['draft_id' => $updated['draft_id']])->assertOk()->assertJsonPath('data.can_undo', false);
-        $this->postJson('/api/meal-plans/preview/meal/1', ['draft_id' => $draft['draft_id']])->assertOk()->assertJsonPath('data.draft_id', $draft['draft_id']);
+        $originalMealFoodIds = collect($draft['meals'][1]['items'])->pluck('food_id')->all();
+        $reorganized = $this->postJson('/api/meal-plans/preview/meal/1', ['draft_id' => $draft['draft_id']])->assertOk()->assertJsonPath('data.draft_id', $draft['draft_id'])->json('data');
+        $this->assertEmpty(array_intersect($originalMealFoodIds, collect($reorganized['meals'][1]['items'])->pluck('food_id')->all()));
         $plan = $this->postJson('/api/meal-plans', ['titulo' => 'Minha rotina', 'draft_id' => $draft['draft_id']])
             ->assertCreated()->assertJsonPath('data.titulo', 'Minha rotina')->assertJsonCount(3, 'data.meals');
         $this->postJson('/api/meal-plans/'.$plan->json('data.id').'/edit-draft')->assertOk()->assertJsonCount(3, 'data.meals');
