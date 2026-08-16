@@ -6,8 +6,10 @@ use App\Models\Alimento;
 use App\Models\FoodPlanTag;
 use App\Models\Meta_diaria;
 use App\Models\User;
+use App\Services\MealCompositionService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -122,5 +124,37 @@ class MealPlanApiTest extends TestCase
         $draft = \App\Models\MealPlanDraft::create(['user_id' => $user->id, 'preferences' => $profile, 'payload' => [], 'expires_at' => now()->addMinutes(10)]);
         Sanctum::actingAs(User::factory()->create());
         $this->postJson('/api/meal-plans', ['titulo' => 'Invasão', 'draft_id' => $draft->id])->assertNotFound();
+    }
+
+    public function test_breakfast_rejects_duplicate_powdered_milk_and_accepts_natural_combo(): void
+    {
+        $composition = app(MealCompositionService::class);
+        $definition = ['kind' => 'cafe', 'composition' => $composition->template('cafe')];
+        $powderedSkim = $this->food('Leite de vaca desnatado em pó', 34, 53, 1, 360, ['cafe_proteina', 'lanche_pratico']);
+        $powderedWhole = $this->food('Leite de vaca integral em pó', 25, 39, 27, 496, ['cafe_proteina', 'lanche_pratico']);
+        $bread = $this->food('Pão integral', 9, 50, 3, 253, ['cafe_base']);
+        $banana = $this->food('Banana', 1, 23, 0, 96, ['fruta_lanche', 'lanche_pratico']);
+        $egg = $this->food('Ovo cozido', 13, 1, 9, 145, ['cafe_proteina']);
+        $foods = Alimento::query()->with('planTags')->get();
+
+        try {
+            $composition->validate([
+                ['food_id' => $powderedSkim->id, 'role' => 'cafe_proteina'],
+                ['food_id' => $bread->id, 'role' => 'cafe_base'],
+                ['food_id' => $banana->id, 'role' => 'fruta_lanche'],
+                ['food_id' => $powderedWhole->id, 'role' => 'lanche_pratico'],
+            ], $definition, $foods);
+            $this->fail('Breakfast accepted duplicate powdered milk.');
+        } catch (ValidationException) {
+            $this->assertTrue(true);
+        }
+
+        $composition->validate([
+            ['food_id' => $egg->id, 'role' => 'cafe_proteina'],
+            ['food_id' => $bread->id, 'role' => 'cafe_base'],
+            ['food_id' => $banana->id, 'role' => 'fruta_lanche'],
+        ], $definition, $foods);
+
+        $this->assertTrue(true);
     }
 }
