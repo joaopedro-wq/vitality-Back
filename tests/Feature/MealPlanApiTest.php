@@ -48,6 +48,7 @@ class MealPlanApiTest extends TestCase
                         ? [
                             ['food_id' => $candidate('cafe_proteina')['id'], 'role' => 'cafe_proteina', 'quantity_g' => $meal['target']['proteina'] * .65],
                             ['food_id' => $candidate('cafe_base')['id'], 'role' => 'cafe_base', 'quantity_g' => $meal['target']['carbo'] * .65],
+                            ['food_id' => $candidate('fruta_lanche')['id'], 'role' => 'fruta_lanche', 'quantity_g' => 80],
                         ]
                         : [
                             ['food_id' => $candidate('prato_proteina')['id'], 'role' => 'prato_proteina', 'quantity_g' => $meal['target']['proteina'] * .65],
@@ -73,6 +74,7 @@ class MealPlanApiTest extends TestCase
         Meta_diaria::create(['id_usuario' => $user->id, 'data' => null, 'meta_calorias' => 2000, 'meta_proteinas' => 120, 'meta_carboidratos' => 220, 'meta_gorduras' => 65]);
         $this->food('Ovos', 100, 0, 54.167, 887.5, ['cafe_proteina']);
         $this->food('Pão integral', 0, 100, 0, 400, ['cafe_base']);
+        $this->food('Banana', 0, 100, 0, 400, ['fruta_lanche', 'lanche_pratico']);
         $this->food('Frango', 100, 0, 0, 400, ['prato_proteina']);
         $this->food('Arroz', 0, 100, 0, 400, ['prato_base']);
         $this->food('Brócolis', 0, 0, 0, 0, ['prato_vegetal']);
