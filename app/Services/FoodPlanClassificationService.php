@@ -67,7 +67,48 @@ class FoodPlanClassificationService
             $tags[] = 'economico';
         }
 
-        return array_values(array_unique($tags));
+        return array_values(array_unique([...$tags, ...$this->culinaryRoles($group, $name)]));
+    }
+
+    /** @return list<string> */
+    private function culinaryRoles(string $group, string $name): array
+    {
+        $roles = [];
+        if (in_array($group, ['carnes e derivados', 'pescados e frutos do mar', 'ovos e derivados'], true)) {
+            $roles[] = 'prato_proteina';
+        }
+        if ($group === 'ovos e derivados' || $this->contains($name, ['ovo', 'queijo', 'iogurte', 'leite'])) {
+            $roles[] = 'cafe_proteina';
+        }
+        if ($group === 'leite e derivados') {
+            $roles[] = 'lanche_pratico';
+        }
+        if ($group === 'leguminosas e derivados') {
+            $roles[] = 'prato_leguminosa';
+        }
+        if ($group === 'verduras, hortalicas e derivados') {
+            $roles[] = 'prato_vegetal';
+        }
+        if ($group === 'frutas e derivados') {
+            $roles = [...$roles, 'fruta_lanche', 'lanche_pratico'];
+        }
+        if ($group === 'cereais e derivados') {
+            $roles[] = 'prato_base';
+        }
+        if ($this->contains($name, ['arroz', 'macarrao', 'macarrão', 'batata', 'mandioca', 'inhame', 'cuscuz'])) {
+            $roles[] = 'prato_base';
+        }
+        if ($this->contains($name, ['pao', 'pão', 'tapioca', 'aveia', 'cuscuz', 'queijo', 'ovo'])) {
+            $roles[] = 'cafe_base';
+        }
+        if ($this->contains($name, ['pao', 'pão', 'tapioca', 'aveia', 'iogurte', 'leite', 'queijo', 'fruta'])) {
+            $roles[] = 'lanche_pratico';
+        }
+        if ($group === 'gorduras e oleos' || $this->contains($name, ['azeite', 'molho', 'tempero'])) {
+            $roles[] = 'acompanhamento';
+        }
+
+        return array_values(array_unique($roles));
     }
 
     /** @return list<string> */
@@ -100,6 +141,6 @@ class FoodPlanClassificationService
             }
         }
 
-return false;
+        return false;
     }
 }

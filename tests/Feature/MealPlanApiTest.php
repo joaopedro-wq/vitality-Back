@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Alimento;
+use App\Models\FoodPlanTag;
 use App\Models\Meta_diaria;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,24 +15,49 @@ class MealPlanApiTest extends TestCase
 {
     use RefreshDatabase;
 
-    private function food(string $name, float $protein = 0, float $carbs = 0, float $fat = 0, float $calories = 0): Alimento
+    private function food(string $name, float $protein = 0, float $carbs = 0, float $fat = 0, float $calories = 0, array $roles = []): Alimento
     {
-        return Alimento::create(['descricao' => $name, 'nome_normalizado' => mb_strtolower($name), 'fonte' => 'taco', 'source_reference' => $name, 'status' => 'ativo', 'grupo' => 'Teste', 'qtd' => 100, 'proteina' => $protein, 'carbo' => $carbs, 'gordura' => $fat, 'caloria' => $calories]);
+        $food = Alimento::create([
+            'descricao' => $name, 'nome_normalizado' => mb_strtolower($name), 'fonte' => 'taco', 'source_reference' => $name,
+            'status' => 'ativo', 'grupo' => 'Teste', 'qtd' => 100, 'proteina' => $protein, 'carbo' => $carbs, 'gordura' => $fat, 'caloria' => $calories,
+        ]);
+        $food->planTags()->sync(FoodPlanTag::query()->whereIn('slug', $roles)->pluck('id'));
+
+        return $food;
     }
 
-    private function fakeGemini(Alimento $protein, Alimento $carb, Alimento $fat): void
+    private function fakeGemini(): void
     {
         Http::fake(['https://generativelanguage.googleapis.com/*' => function ($request) {
             $input = json_decode($request->data()['input'], true);
-            $catalog = collect($input['catalogo_permitido']);
-            $protein = $catalog->first(fn ($food) => $food['proteina_g'] >= 100);
-            $carb = $catalog->first(fn ($food) => $food['carbo_g'] >= 100);
-            $fat = $catalog->first(fn ($food) => $food['gordura_g'] >= 80);
+            if ($input['task'] === 'substituicao') {
+                $answer = ['suggestions' => collect($input['candidatos'])->take(2)->map(fn ($food) => [
+                    'food_id' => $food['id'], 'quantity_g' => $input['alimento_atual']['quantity'], 'reason' => 'Mantém o mesmo papel na refeição.',
+                ])->all()];
+
+                return Http::response(['steps' => [[
+                    'type' => 'model_output', 'content' => [['type' => 'text', 'text' => json_encode($answer)]],
+                ]]]);
+            }
+
             $answer = [
                 'summary' => 'Plano prático montado com alimentos do seu catálogo.',
-                'meals' => collect($input['refeicoes'])->map(fn ($meal) => ['position' => $meal['position'], 'explanation' => 'Combinação equilibrada para este horário.', 'items' => [
-                    ['food_id' => $protein['id'], 'quantity_g' => $meal['target']['proteina']], ['food_id' => $carb['id'], 'quantity_g' => $meal['target']['carbo']], ['food_id' => $fat['id'], 'quantity_g' => $meal['target']['gordura'] / .8],
-                ]])->all(),
+                'meals' => collect($input['refeicoes'])->map(function ($meal) {
+                    $candidate = fn (string $role) => collect($meal['candidatos_por_papel'][$role] ?? [])->first();
+                    $items = $meal['kind'] === 'cafe'
+                        ? [
+                            ['food_id' => $candidate('cafe_proteina')['id'], 'role' => 'cafe_proteina', 'quantity_g' => $meal['target']['proteina']],
+                            ['food_id' => $candidate('cafe_base')['id'], 'role' => 'cafe_base', 'quantity_g' => $meal['target']['carbo']],
+                        ]
+                        : [
+                            ['food_id' => $candidate('prato_proteina')['id'], 'role' => 'prato_proteina', 'quantity_g' => $meal['target']['proteina']],
+                            ['food_id' => $candidate('prato_base')['id'], 'role' => 'prato_base', 'quantity_g' => $meal['target']['carbo']],
+                            ['food_id' => $candidate('prato_vegetal')['id'], 'role' => 'prato_vegetal', 'quantity_g' => 80],
+                            ['food_id' => $candidate('acompanhamento')['id'], 'role' => 'acompanhamento', 'quantity_g' => $meal['target']['gordura'] / .8],
+                        ];
+
+                    return ['position' => $meal['position'], 'explanation' => 'Combinação equilibrada para este horário.', 'items' => $items];
+                })->all(),
             ];
 
             return Http::response(['steps' => [[
@@ -40,31 +66,42 @@ class MealPlanApiTest extends TestCase
         }]);
     }
 
-    public function test_user_can_preview_save_and_replace_a_meal_from_a_gemini_draft(): void
+    public function test_user_can_preview_swap_reorganize_save_and_edit_a_meal_plan(): void
     {
         config()->set('gemini.api_key', 'test-key');
         $user = User::factory()->create();
         Meta_diaria::create(['id_usuario' => $user->id, 'data' => null, 'meta_calorias' => 2000, 'meta_proteinas' => 120, 'meta_carboidratos' => 220, 'meta_gorduras' => 65]);
-        $protein = $this->food('Proteína', 100, 0, 0, 400);
-        $carb = $this->food('Carboidrato', 0, 100, 0, 400);
-        $fat = $this->food('Gordura', 0, 0, 80, 720);
-        $this->food('Proteína alternativa', 100, 0, 0, 400);
-        $this->food('Carboidrato alternativo', 0, 100, 0, 400);
-        $this->food('Gordura alternativa', 0, 0, 80, 720);
-        foreach (range(1, 2) as $number) {
-            $this->food("Extra {$number}", 5, 5, 5, 80);
-        }
-        $this->fakeGemini($protein, $carb, $fat);
+        $this->food('Ovos', 100, 0, 54.167, 887.5, ['cafe_proteina']);
+        $this->food('Pão integral', 0, 100, 0, 400, ['cafe_base']);
+        $this->food('Frango', 100, 0, 0, 400, ['prato_proteina']);
+        $this->food('Arroz', 0, 100, 0, 400, ['prato_base']);
+        $this->food('Brócolis', 0, 0, 0, 0, ['prato_vegetal']);
+        $this->food('Azeite', 0, 0, 80, 720, ['acompanhamento']);
+        $this->food('Omelete', 100, 0, 54.167, 887.5, ['cafe_proteina']);
+        $this->food('Tapioca', 0, 100, 0, 400, ['cafe_base']);
+        $this->food('Carne', 100, 0, 0, 400, ['prato_proteina']);
+        $this->food('Peixe', 100, 0, 0, 400, ['prato_proteina']);
+        $this->food('Batata', 0, 100, 0, 400, ['prato_base']);
+        $this->food('Abobrinha', 0, 0, 0, 0, ['prato_vegetal']);
+        $this->food('Óleo', 0, 0, 80, 720, ['acompanhamento']);
+        $this->fakeGemini();
         Sanctum::actingAs($user);
 
         $payload = ['meal_count' => 3, 'meal_times' => ['08:00', '12:30', '19:30'], 'style' => 'rapido', 'diet_type' => 'onivora', 'restriction_slugs' => [], 'excluded_food_ids' => []];
         $draft = $this->postJson('/api/meal-plans/preview', $payload)->assertOk()->assertJsonCount(3, 'data.meals')->json('data');
         $this->assertArrayHasKey('draft_id', $draft);
+        $protein = collect($draft['meals'][1]['items'])->firstWhere('role', 'prato_proteina');
+        $suggestion = $this->postJson("/api/meal-plans/preview/meal/1/item/{$protein['food_id']}/suggestions", ['draft_id' => $draft['draft_id']])
+            ->assertOk()->assertJsonCount(2, 'data')->json('data.0');
+        $updated = $this->postJson("/api/meal-plans/preview/meal/1/item/{$protein['food_id']}/replace", [
+            'draft_id' => $draft['draft_id'], 'replacement_food_id' => $suggestion['food_id'], 'quantity' => $suggestion['quantity'],
+        ])->assertOk()->assertJsonPath('data.can_undo', true)->json('data');
+        $this->postJson('/api/meal-plans/preview/undo', ['draft_id' => $updated['draft_id']])->assertOk()->assertJsonPath('data.can_undo', false);
         $this->postJson('/api/meal-plans/preview/meal/1', ['draft_id' => $draft['draft_id']])->assertOk()->assertJsonPath('data.draft_id', $draft['draft_id']);
-        $this->postJson('/api/meal-plans', ['titulo' => 'Minha rotina', 'draft_id' => $draft['draft_id']])
+        $plan = $this->postJson('/api/meal-plans', ['titulo' => 'Minha rotina', 'draft_id' => $draft['draft_id']])
             ->assertCreated()->assertJsonPath('data.titulo', 'Minha rotina')->assertJsonCount(3, 'data.meals');
+        $this->postJson('/api/meal-plans/'.$plan->json('data.id').'/edit-draft')->assertOk()->assertJsonCount(3, 'data.meals');
         $this->assertDatabaseCount('meal_plans', 1);
-        $this->assertDatabaseCount('meal_plan_drafts', 0);
         $this->assertDatabaseCount('registros', 0);
     }
 

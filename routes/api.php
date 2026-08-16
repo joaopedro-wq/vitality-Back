@@ -81,7 +81,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/meal-plan-profile', [MealPlanProfileController::class, 'update']);
     Route::get('/meal-plan-restrictions', [MealPlanProfileController::class, 'restrictions']);
     Route::post('/meal-plans/preview', [MealPlanController::class, 'preview']);
+    Route::post('/meal-plans/preview/recreate', [MealPlanController::class, 'recreate']);
+    Route::post('/meal-plans/preview/undo', [MealPlanController::class, 'undo']);
     Route::post('/meal-plans/preview/meal/{position}', [MealPlanController::class, 'regenerateMeal']);
+    Route::post('/meal-plans/preview/meal/{position}/item/{foodId}/suggestions', [MealPlanController::class, 'itemSuggestions']);
+    Route::post('/meal-plans/preview/meal/{position}/item/{foodId}/replace', [MealPlanController::class, 'replaceItem']);
+    Route::post('/meal-plans/{mealPlan}/edit-draft', [MealPlanController::class, 'editDraft']);
     Route::post('/meal-plans', [MealPlanController::class, 'store']);
     Route::post('/meal-plans/{mealPlan}/archive', [MealPlanController::class, 'archive']);
     

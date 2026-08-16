@@ -28,7 +28,14 @@ class MealPlanProfileController extends Controller
 
     public function restrictions()
     {
-        return response()->json(['data' => FoodRestriction::query()->orderBy('type')->orderBy('label')->get(['slug', 'label', 'type']), 'success' => true]);
+        $restrictions = FoodRestriction::query()
+            ->leftJoin('alimento_food_restriction as pivot', 'pivot.food_restriction_id', '=', 'food_restrictions.id')
+            ->selectRaw('food_restrictions.slug, food_restrictions.label, food_restrictions.type, count(pivot.alimento_id) as food_count')
+            ->groupBy('food_restrictions.id', 'food_restrictions.slug', 'food_restrictions.label', 'food_restrictions.type')
+            ->orderBy('food_restrictions.type')->orderBy('food_restrictions.label')->get()
+            ->map(fn ($restriction) => ['slug' => $restriction->slug, 'label' => $restriction->label, 'type' => $restriction->type, 'food_count' => (int) $restriction->food_count, 'available' => (int) $restriction->food_count >= 8]);
+
+        return response()->json(['data' => $restrictions, 'success' => true]);
     }
 
     private function validateProfile(Request $request): array
