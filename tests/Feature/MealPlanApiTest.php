@@ -102,7 +102,9 @@ class MealPlanApiTest extends TestCase
         $this->assertEmpty(array_intersect($originalMealFoodIds, collect($reorganized['meals'][1]['items'])->pluck('food_id')->all()));
         $plan = $this->postJson('/api/meal-plans', ['titulo' => 'Minha rotina', 'draft_id' => $draft['draft_id']])
             ->assertCreated()->assertJsonPath('data.titulo', 'Minha rotina')->assertJsonCount(3, 'data.meals');
-        $this->postJson('/api/meal-plans/'.$plan->json('data.id').'/edit-draft')->assertOk()->assertJsonCount(3, 'data.meals');
+        $editDraft = $this->postJson('/api/meal-plans/'.$plan->json('data.id').'/edit-draft')->assertOk()->assertJsonCount(3, 'data.meals')->json('data');
+        $this->putJson('/api/meal-plans/'.$plan->json('data.id'), ['titulo' => 'Minha rotina ajustada', 'draft_id' => $editDraft['draft_id']])
+            ->assertOk()->assertJsonPath('data.titulo', 'Minha rotina ajustada')->assertJsonCount(3, 'data.meals');
         $this->assertDatabaseCount('meal_plans', 1);
         $this->assertDatabaseCount('registros', 0);
     }

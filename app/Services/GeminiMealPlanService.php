@@ -18,6 +18,27 @@ class GeminiMealPlanService
 {
     public function __construct(private readonly MealCompositionService $composition) {}
 
+    private const DAY_TOLERANCE = [
+        'caloria' => ['min' => .92, 'max' => 1.08],
+        'proteina' => ['min' => .90, 'max' => 1.25],
+        'carbo' => ['min' => .85, 'max' => 1.15],
+        'gordura' => ['min' => .85, 'max' => 1.15],
+    ];
+
+    private const MEAL_TOLERANCE = [
+        'caloria' => ['min' => .85, 'max' => 1.15],
+        'proteina' => ['min' => .80, 'max' => 1.35],
+        'carbo' => ['min' => .75, 'max' => 1.25],
+        'gordura' => ['min' => .75, 'max' => 1.25],
+    ];
+
+    private const SWAP_TOLERANCE = [
+        'caloria' => ['min' => .80, 'max' => 1.20],
+        'proteina' => ['min' => .75, 'max' => 1.40],
+        'carbo' => ['min' => .70, 'max' => 1.30],
+        'gordura' => ['min' => .70, 'max' => 1.30],
+    ];
+
     public function preview(User $user, array $preferences): MealPlanDraft
     {
         $preferences['objective'] = $user->objetivo;
@@ -69,7 +90,7 @@ class GeminiMealPlanService
         $payload['summary'] = $replacement['summary'];
         $payload['meals'] = collect($payload['meals'])->map(fn ($meal) => $meal['position'] === $position ? $replacement['meals'][0] : $meal)->values()->all();
         $payload['totals'] = $this->sum(collect($payload['meals'])->pluck('totals')->all());
-        if (! $this->withinTarget($payload['target'], $payload['totals'])) {
+        if (! $this->withinTarget($payload['target'], $payload['totals'], 'day')) {
             throw ValidationException::withMessages(['plan' => 'A reorganização não manteve a meta diária. Tente novamente.']);
         }
         $draft->update(['previous_payload' => $draft->payload, 'payload' => $payload, 'expires_at' => now()->addMinutes(config('gemini.draft_ttl_minutes'))]);
@@ -90,7 +111,11 @@ class GeminiMealPlanService
         if (! $role) {
             throw ValidationException::withMessages(['food_id' => 'Este alimento não possui papel culinário para troca.']);
         }
-        $foods = $this->candidates($draft->preferences)->filter(fn (Alimento $food) => $food->id !== $foodId && $food->planTags->contains('slug', $role))->take(40)->values();
+        $foods = $this->candidates($draft->preferences)
+            ->filter(fn (Alimento $food) => $food->id !== $foodId && $food->planTags->contains('slug', $role))
+            ->sortByDesc(fn (Alimento $food) => $this->replacementCandidateScore($food, $meal, $item))
+            ->take(40)
+            ->values();
         if ($foods->count() < 2) {
             throw ValidationException::withMessages(['food_id' => 'Não há substituições compatíveis no catálogo.']);
         }
@@ -99,20 +124,25 @@ class GeminiMealPlanService
             'candidatos' => $this->foodData($foods), 'regras' => ['Sugira entre 2 e 5 substituições para o mesmo papel culinário.', 'Mantenha a refeição coerente e as calorias/macros próximas.', 'Use somente IDs candidatos.'],
         ], $this->suggestionSchema());
         $foodById = $foods->keyBy('id');
+        $answer['suggestions'] = collect($answer['suggestions'] ?? [])
+            ->merge($foods->take(12)->map(fn (Alimento $food) => ['food_id' => $food->id, 'quantity_g' => $item['quantity'], 'reason' => 'Alternativa compatível recalculada pelo sistema.'])->all())
+            ->unique('food_id')
+            ->values()
+            ->all();
         $suggestions = collect($answer['suggestions'] ?? [])->map(function ($suggestion) use ($foodById, $meal, $foodId, $item) {
             $food = $foodById->get((int) ($suggestion['food_id'] ?? 0));
-            $quantity = (float) ($suggestion['quantity_g'] ?? 0);
-            if (! $food || $quantity < 1 || $quantity > 800) {
+            $quantity = $food ? $this->bestSingleReplacementQuantity($meal, $foodId, $food) : 0.0;
+            if (! $food || $quantity < 1 || $quantity > 800 || ! $this->replacementKeepsMealCoherent($meal, $foodId, $food)) {
                 return null;
             }
             $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'role' => $item['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
             $items = collect($meal['items'])->map(fn ($mealItem) => $mealItem['food_id'] === $foodId ? $replacement : $mealItem)->all();
             $totals = $this->sum(collect($items)->pluck('macros')->all());
 
-            return ['food_id' => $food->id, 'descricao' => $food->descricao, 'quantity' => $replacement['quantity'], 'role' => $item['role'], 'macros' => $replacement['macros'], 'reason' => Str::limit(strip_tags((string) ($suggestion['reason'] ?? 'Alternativa compatível para esta refeição.')), 160, ''), 'meal_totals' => $totals, 'delta' => $this->delta($meal['totals'], $totals), 'within_target' => $this->withinTarget($meal['target'], $totals)];
+            return ['food_id' => $food->id, 'descricao' => $food->descricao, 'quantity' => $replacement['quantity'], 'role' => $item['role'], 'macros' => $replacement['macros'], 'reason' => Str::limit(strip_tags((string) ($suggestion['reason'] ?? 'Alternativa compatível para esta refeição.')), 160, ''), 'meal_totals' => $totals, 'delta' => $this->delta($meal['totals'], $totals), 'within_target' => $this->withinTarget($meal['target'], $totals, 'swap')];
         })->filter(fn ($suggestion) => $suggestion && $suggestion['within_target'])->unique('food_id')->take(5)->values();
         if ($suggestions->isEmpty()) {
-            throw ValidationException::withMessages(['food_id' => 'A IA não encontrou uma troca que preserve a meta desta refeição.']);
+            throw ValidationException::withMessages(['food_id' => 'Não encontramos uma troca individual que mantenha esta refeição próxima da meta. Reorganize a refeição completa para buscar uma combinação mais coerente.']);
         }
 
         return $suggestions->all();
@@ -132,18 +162,19 @@ class GeminiMealPlanService
             throw ValidationException::withMessages(['food_id' => 'Alimento inválido para substituição.']);
         }
         $food = $this->candidates($draft->preferences)->firstWhere('id', $replacementFoodId);
-        if (! $food || ! $food->planTags->contains('slug', $current['role']) || $quantity < 1 || $quantity > 800) {
+        if (! $food || ! $food->planTags->contains('slug', $current['role']) || $quantity < 1 || $quantity > 800 || ! $this->replacementKeepsMealCoherent($meal, $foodId, $food)) {
             throw ValidationException::withMessages(['replacement_food_id' => 'Substituição incompatível.']);
         }
+        $quantity = $this->bestSingleReplacementQuantity($meal, $foodId, $food) ?: $quantity;
         $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'role' => $current['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
         $meal['items'] = collect($meal['items'])->map(fn ($item) => $item['food_id'] === $foodId ? $replacement : $item)->values()->all();
         $meal['totals'] = $this->sum(collect($meal['items'])->pluck('macros')->all());
-        if (! $this->withinTarget($meal['target'], $meal['totals'])) {
-            throw ValidationException::withMessages(['replacement_food_id' => 'A troca ultrapassa a margem nutricional desta refeição.']);
+        if (! $this->withinTarget($meal['target'], $meal['totals'], 'swap')) {
+            throw ValidationException::withMessages(['replacement_food_id' => 'A troca individual ficou fora da margem desta refeição. Reorganize a refeição completa para ajustar a combinação.']);
         }
         $payload['meals'][$mealIndex] = $meal;
         $payload['totals'] = $this->sum(collect($payload['meals'])->pluck('totals')->all());
-        if (! $this->withinTarget($payload['target'], $payload['totals'])) {
+        if (! $this->withinTarget($payload['target'], $payload['totals'], 'day')) {
             throw ValidationException::withMessages(['replacement_food_id' => 'A troca ultrapassa a margem nutricional do dia.']);
         }
         $draft->update(['previous_payload' => $draft->payload, 'payload' => $payload, 'expires_at' => now()->addMinutes(config('gemini.draft_ttl_minutes'))]);
@@ -171,16 +202,41 @@ class GeminiMealPlanService
             }
             $payload = $draft->payload;
             $plan = MealPlan::create(['user_id' => $user->id, 'titulo' => $title, 'style' => $payload['preferences']['style'], 'generation_provider' => $draft->provider, 'generation_model' => $draft->model, 'generation_version' => 'ai-composition-v2', 'meal_count' => $payload['preferences']['meal_count'], 'preferences' => $payload['preferences'], 'target' => $payload['target'], 'totals' => $payload['totals'], 'warning' => $payload['warning']]);
-            foreach ($payload['meals'] as $meal) {
-                $stored = $plan->meals()->create(collect($meal)->only(['position', 'descricao', 'horario', 'target', 'totals'])->all());
-                foreach ($meal['items'] as $item) {
-                    $stored->items()->create(['food_id' => $item['food_id'], 'descricao_snapshot' => $item['descricao'], 'quantity' => $item['quantity'], 'culinary_role' => $item['role'] ?? null, 'macros' => $item['macros']]);
-                }
-            }
+            $this->persistMeals($plan, $payload);
             $draft->delete();
 
             return $plan->load('meals.items');
         });
+    }
+
+    public function update(User $user, MealPlan $plan, MealPlanDraft $draft, string $title): MealPlan
+    {
+        abort_unless($plan->user_id === $user->id, 404);
+
+        return DB::transaction(function () use ($user, $plan, $draft, $title) {
+            $plan = MealPlan::query()->whereKey($plan->id)->where('user_id', $user->id)->lockForUpdate()->firstOrFail();
+            $draft = MealPlanDraft::query()->whereKey($draft->id)->where('user_id', $user->id)->lockForUpdate()->firstOrFail();
+            if ($draft->expires_at->isPast()) {
+                throw ValidationException::withMessages(['draft_id' => 'Esta prévia expirou. Gere um novo plano.']);
+            }
+            $payload = $draft->payload;
+            $plan->update(['titulo' => $title, 'style' => $payload['preferences']['style'], 'generation_provider' => $draft->provider, 'generation_model' => $draft->model, 'generation_version' => 'ai-composition-v2', 'meal_count' => $payload['preferences']['meal_count'], 'preferences' => $payload['preferences'], 'target' => $payload['target'], 'totals' => $payload['totals'], 'warning' => $payload['warning']]);
+            $plan->meals()->delete();
+            $this->persistMeals($plan, $payload);
+            $draft->delete();
+
+            return $plan->load('meals.items');
+        });
+    }
+
+    private function persistMeals(MealPlan $plan, array $payload): void
+    {
+        foreach ($payload['meals'] as $meal) {
+            $stored = $plan->meals()->create(collect($meal)->only(['position', 'descricao', 'horario', 'target', 'totals'])->all());
+            foreach ($meal['items'] as $item) {
+                $stored->items()->create(['food_id' => $item['food_id'], 'descricao_snapshot' => $item['descricao'], 'quantity' => $item['quantity'], 'culinary_role' => $item['role'] ?? null, 'macros' => $item['macros']]);
+            }
+        }
     }
 
     private function draft(User $user, array $preferences, array $payload): MealPlanDraft
@@ -222,12 +278,113 @@ class GeminiMealPlanService
         return $foods;
     }
 
+    private function replacementCandidateScore(Alimento $food, array $meal, array $current): float
+    {
+        $score = ($food->planTags->contains('slug', 'base_alimentar') ? 1000 : 0) + ($food->planTags->contains('slug', 'caseiro') ? 100 : 0);
+        $currentFamily = $this->foodFamilyFromItem($current);
+        $family = $this->composition->foodFamily($food);
+        if ($family === $currentFamily) {
+            $score += 180;
+        }
+        if ($this->isBreakfastMeal($meal)) {
+            $score += match ($family) {
+                'fruta', 'ovo', 'iogurte', 'aveia_cereal', 'tapioca', 'pao_torrada', 'queijo', 'leite_liquido' => 240,
+                'leite_po' => -700,
+                default => 0,
+            };
+        }
+
+        $quantity = $this->bestSingleReplacementQuantity($meal, (int) $current['food_id'], $food);
+        if ($quantity > 0) {
+            $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'role' => $current['role'], 'quantity' => $quantity, 'macros' => $this->foodMacros($food, $quantity)];
+            $items = collect($meal['items'])->map(fn ($item) => $item['food_id'] === $current['food_id'] ? $replacement : $item)->all();
+            $score -= $this->targetScore($meal['target'], $this->sum(collect($items)->pluck('macros')->all())) * 1000;
+        }
+
+        return $score;
+    }
+
+    private function bestSingleReplacementQuantity(array $meal, int $foodId, Alimento $food): float
+    {
+        $other = $this->macros(0, 0, 0, 0);
+        foreach ($meal['items'] as $item) {
+            if ((int) $item['food_id'] === $foodId) {
+                continue;
+            }
+            foreach ($other as $key => $value) {
+                $other[$key] = round($value + ($item['macros'][$key] ?? 0), 3);
+            }
+        }
+
+        $coefficients = $this->foodMacros($food, 1);
+        $numerator = 0.0;
+        $denominator = 0.0;
+        foreach (['caloria', 'proteina', 'carbo', 'gordura'] as $key) {
+            if (($meal['target'][$key] ?? 0) <= 0 || ($coefficients[$key] ?? 0) <= 0) {
+                continue;
+            }
+            $weight = 1 / ($meal['target'][$key] * $meal['target'][$key]);
+            $numerator += $weight * $coefficients[$key] * ($meal['target'][$key] - $other[$key]);
+            $denominator += $weight * $coefficients[$key] * $coefficients[$key];
+        }
+        if ($denominator <= 0) {
+            return 0.0;
+        }
+
+        return round(max(1.0, min(800.0, $numerator / $denominator)), 1);
+    }
+
+    private function replacementKeepsMealCoherent(array $meal, int $foodId, Alimento $replacement): bool
+    {
+        if (! $this->isBreakfastMeal($meal)) {
+            return true;
+        }
+        $families = collect($meal['items'])
+            ->filter(fn ($item) => (int) $item['food_id'] !== $foodId)
+            ->map(fn ($item) => $this->foodFamilyFromItem($item))
+            ->filter()
+            ->push($this->composition->foodFamily($replacement))
+            ->values();
+
+        $counts = array_count_values($families->all());
+        foreach (['leite_po', 'pao_torrada', 'iogurte', 'queijo', 'ovo'] as $family) {
+            if (($counts[$family] ?? 0) > 1) {
+                return false;
+            }
+        }
+
+        return ($counts['leite_po'] ?? 0) <= 1;
+    }
+
+    private function isBreakfastMeal(array $meal): bool
+    {
+        return Str::contains(Str::lower(Str::ascii((string) ($meal['descricao'] ?? ''))), 'cafe');
+    }
+
+    private function foodFamilyFromItem(array $item): ?string
+    {
+        $name = Str::lower(Str::ascii((string) ($item['descricao'] ?? '')));
+
+        return match (true) {
+            str_contains($name, 'leite') && Str::contains($name, [' po', 'po ', ' em po']) => 'leite_po',
+            str_contains($name, 'iogurte') => 'iogurte',
+            str_contains($name, 'leite') => 'leite_liquido',
+            Str::contains($name, ['ovo', 'omelete']) => 'ovo',
+            Str::contains($name, ['queijo', 'requeijao', 'ricota', 'tofu']) => 'queijo',
+            Str::contains($name, ['pao', 'torrada']) => 'pao_torrada',
+            str_contains($name, 'tapioca') => 'tapioca',
+            Str::contains($name, ['aveia', 'cereal', 'granola']) => 'aveia_cereal',
+            ($item['role'] ?? null) === 'fruta_lanche' => 'fruta',
+            default => null,
+        };
+    }
+
     private function validatedGeneration(array $target, array $preferences, Collection $foods, Collection $definitions, ?string $instruction): array
     {
         $this->assertCandidateCoverage($foods, $definitions);
         $lastException = null;
         for ($attempt = 0; $attempt < 3; $attempt++) {
-            $attemptPreferences = $attempt === 0 ? $preferences : [...$preferences, 'internal_retry' => 'A resposta anterior foi recusada porque não atingiu a meta nutricional. Escolha outros candidatos se necessário e recalcule cada quantidade usando os nutrientes por porção base. Todas as refeições precisam ficar dentro de 10% de calorias e 15% de proteínas, carboidratos e gorduras.'];
+            $attemptPreferences = $attempt === 0 ? $preferences : [...$preferences, 'internal_retry' => 'A resposta anterior foi recusada porque não respeitou a composição ou a margem nutricional. Mantenha prato_vegetal em almoço/jantar, escolha outros candidatos se necessário e recalcule cada quantidade pela porção base. O dia precisa fechar em calorias ±8%, proteína -10%/+25%, carboidratos ±15% e gorduras ±15%.'];
             try {
                 return $this->validatePlan($this->generate($target, $attemptPreferences, $foods, $definitions, $instruction), $foods, $target, $definitions, $preferences);
             } catch (ValidationException $exception) {
@@ -239,7 +396,7 @@ class GeminiMealPlanService
 
     private function generate(array $target, array $preferences, Collection $foods, Collection $definitions, ?string $instruction): array
     {
-        $context = ['papel' => 'Você monta planos alimentares brasileiros realistas. Não dê aconselhamento médico.', 'meta_do_dia' => $target, 'objetivo' => $preferences['objective'] ?? null, 'preferencias' => collect($preferences)->except(['excluded_food_ids', 'objective'])->all(), 'instrucao_de_troca' => $instruction, 'regras' => ['Use apenas IDs de candidatos por papel culinário.', 'Cada item deve trazer food_id, role e quantity_g.', 'Priorize combinações que fariam sentido juntas no cotidiano brasileiro.', 'Evite os alimentos indicados como preferência de alternativa quando houver opções equivalentes.', 'Não misture fruta, conservas, pães e queijo em almoço/jantar sem a estrutura de prato exigida.', 'Antes de responder, calcule cada porção pelos nutrientes da quantidade base e confira a meta de cada refeição.', 'Respeite os componentes obrigatórios e fique dentro de 10% de calorias e 15% de proteínas, carboidratos e gorduras por refeição.'], 'refeicoes' => $definitions->map(fn ($definition) => [...$definition, 'candidatos_por_papel' => $this->composition->candidatesByRole($foods, $definition)->map(fn ($items) => $this->foodData($items))->all()])->values()->all()];
+        $context = ['papel' => 'Você atua como nutricionista montando planos alimentares brasileiros realistas, coesos e aplicáveis no dia a dia. Não monte combinações apenas para bater macros e não dê aconselhamento médico individualizado.', 'meta_do_dia' => $target, 'objetivo' => $preferences['objective'] ?? null, 'preferencias' => collect($preferences)->except(['excluded_food_ids', 'objective'])->all(), 'instrucao_de_troca' => $instruction, 'regras' => ['Use apenas IDs de candidatos por papel culinário.', 'Cada item deve trazer food_id, role e quantity_g.', 'Cada refeição deve fazer sentido culinário, cultural e nutricionalmente.', 'No café da manhã, use combinações naturais como ovos + pão/tapioca + fruta, iogurte + fruta + aveia, pão + queijo + ovo, tapioca + proteína + fruta ou vitamina com fruta + leite/iogurte + aveia.', 'No café da manhã, não use dois tipos de leite em pó; leite em pó não deve ser escolha recorrente nem padrão para fechar macros.', 'Varie a estrutura do café da manhã entre gerações quando houver candidatos compatíveis.', 'Onívora permite vegetais, frutas, ovos, laticínios, carnes, cereais e leguminosas compatíveis; não trate onívora como restrição.', 'Ovos, frutas, iogurte, leite líquido, aveia, tapioca, pães e queijos são opções válidas de café da manhã quando aparecem como candidatos compatíveis.', 'Almoço e jantar precisam manter a estrutura de prato e incluir exatamente um item com role prato_vegetal.', 'Evite os alimentos indicados como preferência de alternativa quando houver opções equivalentes.', 'Não misture fruta, conservas, pães e queijo em almoço/jantar sem a estrutura de prato exigida.', 'Antes de responder, calcule cada porção pelos nutrientes da quantidade base e confira a meta de cada refeição.', 'Respeite os componentes obrigatórios. A refeição pode usar margem moderada; o dia precisa fechar em calorias ±8%, proteína -10%/+25%, carboidratos ±15% e gorduras ±15%.'], 'refeicoes' => $definitions->map(fn ($definition) => [...$definition, 'candidatos_por_papel' => $this->composition->candidatesByRole($foods, $definition)->map(fn ($items) => $this->foodData($items))->all()])->values()->all()];
 
         return $this->ask('plano_alimentar', $context, $this->planSchema($definitions->count()));
     }
@@ -310,7 +467,7 @@ class GeminiMealPlanService
             $meals[] = ['position' => $definition['position'], 'descricao' => $definition['descricao'], 'horario' => $definition['horario'], 'target' => $definition['target'], 'totals' => $totals, 'explanation' => Str::limit(strip_tags((string) ($aiMeal['explanation'] ?? '')), 220, ''), 'items' => $items->all()];
         }
         $totals = $this->sum(array_column($meals, 'totals'));
-        if (! $this->withinTarget($target, $totals)) {
+        if (! $this->withinTarget($target, $totals, 'day')) {
             throw ValidationException::withMessages(['ai' => 'A IA não atingiu a meta diária.']);
         }
 
@@ -412,7 +569,7 @@ class GeminiMealPlanService
                     }
                     $items = collect($selected)->map(fn (array $item) => [...$item, 'quantity' => 100.0, 'macros' => $this->foodMacros($foodById->get($item['food_id']), 100)])->values();
                     $items = $this->rebalanceItems($items, $definition['target'], $foodById);
-                    $score = $this->targetScore($definition['target'], $this->sum($items->pluck('macros')->all()));
+                    $score = $this->targetScore($definition['target'], $this->sum($items->pluck('macros')->all())) + $this->coherencePenalty($definition, $items);
                     if ($score < $bestScore) {
                         $bestScore = $score;
                         $best = $items;
@@ -427,22 +584,53 @@ class GeminiMealPlanService
             $visit(0, []);
         }
 
-        return $best && $this->withinTarget($definition['target'], $this->sum($best->pluck('macros')->all())) ? $best : null;
+        return $best && $this->withinTarget($definition['target'], $this->sum($best->pluck('macros')->all())) && $this->coherencePenalty($definition, $best) < 50 ? $best : null;
     }
 
     private function fallbackCandidates(Collection $foods, string $role): Collection
     {
         return $foods->filter(fn (Alimento $food) => $food->planTags->contains('slug', $role))
-            ->reject(fn (Alimento $food) => $role === 'cafe_base' && Str::contains(Str::lower($food->descricao), ['macarrão', 'macarrao']))
+            ->reject(fn (Alimento $food) => Str::contains(Str::lower(Str::ascii($food->descricao)), ['macarrao', 'pastel', 'maionese', 'doce', 'calda', 'xarope']))
             ->sortByDesc(function (Alimento $food) use ($role) {
+                $family = $this->composition->foodFamily($food);
+                $breakfastScore = match ($family) {
+                    'fruta', 'ovo', 'iogurte', 'aveia_cereal', 'tapioca', 'pao_torrada', 'queijo', 'leite_liquido' => 250,
+                    'leite_po' => -700,
+                    default => 0,
+                };
+
                 return match (true) {
-                    Str::contains($role, 'proteina') => (float) $food->proteina,
-                    Str::contains($role, 'base'), $role === 'fruta_lanche' => (float) $food->carbo,
+                    Str::contains($role, 'proteina') => (float) $food->proteina + $breakfastScore,
+                    Str::contains($role, 'base'), $role === 'fruta_lanche' => (float) $food->carbo + $breakfastScore,
                     $role === 'acompanhamento' => (float) $food->gordura,
                     $role === 'prato_leguminosa' => (float) $food->proteina + (float) $food->carbo,
-                    default => (float) $food->proteina + (float) $food->gordura + ((float) $food->carbo / 4),
+                    default => (float) $food->proteina + (float) $food->gordura + ((float) $food->carbo / 4) + $breakfastScore,
                 };
             })->take(8)->values();
+    }
+
+    private function coherencePenalty(array $definition, Collection $items): float
+    {
+        if (($definition['kind'] ?? null) !== 'cafe') {
+            return 0.0;
+        }
+
+        $families = $items->map(fn (array $item) => $this->foodFamilyFromItem($item))->filter()->values();
+        $counts = array_count_values($families->all());
+        $penalty = 0.0;
+        foreach (['leite_po', 'pao_torrada', 'iogurte', 'queijo', 'ovo'] as $family) {
+            if (($counts[$family] ?? 0) > 1) {
+                $penalty += 50.0;
+            }
+        }
+        if (($counts['fruta'] ?? 0) === 0) {
+            $penalty += 25.0;
+        }
+        if (($counts['leite_po'] ?? 0) > 0) {
+            $penalty += 15.0;
+        }
+
+        return $penalty;
     }
 
     private function targetScore(array $target, array $totals): float
@@ -495,7 +683,7 @@ class GeminiMealPlanService
             }
         }
 
-return $total;
+        return $total;
     }
 
     private function delta(array $before, array $after): array
@@ -503,14 +691,23 @@ return $total;
         return collect($before)->map(fn ($value, $key) => $key === 'quantidade' ? 0 : round(($after[$key] ?? 0) - $value, 1))->all();
     }
 
-    private function withinTarget(array $target, array $totals): bool
+    private function withinTarget(array $target, array $totals, string $scope = 'meal'): bool
     {
-        foreach (['caloria' => .10, 'proteina' => .15, 'carbo' => .15, 'gordura' => .15] as $key => $tolerance) {
-            if (($target[$key] ?? 0) > 0 && abs($totals[$key] - $target[$key]) / $target[$key] > $tolerance) {
+        $tolerances = match ($scope) {
+            'day' => self::DAY_TOLERANCE,
+            'swap' => self::SWAP_TOLERANCE,
+            default => self::MEAL_TOLERANCE,
+        };
+        foreach ($tolerances as $key => $tolerance) {
+            if (($target[$key] ?? 0) <= 0) {
+                continue;
+            }
+            $ratio = ($totals[$key] ?? 0) / $target[$key];
+            if ($ratio < $tolerance['min'] || $ratio > $tolerance['max']) {
                 return false;
             }
         }
 
-return true;
+        return true;
     }
 }

@@ -86,6 +86,15 @@ class MealPlanController extends Controller
         return response()->json(['data' => $this->serialize($plan), 'success' => true], 201);
     }
 
+    public function update(Request $request, MealPlan $mealPlan, GeminiMealPlanService $generator)
+    {
+        $data = $request->validate(['titulo' => ['required', 'string', 'max:120'], 'draft_id' => ['required', 'uuid']]);
+        $draft = MealPlanDraft::query()->whereKey($data['draft_id'])->where('user_id', $request->user()->id)->firstOrFail();
+        $plan = $generator->update($request->user(), $mealPlan, $draft, $data['titulo']);
+
+        return response()->json(['data' => $this->serialize($plan), 'success' => true]);
+    }
+
     public function archive(Request $request, MealPlan $mealPlan)
     {
         abort_unless($mealPlan->user_id === $request->user()->id, 404);

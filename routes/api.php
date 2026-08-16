@@ -1,21 +1,17 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RefeicaoController;
-use App\Http\Controllers\RegistroController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DietaController;
-use App\Http\Controllers\MetaDiariaController;
-use App\Http\Controllers\NutricaoRecomendadaController;
-use App\Http\Controllers\FoodController;
 use App\Http\Controllers\Admin\FoodAdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiaryEntryController;
 use App\Http\Controllers\DiaryMealController;
+use App\Http\Controllers\DietaController;
+use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MealPlanController;
 use App\Http\Controllers\MealPlanProfileController;
-
+use App\Http\Controllers\MetaDiariaController;
+use App\Http\Controllers\NutricaoRecomendadaController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
@@ -23,9 +19,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    
-    
-    
+
     Route::get('/diary/day', [DiaryEntryController::class, 'day']);
     Route::get('/diary/recent-foods', [DiaryEntryController::class, 'recentFoods']);
     Route::post('/diary/entries', [DiaryEntryController::class, 'store']);
@@ -43,7 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/registro', [DiaryEntryController::class, 'legacyStore']);
     Route::get('/registro/{entry}', [DiaryEntryController::class, 'show']);
     Route::put('/registro/{entry}', [DiaryEntryController::class, 'legacyUpdate']);
-    
+
     Route::get('/meta', [MetaDiariaController::class, 'index']);
     Route::post('/meta', [MetaDiariaController::class, 'store']);
     Route::get('/meta/{id}', [MetaDiariaController::class, 'show']);
@@ -55,8 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/recomendacao/{id}', [NutricaoRecomendadaController::class, 'show']);
     Route::put('/recomendacao/{id}', [NutricaoRecomendadaController::class, 'update']);
     Route::delete('/recomendacao/{id}', [NutricaoRecomendadaController::class, 'destroy']);
-    
-    
+
     Route::get('/users', [UserController::class, 'index']);
     Route::post('/user', [UserController::class, 'store']);
     // Rotas estáticas ANTES das paramétricas para evitar conflito de match
@@ -66,10 +59,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/{id}', [UserController::class, 'show']);
     Route::put('/atualizar-user/{id}', [UserController::class, 'update']);
     Route::put('/user/{id}', [UserController::class, 'update']);
-    
+
     Route::delete('/registro/{entry}', [DiaryEntryController::class, 'destroy']);
-    
-    
+
     Route::get('/dieta/{id}', [DietaController::class, 'show']);
     Route::delete('/dieta/{id}', [DietaController::class, 'destroy']);
     Route::put('/dieta/{id}', [DietaController::class, 'update']);
@@ -88,9 +80,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/meal-plans/preview/meal/{position}/item/{foodId}/replace', [MealPlanController::class, 'replaceItem']);
     Route::post('/meal-plans/{mealPlan}/edit-draft', [MealPlanController::class, 'editDraft']);
     Route::post('/meal-plans', [MealPlanController::class, 'store']);
+    Route::put('/meal-plans/{mealPlan}', [MealPlanController::class, 'update']);
     Route::post('/meal-plans/{mealPlan}/archive', [MealPlanController::class, 'archive']);
-    
-    
+
     Route::get('/foods', [FoodController::class, 'index']);
     Route::get('/foods/groups', [FoodController::class, 'groups']);
     Route::get('/foods/{food}', [FoodController::class, 'show']);
@@ -114,8 +106,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/food-images/{image}/reject', [FoodAdminController::class, 'rejectImage']);
         Route::delete('/foods/{food}/image', [FoodAdminController::class, 'removeImage']);
     });
-    
-    
+
     Route::get('/refeicao', [DiaryMealController::class, 'index']);
     Route::post('/refeicao', [DiaryMealController::class, 'store']);
     Route::get('/refeicao/{meal}', [DiaryMealController::class, 'show']);
