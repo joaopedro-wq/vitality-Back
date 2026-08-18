@@ -11,6 +11,9 @@ class Alimento extends Model
 
     protected $fillable = [
         'descricao',
+        'nome_exibicao',
+        'detalhe_exibicao',
+        'nome_exibicao_normalizado',
         'proteina',
         'gordura',
         'caloria',
@@ -21,6 +24,7 @@ class Alimento extends Model
         'source_reference',
         'grupo',
         'grupo_normalizado',
+        'grupo_exibicao',
         'illustration_key',
         'nome_normalizado',
         'status',
@@ -30,6 +34,40 @@ class Alimento extends Model
         'source_checksum',
 
     ];
+
+    /**
+     * Nome amigável para exibição (ex. "Abacate"). Fonte única de verdade
+     * usada por toda a API — busca, diário, plano alimentar, troca e
+     * favoritos — em vez de cada tela montar seu próprio texto a partir de
+     * `descricao` (o nome técnico original, ex. "Abacate, cru", preservado
+     * intocado para rastreabilidade e matching interno). Cai para
+     * `descricao` enquanto o backfill (`foods:generate-display-names` /
+     * `foods:apply-display-names`) não roda para este alimento.
+     */
+    public function getNomeExibicaoAttribute(): string
+    {
+        return ($this->attributes['nome_exibicao'] ?? null) ?: $this->descricao;
+    }
+
+    /**
+     * Complemento do nome amigável (preparo, corte, estado), ex. "cru",
+     * "congelado, assado". Nulo quando o nome principal já é
+     * autoexplicativo.
+     */
+    public function getDetalheExibicaoAttribute(): ?string
+    {
+        return ($this->attributes['detalhe_exibicao'] ?? null) ?: null;
+    }
+
+    /**
+     * Categoria amigável e granular (ex. "Peixes e frutos do mar"). Cai
+     * para `grupo_normalizado` (categoria mais ampla, já usada pelos
+     * filtros existentes) enquanto o backfill não roda.
+     */
+    public function getGrupoExibicaoAttribute(): string
+    {
+        return ($this->attributes['grupo_exibicao'] ?? null) ?: ($this->grupo_normalizado ?: 'Outros');
+    }
 
 
 

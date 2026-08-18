@@ -119,6 +119,8 @@ class DiaryEntryService
             $pivot[(int) $foodId] = [
                 'qtd' => $quantity,
                 'descricao_snapshot' => $food->descricao,
+                'nome_exibicao_snapshot' => $food->nome_exibicao,
+                'detalhe_exibicao_snapshot' => $food->detalhe_exibicao,
                 'qtd_base_snapshot' => $food->qtd,
                 'proteina_snapshot' => $food->proteina,
                 'gordura_snapshot' => $food->gordura,

@@ -39,7 +39,9 @@ class DiaryEntryResource extends JsonResource
 
             return [
                 'food_id' => $food->id,
-                'descricao' => $pivot->descricao_snapshot ?? $food->descricao,
+                'descricao' => $pivot->nome_exibicao_snapshot ?? $food->nome_exibicao,
+                'detalhe_exibicao' => $pivot->detalhe_exibicao_snapshot ?? $food->detalhe_exibicao,
+                'descricao_original' => $pivot->descricao_snapshot ?? $food->descricao,
                 'illustration_key' => $food->illustration_key,
                 'image_url' => $food->relationLoaded('publishedImage') ? $food->publishedImage?->url() : null,
                 'quantity' => round($quantity, 3),

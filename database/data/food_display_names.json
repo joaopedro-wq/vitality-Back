@@ -1,0 +1,5762 @@
+{
+    "4": {
+        "descricao_original": "Arroz, integral, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Arroz integral",
+        "detalhe_exibicao": "cozido"
+    },
+    "5": {
+        "descricao_original": "Arroz, integral, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Arroz integral",
+        "detalhe_exibicao": "cru"
+    },
+    "6": {
+        "descricao_original": "Arroz, tipo 1, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Arroz tipo 1",
+        "detalhe_exibicao": "cozido"
+    },
+    "7": {
+        "descricao_original": "Arroz, tipo 1, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Arroz tipo 1",
+        "detalhe_exibicao": "cru"
+    },
+    "8": {
+        "descricao_original": "Arroz, tipo 2, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Arroz tipo 2",
+        "detalhe_exibicao": "cozido"
+    },
+    "9": {
+        "descricao_original": "Arroz, tipo 2, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Arroz tipo 2",
+        "detalhe_exibicao": "cru"
+    },
+    "10": {
+        "descricao_original": "Aveia, flocos, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Aveia em flocos",
+        "detalhe_exibicao": "crua"
+    },
+    "11": {
+        "descricao_original": "Biscoito, doce, maisena",
+        "fonte": "taco",
+        "nome_exibicao": "Biscoito doce maisena",
+        "detalhe_exibicao": null
+    },
+    "12": {
+        "descricao_original": "Biscoito, doce, recheado com chocolate",
+        "fonte": "taco",
+        "nome_exibicao": "Biscoito doce recheado com chocolate",
+        "detalhe_exibicao": null
+    },
+    "13": {
+        "descricao_original": "Biscoito, doce, recheado com morango",
+        "fonte": "taco",
+        "nome_exibicao": "Biscoito doce recheado com morango",
+        "detalhe_exibicao": null
+    },
+    "14": {
+        "descricao_original": "Biscoito, doce, wafer, recheado de chocolate",
+        "fonte": "taco",
+        "nome_exibicao": "Biscoito wafer recheado de chocolate",
+        "detalhe_exibicao": "doce"
+    },
+    "15": {
+        "descricao_original": "Biscoito, doce, wafer, recheado de morango",
+        "fonte": "taco",
+        "nome_exibicao": "Biscoito wafer recheado de morango",
+        "detalhe_exibicao": "doce"
+    },
+    "16": {
+        "descricao_original": "Biscoito, salgado, cream cracker",
+        "fonte": "taco",
+        "nome_exibicao": "Biscoito cream cracker",
+        "detalhe_exibicao": "salgado"
+    },
+    "17": {
+        "descricao_original": "Bolo, mistura para",
+        "fonte": "taco",
+        "nome_exibicao": "Mistura para bolo",
+        "detalhe_exibicao": null
+    },
+    "18": {
+        "descricao_original": "Bolo, pronto, aipim",
+        "fonte": "taco",
+        "nome_exibicao": "Bolo de aipim",
+        "detalhe_exibicao": "pronto"
+    },
+    "19": {
+        "descricao_original": "Bolo, pronto, chocolate",
+        "fonte": "taco",
+        "nome_exibicao": "Bolo de chocolate",
+        "detalhe_exibicao": "pronto"
+    },
+    "20": {
+        "descricao_original": "Bolo, pronto, coco",
+        "fonte": "taco",
+        "nome_exibicao": "Bolo de coco",
+        "detalhe_exibicao": "pronto"
+    },
+    "21": {
+        "descricao_original": "Bolo, pronto, milho",
+        "fonte": "taco",
+        "nome_exibicao": "Bolo de milho",
+        "detalhe_exibicao": "pronto"
+    },
+    "22": {
+        "descricao_original": "Canjica, branca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Canjica branca",
+        "detalhe_exibicao": "crua"
+    },
+    "23": {
+        "descricao_original": "Canjica, com leite integral",
+        "fonte": "taco",
+        "nome_exibicao": "Canjica com leite integral",
+        "detalhe_exibicao": null
+    },
+    "24": {
+        "descricao_original": "Cereais, milho, flocos, com sal",
+        "fonte": "taco",
+        "nome_exibicao": "Flocos de milho",
+        "detalhe_exibicao": "com sal"
+    },
+    "25": {
+        "descricao_original": "Cereais, milho, flocos, sem sal",
+        "fonte": "taco",
+        "nome_exibicao": "Flocos de milho",
+        "detalhe_exibicao": "sem sal"
+    },
+    "26": {
+        "descricao_original": "Cereais, mingau, milho, infantil",
+        "fonte": "taco",
+        "nome_exibicao": "Mingau de milho infantil",
+        "detalhe_exibicao": null
+    },
+    "27": {
+        "descricao_original": "Cereais, mistura para vitamina, trigo, cevada e aveia",
+        "fonte": "taco",
+        "nome_exibicao": "Mistura para vitamina de trigo, cevada e aveia",
+        "detalhe_exibicao": null
+    },
+    "28": {
+        "descricao_original": "Cereal matinal, milho",
+        "fonte": "taco",
+        "nome_exibicao": "Cereal matinal de milho",
+        "detalhe_exibicao": null
+    },
+    "29": {
+        "descricao_original": "Cereal matinal, milho, açúcar",
+        "fonte": "taco",
+        "nome_exibicao": "Cereal matinal de milho com açúcar",
+        "detalhe_exibicao": null
+    },
+    "30": {
+        "descricao_original": "Creme de arroz, pó",
+        "fonte": "taco",
+        "nome_exibicao": "Creme de arroz",
+        "detalhe_exibicao": "em pó"
+    },
+    "31": {
+        "descricao_original": "Creme de milho, pó",
+        "fonte": "taco",
+        "nome_exibicao": "Creme de milho",
+        "detalhe_exibicao": "em pó"
+    },
+    "32": {
+        "descricao_original": "Curau, milho verde",
+        "fonte": "taco",
+        "nome_exibicao": "Curau de milho verde",
+        "detalhe_exibicao": null
+    },
+    "33": {
+        "descricao_original": "Curau, milho verde, mistura para",
+        "fonte": "taco",
+        "nome_exibicao": "Mistura para curau de milho verde",
+        "detalhe_exibicao": null
+    },
+    "34": {
+        "descricao_original": "Farinha, de arroz, enriquecida",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha de arroz enriquecida",
+        "detalhe_exibicao": null
+    },
+    "35": {
+        "descricao_original": "Farinha, de centeio, integral",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha de centeio integral",
+        "detalhe_exibicao": null
+    },
+    "36": {
+        "descricao_original": "Farinha, de milho, amarela",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha de milho amarela",
+        "detalhe_exibicao": null
+    },
+    "37": {
+        "descricao_original": "Farinha, de rosca",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha de rosca",
+        "detalhe_exibicao": null
+    },
+    "38": {
+        "descricao_original": "Farinha, de trigo",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha de trigo",
+        "detalhe_exibicao": null
+    },
+    "39": {
+        "descricao_original": "Farinha, láctea, de cereais",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha láctea de cereais",
+        "detalhe_exibicao": null
+    },
+    "40": {
+        "descricao_original": "Lasanha, massa fresca, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Massa de lasanha fresca",
+        "detalhe_exibicao": "cozida"
+    },
+    "41": {
+        "descricao_original": "Lasanha, massa fresca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Massa de lasanha fresca",
+        "detalhe_exibicao": "crua"
+    },
+    "42": {
+        "descricao_original": "Macarrão, instantâneo",
+        "fonte": "taco",
+        "nome_exibicao": "Macarrão instantâneo",
+        "detalhe_exibicao": null
+    },
+    "43": {
+        "descricao_original": "Macarrão, trigo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Macarrão de trigo",
+        "detalhe_exibicao": "cru"
+    },
+    "44": {
+        "descricao_original": "Macarrão, trigo, cru, com ovos",
+        "fonte": "taco",
+        "nome_exibicao": "Macarrão de trigo com ovos",
+        "detalhe_exibicao": "cru"
+    },
+    "45": {
+        "descricao_original": "Milho, amido, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Amido de milho",
+        "detalhe_exibicao": "cru"
+    },
+    "46": {
+        "descricao_original": "Milho, fubá, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Fubá de milho",
+        "detalhe_exibicao": "cru"
+    },
+    "47": {
+        "descricao_original": "Milho, verde, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Milho verde",
+        "detalhe_exibicao": "cru"
+    },
+    "48": {
+        "descricao_original": "Milho, verde, enlatado, drenado",
+        "fonte": "taco",
+        "nome_exibicao": "Milho verde enlatado",
+        "detalhe_exibicao": "drenado"
+    },
+    "49": {
+        "descricao_original": "Mingau tradicional, pó",
+        "fonte": "taco",
+        "nome_exibicao": "Mingau tradicional em pó",
+        "detalhe_exibicao": null
+    },
+    "50": {
+        "descricao_original": "Pamonha, barra para cozimento, pré-cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Pamonha em barra para cozimento",
+        "detalhe_exibicao": "pré-cozida"
+    },
+    "51": {
+        "descricao_original": "Pão, aveia, forma",
+        "fonte": "taco",
+        "nome_exibicao": "Pão de forma de aveia",
+        "detalhe_exibicao": null
+    },
+    "52": {
+        "descricao_original": "Pão, de soja",
+        "fonte": "taco",
+        "nome_exibicao": "Pão de soja",
+        "detalhe_exibicao": null
+    },
+    "53": {
+        "descricao_original": "Pão, glúten, forma",
+        "fonte": "taco",
+        "nome_exibicao": "Pão de forma de glúten",
+        "detalhe_exibicao": null
+    },
+    "54": {
+        "descricao_original": "Pão, milho, forma",
+        "fonte": "taco",
+        "nome_exibicao": "Pão de forma de milho",
+        "detalhe_exibicao": null
+    },
+    "55": {
+        "descricao_original": "Pão, trigo, forma, integral",
+        "fonte": "taco",
+        "nome_exibicao": "Pão de forma integral",
+        "detalhe_exibicao": null
+    },
+    "56": {
+        "descricao_original": "Pão, trigo, francês",
+        "fonte": "taco",
+        "nome_exibicao": "Pão francês de trigo",
+        "detalhe_exibicao": null
+    },
+    "57": {
+        "descricao_original": "Pão, trigo, sovado",
+        "fonte": "taco",
+        "nome_exibicao": "Pão sovado de trigo",
+        "detalhe_exibicao": null
+    },
+    "58": {
+        "descricao_original": "Pastel, de carne, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pastel de carne",
+        "detalhe_exibicao": "cru"
+    },
+    "59": {
+        "descricao_original": "Pastel, de carne, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Pastel de carne",
+        "detalhe_exibicao": "frito"
+    },
+    "60": {
+        "descricao_original": "Pastel, de queijo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pastel de queijo",
+        "detalhe_exibicao": "cru"
+    },
+    "61": {
+        "descricao_original": "Pastel, de queijo, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Pastel de queijo",
+        "detalhe_exibicao": "frito"
+    },
+    "62": {
+        "descricao_original": "Pastel, massa, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Massa de pastel",
+        "detalhe_exibicao": "crua"
+    },
+    "63": {
+        "descricao_original": "Pastel, massa, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Massa de pastel",
+        "detalhe_exibicao": "frita"
+    },
+    "64": {
+        "descricao_original": "Pipoca, com óleo de soja, sem sal",
+        "fonte": "taco",
+        "nome_exibicao": "Pipoca",
+        "detalhe_exibicao": "com óleo de soja, sem sal"
+    },
+    "65": {
+        "descricao_original": "Polenta, pré-cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Polenta",
+        "detalhe_exibicao": "pré-cozida"
+    },
+    "66": {
+        "descricao_original": "Torrada, pão francês",
+        "fonte": "taco",
+        "nome_exibicao": "Torrada de pão francês",
+        "detalhe_exibicao": null
+    },
+    "67": {
+        "descricao_original": "Abóbora, cabotian, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Abóbora cabotian",
+        "detalhe_exibicao": "cozida"
+    },
+    "68": {
+        "descricao_original": "Abóbora, cabotian, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Abóbora cabotian",
+        "detalhe_exibicao": "crua"
+    },
+    "69": {
+        "descricao_original": "Abóbora, menina brasileira, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Abóbora menina brasileira",
+        "detalhe_exibicao": "crua"
+    },
+    "70": {
+        "descricao_original": "Abóbora, moranga, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Abóbora moranga",
+        "detalhe_exibicao": "crua"
+    },
+    "71": {
+        "descricao_original": "Abóbora, moranga, refogada",
+        "fonte": "taco",
+        "nome_exibicao": "Abóbora moranga",
+        "detalhe_exibicao": "refogada"
+    },
+    "72": {
+        "descricao_original": "Abóbora, pescoço, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Abóbora pescoço",
+        "detalhe_exibicao": "crua"
+    },
+    "73": {
+        "descricao_original": "Abobrinha, italiana, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Abobrinha italiana",
+        "detalhe_exibicao": "cozida"
+    },
+    "74": {
+        "descricao_original": "Abobrinha, italiana, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Abobrinha italiana",
+        "detalhe_exibicao": "crua"
+    },
+    "75": {
+        "descricao_original": "Abobrinha, italiana, refogada",
+        "fonte": "taco",
+        "nome_exibicao": "Abobrinha italiana",
+        "detalhe_exibicao": "refogada"
+    },
+    "76": {
+        "descricao_original": "Abobrinha, paulista, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Abobrinha paulista",
+        "detalhe_exibicao": "crua"
+    },
+    "77": {
+        "descricao_original": "Acelga, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Acelga",
+        "detalhe_exibicao": "crua"
+    },
+    "78": {
+        "descricao_original": "Agrião, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Agrião",
+        "detalhe_exibicao": "cru"
+    },
+    "79": {
+        "descricao_original": "Aipo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Aipo",
+        "detalhe_exibicao": "cru"
+    },
+    "80": {
+        "descricao_original": "Alface, americana, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Alface americana",
+        "detalhe_exibicao": "crua"
+    },
+    "81": {
+        "descricao_original": "Alface, crespa, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Alface crespa",
+        "detalhe_exibicao": "crua"
+    },
+    "82": {
+        "descricao_original": "Alface, lisa, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Alface lisa",
+        "detalhe_exibicao": "crua"
+    },
+    "83": {
+        "descricao_original": "Alface, roxa, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Alface roxa",
+        "detalhe_exibicao": "crua"
+    },
+    "84": {
+        "descricao_original": "Alfavaca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Alfavaca",
+        "detalhe_exibicao": "crua"
+    },
+    "85": {
+        "descricao_original": "Alho, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Alho",
+        "detalhe_exibicao": "cru"
+    },
+    "86": {
+        "descricao_original": "Alho-poró, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Alho-poró",
+        "detalhe_exibicao": "cru"
+    },
+    "87": {
+        "descricao_original": "Almeirão, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Almeirão",
+        "detalhe_exibicao": "cru"
+    },
+    "88": {
+        "descricao_original": "Almeirão, refogado",
+        "fonte": "taco",
+        "nome_exibicao": "Almeirão",
+        "detalhe_exibicao": "refogado"
+    },
+    "89": {
+        "descricao_original": "Batata, baroa, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Batata-baroa",
+        "detalhe_exibicao": "cozida"
+    },
+    "90": {
+        "descricao_original": "Batata, baroa, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Batata-baroa",
+        "detalhe_exibicao": "crua"
+    },
+    "91": {
+        "descricao_original": "Batata, doce, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Batata-doce",
+        "detalhe_exibicao": "cozida"
+    },
+    "92": {
+        "descricao_original": "Batata, doce, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Batata-doce",
+        "detalhe_exibicao": "crua"
+    },
+    "93": {
+        "descricao_original": "Batata, frita, tipo chips, industrializada",
+        "fonte": "taco",
+        "nome_exibicao": "Batata frita tipo chips",
+        "detalhe_exibicao": "industrializada"
+    },
+    "94": {
+        "descricao_original": "Batata, inglesa, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Batata inglesa",
+        "detalhe_exibicao": "cozida"
+    },
+    "95": {
+        "descricao_original": "Batata, inglesa, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Batata inglesa",
+        "detalhe_exibicao": "crua"
+    },
+    "96": {
+        "descricao_original": "Batata, inglesa, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Batata inglesa frita",
+        "detalhe_exibicao": null
+    },
+    "97": {
+        "descricao_original": "Batata, inglesa, sauté",
+        "fonte": "taco",
+        "nome_exibicao": "Batata inglesa sauté",
+        "detalhe_exibicao": null
+    },
+    "98": {
+        "descricao_original": "Berinjela, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Berinjela",
+        "detalhe_exibicao": "cozida"
+    },
+    "99": {
+        "descricao_original": "Berinjela, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Berinjela",
+        "detalhe_exibicao": "crua"
+    },
+    "100": {
+        "descricao_original": "Beterraba, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Beterraba",
+        "detalhe_exibicao": "cozida"
+    },
+    "101": {
+        "descricao_original": "Beterraba, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Beterraba",
+        "detalhe_exibicao": "crua"
+    },
+    "102": {
+        "descricao_original": "Biscoito, polvilho doce",
+        "fonte": "taco",
+        "nome_exibicao": "Biscoito de polvilho doce",
+        "detalhe_exibicao": null
+    },
+    "103": {
+        "descricao_original": "Brócolis, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Brócolis",
+        "detalhe_exibicao": "cozido"
+    },
+    "104": {
+        "descricao_original": "Brócolis, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Brócolis",
+        "detalhe_exibicao": "cru"
+    },
+    "105": {
+        "descricao_original": "Cará, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Cará",
+        "detalhe_exibicao": "cozido"
+    },
+    "106": {
+        "descricao_original": "Cará, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Cará",
+        "detalhe_exibicao": "cru"
+    },
+    "107": {
+        "descricao_original": "Caruru, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Caruru",
+        "detalhe_exibicao": "cru"
+    },
+    "108": {
+        "descricao_original": "Catalonha, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Catalonha",
+        "detalhe_exibicao": "crua"
+    },
+    "109": {
+        "descricao_original": "Catalonha, refogada",
+        "fonte": "taco",
+        "nome_exibicao": "Catalonha",
+        "detalhe_exibicao": "refogada"
+    },
+    "110": {
+        "descricao_original": "Cebola, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Cebola",
+        "detalhe_exibicao": "crua"
+    },
+    "111": {
+        "descricao_original": "Cebolinha, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Cebolinha",
+        "detalhe_exibicao": "crua"
+    },
+    "112": {
+        "descricao_original": "Cenoura, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Cenoura",
+        "detalhe_exibicao": "cozida"
+    },
+    "113": {
+        "descricao_original": "Cenoura, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Cenoura",
+        "detalhe_exibicao": "crua"
+    },
+    "114": {
+        "descricao_original": "Chicória, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Chicória",
+        "detalhe_exibicao": "crua"
+    },
+    "115": {
+        "descricao_original": "Chuchu, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Chuchu",
+        "detalhe_exibicao": "cozido"
+    },
+    "116": {
+        "descricao_original": "Chuchu, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Chuchu",
+        "detalhe_exibicao": "cru"
+    },
+    "117": {
+        "descricao_original": "Coentro, folhas desidratadas",
+        "fonte": "taco",
+        "nome_exibicao": "Coentro",
+        "detalhe_exibicao": "folhas desidratadas"
+    },
+    "118": {
+        "descricao_original": "Couve, manteiga, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Couve-manteiga",
+        "detalhe_exibicao": "crua"
+    },
+    "119": {
+        "descricao_original": "Couve, manteiga, refogada",
+        "fonte": "taco",
+        "nome_exibicao": "Couve-manteiga",
+        "detalhe_exibicao": "refogada"
+    },
+    "120": {
+        "descricao_original": "Couve-flor, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Couve-flor",
+        "detalhe_exibicao": "crua"
+    },
+    "121": {
+        "descricao_original": "Couve-flor, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Couve-flor",
+        "detalhe_exibicao": "cozida"
+    },
+    "122": {
+        "descricao_original": "Espinafre, Nova Zelândia, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Espinafre Nova Zelândia",
+        "detalhe_exibicao": "cru"
+    },
+    "123": {
+        "descricao_original": "Espinafre, Nova Zelândia, refogado",
+        "fonte": "taco",
+        "nome_exibicao": "Espinafre Nova Zelândia",
+        "detalhe_exibicao": "refogado"
+    },
+    "124": {
+        "descricao_original": "Farinha, de mandioca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha de mandioca",
+        "detalhe_exibicao": "crua"
+    },
+    "125": {
+        "descricao_original": "Farinha, de mandioca, torrada",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha de mandioca",
+        "detalhe_exibicao": "torrada"
+    },
+    "126": {
+        "descricao_original": "Farinha, de puba",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha de puba",
+        "detalhe_exibicao": null
+    },
+    "127": {
+        "descricao_original": "Fécula, de mandioca",
+        "fonte": "taco",
+        "nome_exibicao": "Fécula de mandioca",
+        "detalhe_exibicao": null
+    },
+    "128": {
+        "descricao_original": "Feijão, broto, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Broto de feijão",
+        "detalhe_exibicao": "cru"
+    },
+    "129": {
+        "descricao_original": "Inhame, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Inhame",
+        "detalhe_exibicao": "cru"
+    },
+    "130": {
+        "descricao_original": "Jiló, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Jiló",
+        "detalhe_exibicao": "cru"
+    },
+    "131": {
+        "descricao_original": "Jurubeba, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Jurubeba",
+        "detalhe_exibicao": "crua"
+    },
+    "132": {
+        "descricao_original": "Mandioca, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Mandioca",
+        "detalhe_exibicao": "cozida"
+    },
+    "133": {
+        "descricao_original": "Mandioca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Mandioca",
+        "detalhe_exibicao": "crua"
+    },
+    "134": {
+        "descricao_original": "Mandioca, farofa, temperada",
+        "fonte": "taco",
+        "nome_exibicao": "Farofa de mandioca",
+        "detalhe_exibicao": "temperada"
+    },
+    "135": {
+        "descricao_original": "Mandioca, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Mandioca",
+        "detalhe_exibicao": "frita"
+    },
+    "136": {
+        "descricao_original": "Manjericão, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Manjericão",
+        "detalhe_exibicao": "cru"
+    },
+    "137": {
+        "descricao_original": "Maxixe, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Maxixe",
+        "detalhe_exibicao": "cru"
+    },
+    "138": {
+        "descricao_original": "Mostarda, folha, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Folha de mostarda",
+        "detalhe_exibicao": "crua"
+    },
+    "139": {
+        "descricao_original": "Nhoque, batata, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Nhoque de batata",
+        "detalhe_exibicao": "cozido"
+    },
+    "140": {
+        "descricao_original": "Nabo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Nabo",
+        "detalhe_exibicao": "cru"
+    },
+    "141": {
+        "descricao_original": "Palmito, juçara, em conserva",
+        "fonte": "taco",
+        "nome_exibicao": "Palmito juçara",
+        "detalhe_exibicao": "em conserva"
+    },
+    "142": {
+        "descricao_original": "Palmito, pupunha, em conserva",
+        "fonte": "taco",
+        "nome_exibicao": "Palmito pupunha",
+        "detalhe_exibicao": "em conserva"
+    },
+    "143": {
+        "descricao_original": "Pão, de queijo, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Pão de queijo",
+        "detalhe_exibicao": "assado"
+    },
+    "144": {
+        "descricao_original": "Pão, de queijo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pão de queijo",
+        "detalhe_exibicao": "cru"
+    },
+    "145": {
+        "descricao_original": "Pepino, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pepino",
+        "detalhe_exibicao": "cru"
+    },
+    "146": {
+        "descricao_original": "Pimentão, amarelo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pimentão amarelo",
+        "detalhe_exibicao": "cru"
+    },
+    "147": {
+        "descricao_original": "Pimentão, verde, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pimentão verde",
+        "detalhe_exibicao": "cru"
+    },
+    "148": {
+        "descricao_original": "Pimentão, vermelho, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pimentão vermelho",
+        "detalhe_exibicao": "cru"
+    },
+    "149": {
+        "descricao_original": "Polvilho, doce",
+        "fonte": "taco",
+        "nome_exibicao": "Polvilho doce",
+        "detalhe_exibicao": null
+    },
+    "150": {
+        "descricao_original": "Quiabo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Quiabo",
+        "detalhe_exibicao": "cru"
+    },
+    "151": {
+        "descricao_original": "Rabanete, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Rabanete",
+        "detalhe_exibicao": "cru"
+    },
+    "152": {
+        "descricao_original": "Repolho, branco, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Repolho branco",
+        "detalhe_exibicao": "cru"
+    },
+    "153": {
+        "descricao_original": "Repolho, roxo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Repolho roxo",
+        "detalhe_exibicao": "cru"
+    },
+    "154": {
+        "descricao_original": "Repolho, roxo, refogado",
+        "fonte": "taco",
+        "nome_exibicao": "Repolho roxo",
+        "detalhe_exibicao": "refogado"
+    },
+    "155": {
+        "descricao_original": "Rúcula, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Rúcula",
+        "detalhe_exibicao": "crua"
+    },
+    "156": {
+        "descricao_original": "Salsa, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Salsa",
+        "detalhe_exibicao": "crua"
+    },
+    "157": {
+        "descricao_original": "Seleta de legumes, enlatada",
+        "fonte": "taco",
+        "nome_exibicao": "Seleta de legumes",
+        "detalhe_exibicao": "enlatada"
+    },
+    "158": {
+        "descricao_original": "Serralha, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Serralha",
+        "detalhe_exibicao": "crua"
+    },
+    "159": {
+        "descricao_original": "Taioba, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Taioba",
+        "detalhe_exibicao": "crua"
+    },
+    "160": {
+        "descricao_original": "Tomate, com semente, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Tomate",
+        "detalhe_exibicao": "com semente, cru"
+    },
+    "161": {
+        "descricao_original": "Tomate, extrato",
+        "fonte": "taco",
+        "nome_exibicao": "Extrato de tomate",
+        "detalhe_exibicao": null
+    },
+    "162": {
+        "descricao_original": "Tomate, molho industrializado",
+        "fonte": "taco",
+        "nome_exibicao": "Molho de tomate",
+        "detalhe_exibicao": "industrializado"
+    },
+    "163": {
+        "descricao_original": "Tomate, purê",
+        "fonte": "taco",
+        "nome_exibicao": "Purê de tomate",
+        "detalhe_exibicao": null
+    },
+    "164": {
+        "descricao_original": "Tomate, salada",
+        "fonte": "taco",
+        "nome_exibicao": "Tomate",
+        "detalhe_exibicao": "salada"
+    },
+    "165": {
+        "descricao_original": "Vagem, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Vagem",
+        "detalhe_exibicao": "crua"
+    },
+    "166": {
+        "descricao_original": "Abacate, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Abacate",
+        "detalhe_exibicao": "cru"
+    },
+    "167": {
+        "descricao_original": "Abacaxi, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Abacaxi",
+        "detalhe_exibicao": "cru"
+    },
+    "168": {
+        "descricao_original": "Abacaxi, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de abacaxi",
+        "detalhe_exibicao": "congelada"
+    },
+    "169": {
+        "descricao_original": "Abiu, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Abiu",
+        "detalhe_exibicao": "cru"
+    },
+    "170": {
+        "descricao_original": "Açaí, polpa, com xarope de guaraná e glucose",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de açaí",
+        "detalhe_exibicao": "com xarope de guaraná e glucose"
+    },
+    "171": {
+        "descricao_original": "Açaí, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de açaí",
+        "detalhe_exibicao": "congelada"
+    },
+    "172": {
+        "descricao_original": "Acerola, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Acerola",
+        "detalhe_exibicao": "crua"
+    },
+    "173": {
+        "descricao_original": "Acerola, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de acerola",
+        "detalhe_exibicao": "congelada"
+    },
+    "174": {
+        "descricao_original": "Ameixa, calda, enlatada",
+        "fonte": "taco",
+        "nome_exibicao": "Ameixa em calda",
+        "detalhe_exibicao": "enlatada"
+    },
+    "175": {
+        "descricao_original": "Ameixa, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Ameixa",
+        "detalhe_exibicao": "crua"
+    },
+    "176": {
+        "descricao_original": "Ameixa, em calda, enlatada, drenada",
+        "fonte": "taco",
+        "nome_exibicao": "Ameixa em calda",
+        "detalhe_exibicao": "enlatada, drenada"
+    },
+    "177": {
+        "descricao_original": "Atemóia, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Atemóia",
+        "detalhe_exibicao": "crua"
+    },
+    "178": {
+        "descricao_original": "Banana, da terra, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Banana-da-terra",
+        "detalhe_exibicao": "crua"
+    },
+    "179": {
+        "descricao_original": "Banana, doce em barra",
+        "fonte": "taco",
+        "nome_exibicao": "Doce de banana em barra",
+        "detalhe_exibicao": null
+    },
+    "180": {
+        "descricao_original": "Banana, figo, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Banana-figo",
+        "detalhe_exibicao": "crua"
+    },
+    "181": {
+        "descricao_original": "Banana, maçã, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Banana-maçã",
+        "detalhe_exibicao": "crua"
+    },
+    "182": {
+        "descricao_original": "Banana, nanica, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Banana-nanica",
+        "detalhe_exibicao": "crua"
+    },
+    "183": {
+        "descricao_original": "Banana, ouro, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Banana-ouro",
+        "detalhe_exibicao": "crua"
+    },
+    "184": {
+        "descricao_original": "Banana, pacova, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Banana-pacova",
+        "detalhe_exibicao": "crua"
+    },
+    "185": {
+        "descricao_original": "Banana, prata, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Banana-prata",
+        "detalhe_exibicao": "crua"
+    },
+    "186": {
+        "descricao_original": "Cacau, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Cacau",
+        "detalhe_exibicao": "cru"
+    },
+    "187": {
+        "descricao_original": "Cajá-Manga, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Cajá-manga",
+        "detalhe_exibicao": "cru"
+    },
+    "188": {
+        "descricao_original": "Cajá, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de cajá",
+        "detalhe_exibicao": "congelada"
+    },
+    "189": {
+        "descricao_original": "Caju, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Caju",
+        "detalhe_exibicao": "cru"
+    },
+    "190": {
+        "descricao_original": "Caju, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de caju",
+        "detalhe_exibicao": "congelada"
+    },
+    "191": {
+        "descricao_original": "Caju, suco concentrado, envasado",
+        "fonte": "taco",
+        "nome_exibicao": "Suco concentrado de caju",
+        "detalhe_exibicao": "envasado"
+    },
+    "192": {
+        "descricao_original": "Caqui, chocolate, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Caqui chocolate",
+        "detalhe_exibicao": "cru"
+    },
+    "193": {
+        "descricao_original": "Carambola, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Carambola",
+        "detalhe_exibicao": "crua"
+    },
+    "194": {
+        "descricao_original": "Ciriguela, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Ciriguela",
+        "detalhe_exibicao": "crua"
+    },
+    "195": {
+        "descricao_original": "Cupuaçu, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Cupuaçu",
+        "detalhe_exibicao": "cru"
+    },
+    "196": {
+        "descricao_original": "Cupuaçu, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de cupuaçu",
+        "detalhe_exibicao": "congelada"
+    },
+    "197": {
+        "descricao_original": "Figo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Figo",
+        "detalhe_exibicao": "cru"
+    },
+    "198": {
+        "descricao_original": "Figo, enlatado, em calda",
+        "fonte": "taco",
+        "nome_exibicao": "Figo em calda",
+        "detalhe_exibicao": "enlatado"
+    },
+    "199": {
+        "descricao_original": "Fruta-pão, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Fruta-pão",
+        "detalhe_exibicao": "crua"
+    },
+    "200": {
+        "descricao_original": "Goiaba, branca, com casca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Goiaba branca com casca",
+        "detalhe_exibicao": "crua"
+    },
+    "201": {
+        "descricao_original": "Goiaba, doce em pasta",
+        "fonte": "taco",
+        "nome_exibicao": "Doce de goiaba em pasta",
+        "detalhe_exibicao": null
+    },
+    "202": {
+        "descricao_original": "Goiaba, doce, cascão",
+        "fonte": "taco",
+        "nome_exibicao": "Doce de goiaba cascão",
+        "detalhe_exibicao": null
+    },
+    "203": {
+        "descricao_original": "Goiaba, vermelha, com casca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Goiaba vermelha com casca",
+        "detalhe_exibicao": "crua"
+    },
+    "204": {
+        "descricao_original": "Graviola, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Graviola",
+        "detalhe_exibicao": "crua"
+    },
+    "205": {
+        "descricao_original": "Graviola, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de graviola",
+        "detalhe_exibicao": "congelada"
+    },
+    "206": {
+        "descricao_original": "Jabuticaba, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Jabuticaba",
+        "detalhe_exibicao": "crua"
+    },
+    "207": {
+        "descricao_original": "Jaca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Jaca",
+        "detalhe_exibicao": "crua"
+    },
+    "208": {
+        "descricao_original": "Jambo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Jambo",
+        "detalhe_exibicao": "cru"
+    },
+    "209": {
+        "descricao_original": "Jamelão, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Jamelão",
+        "detalhe_exibicao": "cru"
+    },
+    "210": {
+        "descricao_original": "Kiwi, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Kiwi",
+        "detalhe_exibicao": "cru"
+    },
+    "211": {
+        "descricao_original": "Laranja, baía, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Laranja baía",
+        "detalhe_exibicao": "crua"
+    },
+    "212": {
+        "descricao_original": "Laranja, baía, suco",
+        "fonte": "taco",
+        "nome_exibicao": "Suco de laranja baía",
+        "detalhe_exibicao": null
+    },
+    "213": {
+        "descricao_original": "Laranja, da terra, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Laranja da terra",
+        "detalhe_exibicao": "crua"
+    },
+    "214": {
+        "descricao_original": "Laranja, da terra, suco",
+        "fonte": "taco",
+        "nome_exibicao": "Suco de laranja da terra",
+        "detalhe_exibicao": null
+    },
+    "215": {
+        "descricao_original": "Laranja, lima, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Laranja lima",
+        "detalhe_exibicao": "crua"
+    },
+    "216": {
+        "descricao_original": "Laranja, lima, suco",
+        "fonte": "taco",
+        "nome_exibicao": "Suco de laranja lima",
+        "detalhe_exibicao": null
+    },
+    "217": {
+        "descricao_original": "Laranja, pêra, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Laranja pêra",
+        "detalhe_exibicao": "crua"
+    },
+    "218": {
+        "descricao_original": "Laranja, pêra, suco",
+        "fonte": "taco",
+        "nome_exibicao": "Suco de laranja pêra",
+        "detalhe_exibicao": null
+    },
+    "219": {
+        "descricao_original": "Laranja, valência, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Laranja valência",
+        "detalhe_exibicao": "crua"
+    },
+    "220": {
+        "descricao_original": "Laranja, valência, suco",
+        "fonte": "taco",
+        "nome_exibicao": "Suco de laranja valência",
+        "detalhe_exibicao": null
+    },
+    "221": {
+        "descricao_original": "Limão, cravo, suco",
+        "fonte": "taco",
+        "nome_exibicao": "Suco de limão cravo",
+        "detalhe_exibicao": null
+    },
+    "222": {
+        "descricao_original": "Limão, galego, suco",
+        "fonte": "taco",
+        "nome_exibicao": "Suco de limão galego",
+        "detalhe_exibicao": null
+    },
+    "223": {
+        "descricao_original": "Limão, tahiti, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Limão tahiti",
+        "detalhe_exibicao": "cru"
+    },
+    "224": {
+        "descricao_original": "Maçã, Argentina, com casca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Maçã argentina",
+        "detalhe_exibicao": "com casca, crua"
+    },
+    "225": {
+        "descricao_original": "Maçã, Fuji, com casca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Maçã fuji",
+        "detalhe_exibicao": "com casca, crua"
+    },
+    "226": {
+        "descricao_original": "Macaúba, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Macaúba",
+        "detalhe_exibicao": "crua"
+    },
+    "227": {
+        "descricao_original": "Mamão, doce em calda, drenado",
+        "fonte": "taco",
+        "nome_exibicao": "Doce de mamão em calda",
+        "detalhe_exibicao": "drenado"
+    },
+    "228": {
+        "descricao_original": "Mamão, Formosa, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Mamão formosa",
+        "detalhe_exibicao": "cru"
+    },
+    "229": {
+        "descricao_original": "Mamão, Papaia, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Mamão papaia",
+        "detalhe_exibicao": "cru"
+    },
+    "230": {
+        "descricao_original": "Mamão verde, doce em calda, drenado",
+        "fonte": "taco",
+        "nome_exibicao": "Doce de mamão verde em calda",
+        "detalhe_exibicao": "drenado"
+    },
+    "231": {
+        "descricao_original": "Manga, Haden, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Manga haden",
+        "detalhe_exibicao": "crua"
+    },
+    "232": {
+        "descricao_original": "Manga, Palmer, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Manga palmer",
+        "detalhe_exibicao": "crua"
+    },
+    "233": {
+        "descricao_original": "Manga, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de manga",
+        "detalhe_exibicao": "congelada"
+    },
+    "234": {
+        "descricao_original": "Manga, Tommy Atkins, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Manga tommy atkins",
+        "detalhe_exibicao": "crua"
+    },
+    "235": {
+        "descricao_original": "Maracujá, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Maracujá",
+        "detalhe_exibicao": "cru"
+    },
+    "236": {
+        "descricao_original": "Maracujá, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de maracujá",
+        "detalhe_exibicao": "congelada"
+    },
+    "237": {
+        "descricao_original": "Maracujá, suco concentrado, envasado",
+        "fonte": "taco",
+        "nome_exibicao": "Suco concentrado de maracujá",
+        "detalhe_exibicao": "envasado"
+    },
+    "238": {
+        "descricao_original": "Melancia, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Melancia",
+        "detalhe_exibicao": "crua"
+    },
+    "239": {
+        "descricao_original": "Melão, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Melão",
+        "detalhe_exibicao": "cru"
+    },
+    "240": {
+        "descricao_original": "Mexerica, Murcote, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Mexerica Murcote",
+        "detalhe_exibicao": "crua"
+    },
+    "241": {
+        "descricao_original": "Mexerica, Rio, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Mexerica Rio",
+        "detalhe_exibicao": "crua"
+    },
+    "242": {
+        "descricao_original": "Morango, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Morango",
+        "detalhe_exibicao": "cru"
+    },
+    "243": {
+        "descricao_original": "Nêspera, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Nêspera",
+        "detalhe_exibicao": "crua"
+    },
+    "244": {
+        "descricao_original": "Pequi, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pequi",
+        "detalhe_exibicao": "cru"
+    },
+    "245": {
+        "descricao_original": "Pêra, Park, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Pêra Park",
+        "detalhe_exibicao": "crua"
+    },
+    "246": {
+        "descricao_original": "Pêra, Williams, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Pêra Williams",
+        "detalhe_exibicao": "crua"
+    },
+    "247": {
+        "descricao_original": "Pêssego, Aurora, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pêssego Aurora",
+        "detalhe_exibicao": "cru"
+    },
+    "248": {
+        "descricao_original": "Pêssego, enlatado, em calda",
+        "fonte": "taco",
+        "nome_exibicao": "Pêssego em calda",
+        "detalhe_exibicao": "enlatado"
+    },
+    "249": {
+        "descricao_original": "Pinha, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Pinha",
+        "detalhe_exibicao": "crua"
+    },
+    "250": {
+        "descricao_original": "Pitanga, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Pitanga",
+        "detalhe_exibicao": "crua"
+    },
+    "251": {
+        "descricao_original": "Pitanga, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de pitanga",
+        "detalhe_exibicao": "congelada"
+    },
+    "252": {
+        "descricao_original": "Romã, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Romã",
+        "detalhe_exibicao": "crua"
+    },
+    "253": {
+        "descricao_original": "Tamarindo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Tamarindo",
+        "detalhe_exibicao": "cru"
+    },
+    "254": {
+        "descricao_original": "Tangerina, Poncã, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Tangerina Poncã",
+        "detalhe_exibicao": "crua"
+    },
+    "255": {
+        "descricao_original": "Tangerina, Poncã, suco",
+        "fonte": "taco",
+        "nome_exibicao": "Suco de tangerina Poncã",
+        "detalhe_exibicao": null
+    },
+    "256": {
+        "descricao_original": "Tucumã, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Tucumã",
+        "detalhe_exibicao": "cru"
+    },
+    "257": {
+        "descricao_original": "Umbu, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Umbu",
+        "detalhe_exibicao": "cru"
+    },
+    "258": {
+        "descricao_original": "Umbu, polpa, congelada",
+        "fonte": "taco",
+        "nome_exibicao": "Polpa de umbu",
+        "detalhe_exibicao": "congelada"
+    },
+    "259": {
+        "descricao_original": "Uva, Itália, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Uva Itália",
+        "detalhe_exibicao": "crua"
+    },
+    "260": {
+        "descricao_original": "Uva, Rubi, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Uva Rubi",
+        "detalhe_exibicao": "crua"
+    },
+    "261": {
+        "descricao_original": "Uva, suco concentrado, envasado",
+        "fonte": "taco",
+        "nome_exibicao": "Suco de uva concentrado",
+        "detalhe_exibicao": "envasado"
+    },
+    "262": {
+        "descricao_original": "Azeite, de dendê",
+        "fonte": "taco",
+        "nome_exibicao": "Azeite de dendê",
+        "detalhe_exibicao": null
+    },
+    "263": {
+        "descricao_original": "Azeite, de oliva, extra virgem",
+        "fonte": "taco",
+        "nome_exibicao": "Azeite de oliva extra virgem",
+        "detalhe_exibicao": null
+    },
+    "264": {
+        "descricao_original": "Manteiga, com sal",
+        "fonte": "taco",
+        "nome_exibicao": "Manteiga com sal",
+        "detalhe_exibicao": null
+    },
+    "265": {
+        "descricao_original": "Manteiga, sem sal",
+        "fonte": "taco",
+        "nome_exibicao": "Manteiga sem sal",
+        "detalhe_exibicao": null
+    },
+    "266": {
+        "descricao_original": "Margarina, com óleo hidrogenado, com sal (65% de lipídeos)",
+        "fonte": "taco",
+        "nome_exibicao": "Margarina com óleo hidrogenado e sal",
+        "detalhe_exibicao": "65% de lipídeos"
+    },
+    "267": {
+        "descricao_original": "Margarina, com óleo hidrogenado, sem sal (80% de lipídeos)",
+        "fonte": "taco",
+        "nome_exibicao": "Margarina com óleo hidrogenado sem sal",
+        "detalhe_exibicao": "80% de lipídeos"
+    },
+    "268": {
+        "descricao_original": "Margarina, com óleo interesterificado, com sal (65%de lipídeos)",
+        "fonte": "taco",
+        "nome_exibicao": "Margarina com óleo interesterificado e sal",
+        "detalhe_exibicao": "65% de lipídeos"
+    },
+    "269": {
+        "descricao_original": "Margarina, com óleo interesterificado, sem sal (65% de lipídeos)",
+        "fonte": "taco",
+        "nome_exibicao": "Margarina com óleo interesterificado sem sal",
+        "detalhe_exibicao": "65% de lipídeos"
+    },
+    "270": {
+        "descricao_original": "Óleo, de babaçu",
+        "fonte": "taco",
+        "nome_exibicao": "Óleo de babaçu",
+        "detalhe_exibicao": null
+    },
+    "271": {
+        "descricao_original": "Óleo, de canola",
+        "fonte": "taco",
+        "nome_exibicao": "Óleo de canola",
+        "detalhe_exibicao": null
+    },
+    "272": {
+        "descricao_original": "Óleo, de girassol",
+        "fonte": "taco",
+        "nome_exibicao": "Óleo de girassol",
+        "detalhe_exibicao": null
+    },
+    "273": {
+        "descricao_original": "Óleo, de milho",
+        "fonte": "taco",
+        "nome_exibicao": "Óleo de milho",
+        "detalhe_exibicao": null
+    },
+    "274": {
+        "descricao_original": "Óleo, de pequi",
+        "fonte": "taco",
+        "nome_exibicao": "Óleo de pequi",
+        "detalhe_exibicao": null
+    },
+    "275": {
+        "descricao_original": "Óleo, de soja",
+        "fonte": "taco",
+        "nome_exibicao": "Óleo de soja",
+        "detalhe_exibicao": null
+    },
+    "276": {
+        "descricao_original": "Abadejo, filé, congelado, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de abadejo congelado",
+        "detalhe_exibicao": "assado"
+    },
+    "277": {
+        "descricao_original": "Abadejo, filé, congelado,cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de abadejo congelado",
+        "detalhe_exibicao": "cozido"
+    },
+    "278": {
+        "descricao_original": "Abadejo, filé, congelado, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de abadejo congelado",
+        "detalhe_exibicao": "cru"
+    },
+    "279": {
+        "descricao_original": "Abadejo, filé, congelado, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de abadejo congelado",
+        "detalhe_exibicao": "grelhado"
+    },
+    "280": {
+        "descricao_original": "Atum, conserva em óleo",
+        "fonte": "taco",
+        "nome_exibicao": "Atum em conserva",
+        "detalhe_exibicao": "em óleo"
+    },
+    "281": {
+        "descricao_original": "Atum, fresco, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Atum fresco",
+        "detalhe_exibicao": "cru"
+    },
+    "282": {
+        "descricao_original": "Bacalhau, salgado, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Bacalhau salgado",
+        "detalhe_exibicao": "cru"
+    },
+    "283": {
+        "descricao_original": "Bacalhau, salgado, refogado",
+        "fonte": "taco",
+        "nome_exibicao": "Bacalhau salgado",
+        "detalhe_exibicao": "refogado"
+    },
+    "284": {
+        "descricao_original": "Cação, posta, com farinha de trigo, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Posta de cação com farinha de trigo",
+        "detalhe_exibicao": "frita"
+    },
+    "285": {
+        "descricao_original": "Cação, posta, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Posta de cação",
+        "detalhe_exibicao": "cozida"
+    },
+    "286": {
+        "descricao_original": "Cação, posta, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Posta de cação",
+        "detalhe_exibicao": "crua"
+    },
+    "287": {
+        "descricao_original": "Camarão, Rio Grande, grande, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Camarão Rio Grande grande",
+        "detalhe_exibicao": "cozido"
+    },
+    "288": {
+        "descricao_original": "Camarão, Rio Grande, grande, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Camarão Rio Grande grande",
+        "detalhe_exibicao": "cru"
+    },
+    "289": {
+        "descricao_original": "Camarão, Sete Barbas, sem cabeça, com casca, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Camarão Sete Barbas com casca e sem cabeça",
+        "detalhe_exibicao": "frito"
+    },
+    "290": {
+        "descricao_original": "Caranguejo, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Caranguejo",
+        "detalhe_exibicao": "cozido"
+    },
+    "291": {
+        "descricao_original": "Corimba, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Corimba",
+        "detalhe_exibicao": "cru"
+    },
+    "292": {
+        "descricao_original": "Corimbatá, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Corimbatá",
+        "detalhe_exibicao": "assado"
+    },
+    "293": {
+        "descricao_original": "Corimbatá, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Corimbatá",
+        "detalhe_exibicao": "cozido"
+    },
+    "294": {
+        "descricao_original": "Corvina de água doce, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Corvina de água doce",
+        "detalhe_exibicao": "crua"
+    },
+    "295": {
+        "descricao_original": "Corvina do mar, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Corvina do mar",
+        "detalhe_exibicao": "crua"
+    },
+    "296": {
+        "descricao_original": "Corvina grande, assada",
+        "fonte": "taco",
+        "nome_exibicao": "Corvina grande",
+        "detalhe_exibicao": "assada"
+    },
+    "297": {
+        "descricao_original": "Corvina grande, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Corvina grande",
+        "detalhe_exibicao": "cozida"
+    },
+    "298": {
+        "descricao_original": "Dourada de água doce, fresca",
+        "fonte": "taco",
+        "nome_exibicao": "Dourada de água doce",
+        "detalhe_exibicao": "fresca"
+    },
+    "299": {
+        "descricao_original": "Lambari, congelado, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Lambari",
+        "detalhe_exibicao": "congelado, cru"
+    },
+    "300": {
+        "descricao_original": "Lambari, congelado, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Lambari",
+        "detalhe_exibicao": "congelado, frito"
+    },
+    "301": {
+        "descricao_original": "Lambari, fresco, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Lambari",
+        "detalhe_exibicao": "fresco, cru"
+    },
+    "302": {
+        "descricao_original": "Manjuba, com farinha de trigo, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Manjuba empanada com farinha de trigo",
+        "detalhe_exibicao": "frita"
+    },
+    "303": {
+        "descricao_original": "Manjuba, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Manjuba",
+        "detalhe_exibicao": "frita"
+    },
+    "304": {
+        "descricao_original": "Merluza, filé, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de merluza",
+        "detalhe_exibicao": "assado"
+    },
+    "305": {
+        "descricao_original": "Merluza, filé, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de merluza",
+        "detalhe_exibicao": "cru"
+    },
+    "306": {
+        "descricao_original": "Merluza, filé, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de merluza",
+        "detalhe_exibicao": "frito"
+    },
+    "307": {
+        "descricao_original": "Pescada, branca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Pescada branca",
+        "detalhe_exibicao": "crua"
+    },
+    "308": {
+        "descricao_original": "Pescada, branca, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Pescada branca",
+        "detalhe_exibicao": "frita"
+    },
+    "309": {
+        "descricao_original": "Pescada, filé, com farinha de trigo, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de pescada empanado com farinha de trigo",
+        "detalhe_exibicao": "frito"
+    },
+    "310": {
+        "descricao_original": "Pescada, filé, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de pescada",
+        "detalhe_exibicao": "cru"
+    },
+    "311": {
+        "descricao_original": "Pescada, filé, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de pescada",
+        "detalhe_exibicao": "frito"
+    },
+    "312": {
+        "descricao_original": "Pescada, filé, molho escabeche",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de pescada",
+        "detalhe_exibicao": "molho escabeche"
+    },
+    "313": {
+        "descricao_original": "Pescadinha, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Pescadinha",
+        "detalhe_exibicao": "crua"
+    },
+    "314": {
+        "descricao_original": "Pintado, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Pintado",
+        "detalhe_exibicao": "assado"
+    },
+    "315": {
+        "descricao_original": "Pintado, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pintado",
+        "detalhe_exibicao": "cru"
+    },
+    "316": {
+        "descricao_original": "Pintado, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Pintado",
+        "detalhe_exibicao": "grelhado"
+    },
+    "317": {
+        "descricao_original": "Porquinho, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Porquinho",
+        "detalhe_exibicao": "cru"
+    },
+    "318": {
+        "descricao_original": "Salmão, filé, com pele, fresco,  grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de salmão com pele",
+        "detalhe_exibicao": "fresco, grelhado"
+    },
+    "319": {
+        "descricao_original": "Salmão, sem pele, fresco, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Salmão sem pele",
+        "detalhe_exibicao": "fresco, cru"
+    },
+    "320": {
+        "descricao_original": "Salmão, sem pele, fresco, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Salmão sem pele",
+        "detalhe_exibicao": "fresco, grelhado"
+    },
+    "321": {
+        "descricao_original": "Sardinha, assada",
+        "fonte": "taco",
+        "nome_exibicao": "Sardinha",
+        "detalhe_exibicao": "assada"
+    },
+    "322": {
+        "descricao_original": "Sardinha, conserva em óleo",
+        "fonte": "taco",
+        "nome_exibicao": "Sardinha",
+        "detalhe_exibicao": "conserva em óleo"
+    },
+    "323": {
+        "descricao_original": "Sardinha, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Sardinha",
+        "detalhe_exibicao": "frita"
+    },
+    "324": {
+        "descricao_original": "Sardinha, inteira, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Sardinha inteira",
+        "detalhe_exibicao": "crua"
+    },
+    "325": {
+        "descricao_original": "Tucunaré, filé, congelado, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de tucunaré",
+        "detalhe_exibicao": "congelado, cru"
+    },
+    "326": {
+        "descricao_original": "Apresuntado",
+        "fonte": "taco",
+        "nome_exibicao": "Apresuntado",
+        "detalhe_exibicao": null
+    },
+    "327": {
+        "descricao_original": "Caldo de carne, tablete",
+        "fonte": "taco",
+        "nome_exibicao": "Caldo de carne",
+        "detalhe_exibicao": "tablete"
+    },
+    "328": {
+        "descricao_original": "Caldo de galinha, tablete",
+        "fonte": "taco",
+        "nome_exibicao": "Caldo de galinha",
+        "detalhe_exibicao": "tablete"
+    },
+    "329": {
+        "descricao_original": "Carne, bovina, acém, moído, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Acém bovino moído",
+        "detalhe_exibicao": "cozido"
+    },
+    "330": {
+        "descricao_original": "Carne, bovina, acém, moído, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Acém bovino moído",
+        "detalhe_exibicao": "cru"
+    },
+    "331": {
+        "descricao_original": "Carne, bovina, acém, sem gordura, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Acém bovino sem gordura",
+        "detalhe_exibicao": "cozido"
+    },
+    "332": {
+        "descricao_original": "Carne, bovina, acém, sem gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Acém bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "333": {
+        "descricao_original": "Carne, bovina, almôndegas, cruas",
+        "fonte": "taco",
+        "nome_exibicao": "Almôndegas bovinas",
+        "detalhe_exibicao": "cruas"
+    },
+    "334": {
+        "descricao_original": "Carne, bovina, almôndegas, fritas",
+        "fonte": "taco",
+        "nome_exibicao": "Almôndegas bovinas",
+        "detalhe_exibicao": "fritas"
+    },
+    "335": {
+        "descricao_original": "Carne, bovina, bucho, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Bucho bovino",
+        "detalhe_exibicao": "cozido"
+    },
+    "336": {
+        "descricao_original": "Carne, bovina, bucho, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Bucho bovino",
+        "detalhe_exibicao": "cru"
+    },
+    "337": {
+        "descricao_original": "Carne, bovina, capa de contra-filé, com gordura, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Capa de contra-filé bovino com gordura",
+        "detalhe_exibicao": "crua"
+    },
+    "338": {
+        "descricao_original": "Carne, bovina, capa de contra-filé, com gordura, grelhada",
+        "fonte": "taco",
+        "nome_exibicao": "Capa de contra-filé bovino com gordura",
+        "detalhe_exibicao": "grelhada"
+    },
+    "339": {
+        "descricao_original": "Carne, bovina, capa de contra-filé, sem gordura, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Capa de contra-filé bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "340": {
+        "descricao_original": "Carne, bovina, capa de contra-filé, sem gordura, grelhada",
+        "fonte": "taco",
+        "nome_exibicao": "Capa de contra-filé bovino sem gordura",
+        "detalhe_exibicao": "grelhado"
+    },
+    "341": {
+        "descricao_original": "Carne, bovina, charque, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Carne bovina charque",
+        "detalhe_exibicao": "cozido"
+    },
+    "342": {
+        "descricao_original": "Carne, bovina, charque, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Carne bovina charque",
+        "detalhe_exibicao": "cru"
+    },
+    "343": {
+        "descricao_original": "Carne, bovina, contra-filé, à milanesa",
+        "fonte": "taco",
+        "nome_exibicao": "Contra-filé bovino à milanesa",
+        "detalhe_exibicao": null
+    },
+    "344": {
+        "descricao_original": "Carne, bovina, contra-filé de costela, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Contra-filé de costela bovino",
+        "detalhe_exibicao": "cru"
+    },
+    "345": {
+        "descricao_original": "Carne, bovina, contra-filé de costela, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Contra-filé de costela bovino",
+        "detalhe_exibicao": "grelhado"
+    },
+    "346": {
+        "descricao_original": "Carne, bovina, contra-filé, com gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Contra-filé bovino com gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "347": {
+        "descricao_original": "Carne, bovina, contra-filé, com gordura, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Contra-filé bovino com gordura",
+        "detalhe_exibicao": "grelhado"
+    },
+    "348": {
+        "descricao_original": "Carne, bovina, contra-filé, sem gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Contra-filé bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "349": {
+        "descricao_original": "Carne, bovina, contra-filé, sem gordura, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Contra-filé bovino sem gordura",
+        "detalhe_exibicao": "grelhado"
+    },
+    "350": {
+        "descricao_original": "Carne, bovina, costela, assada",
+        "fonte": "taco",
+        "nome_exibicao": "Costela bovina",
+        "detalhe_exibicao": "assada"
+    },
+    "351": {
+        "descricao_original": "Carne, bovina, costela, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Costela bovina",
+        "detalhe_exibicao": "crua"
+    },
+    "352": {
+        "descricao_original": "Carne, bovina, coxão duro, sem gordura, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Coxão duro bovino sem gordura",
+        "detalhe_exibicao": "cozido"
+    },
+    "353": {
+        "descricao_original": "Carne, bovina, coxão duro, sem gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Coxão duro bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "354": {
+        "descricao_original": "Carne, bovina, coxão mole, sem gordura, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Coxão mole bovino sem gordura",
+        "detalhe_exibicao": "cozido"
+    },
+    "355": {
+        "descricao_original": "Carne, bovina, coxão mole, sem gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Coxão mole bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "356": {
+        "descricao_original": "Carne, bovina, cupim, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Cupim bovino",
+        "detalhe_exibicao": "assado"
+    },
+    "357": {
+        "descricao_original": "Carne, bovina, cupim, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Cupim bovino",
+        "detalhe_exibicao": "cru"
+    },
+    "358": {
+        "descricao_original": "Carne, bovina, fígado, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Fígado bovino",
+        "detalhe_exibicao": "cru"
+    },
+    "359": {
+        "descricao_original": "Carne, bovina, fígado, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Fígado bovino",
+        "detalhe_exibicao": "grelhado"
+    },
+    "360": {
+        "descricao_original": "Carne, bovina, filé mingnon, sem gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Filé mignon bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "361": {
+        "descricao_original": "Carne, bovina, filé mingnon, sem gordura, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Filé mignon bovino sem gordura",
+        "detalhe_exibicao": "grelhado"
+    },
+    "362": {
+        "descricao_original": "Carne, bovina, flanco, sem gordura, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Flanco bovino sem gordura",
+        "detalhe_exibicao": "cozido"
+    },
+    "363": {
+        "descricao_original": "Carne, bovina, flanco, sem gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Flanco bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "364": {
+        "descricao_original": "Carne, bovina, fraldinha, com gordura, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Fraldinha bovina com gordura",
+        "detalhe_exibicao": "cozida"
+    },
+    "365": {
+        "descricao_original": "Carne, bovina, fraldinha, com gordura, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Fraldinha bovina com gordura",
+        "detalhe_exibicao": "crua"
+    },
+    "366": {
+        "descricao_original": "Carne, bovina, lagarto, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Lagarto bovino",
+        "detalhe_exibicao": "cozido"
+    },
+    "367": {
+        "descricao_original": "Carne, bovina, lagarto, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Lagarto bovino",
+        "detalhe_exibicao": "cru"
+    },
+    "368": {
+        "descricao_original": "Carne, bovina, língua, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Língua bovina",
+        "detalhe_exibicao": "cozida"
+    },
+    "369": {
+        "descricao_original": "Carne, bovina, língua, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Língua bovina",
+        "detalhe_exibicao": "crua"
+    },
+    "370": {
+        "descricao_original": "Carne, bovina, maminha, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Maminha bovina",
+        "detalhe_exibicao": "crua"
+    },
+    "371": {
+        "descricao_original": "Carne, bovina, maminha, grelhada",
+        "fonte": "taco",
+        "nome_exibicao": "Maminha bovina",
+        "detalhe_exibicao": "grelhada"
+    },
+    "372": {
+        "descricao_original": "Carne, bovina, miolo de alcatra, sem gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Miolo de alcatra bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "373": {
+        "descricao_original": "Carne, bovina, miolo de alcatra, sem gordura, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Miolo de alcatra bovino sem gordura",
+        "detalhe_exibicao": "grelhado"
+    },
+    "374": {
+        "descricao_original": "Carne, bovina, músculo, sem gordura, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Músculo bovino sem gordura",
+        "detalhe_exibicao": "cozido"
+    },
+    "375": {
+        "descricao_original": "Carne, bovina, músculo, sem gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Músculo bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "376": {
+        "descricao_original": "Carne, bovina, paleta, com gordura, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Paleta bovina com gordura",
+        "detalhe_exibicao": "crua"
+    },
+    "377": {
+        "descricao_original": "Carne, bovina, paleta, sem gordura, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Paleta bovina sem gordura",
+        "detalhe_exibicao": "cozida"
+    },
+    "378": {
+        "descricao_original": "Carne, bovina, paleta, sem gordura, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Paleta bovina sem gordura",
+        "detalhe_exibicao": "crua"
+    },
+    "379": {
+        "descricao_original": "Carne, bovina, patinho, sem gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Patinho bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "380": {
+        "descricao_original": "Carne, bovina, patinho, sem gordura, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Patinho bovino sem gordura",
+        "detalhe_exibicao": "grelhado"
+    },
+    "381": {
+        "descricao_original": "Carne, bovina, peito, sem gordura, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Peito bovino sem gordura",
+        "detalhe_exibicao": "cozido"
+    },
+    "382": {
+        "descricao_original": "Carne, bovina, peito, sem gordura, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Peito bovino sem gordura",
+        "detalhe_exibicao": "cru"
+    },
+    "383": {
+        "descricao_original": "Carne, bovina, picanha, com gordura, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Picanha bovina com gordura",
+        "detalhe_exibicao": "crua"
+    },
+    "384": {
+        "descricao_original": "Carne, bovina, picanha, com gordura, grelhada",
+        "fonte": "taco",
+        "nome_exibicao": "Picanha bovina com gordura",
+        "detalhe_exibicao": "grelhada"
+    },
+    "385": {
+        "descricao_original": "Carne, bovina, picanha, sem gordura, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Picanha bovina sem gordura",
+        "detalhe_exibicao": "crua"
+    },
+    "386": {
+        "descricao_original": "Carne, bovina, picanha, sem gordura, grelhada",
+        "fonte": "taco",
+        "nome_exibicao": "Picanha bovina sem gordura",
+        "detalhe_exibicao": "grelhada"
+    },
+    "387": {
+        "descricao_original": "Carne, bovina, seca, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Carne seca bovina",
+        "detalhe_exibicao": "cozida"
+    },
+    "388": {
+        "descricao_original": "Carne, bovina, seca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Carne seca bovina",
+        "detalhe_exibicao": "crua"
+    },
+    "389": {
+        "descricao_original": "Coxinha de frango, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Coxinha de frango",
+        "detalhe_exibicao": "frita"
+    },
+    "390": {
+        "descricao_original": "Croquete, de carne, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Croquete de carne",
+        "detalhe_exibicao": "cru"
+    },
+    "391": {
+        "descricao_original": "Croquete, de carne, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Croquete de carne",
+        "detalhe_exibicao": "frito"
+    },
+    "392": {
+        "descricao_original": "Empada de frango, pré-cozida, assada",
+        "fonte": "taco",
+        "nome_exibicao": "Empada de frango",
+        "detalhe_exibicao": "pré-cozida, assada"
+    },
+    "393": {
+        "descricao_original": "Empada, de frango, pré-cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Empada de frango",
+        "detalhe_exibicao": "pré-cozida"
+    },
+    "394": {
+        "descricao_original": "Frango, asa, com pele, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Asa de frango com pele",
+        "detalhe_exibicao": "crua"
+    },
+    "395": {
+        "descricao_original": "Frango, caipira, inteiro, com pele, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Frango caipira inteiro com pele",
+        "detalhe_exibicao": "cozido"
+    },
+    "396": {
+        "descricao_original": "Frango, caipira, inteiro, sem pele, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Frango caipira inteiro sem pele",
+        "detalhe_exibicao": "cozido"
+    },
+    "397": {
+        "descricao_original": "Frango, coração, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Coração de frango",
+        "detalhe_exibicao": "cru"
+    },
+    "398": {
+        "descricao_original": "Frango, coração, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Coração de frango",
+        "detalhe_exibicao": "grelhado"
+    },
+    "399": {
+        "descricao_original": "Frango, coxa, com pele, assada",
+        "fonte": "taco",
+        "nome_exibicao": "Coxa de frango com pele",
+        "detalhe_exibicao": "assada"
+    },
+    "400": {
+        "descricao_original": "Frango, coxa, com pele, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Coxa de frango com pele",
+        "detalhe_exibicao": "crua"
+    },
+    "401": {
+        "descricao_original": "Frango, coxa, sem pele, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Coxa de frango sem pele",
+        "detalhe_exibicao": "cozida"
+    },
+    "402": {
+        "descricao_original": "Frango, coxa, sem pele, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Coxa de frango sem pele",
+        "detalhe_exibicao": "crua"
+    },
+    "403": {
+        "descricao_original": "Frango, fígado, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Fígado de frango",
+        "detalhe_exibicao": "cru"
+    },
+    "404": {
+        "descricao_original": "Frango, filé, à milanesa",
+        "fonte": "taco",
+        "nome_exibicao": "Filé de frango à milanesa",
+        "detalhe_exibicao": null
+    },
+    "405": {
+        "descricao_original": "Frango, inteiro, com pele, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Frango inteiro com pele",
+        "detalhe_exibicao": "cru"
+    },
+    "406": {
+        "descricao_original": "Frango, inteiro, sem pele, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Frango inteiro sem pele",
+        "detalhe_exibicao": "assado"
+    },
+    "407": {
+        "descricao_original": "Frango, inteiro, sem pele, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Frango inteiro sem pele",
+        "detalhe_exibicao": "cozido"
+    },
+    "408": {
+        "descricao_original": "Frango, inteiro, sem pele, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Frango inteiro sem pele",
+        "detalhe_exibicao": "cru"
+    },
+    "409": {
+        "descricao_original": "Frango, peito, com pele, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Peito de frango com pele",
+        "detalhe_exibicao": "assado"
+    },
+    "410": {
+        "descricao_original": "Frango, peito, com pele, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Peito de frango com pele",
+        "detalhe_exibicao": "cru"
+    },
+    "411": {
+        "descricao_original": "Frango, peito, sem pele, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Peito de frango sem pele",
+        "detalhe_exibicao": "cozido"
+    },
+    "412": {
+        "descricao_original": "Frango, peito, sem pele, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Peito de frango sem pele",
+        "detalhe_exibicao": "cru"
+    },
+    "413": {
+        "descricao_original": "Frango, peito, sem pele, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Peito de frango sem pele",
+        "detalhe_exibicao": "grelhado"
+    },
+    "414": {
+        "descricao_original": "Frango, sobrecoxa, com pele, assada",
+        "fonte": "taco",
+        "nome_exibicao": "Sobrecoxa de frango com pele",
+        "detalhe_exibicao": "assada"
+    },
+    "415": {
+        "descricao_original": "Frango, sobrecoxa, com pele, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Sobrecoxa de frango com pele",
+        "detalhe_exibicao": "crua"
+    },
+    "416": {
+        "descricao_original": "Frango, sobrecoxa, sem pele, assada",
+        "fonte": "taco",
+        "nome_exibicao": "Sobrecoxa de frango sem pele",
+        "detalhe_exibicao": "assada"
+    },
+    "417": {
+        "descricao_original": "Frango, sobrecoxa, sem pele, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Sobrecoxa de frango sem pele",
+        "detalhe_exibicao": "crua"
+    },
+    "418": {
+        "descricao_original": "Hambúrguer, bovino, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Hambúrguer bovino",
+        "detalhe_exibicao": "cru"
+    },
+    "419": {
+        "descricao_original": "Hambúrguer, bovino, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Hambúrguer bovino",
+        "detalhe_exibicao": "frito"
+    },
+    "420": {
+        "descricao_original": "Hambúrguer, bovino, grelhado",
+        "fonte": "taco",
+        "nome_exibicao": "Hambúrguer bovino",
+        "detalhe_exibicao": "grelhado"
+    },
+    "421": {
+        "descricao_original": "Lingüiça, frango, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Linguiça de frango",
+        "detalhe_exibicao": "crua"
+    },
+    "422": {
+        "descricao_original": "Lingüiça, frango, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Linguiça de frango",
+        "detalhe_exibicao": "frita"
+    },
+    "423": {
+        "descricao_original": "Lingüiça, frango, grelhada",
+        "fonte": "taco",
+        "nome_exibicao": "Linguiça de frango",
+        "detalhe_exibicao": "grelhada"
+    },
+    "424": {
+        "descricao_original": "Lingüiça, porco, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Linguiça suína",
+        "detalhe_exibicao": "crua"
+    },
+    "425": {
+        "descricao_original": "Lingüiça, porco, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Linguiça suína",
+        "detalhe_exibicao": "frita"
+    },
+    "426": {
+        "descricao_original": "Lingüiça, porco, grelhada",
+        "fonte": "taco",
+        "nome_exibicao": "Linguiça suína",
+        "detalhe_exibicao": "grelhada"
+    },
+    "427": {
+        "descricao_original": "Mortadela",
+        "fonte": "taco",
+        "nome_exibicao": "Mortadela",
+        "detalhe_exibicao": null
+    },
+    "428": {
+        "descricao_original": "Peru, congelado, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Peru",
+        "detalhe_exibicao": "congelado, assado"
+    },
+    "429": {
+        "descricao_original": "Peru, congelado, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Peru",
+        "detalhe_exibicao": "congelado, cru"
+    },
+    "430": {
+        "descricao_original": "Porco, bisteca, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Bisteca suína",
+        "detalhe_exibicao": "crua"
+    },
+    "431": {
+        "descricao_original": "Porco, bisteca, frita",
+        "fonte": "taco",
+        "nome_exibicao": "Bisteca suína",
+        "detalhe_exibicao": "frita"
+    },
+    "432": {
+        "descricao_original": "Porco, bisteca, grelhada",
+        "fonte": "taco",
+        "nome_exibicao": "Bisteca suína",
+        "detalhe_exibicao": "grelhada"
+    },
+    "433": {
+        "descricao_original": "Porco, costela, assada",
+        "fonte": "taco",
+        "nome_exibicao": "Costela suína",
+        "detalhe_exibicao": "assada"
+    },
+    "434": {
+        "descricao_original": "Porco, costela, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Costela suína",
+        "detalhe_exibicao": "crua"
+    },
+    "435": {
+        "descricao_original": "Porco, lombo, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Lombo suíno",
+        "detalhe_exibicao": "assado"
+    },
+    "436": {
+        "descricao_original": "Porco, lombo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Lombo suíno",
+        "detalhe_exibicao": "cru"
+    },
+    "437": {
+        "descricao_original": "Porco, orelha, salgada, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Orelha suína",
+        "detalhe_exibicao": "salgada, crua"
+    },
+    "438": {
+        "descricao_original": "Porco, pernil, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Pernil suíno",
+        "detalhe_exibicao": "assado"
+    },
+    "439": {
+        "descricao_original": "Porco, pernil, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Pernil suíno",
+        "detalhe_exibicao": "cru"
+    },
+    "440": {
+        "descricao_original": "Porco, rabo, salgado, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Rabo suíno",
+        "detalhe_exibicao": "salgado, cru"
+    },
+    "441": {
+        "descricao_original": "Presunto, com capa de gordura",
+        "fonte": "taco",
+        "nome_exibicao": "Presunto",
+        "detalhe_exibicao": "com capa de gordura"
+    },
+    "442": {
+        "descricao_original": "Presunto, sem capa de gordura",
+        "fonte": "taco",
+        "nome_exibicao": "Presunto",
+        "detalhe_exibicao": "sem capa de gordura"
+    },
+    "443": {
+        "descricao_original": "Quibe, assado",
+        "fonte": "taco",
+        "nome_exibicao": "Quibe",
+        "detalhe_exibicao": "assado"
+    },
+    "444": {
+        "descricao_original": "Quibe, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Quibe",
+        "detalhe_exibicao": "cru"
+    },
+    "445": {
+        "descricao_original": "Quibe, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Quibe",
+        "detalhe_exibicao": "frito"
+    },
+    "446": {
+        "descricao_original": "Salame",
+        "fonte": "taco",
+        "nome_exibicao": "Salame",
+        "detalhe_exibicao": null
+    },
+    "447": {
+        "descricao_original": "Toucinho, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Toucinho",
+        "detalhe_exibicao": "cru"
+    },
+    "448": {
+        "descricao_original": "Toucinho, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Toucinho",
+        "detalhe_exibicao": "frito"
+    },
+    "449": {
+        "descricao_original": "Bebida láctea, pêssego",
+        "fonte": "taco",
+        "nome_exibicao": "Bebida láctea sabor pêssego",
+        "detalhe_exibicao": null
+    },
+    "450": {
+        "descricao_original": "Creme de Leite",
+        "fonte": "taco",
+        "nome_exibicao": "Creme de leite",
+        "detalhe_exibicao": null
+    },
+    "451": {
+        "descricao_original": "Iogurte, natural",
+        "fonte": "taco",
+        "nome_exibicao": "Iogurte natural",
+        "detalhe_exibicao": null
+    },
+    "452": {
+        "descricao_original": "Iogurte, natural, desnatado",
+        "fonte": "taco",
+        "nome_exibicao": "Iogurte natural desnatado",
+        "detalhe_exibicao": null
+    },
+    "453": {
+        "descricao_original": "Iogurte, sabor abacaxi",
+        "fonte": "taco",
+        "nome_exibicao": "Iogurte sabor abacaxi",
+        "detalhe_exibicao": null
+    },
+    "454": {
+        "descricao_original": "Iogurte, sabor morango",
+        "fonte": "taco",
+        "nome_exibicao": "Iogurte sabor morango",
+        "detalhe_exibicao": null
+    },
+    "455": {
+        "descricao_original": "Iogurte, sabor pêssego",
+        "fonte": "taco",
+        "nome_exibicao": "Iogurte sabor pêssego",
+        "detalhe_exibicao": null
+    },
+    "456": {
+        "descricao_original": "Leite, condensado",
+        "fonte": "taco",
+        "nome_exibicao": "Leite condensado",
+        "detalhe_exibicao": null
+    },
+    "457": {
+        "descricao_original": "Leite, de cabra",
+        "fonte": "taco",
+        "nome_exibicao": "Leite de cabra",
+        "detalhe_exibicao": null
+    },
+    "458": {
+        "descricao_original": "Leite, de vaca, achocolatado",
+        "fonte": "taco",
+        "nome_exibicao": "Leite achocolatado",
+        "detalhe_exibicao": null
+    },
+    "459": {
+        "descricao_original": "Leite, de vaca, desnatado, pó",
+        "fonte": "taco",
+        "nome_exibicao": "Leite em pó desnatado",
+        "detalhe_exibicao": null
+    },
+    "460": {
+        "descricao_original": "Leite, de vaca, desnatado, UHT",
+        "fonte": "taco",
+        "nome_exibicao": "Leite desnatado UHT",
+        "detalhe_exibicao": null
+    },
+    "461": {
+        "descricao_original": "Leite, de vaca, integral",
+        "fonte": "taco",
+        "nome_exibicao": "Leite integral",
+        "detalhe_exibicao": null
+    },
+    "462": {
+        "descricao_original": "Leite, de vaca, integral, pó",
+        "fonte": "taco",
+        "nome_exibicao": "Leite em pó integral",
+        "detalhe_exibicao": null
+    },
+    "463": {
+        "descricao_original": "Leite, fermentado",
+        "fonte": "taco",
+        "nome_exibicao": "Leite fermentado",
+        "detalhe_exibicao": null
+    },
+    "464": {
+        "descricao_original": "Queijo, minas, frescal",
+        "fonte": "taco",
+        "nome_exibicao": "Queijo minas frescal",
+        "detalhe_exibicao": null
+    },
+    "465": {
+        "descricao_original": "Queijo, minas, meia cura",
+        "fonte": "taco",
+        "nome_exibicao": "Queijo minas meia cura",
+        "detalhe_exibicao": null
+    },
+    "466": {
+        "descricao_original": "Queijo, mozarela",
+        "fonte": "taco",
+        "nome_exibicao": "Queijo muçarela",
+        "detalhe_exibicao": null
+    },
+    "467": {
+        "descricao_original": "Queijo, parmesão",
+        "fonte": "taco",
+        "nome_exibicao": "Queijo parmesão",
+        "detalhe_exibicao": null
+    },
+    "468": {
+        "descricao_original": "Queijo, pasteurizado",
+        "fonte": "taco",
+        "nome_exibicao": "Queijo pasteurizado",
+        "detalhe_exibicao": null
+    },
+    "469": {
+        "descricao_original": "Queijo, petit suisse, morango",
+        "fonte": "taco",
+        "nome_exibicao": "Queijo petit suisse",
+        "detalhe_exibicao": "sabor morango"
+    },
+    "470": {
+        "descricao_original": "Queijo, prato",
+        "fonte": "taco",
+        "nome_exibicao": "Queijo prato",
+        "detalhe_exibicao": null
+    },
+    "471": {
+        "descricao_original": "Queijo, requeijão, cremoso",
+        "fonte": "taco",
+        "nome_exibicao": "Requeijão cremoso",
+        "detalhe_exibicao": null
+    },
+    "472": {
+        "descricao_original": "Queijo, ricota",
+        "fonte": "taco",
+        "nome_exibicao": "Ricota",
+        "detalhe_exibicao": null
+    },
+    "473": {
+        "descricao_original": "Bebida isotônica, sabores variados",
+        "fonte": "taco",
+        "nome_exibicao": "Bebida isotônica",
+        "detalhe_exibicao": "sabores variados"
+    },
+    "474": {
+        "descricao_original": "Café, infusão 10%",
+        "fonte": "taco",
+        "nome_exibicao": "Café",
+        "detalhe_exibicao": "infusão 10%"
+    },
+    "475": {
+        "descricao_original": "Cana, aguardente 1",
+        "fonte": "taco",
+        "nome_exibicao": "Aguardente de cana",
+        "detalhe_exibicao": null
+    },
+    "476": {
+        "descricao_original": "Cana, caldo de",
+        "fonte": "taco",
+        "nome_exibicao": "Caldo de cana",
+        "detalhe_exibicao": null
+    },
+    "477": {
+        "descricao_original": "Cerveja, pilsen 2",
+        "fonte": "taco",
+        "nome_exibicao": "Cerveja pilsen",
+        "detalhe_exibicao": null
+    },
+    "478": {
+        "descricao_original": "Chá, erva-doce, infusão 5%",
+        "fonte": "taco",
+        "nome_exibicao": "Chá de erva-doce",
+        "detalhe_exibicao": "infusão 5%"
+    },
+    "479": {
+        "descricao_original": "Chá, mate, infusão 5%",
+        "fonte": "taco",
+        "nome_exibicao": "Chá mate",
+        "detalhe_exibicao": "infusão 5%"
+    },
+    "480": {
+        "descricao_original": "Chá, preto, infusão 5%",
+        "fonte": "taco",
+        "nome_exibicao": "Chá preto",
+        "detalhe_exibicao": "infusão 5%"
+    },
+    "481": {
+        "descricao_original": "Coco, água de",
+        "fonte": "taco",
+        "nome_exibicao": "Água de coco",
+        "detalhe_exibicao": null
+    },
+    "482": {
+        "descricao_original": "Refrigerante, tipo água tônica",
+        "fonte": "taco",
+        "nome_exibicao": "Refrigerante sabor água tônica",
+        "detalhe_exibicao": null
+    },
+    "483": {
+        "descricao_original": "Refrigerante, tipo cola",
+        "fonte": "taco",
+        "nome_exibicao": "Refrigerante sabor cola",
+        "detalhe_exibicao": null
+    },
+    "484": {
+        "descricao_original": "Refrigerante, tipo guaraná",
+        "fonte": "taco",
+        "nome_exibicao": "Refrigerante sabor guaraná",
+        "detalhe_exibicao": null
+    },
+    "485": {
+        "descricao_original": "Refrigerante, tipo laranja",
+        "fonte": "taco",
+        "nome_exibicao": "Refrigerante sabor laranja",
+        "detalhe_exibicao": null
+    },
+    "486": {
+        "descricao_original": "Refrigerante, tipo limão",
+        "fonte": "taco",
+        "nome_exibicao": "Refrigerante sabor limão",
+        "detalhe_exibicao": null
+    },
+    "487": {
+        "descricao_original": "Omelete, de queijo",
+        "fonte": "taco",
+        "nome_exibicao": "Omelete de queijo",
+        "detalhe_exibicao": null
+    },
+    "488": {
+        "descricao_original": "Ovo, de codorna, inteiro, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Ovo de codorna inteiro",
+        "detalhe_exibicao": "cru"
+    },
+    "489": {
+        "descricao_original": "Ovo, de galinha, clara, cozida\/10minutos",
+        "fonte": "taco",
+        "nome_exibicao": "Clara de ovo de galinha",
+        "detalhe_exibicao": "cozida"
+    },
+    "490": {
+        "descricao_original": "Ovo, de galinha, gema, cozida\/10minutos",
+        "fonte": "taco",
+        "nome_exibicao": "Gema de ovo de galinha",
+        "detalhe_exibicao": "cozida"
+    },
+    "491": {
+        "descricao_original": "Ovo, de galinha, inteiro, cozido\/10minutos",
+        "fonte": "taco",
+        "nome_exibicao": "Ovo de galinha inteiro",
+        "detalhe_exibicao": "cozido"
+    },
+    "492": {
+        "descricao_original": "Ovo, de galinha, inteiro, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Ovo de galinha inteiro",
+        "detalhe_exibicao": "cru"
+    },
+    "493": {
+        "descricao_original": "Ovo, de galinha, inteiro, frito",
+        "fonte": "taco",
+        "nome_exibicao": "Ovo de galinha inteiro",
+        "detalhe_exibicao": "frito"
+    },
+    "494": {
+        "descricao_original": "Achocolatado, pó",
+        "fonte": "taco",
+        "nome_exibicao": "Achocolatado em pó",
+        "detalhe_exibicao": null
+    },
+    "495": {
+        "descricao_original": "Açúcar, cristal",
+        "fonte": "taco",
+        "nome_exibicao": "Açúcar cristal",
+        "detalhe_exibicao": null
+    },
+    "496": {
+        "descricao_original": "Açúcar, mascavo",
+        "fonte": "taco",
+        "nome_exibicao": "Açúcar mascavo",
+        "detalhe_exibicao": null
+    },
+    "497": {
+        "descricao_original": "Açúcar, refinado",
+        "fonte": "taco",
+        "nome_exibicao": "Açúcar refinado",
+        "detalhe_exibicao": null
+    },
+    "498": {
+        "descricao_original": "Chocolate, ao leite",
+        "fonte": "taco",
+        "nome_exibicao": "Chocolate ao leite",
+        "detalhe_exibicao": null
+    },
+    "499": {
+        "descricao_original": "Chocolate, ao leite, com castanha do Pará",
+        "fonte": "taco",
+        "nome_exibicao": "Chocolate ao leite com castanha-do-pará",
+        "detalhe_exibicao": null
+    },
+    "500": {
+        "descricao_original": "Chocolate, ao leite, dietético",
+        "fonte": "taco",
+        "nome_exibicao": "Chocolate ao leite dietético",
+        "detalhe_exibicao": null
+    },
+    "501": {
+        "descricao_original": "Chocolate, meio amargo",
+        "fonte": "taco",
+        "nome_exibicao": "Chocolate meio amargo",
+        "detalhe_exibicao": null
+    },
+    "502": {
+        "descricao_original": "Cocada branca",
+        "fonte": "taco",
+        "nome_exibicao": "Cocada branca",
+        "detalhe_exibicao": null
+    },
+    "503": {
+        "descricao_original": "Doce, de abóbora, cremoso",
+        "fonte": "taco",
+        "nome_exibicao": "Doce de abóbora cremoso",
+        "detalhe_exibicao": null
+    },
+    "504": {
+        "descricao_original": "Doce, de leite, cremoso",
+        "fonte": "taco",
+        "nome_exibicao": "Doce de leite cremoso",
+        "detalhe_exibicao": null
+    },
+    "505": {
+        "descricao_original": "Geléia, mocotó, natural",
+        "fonte": "taco",
+        "nome_exibicao": "Geléia de mocotó natural",
+        "detalhe_exibicao": null
+    },
+    "506": {
+        "descricao_original": "Glicose de milho",
+        "fonte": "taco",
+        "nome_exibicao": "Glicose de milho",
+        "detalhe_exibicao": null
+    },
+    "507": {
+        "descricao_original": "Maria mole",
+        "fonte": "taco",
+        "nome_exibicao": "Maria-mole",
+        "detalhe_exibicao": null
+    },
+    "508": {
+        "descricao_original": "Maria mole, coco queimado",
+        "fonte": "taco",
+        "nome_exibicao": "Maria-mole",
+        "detalhe_exibicao": "coco queimado"
+    },
+    "509": {
+        "descricao_original": "Marmelada",
+        "fonte": "taco",
+        "nome_exibicao": "Marmelada",
+        "detalhe_exibicao": null
+    },
+    "510": {
+        "descricao_original": "Mel, de abelha",
+        "fonte": "taco",
+        "nome_exibicao": "Mel de abelha",
+        "detalhe_exibicao": null
+    },
+    "511": {
+        "descricao_original": "Melado",
+        "fonte": "taco",
+        "nome_exibicao": "Melado",
+        "detalhe_exibicao": null
+    },
+    "512": {
+        "descricao_original": "Quindim",
+        "fonte": "taco",
+        "nome_exibicao": "Quindim",
+        "detalhe_exibicao": null
+    },
+    "513": {
+        "descricao_original": "Rapadura",
+        "fonte": "taco",
+        "nome_exibicao": "Rapadura",
+        "detalhe_exibicao": null
+    },
+    "514": {
+        "descricao_original": "Café, pó, torrado",
+        "fonte": "taco",
+        "nome_exibicao": "Café em pó",
+        "detalhe_exibicao": "torrado"
+    },
+    "515": {
+        "descricao_original": "Capuccino, pó",
+        "fonte": "taco",
+        "nome_exibicao": "Capuccino em pó",
+        "detalhe_exibicao": null
+    },
+    "516": {
+        "descricao_original": "Fermento em pó, químico",
+        "fonte": "taco",
+        "nome_exibicao": "Fermento químico em pó",
+        "detalhe_exibicao": null
+    },
+    "517": {
+        "descricao_original": "Fermento, biológico, levedura, tablete",
+        "fonte": "taco",
+        "nome_exibicao": "Fermento biológico",
+        "detalhe_exibicao": "levedura, tablete"
+    },
+    "518": {
+        "descricao_original": "Gelatina, sabores variados, pó",
+        "fonte": "taco",
+        "nome_exibicao": "Gelatina em pó",
+        "detalhe_exibicao": "sabores variados"
+    },
+    "519": {
+        "descricao_original": "Sal, dietético",
+        "fonte": "taco",
+        "nome_exibicao": "Sal dietético",
+        "detalhe_exibicao": null
+    },
+    "520": {
+        "descricao_original": "Sal, grosso",
+        "fonte": "taco",
+        "nome_exibicao": "Sal grosso",
+        "detalhe_exibicao": null
+    },
+    "521": {
+        "descricao_original": "Shoyu",
+        "fonte": "taco",
+        "nome_exibicao": "Molho shoyu",
+        "detalhe_exibicao": null
+    },
+    "522": {
+        "descricao_original": "Tempero a base de sal",
+        "fonte": "taco",
+        "nome_exibicao": "Tempero à base de sal",
+        "detalhe_exibicao": null
+    },
+    "523": {
+        "descricao_original": "Azeitona, preta, conserva",
+        "fonte": "taco",
+        "nome_exibicao": "Azeitona preta",
+        "detalhe_exibicao": "em conserva"
+    },
+    "524": {
+        "descricao_original": "Azeitona, verde, conserva",
+        "fonte": "taco",
+        "nome_exibicao": "Azeitona verde",
+        "detalhe_exibicao": "em conserva"
+    },
+    "525": {
+        "descricao_original": "Chantilly, spray, com gordura vegetal",
+        "fonte": "taco",
+        "nome_exibicao": "Chantilly em spray",
+        "detalhe_exibicao": "com gordura vegetal"
+    },
+    "526": {
+        "descricao_original": "Leite, de coco",
+        "fonte": "taco",
+        "nome_exibicao": "Leite de coco",
+        "detalhe_exibicao": null
+    },
+    "527": {
+        "descricao_original": "Maionese, tradicional com ovos",
+        "fonte": "taco",
+        "nome_exibicao": "Maionese tradicional",
+        "detalhe_exibicao": "com ovos"
+    },
+    "528": {
+        "descricao_original": "Acarajé",
+        "fonte": "taco",
+        "nome_exibicao": "Acarajé",
+        "detalhe_exibicao": null
+    },
+    "529": {
+        "descricao_original": "Arroz carreteiro",
+        "fonte": "taco",
+        "nome_exibicao": "Arroz carreteiro",
+        "detalhe_exibicao": null
+    },
+    "530": {
+        "descricao_original": "Baião de dois, arroz e feijão-de-corda",
+        "fonte": "taco",
+        "nome_exibicao": "Baião de dois",
+        "detalhe_exibicao": "arroz e feijão-de-corda"
+    },
+    "531": {
+        "descricao_original": "Barreado",
+        "fonte": "taco",
+        "nome_exibicao": "Barreado",
+        "detalhe_exibicao": null
+    },
+    "532": {
+        "descricao_original": "Bife à cavalo, com contra filé",
+        "fonte": "taco",
+        "nome_exibicao": "Bife à cavalo",
+        "detalhe_exibicao": "com contrafilé"
+    },
+    "533": {
+        "descricao_original": "Bolinho de arroz",
+        "fonte": "taco",
+        "nome_exibicao": "Bolinho de arroz",
+        "detalhe_exibicao": null
+    },
+    "534": {
+        "descricao_original": "Camarão à baiana",
+        "fonte": "taco",
+        "nome_exibicao": "Camarão à baiana",
+        "detalhe_exibicao": null
+    },
+    "535": {
+        "descricao_original": "Charuto, de repolho",
+        "fonte": "taco",
+        "nome_exibicao": "Charuto de repolho",
+        "detalhe_exibicao": null
+    },
+    "536": {
+        "descricao_original": "Cuscuz, de milho, cozido com sal",
+        "fonte": "taco",
+        "nome_exibicao": "Cuscuz de milho",
+        "detalhe_exibicao": "cozido com sal"
+    },
+    "537": {
+        "descricao_original": "Cuscuz, paulista",
+        "fonte": "taco",
+        "nome_exibicao": "Cuscuz paulista",
+        "detalhe_exibicao": null
+    },
+    "538": {
+        "descricao_original": "Cuxá, molho",
+        "fonte": "taco",
+        "nome_exibicao": "Molho cuxá",
+        "detalhe_exibicao": null
+    },
+    "539": {
+        "descricao_original": "Dobradinha",
+        "fonte": "taco",
+        "nome_exibicao": "Dobradinha",
+        "detalhe_exibicao": null
+    },
+    "540": {
+        "descricao_original": "Estrogonofe de carne",
+        "fonte": "taco",
+        "nome_exibicao": "Estrogonofe de carne",
+        "detalhe_exibicao": null
+    },
+    "541": {
+        "descricao_original": "Estrogonofe de frango",
+        "fonte": "taco",
+        "nome_exibicao": "Estrogonofe de frango",
+        "detalhe_exibicao": null
+    },
+    "542": {
+        "descricao_original": "Feijão tropeiro mineiro",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão tropeiro mineiro",
+        "detalhe_exibicao": null
+    },
+    "543": {
+        "descricao_original": "Feijoada",
+        "fonte": "taco",
+        "nome_exibicao": "Feijoada",
+        "detalhe_exibicao": null
+    },
+    "544": {
+        "descricao_original": "Frango, com açafrão",
+        "fonte": "taco",
+        "nome_exibicao": "Frango com açafrão",
+        "detalhe_exibicao": null
+    },
+    "545": {
+        "descricao_original": "Macarrão, molho bolognesa",
+        "fonte": "taco",
+        "nome_exibicao": "Macarrão à bolonhesa",
+        "detalhe_exibicao": null
+    },
+    "546": {
+        "descricao_original": "Maniçoba",
+        "fonte": "taco",
+        "nome_exibicao": "Maniçoba",
+        "detalhe_exibicao": null
+    },
+    "547": {
+        "descricao_original": "Quibebe",
+        "fonte": "taco",
+        "nome_exibicao": "Quibebe",
+        "detalhe_exibicao": null
+    },
+    "548": {
+        "descricao_original": "Salada, de legumes, com maionese",
+        "fonte": "taco",
+        "nome_exibicao": "Salada de legumes com maionese",
+        "detalhe_exibicao": null
+    },
+    "549": {
+        "descricao_original": "Salada, de legumes, cozida no vapor",
+        "fonte": "taco",
+        "nome_exibicao": "Salada de legumes cozida no vapor",
+        "detalhe_exibicao": null
+    },
+    "550": {
+        "descricao_original": "Salpicão, de frango",
+        "fonte": "taco",
+        "nome_exibicao": "Salpicão de frango",
+        "detalhe_exibicao": null
+    },
+    "551": {
+        "descricao_original": "Sarapatel",
+        "fonte": "taco",
+        "nome_exibicao": "Sarapatel",
+        "detalhe_exibicao": null
+    },
+    "552": {
+        "descricao_original": "Tabule",
+        "fonte": "taco",
+        "nome_exibicao": "Tabule",
+        "detalhe_exibicao": null
+    },
+    "553": {
+        "descricao_original": "Tacacá",
+        "fonte": "taco",
+        "nome_exibicao": "Tacacá",
+        "detalhe_exibicao": null
+    },
+    "554": {
+        "descricao_original": "Tapioca, com manteiga",
+        "fonte": "taco",
+        "nome_exibicao": "Tapioca com manteiga",
+        "detalhe_exibicao": null
+    },
+    "555": {
+        "descricao_original": "Tucupi, com pimenta-de-cheiro",
+        "fonte": "taco",
+        "nome_exibicao": "Tucupi com pimenta-de-cheiro",
+        "detalhe_exibicao": null
+    },
+    "556": {
+        "descricao_original": "Vaca atolada",
+        "fonte": "taco",
+        "nome_exibicao": "Vaca atolada",
+        "detalhe_exibicao": null
+    },
+    "557": {
+        "descricao_original": "Vatapá",
+        "fonte": "taco",
+        "nome_exibicao": "Vatapá",
+        "detalhe_exibicao": null
+    },
+    "558": {
+        "descricao_original": "Virado à paulista",
+        "fonte": "taco",
+        "nome_exibicao": "Virado à paulista",
+        "detalhe_exibicao": null
+    },
+    "559": {
+        "descricao_original": "Yakisoba",
+        "fonte": "taco",
+        "nome_exibicao": "Yakisoba",
+        "detalhe_exibicao": null
+    },
+    "560": {
+        "descricao_original": "Amendoim, grão, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Amendoim em grão",
+        "detalhe_exibicao": "cru"
+    },
+    "561": {
+        "descricao_original": "Amendoim, torrado, salgado",
+        "fonte": "taco",
+        "nome_exibicao": "Amendoim",
+        "detalhe_exibicao": "torrado, salgado"
+    },
+    "562": {
+        "descricao_original": "Ervilha, em vagem",
+        "fonte": "taco",
+        "nome_exibicao": "Ervilha em vagem",
+        "detalhe_exibicao": null
+    },
+    "563": {
+        "descricao_original": "Ervilha, enlatada, drenada",
+        "fonte": "taco",
+        "nome_exibicao": "Ervilha enlatada",
+        "detalhe_exibicao": "drenada"
+    },
+    "564": {
+        "descricao_original": "Feijão, carioca, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão carioca",
+        "detalhe_exibicao": "cozido"
+    },
+    "565": {
+        "descricao_original": "Feijão, carioca, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão carioca",
+        "detalhe_exibicao": "cru"
+    },
+    "566": {
+        "descricao_original": "Feijão, fradinho, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão fradinho",
+        "detalhe_exibicao": "cozido"
+    },
+    "567": {
+        "descricao_original": "Feijão, fradinho, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão fradinho",
+        "detalhe_exibicao": "cru"
+    },
+    "568": {
+        "descricao_original": "Feijão, jalo, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão jalo",
+        "detalhe_exibicao": "cozido"
+    },
+    "569": {
+        "descricao_original": "Feijão, jalo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão jalo",
+        "detalhe_exibicao": "cru"
+    },
+    "570": {
+        "descricao_original": "Feijão, preto, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão preto",
+        "detalhe_exibicao": "cozido"
+    },
+    "571": {
+        "descricao_original": "Feijão, preto, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão preto",
+        "detalhe_exibicao": "cru"
+    },
+    "572": {
+        "descricao_original": "Feijão, rajado, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão rajado",
+        "detalhe_exibicao": "cozido"
+    },
+    "573": {
+        "descricao_original": "Feijão, rajado, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão rajado",
+        "detalhe_exibicao": "cru"
+    },
+    "574": {
+        "descricao_original": "Feijão, rosinha, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão rosinha",
+        "detalhe_exibicao": "cozido"
+    },
+    "575": {
+        "descricao_original": "Feijão, rosinha, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão rosinha",
+        "detalhe_exibicao": "cru"
+    },
+    "576": {
+        "descricao_original": "Feijão, roxo, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão roxo",
+        "detalhe_exibicao": "cozido"
+    },
+    "577": {
+        "descricao_original": "Feijão, roxo, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Feijão roxo",
+        "detalhe_exibicao": "cru"
+    },
+    "578": {
+        "descricao_original": "Grão-de-bico, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Grão-de-bico",
+        "detalhe_exibicao": "cru"
+    },
+    "579": {
+        "descricao_original": "Guandu, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Guandu",
+        "detalhe_exibicao": "cru"
+    },
+    "580": {
+        "descricao_original": "Lentilha, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Lentilha",
+        "detalhe_exibicao": "cozida"
+    },
+    "581": {
+        "descricao_original": "Lentilha, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Lentilha",
+        "detalhe_exibicao": "crua"
+    },
+    "582": {
+        "descricao_original": "Paçoca, amendoim",
+        "fonte": "taco",
+        "nome_exibicao": "Paçoca de amendoim",
+        "detalhe_exibicao": null
+    },
+    "583": {
+        "descricao_original": "Pé-de-moleque, amendoim",
+        "fonte": "taco",
+        "nome_exibicao": "Pé-de-moleque de amendoim",
+        "detalhe_exibicao": null
+    },
+    "584": {
+        "descricao_original": "Soja, farinha",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha de soja",
+        "detalhe_exibicao": null
+    },
+    "585": {
+        "descricao_original": "Soja, extrato solúvel, natural, fluido",
+        "fonte": "taco",
+        "nome_exibicao": "Extrato solúvel de soja",
+        "detalhe_exibicao": "natural, fluido"
+    },
+    "586": {
+        "descricao_original": "Soja, extrato solúvel, pó",
+        "fonte": "taco",
+        "nome_exibicao": "Extrato solúvel de soja",
+        "detalhe_exibicao": "pó"
+    },
+    "587": {
+        "descricao_original": "Soja, queijo (tofu)",
+        "fonte": "taco",
+        "nome_exibicao": "Tofu (queijo de soja)",
+        "detalhe_exibicao": null
+    },
+    "588": {
+        "descricao_original": "Tremoço, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Tremoço",
+        "detalhe_exibicao": "cru"
+    },
+    "589": {
+        "descricao_original": "Tremoço, em conserva",
+        "fonte": "taco",
+        "nome_exibicao": "Tremoço",
+        "detalhe_exibicao": "em conserva"
+    },
+    "590": {
+        "descricao_original": "Amêndoa, torrada, salgada",
+        "fonte": "taco",
+        "nome_exibicao": "Amêndoa",
+        "detalhe_exibicao": "torrada, salgada"
+    },
+    "591": {
+        "descricao_original": "Castanha-de-caju, torrada, salgada",
+        "fonte": "taco",
+        "nome_exibicao": "Castanha-de-caju",
+        "detalhe_exibicao": "torrada, salgada"
+    },
+    "592": {
+        "descricao_original": "Castanha-do-Brasil, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Castanha-do-Brasil",
+        "detalhe_exibicao": "crua"
+    },
+    "593": {
+        "descricao_original": "Coco, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Coco",
+        "detalhe_exibicao": "cru"
+    },
+    "594": {
+        "descricao_original": "Coco,  verde, cru",
+        "fonte": "taco",
+        "nome_exibicao": "Coco verde",
+        "detalhe_exibicao": "cru"
+    },
+    "595": {
+        "descricao_original": "Farinha, de mesocarpo de babaçu, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Farinha de mesocarpo de babaçu",
+        "detalhe_exibicao": "crua"
+    },
+    "596": {
+        "descricao_original": "Gergelim, semente",
+        "fonte": "taco",
+        "nome_exibicao": "Semente de gergelim",
+        "detalhe_exibicao": null
+    },
+    "597": {
+        "descricao_original": "Linhaça, semente",
+        "fonte": "taco",
+        "nome_exibicao": "Semente de linhaça",
+        "detalhe_exibicao": null
+    },
+    "598": {
+        "descricao_original": "Pinhão, cozido",
+        "fonte": "taco",
+        "nome_exibicao": "Pinhão",
+        "detalhe_exibicao": "cozido"
+    },
+    "599": {
+        "descricao_original": "Pupunha, cozida",
+        "fonte": "taco",
+        "nome_exibicao": "Pupunha",
+        "detalhe_exibicao": "cozida"
+    },
+    "600": {
+        "descricao_original": "Noz, crua",
+        "fonte": "taco",
+        "nome_exibicao": "Noz",
+        "detalhe_exibicao": "crua"
+    },
+    "601": {
+        "descricao_original": "Hummus, commercial",
+        "fonte": "usda",
+        "nome_exibicao": "Húmus",
+        "detalhe_exibicao": "comercial"
+    },
+    "602": {
+        "descricao_original": "Tomatoes, grape, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Tomate cereja",
+        "detalhe_exibicao": "cru"
+    },
+    "603": {
+        "descricao_original": "Beans, snap, green, canned, regular pack, drained solids",
+        "fonte": "usda",
+        "nome_exibicao": "Vagem verde",
+        "detalhe_exibicao": "em conserva, drenada"
+    },
+    "604": {
+        "descricao_original": "Frankfurter, beef, unheated",
+        "fonte": "usda",
+        "nome_exibicao": "Salsicha de carne bovina",
+        "detalhe_exibicao": "não aquecida"
+    },
+    "605": {
+        "descricao_original": "Nuts, almonds, dry roasted, with salt added",
+        "fonte": "usda",
+        "nome_exibicao": "Amêndoa",
+        "detalhe_exibicao": "torrada a seco, com sal adicionado"
+    },
+    "606": {
+        "descricao_original": "Kale, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Couve",
+        "detalhe_exibicao": "crua"
+    },
+    "607": {
+        "descricao_original": "Egg, whole, raw, frozen, pasteurized",
+        "fonte": "usda",
+        "nome_exibicao": "Ovo inteiro",
+        "detalhe_exibicao": "cru, congelado, pasteurizado"
+    },
+    "608": {
+        "descricao_original": "Egg, white, raw, frozen, pasteurized",
+        "fonte": "usda",
+        "nome_exibicao": "Clara de ovo",
+        "detalhe_exibicao": "crua, congelada, pasteurizada"
+    },
+    "609": {
+        "descricao_original": "Egg, white, dried",
+        "fonte": "usda",
+        "nome_exibicao": "Clara de ovo",
+        "detalhe_exibicao": "desidratada"
+    },
+    "610": {
+        "descricao_original": "Onion rings, breaded, par fried, frozen, prepared, heated in oven",
+        "fonte": "usda",
+        "nome_exibicao": "Anéis de cebola empanados",
+        "detalhe_exibicao": "pré-fritos, congelados, aquecidos no forno"
+    },
+    "611": {
+        "descricao_original": "Pickles, cucumber, dill or kosher dill",
+        "fonte": "usda",
+        "nome_exibicao": "Picles de pepino",
+        "detalhe_exibicao": "com aroma de endro ou estilo kosher"
+    },
+    "612": {
+        "descricao_original": "Cheese, parmesan, grated",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo parmesão",
+        "detalhe_exibicao": "ralado"
+    },
+    "613": {
+        "descricao_original": "Cheese, pasteurized process, American, vitamin D fortified",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo processado pasteurizado tipo American",
+        "detalhe_exibicao": "enriquecido com vitamina D"
+    },
+    "614": {
+        "descricao_original": "Grapefruit juice, white, canned or bottled, unsweetened",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de grapefruit branca",
+        "detalhe_exibicao": "enlatado ou engarrafado, sem açúcar"
+    },
+    "615": {
+        "descricao_original": "Peaches, yellow, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pêssego amarelo",
+        "detalhe_exibicao": "cru"
+    },
+    "616": {
+        "descricao_original": "Seeds, sunflower seed kernels, dry roasted, with salt added",
+        "fonte": "usda",
+        "nome_exibicao": "Semente de girassol",
+        "detalhe_exibicao": "miolo, torrado a seco, com sal"
+    },
+    "617": {
+        "descricao_original": "Kale, frozen, cooked, boiled, drained, without salt",
+        "fonte": "usda",
+        "nome_exibicao": "Couve",
+        "detalhe_exibicao": "congelada, cozida, fervida, escorrida, sem sal"
+    },
+    "618": {
+        "descricao_original": "Mustard, prepared, yellow",
+        "fonte": "usda",
+        "nome_exibicao": "Mostarda amarela",
+        "detalhe_exibicao": "preparada"
+    },
+    "619": {
+        "descricao_original": "Kiwifruit, green, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Kiwi verde",
+        "detalhe_exibicao": "cru"
+    },
+    "620": {
+        "descricao_original": "Nectarines, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Nectarina",
+        "detalhe_exibicao": "crua"
+    },
+    "621": {
+        "descricao_original": "Cheese, cheddar",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo cheddar",
+        "detalhe_exibicao": null
+    },
+    "622": {
+        "descricao_original": "Cheese, cottage, lowfat, 2% milkfat",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo cottage",
+        "detalhe_exibicao": "baixo teor de gordura, 2% de gordura láctea"
+    },
+    "623": {
+        "descricao_original": "Cheese, mozzarella, low moisture, part-skim",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo muçarela",
+        "detalhe_exibicao": "baixa umidade, com teor reduzido de gordura"
+    },
+    "624": {
+        "descricao_original": "Egg, whole, dried",
+        "fonte": "usda",
+        "nome_exibicao": "Ovo inteiro",
+        "detalhe_exibicao": "desidratado"
+    },
+    "625": {
+        "descricao_original": "Egg, yolk, raw, frozen, pasteurized",
+        "fonte": "usda",
+        "nome_exibicao": "Gema de ovo",
+        "detalhe_exibicao": "crua, congelada, pasteurizada"
+    },
+    "626": {
+        "descricao_original": "Egg, yolk, dried",
+        "fonte": "usda",
+        "nome_exibicao": "Gema de ovo",
+        "detalhe_exibicao": "desidratada"
+    },
+    "627": {
+        "descricao_original": "Yogurt, Greek, plain, nonfat",
+        "fonte": "usda",
+        "nome_exibicao": "Iogurte grego",
+        "detalhe_exibicao": "tradicional, desnatado"
+    },
+    "628": {
+        "descricao_original": "Yogurt, Greek, strawberry, nonfat",
+        "fonte": "usda",
+        "nome_exibicao": "Iogurte grego sabor morango",
+        "detalhe_exibicao": "desnatado"
+    },
+    "629": {
+        "descricao_original": "Oil, coconut",
+        "fonte": "usda",
+        "nome_exibicao": "Óleo de coco",
+        "detalhe_exibicao": null
+    },
+    "630": {
+        "descricao_original": "Chicken, broilers or fryers, drumstick, meat only, cooked, braised",
+        "fonte": "usda",
+        "nome_exibicao": "Sobrecoxa de frango",
+        "detalhe_exibicao": "apenas a carne, cozida, refogada\/ensopada"
+    },
+    "631": {
+        "descricao_original": "Chicken, broiler or fryers, breast, skinless, boneless, meat only, cooked, braised",
+        "fonte": "usda",
+        "nome_exibicao": "Filé de peito de frango",
+        "detalhe_exibicao": "sem pele, sem osso, apenas a carne, cozido, refogado\/ensopado"
+    },
+    "632": {
+        "descricao_original": "Sauce, pasta, spaghetti\/marinara, ready-to-serve",
+        "fonte": "usda",
+        "nome_exibicao": "Molho de tomate para massa",
+        "detalhe_exibicao": "estilo spaghetti\/marinara, pronto para consumo"
+    },
+    "633": {
+        "descricao_original": "Ham, sliced, pre-packaged, deli meat (96%fat free, water added)",
+        "fonte": "usda",
+        "nome_exibicao": "Presunto fatiado",
+        "detalhe_exibicao": "embalado previamente, tipo frios, 96% livre de gordura, com adição de água"
+    },
+    "634": {
+        "descricao_original": "Olives, green, Manzanilla, stuffed with pimiento",
+        "fonte": "usda",
+        "nome_exibicao": "Azeitona verde Manzanilla",
+        "detalhe_exibicao": "recheada com pimentão"
+    },
+    "635": {
+        "descricao_original": "Cookies, oatmeal, soft, with raisins",
+        "fonte": "usda",
+        "nome_exibicao": "Biscoito de aveia",
+        "detalhe_exibicao": "macio, com passas"
+    },
+    "636": {
+        "descricao_original": "Tomatoes, canned, red, ripe, diced",
+        "fonte": "usda",
+        "nome_exibicao": "Tomate em cubos",
+        "detalhe_exibicao": "em lata, vermelho, maduro"
+    },
+    "637": {
+        "descricao_original": "Fish, haddock, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Hadoque",
+        "detalhe_exibicao": "cru"
+    },
+    "638": {
+        "descricao_original": "Fish, pollock, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pescada do Alasca (Pollock)",
+        "detalhe_exibicao": "crua"
+    },
+    "639": {
+        "descricao_original": "Fish, tuna, light, canned in water, drained solids",
+        "fonte": "usda",
+        "nome_exibicao": "Atum light em conserva",
+        "detalhe_exibicao": "em água, sólido drenado"
+    },
+    "640": {
+        "descricao_original": "Restaurant, Chinese, fried rice, without meat",
+        "fonte": "usda",
+        "nome_exibicao": "Arroz frito chinês",
+        "detalhe_exibicao": "sem carne, restaurante"
+    },
+    "641": {
+        "descricao_original": "Restaurant, Latino, tamale, pork",
+        "fonte": "usda",
+        "nome_exibicao": "Tamale de carne suína",
+        "detalhe_exibicao": "estilo latino, restaurante"
+    },
+    "642": {
+        "descricao_original": "Restaurant, Latino, pupusas con frijoles (pupusas, bean)",
+        "fonte": "usda",
+        "nome_exibicao": "Pupusa com feijão",
+        "detalhe_exibicao": "estilo latino, restaurante"
+    },
+    "643": {
+        "descricao_original": "Beef, loin, tenderloin roast, separable lean only, boneless, trimmed to 0\" fat, select, cooked, roasted",
+        "fonte": "usda",
+        "nome_exibicao": "Filé mignon bovino",
+        "detalhe_exibicao": "apenas carne magra, sem osso, cozido, assado"
+    },
+    "644": {
+        "descricao_original": "Beef, loin, top loin steak, boneless, lip-on, separable lean only, trimmed to 1\/8\" fat, choice, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Contrafilé bovino",
+        "detalhe_exibicao": "sem osso, cru"
+    },
+    "645": {
+        "descricao_original": "Beef, round, eye of round roast, boneless, separable lean only, trimmed to 0\" fat, select, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Lagarto bovino",
+        "detalhe_exibicao": "apenas carne magra, sem osso, cru"
+    },
+    "646": {
+        "descricao_original": "Beef, round, top round roast, boneless, separable lean only, trimmed to 0\" fat, select, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Coxão duro bovino",
+        "detalhe_exibicao": "apenas carne magra, sem osso, cru"
+    },
+    "647": {
+        "descricao_original": "Beef, short loin, porterhouse steak, separable lean only, trimmed to 1\/8\" fat, select, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Bife Porterhouse bovino",
+        "detalhe_exibicao": "apenas carne magra, cru"
+    },
+    "648": {
+        "descricao_original": "Beef, short loin, t-bone steak, bone-in, separable lean only, trimmed to 1\/8\" fat, choice, cooked, grilled",
+        "fonte": "usda",
+        "nome_exibicao": "Bife T-Bone bovino",
+        "detalhe_exibicao": "com osso, apenas carne magra, cozido, grelhado"
+    },
+    "649": {
+        "descricao_original": "Carrots, frozen, unprepared",
+        "fonte": "usda",
+        "nome_exibicao": "Cenoura",
+        "detalhe_exibicao": "congelada, não preparada"
+    },
+    "650": {
+        "descricao_original": "Cheese, dry white, queso seco",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo branco seco",
+        "detalhe_exibicao": "queso seco"
+    },
+    "651": {
+        "descricao_original": "Cheese, ricotta, whole milk",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo ricota",
+        "detalhe_exibicao": "de leite integral"
+    },
+    "652": {
+        "descricao_original": "Cheese, swiss",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo tipo suíço",
+        "detalhe_exibicao": null
+    },
+    "653": {
+        "descricao_original": "Figs, dried, uncooked",
+        "fonte": "usda",
+        "nome_exibicao": "Figo seco",
+        "detalhe_exibicao": "não cozido"
+    },
+    "654": {
+        "descricao_original": "Lettuce, cos or romaine, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Alface romana",
+        "detalhe_exibicao": "crua"
+    },
+    "655": {
+        "descricao_original": "Melons, cantaloupe, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Melão cantaloupe",
+        "detalhe_exibicao": "cru"
+    },
+    "656": {
+        "descricao_original": "Oranges, raw, navels",
+        "fonte": "usda",
+        "nome_exibicao": "Laranja navel",
+        "detalhe_exibicao": "crua"
+    },
+    "657": {
+        "descricao_original": "Milk, lowfat, fluid, 1% milkfat, with added vitamin A and vitamin D",
+        "fonte": "usda",
+        "nome_exibicao": "Leite semidesnatado 1%",
+        "detalhe_exibicao": "fluido, com vitaminas A e D adicionadas"
+    },
+    "658": {
+        "descricao_original": "Pears, raw, bartlett",
+        "fonte": "usda",
+        "nome_exibicao": "Pêra Bartlett",
+        "detalhe_exibicao": "crua"
+    },
+    "659": {
+        "descricao_original": "Restaurant, Chinese, sweet and sour pork",
+        "fonte": "usda",
+        "nome_exibicao": "Carne suína agridoce",
+        "detalhe_exibicao": "estilo chinês, restaurante"
+    },
+    "660": {
+        "descricao_original": "Salt, table, iodized",
+        "fonte": "usda",
+        "nome_exibicao": "Sal de cozinha iodado",
+        "detalhe_exibicao": null
+    },
+    "661": {
+        "descricao_original": "Milk, nonfat, fluid, with added vitamin A and vitamin D (fat free or skim)",
+        "fonte": "usda",
+        "nome_exibicao": "Leite desnatado",
+        "detalhe_exibicao": "fluido, com vitaminas A e D adicionadas"
+    },
+    "662": {
+        "descricao_original": "Sauce, salsa, ready-to-serve",
+        "fonte": "usda",
+        "nome_exibicao": "Molho salsa",
+        "detalhe_exibicao": "pronto para consumo"
+    },
+    "663": {
+        "descricao_original": "Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D",
+        "fonte": "usda",
+        "nome_exibicao": "Leite semidesnatado 2%",
+        "detalhe_exibicao": "fluido, com vitaminas A e D adicionadas"
+    },
+    "664": {
+        "descricao_original": "Sausage, breakfast sausage, beef, pre-cooked, unprepared",
+        "fonte": "usda",
+        "nome_exibicao": "Salsicha de carne bovina para café da manhã",
+        "detalhe_exibicao": "pré-cozida, não preparada"
+    },
+    "665": {
+        "descricao_original": "Sausage, Italian, pork, mild, cooked, pan-fried",
+        "fonte": "usda",
+        "nome_exibicao": "Linguiça tipo italiana de carne suína",
+        "detalhe_exibicao": "suave, cozida, frita na frigideira"
+    },
+    "666": {
+        "descricao_original": "Sausage, pork, chorizo, link or ground, cooked, pan-fried",
+        "fonte": "usda",
+        "nome_exibicao": "Chouriço de carne suína",
+        "detalhe_exibicao": "em gomo ou moído, cozido, frito na frigideira"
+    },
+    "667": {
+        "descricao_original": "Milk, whole, 3.25% milkfat, with added vitamin D",
+        "fonte": "usda",
+        "nome_exibicao": "Leite integral",
+        "detalhe_exibicao": "3,25% de gordura, com vitamina D adicionada"
+    },
+    "668": {
+        "descricao_original": "Sausage, turkey, breakfast links, mild, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Linguiça de peru para café da manhã",
+        "detalhe_exibicao": "suave, crua"
+    },
+    "669": {
+        "descricao_original": "Sugars, granulated",
+        "fonte": "usda",
+        "nome_exibicao": "Açúcar refinado",
+        "detalhe_exibicao": "granulado"
+    },
+    "670": {
+        "descricao_original": "Turkey, ground, 93% lean, 7% fat, pan-broiled crumbles",
+        "fonte": "usda",
+        "nome_exibicao": "Carne moída de peru",
+        "detalhe_exibicao": "93% magra, 7% gordura, desfiada grelhada"
+    },
+    "671": {
+        "descricao_original": "Ham, sliced, restaurant",
+        "fonte": "usda",
+        "nome_exibicao": "Presunto fatiado",
+        "detalhe_exibicao": "tipo restaurante"
+    },
+    "672": {
+        "descricao_original": "Cheese, American, restaurant",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo americano",
+        "detalhe_exibicao": "tipo restaurante"
+    },
+    "673": {
+        "descricao_original": "Beans, Dry, Medium Red (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão vermelho médio",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "674": {
+        "descricao_original": "Beans, Dry, Red (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão vermelho",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "675": {
+        "descricao_original": "Beans, Dry, Flor de Mayo (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão flor de maio",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "676": {
+        "descricao_original": "Beans, Dry, Brown (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão marrom",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "677": {
+        "descricao_original": "Beans, Dry, Tan (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão castanho-claro",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "678": {
+        "descricao_original": "Beans, Dry, Light Tan (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão bege-claro",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "679": {
+        "descricao_original": "Beans, Dry, Carioca (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão carioca",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "680": {
+        "descricao_original": "Beans, Dry, Cranberry (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão cranberry",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "681": {
+        "descricao_original": "Beans, Dry, Light Red Kidney (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão vermelho-claro",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "682": {
+        "descricao_original": "Beans, Dry, Pink (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão rosa",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "683": {
+        "descricao_original": "Beans, Dry, Dark Red Kidney (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão vermelho-escuro",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "684": {
+        "descricao_original": "Beans, Dry, Navy (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão branco (navy)",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "685": {
+        "descricao_original": "Beans, Dry, Small White (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão branco pequeno",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "686": {
+        "descricao_original": "Beans, Dry, Small Red (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão vermelho pequeno",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "687": {
+        "descricao_original": "Beans, Dry, Black (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão preto",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "688": {
+        "descricao_original": "Beans, Dry, Pinto (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão pinto",
+        "detalhe_exibicao": "cru, 0% de umidade"
+    },
+    "689": {
+        "descricao_original": "Beans, Dry, Great Northern (0% moisture)",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão Great Northern seco",
+        "detalhe_exibicao": "0% de umidade"
+    },
+    "690": {
+        "descricao_original": "Broccoli, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Brócolis",
+        "detalhe_exibicao": "cru"
+    },
+    "691": {
+        "descricao_original": "Ketchup, restaurant",
+        "fonte": "usda",
+        "nome_exibicao": "Ketchup",
+        "detalhe_exibicao": "tipo de restaurante"
+    },
+    "692": {
+        "descricao_original": "Eggs, Grade A, Large, egg white",
+        "fonte": "usda",
+        "nome_exibicao": "Clara de ovo",
+        "detalhe_exibicao": "grande, Classe A"
+    },
+    "693": {
+        "descricao_original": "Eggs, Grade A, Large, egg yolk",
+        "fonte": "usda",
+        "nome_exibicao": "Gema de ovo",
+        "detalhe_exibicao": "grande, Classe A"
+    },
+    "694": {
+        "descricao_original": "Oil, canola",
+        "fonte": "usda",
+        "nome_exibicao": "Óleo de canola",
+        "detalhe_exibicao": null
+    },
+    "695": {
+        "descricao_original": "Oil, corn",
+        "fonte": "usda",
+        "nome_exibicao": "Óleo de milho",
+        "detalhe_exibicao": null
+    },
+    "696": {
+        "descricao_original": "Oil, soybean",
+        "fonte": "usda",
+        "nome_exibicao": "Óleo de soja",
+        "detalhe_exibicao": null
+    },
+    "697": {
+        "descricao_original": "Oil, olive, extra virgin",
+        "fonte": "usda",
+        "nome_exibicao": "Azeite de oliva",
+        "detalhe_exibicao": "extra virgem"
+    },
+    "698": {
+        "descricao_original": "Eggs, Grade A, Large, egg whole",
+        "fonte": "usda",
+        "nome_exibicao": "Ovo inteiro",
+        "detalhe_exibicao": "grande, Classe A"
+    },
+    "699": {
+        "descricao_original": "Pork, cured, bacon, cooked, restaurant",
+        "fonte": "usda",
+        "nome_exibicao": "Bacon de porco curado",
+        "detalhe_exibicao": "cozido, tipo de restaurante"
+    },
+    "700": {
+        "descricao_original": "Butter, stick, unsalted",
+        "fonte": "usda",
+        "nome_exibicao": "Manteiga em barra",
+        "detalhe_exibicao": "sem sal"
+    },
+    "701": {
+        "descricao_original": "Flour, wheat, all-purpose, enriched, bleached",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de trigo",
+        "detalhe_exibicao": "uso geral, enriquecida, branqueada"
+    },
+    "702": {
+        "descricao_original": "Flour, wheat, all-purpose, enriched, unbleached",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de trigo",
+        "detalhe_exibicao": "uso geral, enriquecida, não branqueada"
+    },
+    "703": {
+        "descricao_original": "Flour, wheat, all-purpose, unenriched, unbleached",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de trigo",
+        "detalhe_exibicao": "uso geral, não enriquecida, não branqueada"
+    },
+    "704": {
+        "descricao_original": "Flour, whole wheat, unenriched",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de trigo integral",
+        "detalhe_exibicao": "não enriquecida"
+    },
+    "705": {
+        "descricao_original": "Flour, bread, white, enriched, unbleached",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de trigo para pão",
+        "detalhe_exibicao": "branca, enriquecida, não branqueada"
+    },
+    "706": {
+        "descricao_original": "Flour, rice, white, unenriched",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de arroz",
+        "detalhe_exibicao": "branca, não enriquecida"
+    },
+    "707": {
+        "descricao_original": "Flour, corn, yellow, fine meal, enriched",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de milho amarela",
+        "detalhe_exibicao": "moagem fina, enriquecida"
+    },
+    "708": {
+        "descricao_original": "Butter, stick, salted",
+        "fonte": "usda",
+        "nome_exibicao": "Manteiga em barra",
+        "detalhe_exibicao": "com sal"
+    },
+    "709": {
+        "descricao_original": "Onions, red, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Cebola roxa",
+        "detalhe_exibicao": "crua"
+    },
+    "710": {
+        "descricao_original": "Onions, yellow, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Cebola amarela",
+        "detalhe_exibicao": "crua"
+    },
+    "711": {
+        "descricao_original": "Garlic, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Alho",
+        "detalhe_exibicao": "cru"
+    },
+    "712": {
+        "descricao_original": "Flour, soy, defatted",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de soja",
+        "detalhe_exibicao": "desengordurada"
+    },
+    "713": {
+        "descricao_original": "Flour, soy, full-fat",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de soja",
+        "detalhe_exibicao": "integral"
+    },
+    "714": {
+        "descricao_original": "Flour, rice, brown",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de arroz integral",
+        "detalhe_exibicao": null
+    },
+    "715": {
+        "descricao_original": "Flour, rice, glutinous",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de arroz glutinoso",
+        "detalhe_exibicao": null
+    },
+    "716": {
+        "descricao_original": "Flour, pastry, unenriched, unbleached",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha para pastelaria",
+        "detalhe_exibicao": "não enriquecida, não branqueada"
+    },
+    "717": {
+        "descricao_original": "Onions, white, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Cebola branca",
+        "detalhe_exibicao": "crua"
+    },
+    "718": {
+        "descricao_original": "Bananas, overripe, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Banana",
+        "detalhe_exibicao": "bem madura, crua"
+    },
+    "719": {
+        "descricao_original": "Bananas, ripe and slightly ripe, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Banana",
+        "detalhe_exibicao": "madura e levemente madura, crua"
+    },
+    "720": {
+        "descricao_original": "Apples, red delicious, with skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Maçã Red Delicious",
+        "detalhe_exibicao": "com casca, crua"
+    },
+    "721": {
+        "descricao_original": "Apples, fuji, with skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Maçã Fuji",
+        "detalhe_exibicao": "com casca, crua"
+    },
+    "722": {
+        "descricao_original": "Apples, gala, with skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Maçã Gala",
+        "detalhe_exibicao": "com casca, crua"
+    },
+    "723": {
+        "descricao_original": "Apples, granny smith, with skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Maçã Granny Smith",
+        "detalhe_exibicao": "com casca, crua"
+    },
+    "724": {
+        "descricao_original": "Apples, honeycrisp, with skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Maçã Honeycrisp",
+        "detalhe_exibicao": "com casca, crua"
+    },
+    "725": {
+        "descricao_original": "Oil, peanut",
+        "fonte": "usda",
+        "nome_exibicao": "Óleo de amendoim",
+        "detalhe_exibicao": null
+    },
+    "726": {
+        "descricao_original": "Oil, sunflower",
+        "fonte": "usda",
+        "nome_exibicao": "Óleo de girassol",
+        "detalhe_exibicao": null
+    },
+    "727": {
+        "descricao_original": "Oil, safflower",
+        "fonte": "usda",
+        "nome_exibicao": "Óleo de cártamo",
+        "detalhe_exibicao": null
+    },
+    "728": {
+        "descricao_original": "Oil, olive, extra light",
+        "fonte": "usda",
+        "nome_exibicao": "Azeite de oliva extra leve",
+        "detalhe_exibicao": null
+    },
+    "729": {
+        "descricao_original": "Mushroom, lion's mane",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo Juba de Leão",
+        "detalhe_exibicao": null
+    },
+    "730": {
+        "descricao_original": "Mushroom, oyster",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo Pleurotus",
+        "detalhe_exibicao": "ostra"
+    },
+    "731": {
+        "descricao_original": "Mushrooms, shiitake",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo Shiitake",
+        "detalhe_exibicao": null
+    },
+    "732": {
+        "descricao_original": "Mushrooms, white button",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo Paris",
+        "detalhe_exibicao": "branco"
+    },
+    "733": {
+        "descricao_original": "Soy milk, unsweetened, plain, shelf stable",
+        "fonte": "usda",
+        "nome_exibicao": "Bebida de soja",
+        "detalhe_exibicao": "sem açúcar, tradicional, estável na prateleira"
+    },
+    "734": {
+        "descricao_original": "Almond milk, unsweetened, plain, shelf stable",
+        "fonte": "usda",
+        "nome_exibicao": "Leite de amêndoas",
+        "detalhe_exibicao": "sem açúcar, tradicional, estável na prateleira"
+    },
+    "735": {
+        "descricao_original": "Spinach, baby",
+        "fonte": "usda",
+        "nome_exibicao": "Espinafre baby",
+        "detalhe_exibicao": null
+    },
+    "736": {
+        "descricao_original": "Spinach, mature",
+        "fonte": "usda",
+        "nome_exibicao": "Espinafre maduro",
+        "detalhe_exibicao": null
+    },
+    "737": {
+        "descricao_original": "Tomato, roma",
+        "fonte": "usda",
+        "nome_exibicao": "Tomate italiano",
+        "detalhe_exibicao": "roma"
+    },
+    "738": {
+        "descricao_original": "Flour, 00",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de trigo tipo 00",
+        "detalhe_exibicao": null
+    },
+    "739": {
+        "descricao_original": "Flour, spelt, whole grain",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de espelta",
+        "detalhe_exibicao": "integral"
+    },
+    "740": {
+        "descricao_original": "Flour, semolina, coarse and semi-coarse",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de sêmola",
+        "detalhe_exibicao": "grossa e semigrossa"
+    },
+    "741": {
+        "descricao_original": "Flour, semolina, fine",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de sêmola",
+        "detalhe_exibicao": "fina"
+    },
+    "742": {
+        "descricao_original": "Apple juice, with added vitamin C, from concentrate, shelf stable",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de maçã",
+        "detalhe_exibicao": "com vitamina C adicionada, reconstituído, ambiente"
+    },
+    "743": {
+        "descricao_original": "Orange juice, no pulp, not fortified, from concentrate, refrigerated",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de laranja",
+        "detalhe_exibicao": "sem gominhos, não fortificado, reconstituído, refrigerado"
+    },
+    "744": {
+        "descricao_original": "Grape juice, purple, with added vitamin C, from concentrate, shelf stable",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de uva roxa",
+        "detalhe_exibicao": "com vitamina C adicionada, reconstituído, ambiente"
+    },
+    "745": {
+        "descricao_original": "Grape juice, white, with added vitamin C, from concentrate, shelf stable",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de uva branca",
+        "detalhe_exibicao": "com vitamina C adicionada, reconstituído, ambiente"
+    },
+    "746": {
+        "descricao_original": "Cranberry juice, not fortified, from concentrate, shelf stable",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de cranberry",
+        "detalhe_exibicao": "não fortificado, reconstituído, ambiente"
+    },
+    "747": {
+        "descricao_original": "Grapefruit juice, red, not fortified, not from concentrate, refrigerated",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de toranja vermelha",
+        "detalhe_exibicao": "não fortificado, não reconstituído, refrigerado"
+    },
+    "748": {
+        "descricao_original": "Tomato juice, with added ingredients, from concentrate, shelf stable",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de tomate",
+        "detalhe_exibicao": "com ingredientes adicionados, reconstituído, ambiente"
+    },
+    "749": {
+        "descricao_original": "Orange juice, no pulp, not fortified, not from concentrate, refrigerated",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de laranja",
+        "detalhe_exibicao": "sem gominhos, não fortificado, não reconstituído, refrigerado"
+    },
+    "750": {
+        "descricao_original": "Mushroom, portabella",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo portobelo",
+        "detalhe_exibicao": null
+    },
+    "751": {
+        "descricao_original": "Mushroom, king oyster",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo rei ostra",
+        "detalhe_exibicao": null
+    },
+    "752": {
+        "descricao_original": "Mushroom, enoki",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo enoki",
+        "detalhe_exibicao": null
+    },
+    "753": {
+        "descricao_original": "Mushroom, crimini",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo crimini",
+        "detalhe_exibicao": null
+    },
+    "754": {
+        "descricao_original": "Mushroom, maitake",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo maitake",
+        "detalhe_exibicao": null
+    },
+    "755": {
+        "descricao_original": "Mushroom, beech",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo haya-dake",
+        "detalhe_exibicao": "beech"
+    },
+    "756": {
+        "descricao_original": "Mushroom, pioppini",
+        "fonte": "usda",
+        "nome_exibicao": "Cogumelo pioppini",
+        "detalhe_exibicao": null
+    },
+    "757": {
+        "descricao_original": "Soy milk, sweetened, plain, refrigerated",
+        "fonte": "usda",
+        "nome_exibicao": "Bebida de soja",
+        "detalhe_exibicao": "adoçada, sabor tradicional, refrigerada"
+    },
+    "758": {
+        "descricao_original": "Almond milk, unsweetened, plain, refrigerated",
+        "fonte": "usda",
+        "nome_exibicao": "Leite de amêndoas",
+        "detalhe_exibicao": "não adoçado, sabor tradicional, refrigerado"
+    },
+    "759": {
+        "descricao_original": "Oat milk, unsweetened, plain, refrigerated",
+        "fonte": "usda",
+        "nome_exibicao": "Leite de aveia",
+        "detalhe_exibicao": "não adoçado, sabor tradicional, refrigerado"
+    },
+    "760": {
+        "descricao_original": "Carrots, mature, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Cenoura",
+        "detalhe_exibicao": "madura, crua"
+    },
+    "761": {
+        "descricao_original": "Carrots, baby, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Mini cenoura",
+        "detalhe_exibicao": "crua"
+    },
+    "762": {
+        "descricao_original": "Peppers, bell, green, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pimentão verde",
+        "detalhe_exibicao": "cru"
+    },
+    "763": {
+        "descricao_original": "Peppers, bell, yellow, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pimentão amarelo",
+        "detalhe_exibicao": "cru"
+    },
+    "764": {
+        "descricao_original": "Peppers, bell, red, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pimentão vermelho",
+        "detalhe_exibicao": "cru"
+    },
+    "765": {
+        "descricao_original": "Peppers, bell, orange, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pimentão laranja",
+        "detalhe_exibicao": "cru"
+    },
+    "766": {
+        "descricao_original": "Buttermilk, low fat",
+        "fonte": "usda",
+        "nome_exibicao": "Leitelho",
+        "detalhe_exibicao": "baixo teor de gordura"
+    },
+    "767": {
+        "descricao_original": "Yogurt, plain, whole milk",
+        "fonte": "usda",
+        "nome_exibicao": "Iogurte natural",
+        "detalhe_exibicao": "integral"
+    },
+    "768": {
+        "descricao_original": "Yogurt, Greek, plain, whole milk",
+        "fonte": "usda",
+        "nome_exibicao": "Iogurte grego natural",
+        "detalhe_exibicao": "integral"
+    },
+    "769": {
+        "descricao_original": "Cheese, parmesan, grated, refrigerated",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo parmesão",
+        "detalhe_exibicao": "ralado, refrigerado"
+    },
+    "770": {
+        "descricao_original": "Cheese, feta, whole milk, crumbled",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo feta",
+        "detalhe_exibicao": "leite integral, esfarelado"
+    },
+    "771": {
+        "descricao_original": "Flour, almond",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de amêndoa",
+        "detalhe_exibicao": null
+    },
+    "772": {
+        "descricao_original": "Flour, oat, whole grain",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de aveia",
+        "detalhe_exibicao": "integral"
+    },
+    "773": {
+        "descricao_original": "Flour, potato",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de batata",
+        "detalhe_exibicao": null
+    },
+    "774": {
+        "descricao_original": "Peanut butter, creamy",
+        "fonte": "usda",
+        "nome_exibicao": "Pasta de amendoim",
+        "detalhe_exibicao": "cremosa"
+    },
+    "775": {
+        "descricao_original": "Sesame butter, creamy",
+        "fonte": "usda",
+        "nome_exibicao": "Pasta de gergelim",
+        "detalhe_exibicao": "cremosa"
+    },
+    "776": {
+        "descricao_original": "Almond butter, creamy",
+        "fonte": "usda",
+        "nome_exibicao": "Pasta de amêndoa",
+        "detalhe_exibicao": "cremosa"
+    },
+    "777": {
+        "descricao_original": "Flaxseed, ground",
+        "fonte": "usda",
+        "nome_exibicao": "Semente de linhaça",
+        "detalhe_exibicao": "moída"
+    },
+    "778": {
+        "descricao_original": "Cottage cheese, full fat, large or small curd",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo cottage",
+        "detalhe_exibicao": "integral, coalhada grande ou pequena"
+    },
+    "779": {
+        "descricao_original": "Cream cheese, full fat, block",
+        "fonte": "usda",
+        "nome_exibicao": "Cream cheese",
+        "detalhe_exibicao": "integral, em bloco"
+    },
+    "780": {
+        "descricao_original": "Cream, heavy",
+        "fonte": "usda",
+        "nome_exibicao": "Creme de leite fresco",
+        "detalhe_exibicao": "grosso"
+    },
+    "781": {
+        "descricao_original": "Cream, sour, full fat",
+        "fonte": "usda",
+        "nome_exibicao": "Creme azedo",
+        "detalhe_exibicao": "integral"
+    },
+    "782": {
+        "descricao_original": "Lettuce, iceberg, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Alface americana",
+        "detalhe_exibicao": "crua"
+    },
+    "783": {
+        "descricao_original": "Lettuce, romaine, green, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Alface romana verde",
+        "detalhe_exibicao": "crua"
+    },
+    "784": {
+        "descricao_original": "Lettuce, leaf, red, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Alface roxa",
+        "detalhe_exibicao": "crua"
+    },
+    "785": {
+        "descricao_original": "Lettuce, leaf, green, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Alface crespa verde",
+        "detalhe_exibicao": "crua"
+    },
+    "786": {
+        "descricao_original": "Nuts, pine nuts, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pinhão",
+        "detalhe_exibicao": "cru"
+    },
+    "787": {
+        "descricao_original": "Nuts, almonds, whole, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Amêndoa",
+        "detalhe_exibicao": "inteira, crua"
+    },
+    "788": {
+        "descricao_original": "Nuts, walnuts, English, halves, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Noz inglesa",
+        "detalhe_exibicao": "metades, crua"
+    },
+    "789": {
+        "descricao_original": "Nuts, pecans, halves, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Noz pecã",
+        "detalhe_exibicao": "metades, crua"
+    },
+    "790": {
+        "descricao_original": "Oats, whole grain, rolled, old fashioned",
+        "fonte": "usda",
+        "nome_exibicao": "Aveia em flocos tradicionais",
+        "detalhe_exibicao": "integral, crua"
+    },
+    "791": {
+        "descricao_original": "Oats, whole grain, steel cut",
+        "fonte": "usda",
+        "nome_exibicao": "Aveia em grão cortada em aço",
+        "detalhe_exibicao": "integral, crua"
+    },
+    "792": {
+        "descricao_original": "Pineapple, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Abacaxi",
+        "detalhe_exibicao": "cru"
+    },
+    "793": {
+        "descricao_original": "Cherries, sweet, dark red, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Cereja doce vermelha escura",
+        "detalhe_exibicao": "crua"
+    },
+    "794": {
+        "descricao_original": "Beans, snap, green, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Vagem verde",
+        "detalhe_exibicao": "crua"
+    },
+    "795": {
+        "descricao_original": "Potatoes, russet, without skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Batata rústica sem casca",
+        "detalhe_exibicao": "crua"
+    },
+    "796": {
+        "descricao_original": "Potatoes, red, without skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Batata vermelha sem casca",
+        "detalhe_exibicao": "crua"
+    },
+    "797": {
+        "descricao_original": "Potatoes, gold, without skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Batata asterix ou baraka amarela sem casca",
+        "detalhe_exibicao": "crua"
+    },
+    "798": {
+        "descricao_original": "Sweet potatoes, orange flesh, without skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Batata-doce de polpa laranja sem casca",
+        "detalhe_exibicao": "crua"
+    },
+    "799": {
+        "descricao_original": "Celery, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Salsão",
+        "detalhe_exibicao": "cru"
+    },
+    "800": {
+        "descricao_original": "Cucumber, with peel, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pepino com casca",
+        "detalhe_exibicao": "cru"
+    },
+    "801": {
+        "descricao_original": "Cabbage, green, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Repolho verde",
+        "detalhe_exibicao": "cru"
+    },
+    "802": {
+        "descricao_original": "Cabbage, red, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Repolho roxo",
+        "detalhe_exibicao": "cru"
+    },
+    "803": {
+        "descricao_original": "Strawberries, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Morango",
+        "detalhe_exibicao": "cru"
+    },
+    "804": {
+        "descricao_original": "Raspberries, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Framboesa",
+        "detalhe_exibicao": "crua"
+    },
+    "805": {
+        "descricao_original": "Blueberries, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Mirtilo",
+        "detalhe_exibicao": "cru"
+    },
+    "806": {
+        "descricao_original": "Grapes, red, seedless, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Uva vermelha sem semente",
+        "detalhe_exibicao": "crua"
+    },
+    "807": {
+        "descricao_original": "Grapes, green, seedless, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Uva verde sem semente",
+        "detalhe_exibicao": "crua"
+    },
+    "808": {
+        "descricao_original": "Applesauce, unsweetened, with added vitamin C",
+        "fonte": "usda",
+        "nome_exibicao": "Purê de maçã",
+        "detalhe_exibicao": "sem adição de açúcar, com vitamina C adicionada"
+    },
+    "809": {
+        "descricao_original": "Flour, amaranth",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de amaranto",
+        "detalhe_exibicao": "crua"
+    },
+    "810": {
+        "descricao_original": "Flour, quinoa",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de quinoa",
+        "detalhe_exibicao": "crua"
+    },
+    "811": {
+        "descricao_original": "Flour, sorghum",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de sorgo",
+        "detalhe_exibicao": "crua"
+    },
+    "812": {
+        "descricao_original": "Flour, buckwheat",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de trigo-sarraceno",
+        "detalhe_exibicao": "crua"
+    },
+    "813": {
+        "descricao_original": "Flour, rye",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de centeio",
+        "detalhe_exibicao": "crua"
+    },
+    "814": {
+        "descricao_original": "Flour, barley",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de cevada",
+        "detalhe_exibicao": null
+    },
+    "815": {
+        "descricao_original": "Flour, cassava",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de mandioca",
+        "detalhe_exibicao": null
+    },
+    "816": {
+        "descricao_original": "Buckwheat, whole grain",
+        "fonte": "usda",
+        "nome_exibicao": "Trigo sarraceno",
+        "detalhe_exibicao": "grão inteiro"
+    },
+    "817": {
+        "descricao_original": "Millet, whole grain",
+        "fonte": "usda",
+        "nome_exibicao": "Milheto",
+        "detalhe_exibicao": "grão inteiro"
+    },
+    "818": {
+        "descricao_original": "Rice, brown, long grain, unenriched, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Arroz integral",
+        "detalhe_exibicao": "grão longo, não enriquecido, cru"
+    },
+    "819": {
+        "descricao_original": "Rice, white, long grain, unenriched, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Arroz branco",
+        "detalhe_exibicao": "grão longo, não enriquecido, cru"
+    },
+    "820": {
+        "descricao_original": "Beef, ground, 90% lean meat \/ 10% fat, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Carne moída bovina",
+        "detalhe_exibicao": "90% carne magra \/ 10% gordura, crua"
+    },
+    "821": {
+        "descricao_original": "Beef, ground, 80% lean meat \/ 20% fat, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Carne moída bovina",
+        "detalhe_exibicao": "80% carne magra \/ 20% gordura, crua"
+    },
+    "822": {
+        "descricao_original": "Pork, ground, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Carne moída de porco",
+        "detalhe_exibicao": "crua"
+    },
+    "823": {
+        "descricao_original": "Chicken, ground, with additives, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Carne moída de frango",
+        "detalhe_exibicao": "com aditivos, crua"
+    },
+    "824": {
+        "descricao_original": "Turkey, ground, 93% lean\/ 7% fat, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Carne moída de peru",
+        "detalhe_exibicao": "93% carne magra \/ 7% gordura, crua"
+    },
+    "825": {
+        "descricao_original": "Nuts, brazilnuts, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Castanha-do-pará",
+        "detalhe_exibicao": "crua"
+    },
+    "826": {
+        "descricao_original": "Nuts, cashew nuts, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Castanha-de-caju",
+        "detalhe_exibicao": "crua"
+    },
+    "827": {
+        "descricao_original": "Nuts, hazelnuts or filberts, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Avelã",
+        "detalhe_exibicao": "crua"
+    },
+    "828": {
+        "descricao_original": "Peanuts, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Amendoim",
+        "detalhe_exibicao": "cru"
+    },
+    "829": {
+        "descricao_original": "Flour, chestnut",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de castanha",
+        "detalhe_exibicao": null
+    },
+    "830": {
+        "descricao_original": "Nuts, macadamia nuts, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Macadâmia",
+        "detalhe_exibicao": "crua"
+    },
+    "831": {
+        "descricao_original": "Nuts, pistachio nuts, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pistache",
+        "detalhe_exibicao": "cru"
+    },
+    "832": {
+        "descricao_original": "Seeds, pumpkin seeds (pepitas), raw",
+        "fonte": "usda",
+        "nome_exibicao": "Semente de abóbora",
+        "detalhe_exibicao": "crua"
+    },
+    "833": {
+        "descricao_original": "Seeds, sunflower seed, kernel, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Semente de girassol",
+        "detalhe_exibicao": "sem casca, crua"
+    },
+    "834": {
+        "descricao_original": "Flour, coconut",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de coco",
+        "detalhe_exibicao": null
+    },
+    "835": {
+        "descricao_original": "Beans, cannellini, dry",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão canelini",
+        "detalhe_exibicao": "seco"
+    },
+    "836": {
+        "descricao_original": "Chickpeas, (garbanzo beans, bengal gram), dry",
+        "fonte": "usda",
+        "nome_exibicao": "Grão-de-bico",
+        "detalhe_exibicao": "seco"
+    },
+    "837": {
+        "descricao_original": "Lentils, dry",
+        "fonte": "usda",
+        "nome_exibicao": "Lentilha",
+        "detalhe_exibicao": "seca"
+    },
+    "838": {
+        "descricao_original": "Blackeye pea, dry",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão-fradinho",
+        "detalhe_exibicao": "seco"
+    },
+    "839": {
+        "descricao_original": "Beans, black, canned, sodium added, drained and rinsed",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão-preto em lata",
+        "detalhe_exibicao": "escorrido e lavado"
+    },
+    "840": {
+        "descricao_original": "Beans, navy, canned, sodium added, drained and rinsed",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão-branco em lata",
+        "detalhe_exibicao": "escorrido e lavado"
+    },
+    "841": {
+        "descricao_original": "Beans, cannellini, canned, sodium added, drained and rinsed",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão canelini em lata",
+        "detalhe_exibicao": "escorrido e lavado"
+    },
+    "842": {
+        "descricao_original": "Chickpeas (garbanzo beans, bengal gram), canned, sodium added, drained and rinsed",
+        "fonte": "usda",
+        "nome_exibicao": "Grão-de-bico em lata",
+        "detalhe_exibicao": "escorrido e lavado"
+    },
+    "843": {
+        "descricao_original": "Beans, kidney, dark red, canned, sodium added, sugar added, drained and rinsed",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão-carioca vermelho escuro em lata",
+        "detalhe_exibicao": "com açúcar adicionado, escorrido e lavado"
+    },
+    "844": {
+        "descricao_original": "Beans, kidney, light red, canned, sodium added, sugar added, drained and rinsed",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão-carioca vermelho claro em lata",
+        "detalhe_exibicao": "com açúcar adicionado, escorrido e lavado"
+    },
+    "845": {
+        "descricao_original": "Peas, green, sweet, canned, sodium added, sugar added, drained and rinsed",
+        "fonte": "usda",
+        "nome_exibicao": "Ervilha verde doce em lata",
+        "detalhe_exibicao": "com açúcar adicionado, escorrida e lavada"
+    },
+    "846": {
+        "descricao_original": "Beans, pinto, canned, sodium added, drained and rinsed",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão-carioca em lata",
+        "detalhe_exibicao": "escorrido e lavado"
+    },
+    "847": {
+        "descricao_original": "Blackeye pea, canned, sodium added, drained and rinsed",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão-fradinho em lata",
+        "detalhe_exibicao": "escorrido e lavado"
+    },
+    "848": {
+        "descricao_original": "Beans, great northern, canned, sodium added, drained and rinsed",
+        "fonte": "usda",
+        "nome_exibicao": "Feijão branco grande em lata",
+        "detalhe_exibicao": "escorrido e lavado"
+    },
+    "849": {
+        "descricao_original": "Pork, loin, boneless, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Lombo suíno",
+        "detalhe_exibicao": "sem osso, cru"
+    },
+    "850": {
+        "descricao_original": "Pork, loin, tenderloin, boneless, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Filé mignon suíno",
+        "detalhe_exibicao": "sem osso, cru"
+    },
+    "851": {
+        "descricao_original": "Chicken, breast, boneless, skinless, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Peito de frango",
+        "detalhe_exibicao": "sem osso, sem pele, cru"
+    },
+    "852": {
+        "descricao_original": "Chicken, thigh, boneless, skinless, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Sobrecoxa de frango",
+        "detalhe_exibicao": "sem osso, sem pele, crua"
+    },
+    "853": {
+        "descricao_original": "Beef, ribeye, steak, boneless, choice, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Bife de ancho bovino",
+        "detalhe_exibicao": "sem osso, cru"
+    },
+    "854": {
+        "descricao_original": "Beef, round, top round, boneless, choice, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Lagarto bovino",
+        "detalhe_exibicao": "sem osso, cru"
+    },
+    "855": {
+        "descricao_original": "Beef, chuck, roast, boneless, choice, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Acém bovino",
+        "detalhe_exibicao": "sem osso, cru"
+    },
+    "856": {
+        "descricao_original": "Beef, flank, steak, boneless, choice, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Fraldinha bovina",
+        "detalhe_exibicao": "sem osso, crua"
+    },
+    "857": {
+        "descricao_original": "Yogurt, plain, nonfat",
+        "fonte": "usda",
+        "nome_exibicao": "Iogurte natural desnatado",
+        "detalhe_exibicao": null
+    },
+    "858": {
+        "descricao_original": "Cheese, monterey jack, solid",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo Monterey Jack",
+        "detalhe_exibicao": null
+    },
+    "859": {
+        "descricao_original": "Cheese, pasteurized process cheese food or product, American, singles",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo processado tipo americano em fatias",
+        "detalhe_exibicao": null
+    },
+    "860": {
+        "descricao_original": "Cheese, provolone, sliced",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo provolone em fatias",
+        "detalhe_exibicao": null
+    },
+    "861": {
+        "descricao_original": "Cheese, oaxaca, solid",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo Oaxaca",
+        "detalhe_exibicao": null
+    },
+    "862": {
+        "descricao_original": "Cheese, queso fresco, solid",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo fresco",
+        "detalhe_exibicao": null
+    },
+    "863": {
+        "descricao_original": "Cheese, cotija, solid",
+        "fonte": "usda",
+        "nome_exibicao": "Queijo Cotija",
+        "detalhe_exibicao": null
+    },
+    "864": {
+        "descricao_original": "Fish, salmon, sockeye, wild caught, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Salmão sockeye selvagem",
+        "detalhe_exibicao": "cru"
+    },
+    "865": {
+        "descricao_original": "Fish, salmon, Atlantic, farm raised, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Salmão do Atlântico de cativeiro",
+        "detalhe_exibicao": "cru"
+    },
+    "866": {
+        "descricao_original": "Fish, tilapia, farm raised, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Tilápia de cativeiro",
+        "detalhe_exibicao": "cru"
+    },
+    "867": {
+        "descricao_original": "Crustaceans, shrimp, farm raised, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Camarão de cativeiro",
+        "detalhe_exibicao": "cru"
+    },
+    "868": {
+        "descricao_original": "Fish, cod, Atlantic, wild caught, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Bacalhau do Atlântico selvagem",
+        "detalhe_exibicao": "cru"
+    },
+    "869": {
+        "descricao_original": "Fish, catfish, farm raised, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Bagre de cativeiro",
+        "detalhe_exibicao": "cru"
+    },
+    "870": {
+        "descricao_original": "Crustaceans, crab, blue swimming, lump, pasteurized, refrigerated",
+        "fonte": "usda",
+        "nome_exibicao": "Caranguejo azul",
+        "detalhe_exibicao": "carne em pedaços, pasteurizado, refrigerado"
+    },
+    "871": {
+        "descricao_original": "Squash, summer, green, zucchini, includes skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Abobrinha verde com casca",
+        "detalhe_exibicao": "crua"
+    },
+    "872": {
+        "descricao_original": "Squash, summer, yellow, includes skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Abobrinha amarela com casca",
+        "detalhe_exibicao": "crua"
+    },
+    "873": {
+        "descricao_original": "Squash, winter, butternut, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Abóbora butternut",
+        "detalhe_exibicao": "crua"
+    },
+    "874": {
+        "descricao_original": "Squash, winter, acorn, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Abóbora acorn",
+        "detalhe_exibicao": "crua"
+    },
+    "875": {
+        "descricao_original": "Cabbage, bok choy, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Acelga chinesa (bok choy)",
+        "detalhe_exibicao": "crua"
+    },
+    "876": {
+        "descricao_original": "Cauliflower, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Couve-flor",
+        "detalhe_exibicao": "crua"
+    },
+    "877": {
+        "descricao_original": "Collards, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Couve collard",
+        "detalhe_exibicao": "crua"
+    },
+    "878": {
+        "descricao_original": "Brussels sprouts, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Couve-de-bruxelas",
+        "detalhe_exibicao": "crua"
+    },
+    "879": {
+        "descricao_original": "Beets, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Beterraba",
+        "detalhe_exibicao": "crua"
+    },
+    "880": {
+        "descricao_original": "Eggplant, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Berinjela",
+        "detalhe_exibicao": "crua"
+    },
+    "881": {
+        "descricao_original": "Tomatoes, whole, canned, solids and liquids, with salt added",
+        "fonte": "usda",
+        "nome_exibicao": "Tomate inteiro em conserva",
+        "detalhe_exibicao": "sólidos e líquidos, com sal adicionado"
+    },
+    "882": {
+        "descricao_original": "Tomato, sauce, canned, with salt added",
+        "fonte": "usda",
+        "nome_exibicao": "Molho de tomate enlatado",
+        "detalhe_exibicao": "com sal adicionado"
+    },
+    "883": {
+        "descricao_original": "Tomato, paste, canned, without salt added",
+        "fonte": "usda",
+        "nome_exibicao": "Extrato de tomate enlatado",
+        "detalhe_exibicao": "sem sal adicionado"
+    },
+    "884": {
+        "descricao_original": "Tomatoes, crushed, canned",
+        "fonte": "usda",
+        "nome_exibicao": "Tomate picado\/triturado em conserva",
+        "detalhe_exibicao": null
+    },
+    "885": {
+        "descricao_original": "Tomato, puree, canned",
+        "fonte": "usda",
+        "nome_exibicao": "Purê de tomate em conserva",
+        "detalhe_exibicao": null
+    },
+    "886": {
+        "descricao_original": "Apricot, with skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Damasco com casca",
+        "detalhe_exibicao": "cru"
+    },
+    "887": {
+        "descricao_original": "Melons, honeydew, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Melão honeydew",
+        "detalhe_exibicao": "cru"
+    },
+    "888": {
+        "descricao_original": "Plantains, ripe, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Banana-da-terra madura",
+        "detalhe_exibicao": "crua"
+    },
+    "889": {
+        "descricao_original": "Plantains, underripe, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Banana-da-terra verde",
+        "detalhe_exibicao": "crua"
+    },
+    "890": {
+        "descricao_original": "Chia seeds, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Semente de chia",
+        "detalhe_exibicao": "seca, crua"
+    },
+    "891": {
+        "descricao_original": "Bulgur, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Trigo para quibe (bulgur)",
+        "detalhe_exibicao": "seco, cru"
+    },
+    "892": {
+        "descricao_original": "Wild rice, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Arroz selvagem",
+        "detalhe_exibicao": "seco, cru"
+    },
+    "893": {
+        "descricao_original": "Arugula, baby, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Rúcula baby",
+        "detalhe_exibicao": "crua"
+    },
+    "894": {
+        "descricao_original": "Asparagus, green, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Aspargo verde",
+        "detalhe_exibicao": "cru"
+    },
+    "895": {
+        "descricao_original": "Avocado, Hass, peeled, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Abacate Hass",
+        "detalhe_exibicao": "descascado, cru"
+    },
+    "896": {
+        "descricao_original": "Rice, black, unenriched, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Arroz preto",
+        "detalhe_exibicao": "não enriquecido, seco, cru"
+    },
+    "897": {
+        "descricao_original": "Corn, sweet, yellow and white kernels,  fresh, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Milho verde em grãos (amarelo e branco)",
+        "detalhe_exibicao": "fresco, cru"
+    },
+    "898": {
+        "descricao_original": "Einkorn, grain, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Trigo einkorn em grão",
+        "detalhe_exibicao": "seco, cru"
+    },
+    "899": {
+        "descricao_original": "Farro, pearled, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Trigo farro perlado",
+        "detalhe_exibicao": "seco, cru"
+    },
+    "900": {
+        "descricao_original": "Fonio, grain, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Fonio em grão",
+        "detalhe_exibicao": "seco, cru"
+    },
+    "901": {
+        "descricao_original": "Khorasan, grain, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Trigo khorasan em grão",
+        "detalhe_exibicao": "seco, cru"
+    },
+    "902": {
+        "descricao_original": "Kiwifruit (kiwi), green, peeled, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Kiwi verde",
+        "detalhe_exibicao": "descascado, cru"
+    },
+    "903": {
+        "descricao_original": "Mandarin, seedless, peeled, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Tangerina sem semente",
+        "detalhe_exibicao": "descascada, crua"
+    },
+    "904": {
+        "descricao_original": "Mango, Tommy Atkins, peeled, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Manga Tommy Atkins",
+        "detalhe_exibicao": "descascada, crua"
+    },
+    "905": {
+        "descricao_original": "Mango, Ataulfo, peeled, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Manga Ataulfo",
+        "detalhe_exibicao": "descascada, crua"
+    },
+    "906": {
+        "descricao_original": "Corn flour, masa harina, white or yellow, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Fubá\/Massa de milho (masa harina) branca ou amarela",
+        "detalhe_exibicao": "seco, cru"
+    },
+    "907": {
+        "descricao_original": "Pear, Anjou, green, with skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pêra Anjou verde",
+        "detalhe_exibicao": "com casca, crua"
+    },
+    "908": {
+        "descricao_original": "Plum, black, with skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Ameixa preta",
+        "detalhe_exibicao": "com casca, crua"
+    },
+    "909": {
+        "descricao_original": "Rice, red, unenriched, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Arroz vermelho",
+        "detalhe_exibicao": "não enriquecido, seco, cru"
+    },
+    "910": {
+        "descricao_original": "Sorghum bran, white, unenriched, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Farelo de sorgo branco",
+        "detalhe_exibicao": "não enriquecido, seco, cru"
+    },
+    "911": {
+        "descricao_original": "Sorghum flour, white, pearled, unenriched, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Farinha de sorgo branco perlado",
+        "detalhe_exibicao": "não enriquecida, seca, crua"
+    },
+    "912": {
+        "descricao_original": "Sorghum grain, white, pearled, unenriched, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Sorgo em grão branco perlado",
+        "detalhe_exibicao": "não enriquecido, seco, cru"
+    },
+    "913": {
+        "descricao_original": "Sorghum, whole grain, white, dry, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Sorgo integral branco",
+        "detalhe_exibicao": "seco, cru"
+    },
+    "914": {
+        "descricao_original": "Plantains, overripe, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Banana-da-terra",
+        "detalhe_exibicao": "bem madura, crua"
+    },
+    "915": {
+        "descricao_original": "Chicken, drumstick, meat and skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Coxa de frango",
+        "detalhe_exibicao": "com pele, crua"
+    },
+    "916": {
+        "descricao_original": "Chicken, thigh, meat and skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Sobrecoxa de frango",
+        "detalhe_exibicao": "com pele, crua"
+    },
+    "917": {
+        "descricao_original": "Chicken, wing, meat and skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Asa de frango",
+        "detalhe_exibicao": "com pele, crua"
+    },
+    "918": {
+        "descricao_original": "Chicken, breast, meat and skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Peito de frango",
+        "detalhe_exibicao": "com pele, cru"
+    },
+    "919": {
+        "descricao_original": "Lamb, ground, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Carne moída de cordeiro",
+        "detalhe_exibicao": "crua"
+    },
+    "920": {
+        "descricao_original": "Bison, ground, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Carne moída de bisão",
+        "detalhe_exibicao": "crua"
+    },
+    "921": {
+        "descricao_original": "Beef, short loin (NY strip steak), raw",
+        "fonte": "usda",
+        "nome_exibicao": "Bife de chorizo (contrafilé)",
+        "detalhe_exibicao": "cru"
+    },
+    "922": {
+        "descricao_original": "Beef, tenderloin steak, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Filé mignon bovino",
+        "detalhe_exibicao": "cru"
+    },
+    "923": {
+        "descricao_original": "Beef, top sirloin steak, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Picanha \/ Alcatra (Top Sirloin)",
+        "detalhe_exibicao": "bife, cru"
+    },
+    "924": {
+        "descricao_original": "Pork, chop, center cut, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Costeleta de porco",
+        "detalhe_exibicao": "corte central, crua"
+    },
+    "925": {
+        "descricao_original": "Pork, belly, with skin, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Barriga de porco",
+        "detalhe_exibicao": "com pele, crua"
+    },
+    "926": {
+        "descricao_original": "Pawpaw, peeled, seeded, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Abacate americano (Pawpaw)",
+        "detalhe_exibicao": "descascado, sem sementes, cru"
+    },
+    "927": {
+        "descricao_original": "Squash, pie pumpkin, peeled, seeded, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Abóbora para torta",
+        "detalhe_exibicao": "descascada, sem sementes, crua"
+    },
+    "928": {
+        "descricao_original": "Squash, spaghetti, peeled, seeded, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Abóbora espaguete",
+        "detalhe_exibicao": "descascada, sem sementes, crua"
+    },
+    "929": {
+        "descricao_original": "Rutabaga, peeled, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Nabo sueco (Rutabaga)",
+        "detalhe_exibicao": "descascado, cru"
+    },
+    "930": {
+        "descricao_original": "Blackberries, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Amora",
+        "detalhe_exibicao": "crua"
+    },
+    "931": {
+        "descricao_original": "Tomatillos, dehusked, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Tomate-verde (Tomatillo)",
+        "detalhe_exibicao": "sem casca, cru"
+    },
+    "932": {
+        "descricao_original": "Cabbage, napa, leaf, destemmed, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Repolho chinês (Napa)",
+        "detalhe_exibicao": "folha sem talo, cru"
+    },
+    "933": {
+        "descricao_original": "Leeks, bulb and greens, root removed, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Alho-poró",
+        "detalhe_exibicao": "bulbo e folhas, sem raiz, cru"
+    },
+    "934": {
+        "descricao_original": "Green onion, (scallion), bulb and greens, root removed, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Cebolinha verde",
+        "detalhe_exibicao": "bulbo e folhas, sem raiz, crua"
+    },
+    "935": {
+        "descricao_original": "Shallots, bulb, peeled, root removed, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Chalota",
+        "detalhe_exibicao": "bulbo descascado, sem raiz, crua"
+    },
+    "936": {
+        "descricao_original": "Juice, prune, shelf-stable",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de ameixa",
+        "detalhe_exibicao": "estável na prateleira"
+    },
+    "937": {
+        "descricao_original": "Juice, pomegranate, from concentrate, shelf-stable",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de romã",
+        "detalhe_exibicao": "reconstituído de concentrado, estável na prateleira"
+    },
+    "938": {
+        "descricao_original": "Juice, tart cherry, from concentrate, shelf-stable",
+        "fonte": "usda",
+        "nome_exibicao": "Suco de cereja ácida",
+        "detalhe_exibicao": "reconstituído de concentrado, estável na prateleira"
+    },
+    "939": {
+        "descricao_original": "Anchovies, canned in olive oil, with salt, drained",
+        "fonte": "usda",
+        "nome_exibicao": "Anchova enlatada em azeite",
+        "detalhe_exibicao": "com sal, drenada"
+    },
+    "940": {
+        "descricao_original": "Beet greens, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Folha de beterraba",
+        "detalhe_exibicao": "crua"
+    },
+    "941": {
+        "descricao_original": "Cod, Pacific or Alaskan, frozen, wild caught",
+        "fonte": "usda",
+        "nome_exibicao": "Bacalhau do Pacífico ou do Alasca",
+        "detalhe_exibicao": "congelado, selvagem"
+    },
+    "942": {
+        "descricao_original": "Fennel, bulb, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Bulbo de erva-doce",
+        "detalhe_exibicao": "cru"
+    },
+    "943": {
+        "descricao_original": "Halibut, frozen, wild caught",
+        "fonte": "usda",
+        "nome_exibicao": "Halibut",
+        "detalhe_exibicao": "congelado, selvagem"
+    },
+    "944": {
+        "descricao_original": "Lobster, tail only, frozen, wild caught",
+        "fonte": "usda",
+        "nome_exibicao": "Cauda de lagosta",
+        "detalhe_exibicao": "congelada, selvagem"
+    },
+    "945": {
+        "descricao_original": "Mahi mahi, frozen, wild caught",
+        "fonte": "usda",
+        "nome_exibicao": "Dourado (Mahi-mahi)",
+        "detalhe_exibicao": "congelado, selvagem"
+    },
+    "946": {
+        "descricao_original": "Parsnips, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pastinaca",
+        "detalhe_exibicao": "crua"
+    },
+    "947": {
+        "descricao_original": "Peppers, banana or Hungarian wax, seeded, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pimenta banana",
+        "detalhe_exibicao": "sem sementes, crua"
+    },
+    "948": {
+        "descricao_original": "Peppers, jalapeno, seeded, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pimenta jalapeño",
+        "detalhe_exibicao": "sem sementes, crua"
+    },
+    "949": {
+        "descricao_original": "Peppers, poblano, seeded, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pimenta poblano",
+        "detalhe_exibicao": "sem sementes, crua"
+    },
+    "950": {
+        "descricao_original": "Peppers, serrano, seeded, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Pimenta serrano",
+        "detalhe_exibicao": "sem sementes, crua"
+    },
+    "951": {
+        "descricao_original": "Radicchio, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Radicchio",
+        "detalhe_exibicao": "cru"
+    },
+    "952": {
+        "descricao_original": "Radishes, red, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Rabanete vermelho",
+        "detalhe_exibicao": "cru"
+    },
+    "953": {
+        "descricao_original": "Scallops, bay, Patagonian, frozen, wild caught",
+        "fonte": "usda",
+        "nome_exibicao": "Vieira-dos-açores patagônica",
+        "detalhe_exibicao": "congelada, selvagem"
+    },
+    "954": {
+        "descricao_original": "Scallops, sea, frozen, wild caught",
+        "fonte": "usda",
+        "nome_exibicao": "Vieira do mar",
+        "detalhe_exibicao": "congelada, selvagem"
+    },
+    "955": {
+        "descricao_original": "Sea bass, Chilean, frozen, wild caught",
+        "fonte": "usda",
+        "nome_exibicao": "Robalo chileno",
+        "detalhe_exibicao": "congelado, selvagem"
+    },
+    "956": {
+        "descricao_original": "Snapper, frozen, wild caught",
+        "fonte": "usda",
+        "nome_exibicao": "Pargo (Snapper)",
+        "detalhe_exibicao": "congelado, selvagem"
+    },
+    "957": {
+        "descricao_original": "Snow crab, legs only, frozen",
+        "fonte": "usda",
+        "nome_exibicao": "Pernas de caranguejo-das-neves",
+        "detalhe_exibicao": "congeladas"
+    },
+    "958": {
+        "descricao_original": "Squid (calamari), frozen, tubes only",
+        "fonte": "usda",
+        "nome_exibicao": "Lula (calamari)",
+        "detalhe_exibicao": "congelada, apenas tubos"
+    },
+    "959": {
+        "descricao_original": "Swordfish, frozen, wild caught",
+        "fonte": "usda",
+        "nome_exibicao": "Cação (Espadarte)",
+        "detalhe_exibicao": "congelado, selvagem"
+    },
+    "960": {
+        "descricao_original": "Tuna, ahi or yellowfin, frozen, wild caught",
+        "fonte": "usda",
+        "nome_exibicao": "Atum aleta-amarela (ahi)",
+        "detalhe_exibicao": "congelado, selvagem"
+    },
+    "961": {
+        "descricao_original": "Turnips, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Nabo",
+        "detalhe_exibicao": "cru"
+    },
+    "962": {
+        "descricao_original": "Watermelon, seedless, flesh only, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Melancia sem sementes",
+        "detalhe_exibicao": "apenas a polpa, crua"
+    },
+    "963": {
+        "descricao_original": "Watermelon, seedless, rind only, raw",
+        "fonte": "usda",
+        "nome_exibicao": "Casca de melancia sem sementes",
+        "detalhe_exibicao": "apenas a casca, crua"
+    }
+}

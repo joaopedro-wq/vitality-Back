@@ -44,6 +44,7 @@ class UsdaFoodImportService
                 'nome_normalizado' => $this->catalog->normalizeName($description),
                 'grupo' => $grupo,
                 'grupo_normalizado' => $this->catalog->normalizeGroup($grupo),
+                'grupo_exibicao' => $this->catalog->normalizeGroupDisplay($grupo),
                 'proteina' => $core['proteina'] ?? 0,
                 'gordura' => $core['gordura'] ?? 0,
                 'carbo' => $core['carbo'] ?? 0,

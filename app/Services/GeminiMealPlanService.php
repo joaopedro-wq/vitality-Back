@@ -69,7 +69,10 @@ class GeminiMealPlanService
                 'position' => $meal->position, 'descricao' => $meal->descricao, 'horario' => substr((string) $meal->horario, 0, 5),
                 'target' => $meal->target, 'totals' => $meal->totals, 'explanation' => 'Plano copiado para edição.',
                 'items' => $meal->items->map(fn ($item) => [
-                    'food_id' => $item->food_id, 'descricao' => $item->descricao_snapshot, 'role' => $item->culinary_role ?: (collect($this->composition->rolesForFood($item->food))->first() ?? 'acompanhamento'),
+                    'food_id' => $item->food_id, 'descricao' => $item->descricao_snapshot,
+                    'descricao_exibicao' => $item->nome_exibicao_snapshot ?? $item->food->nome_exibicao,
+                    'detalhe_exibicao' => $item->detalhe_exibicao_snapshot ?? $item->food->detalhe_exibicao,
+                    'role' => $item->culinary_role ?: (collect($this->composition->rolesForFood($item->food))->first() ?? 'acompanhamento'),
                     'quantity' => (float) $item->quantity, 'macros' => $item->macros,
                 ])->values()->all(),
             ])->values()->all(),
@@ -142,11 +145,11 @@ class GeminiMealPlanService
             if (! $food || ! $this->composition->quantityIsRealistic($food, $quantity, $item['role']) || ! $this->replacementKeepsMealCoherent($meal, $foodId, $food)) {
                 return null;
             }
-            $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'role' => $item['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
+            $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $item['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
             $items = collect($meal['items'])->map(fn ($mealItem) => $mealItem['food_id'] === $foodId ? $replacement : $mealItem)->all();
             $totals = $this->sum(collect($items)->pluck('macros')->all());
 
-            return ['food_id' => $food->id, 'descricao' => $food->descricao, 'quantity' => $replacement['quantity'], 'role' => $item['role'], 'macros' => $replacement['macros'], 'reason' => Str::limit(strip_tags((string) ($suggestion['reason'] ?? 'Alternativa compatível para esta refeição.')), 160, ''), 'meal_totals' => $totals, 'delta' => $this->delta($meal['totals'], $totals), 'within_target' => $this->withinTarget($meal['target'], $totals, 'swap')];
+            return ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'quantity' => $replacement['quantity'], 'role' => $item['role'], 'macros' => $replacement['macros'], 'reason' => Str::limit(strip_tags((string) ($suggestion['reason'] ?? 'Alternativa compatível para esta refeição.')), 160, ''), 'meal_totals' => $totals, 'delta' => $this->delta($meal['totals'], $totals), 'within_target' => $this->withinTarget($meal['target'], $totals, 'swap')];
         })->filter(fn ($suggestion) => $suggestion && $suggestion['within_target'])->unique('food_id')->take(5)->values();
         if ($suggestions->isEmpty()) {
             throw ValidationException::withMessages(['food_id' => 'Não encontramos uma troca individual que mantenha esta refeição próxima da meta. Reorganize a refeição completa para buscar uma combinação mais coerente.']);
@@ -173,7 +176,7 @@ class GeminiMealPlanService
             throw ValidationException::withMessages(['replacement_food_id' => 'Substituição incompatível.']);
         }
         $quantity = $this->bestSingleReplacementQuantity($meal, $foodId, $food) ?: $quantity;
-        $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'role' => $current['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
+        $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $current['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
         $meal['items'] = collect($meal['items'])->map(fn ($item) => $item['food_id'] === $foodId ? $replacement : $item)->values()->all();
         $meal['totals'] = $this->sum(collect($meal['items'])->pluck('macros')->all());
         if (! $this->withinTarget($meal['target'], $meal['totals'], 'swap')) {
@@ -241,7 +244,7 @@ class GeminiMealPlanService
         foreach ($payload['meals'] as $meal) {
             $stored = $plan->meals()->create(collect($meal)->only(['position', 'descricao', 'horario', 'target', 'totals'])->all());
             foreach ($meal['items'] as $item) {
-                $stored->items()->create(['food_id' => $item['food_id'], 'descricao_snapshot' => $item['descricao'], 'quantity' => $item['quantity'], 'culinary_role' => $item['role'] ?? null, 'macros' => $item['macros']]);
+                $stored->items()->create(['food_id' => $item['food_id'], 'descricao_snapshot' => $item['descricao'], 'nome_exibicao_snapshot' => $item['descricao_exibicao'] ?? $item['descricao'], 'detalhe_exibicao_snapshot' => $item['detalhe_exibicao'] ?? null, 'quantity' => $item['quantity'], 'culinary_role' => $item['role'] ?? null, 'macros' => $item['macros']]);
             }
         }
     }
@@ -303,7 +306,7 @@ class GeminiMealPlanService
 
         $quantity = $this->bestSingleReplacementQuantity($meal, (int) $current['food_id'], $food);
         if ($quantity > 0) {
-            $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'role' => $current['role'], 'quantity' => $quantity, 'macros' => $this->foodMacros($food, $quantity)];
+            $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $current['role'], 'quantity' => $quantity, 'macros' => $this->foodMacros($food, $quantity)];
             $items = collect($meal['items'])->map(fn ($item) => $item['food_id'] === $current['food_id'] ? $replacement : $item)->all();
             $score -= $this->targetScore($meal['target'], $this->sum(collect($items)->pluck('macros')->all())) * 1000;
         }
@@ -494,7 +497,7 @@ class GeminiMealPlanService
                 }
                 $ids[] = $food->id;
 
-                return ['food_id' => $food->id, 'descricao' => $food->descricao, 'role' => $item['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
+                return ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $item['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
             })->values();
             // A IA define a combinação; o servidor normaliza porções realistas antes de validar macros.
             $items = $this->rebalanceItems($items, $definition['target'], $foodById, $definition);
@@ -630,7 +633,7 @@ class GeminiMealPlanService
                     return;
                 }
                 foreach ($lists[$index] as $food) {
-                    $visit($index + 1, [...$selected, ['food_id' => $food->id, 'descricao' => $food->descricao, 'role' => $roles[$index]]]);
+                    $visit($index + 1, [...$selected, ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $roles[$index]]]);
                 }
             };
             $visit(0, []);
@@ -720,6 +723,7 @@ class GeminiMealPlanService
             return [
                 'id' => $food->id,
                 'descricao' => $food->descricao,
+                'nome_exibicao' => $food->nome_exibicao,
                 'qtd_base_g' => (float) $food->qtd,
                 'calorias' => (float) $food->caloria,
                 'proteina_g' => (float) $food->proteina,
