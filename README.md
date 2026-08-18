@@ -97,9 +97,9 @@ Ajuste no `.env`:
 ```env
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
-DB_PORT=5432
+DB_PORT=
 DB_DATABASE=vitality
-DB_USERNAME=postgres
+DB_USERNAME=
 DB_PASSWORD=
 
 FRONTEND_URL=http://localhost:4200
