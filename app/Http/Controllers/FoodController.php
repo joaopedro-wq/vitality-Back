@@ -39,9 +39,13 @@ class FoodController extends Controller
             ->when($validated['search'] ?? null, function ($query, $search) use ($catalog) {
                 $normalized = $catalog->normalizeName($search);
 
+                // Cruza técnico + amigável pt-BR + amigável en-US sempre, independente
+                // do locale ativo — um alimento buscável em qualquer um dos três nomes,
+                // não só no idioma da tela no momento.
                 return $query->where(fn ($sub) => $sub
                     ->where('nome_normalizado', 'like', '%'.$normalized.'%')
-                    ->orWhere('nome_exibicao_normalizado', 'like', '%'.$normalized.'%'));
+                    ->orWhere('nome_exibicao_normalizado', 'like', '%'.$normalized.'%')
+                    ->orWhere('nome_exibicao_en_normalizado', 'like', '%'.$normalized.'%'));
             })
             ->when(($validated['tab'] ?? 'all') === 'favorites', fn ($query) => $query->whereHas('userPreferences', fn ($preference) => $preference->where('user_id', $user->id)->where('is_favorite', true)))
             ->when($validated['grupo'] ?? null, fn ($query, $grupos) => $query->whereIn('grupo', $grupos))
@@ -56,11 +60,14 @@ class FoodController extends Controller
             ->when($validated['caloria_max'] ?? null, fn ($query, $max) => $query->where('caloria', '<=', $max))
             ->withExists(['userPreferences as is_favorite' => fn ($preference) => $preference->where('user_id', $user->id)->where('is_favorite', true)])
             ->with('publishedImage')
-            // `descricao` na API é o nome amigável (nome_exibicao); ordenar por
-            // ele — não pelo texto técnico original — é o que o usuário espera
-            // ao ordenar "por nome".
+            // `descricao` na API é o nome amigável (nome_exibicao/nome_exibicao_en
+            // conforme o locale ativo); ordenar por ele — não pelo texto técnico
+            // original — é o que o usuário espera ao ordenar "por nome", no
+            // idioma que está vendo na tela.
             ->when($sortField === 'descricao',
-                fn ($query) => $query->orderByRaw('COALESCE(nome_exibicao, descricao) '.$sortOrder),
+                fn ($query) => $query->orderByRaw((app()->getLocale() === 'en-US'
+                    ? 'COALESCE(nome_exibicao_en, nome_exibicao, descricao) '
+                    : 'COALESCE(nome_exibicao, descricao) ').$sortOrder),
                 fn ($query) => $query->orderBy($sortField, $sortOrder))
             ->paginate(20);
 

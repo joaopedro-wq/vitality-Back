@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\FoodCatalogService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,9 @@ class Alimento extends Model
         'nome_exibicao',
         'detalhe_exibicao',
         'nome_exibicao_normalizado',
+        'nome_exibicao_en',
+        'detalhe_exibicao_en',
+        'nome_exibicao_en_normalizado',
         'proteina',
         'gordura',
         'caloria',
@@ -36,37 +40,57 @@ class Alimento extends Model
     ];
 
     /**
-     * Nome amigável para exibição (ex. "Abacate"). Fonte única de verdade
-     * usada por toda a API — busca, diário, plano alimentar, troca e
-     * favoritos — em vez de cada tela montar seu próprio texto a partir de
-     * `descricao` (o nome técnico original, ex. "Abacate, cru", preservado
-     * intocado para rastreabilidade e matching interno). Cai para
-     * `descricao` enquanto o backfill (`foods:generate-display-names` /
-     * `foods:apply-display-names`) não roda para este alimento.
+     * Nome amigável para exibição (ex. "Abacate"), no locale ativo da
+     * requisição (`app()->getLocale()`, resolvido por `SetLocale` a partir
+     * do header `Accept-Language`). Fonte única de verdade usada por toda
+     * a API — busca, diário, plano alimentar, troca e favoritos — em vez
+     * de cada tela montar seu próprio texto. Cadeia de fallback, nunca
+     * vazia: tradução do locale ativo → pt-BR (`nome_exibicao`) →
+     * `descricao` (o nome técnico original, preservado intocado para
+     * rastreabilidade e matching interno, nunca traduzido).
      */
     public function getNomeExibicaoAttribute(): string
     {
+        if (app()->getLocale() === 'en-US') {
+            $en = $this->attributes['nome_exibicao_en'] ?? null;
+            if ($en) {
+                return $en;
+            }
+        }
+
         return ($this->attributes['nome_exibicao'] ?? null) ?: $this->descricao;
     }
 
     /**
      * Complemento do nome amigável (preparo, corte, estado), ex. "cru",
-     * "congelado, assado". Nulo quando o nome principal já é
-     * autoexplicativo.
+     * "congelado, assado", no locale ativo — mesma cadeia de fallback de
+     * `nome_exibicao`. Nulo quando o nome principal já é autoexplicativo.
      */
     public function getDetalheExibicaoAttribute(): ?string
     {
+        if (app()->getLocale() === 'en-US') {
+            $en = $this->attributes['detalhe_exibicao_en'] ?? null;
+            if ($en) {
+                return $en;
+            }
+        }
+
         return ($this->attributes['detalhe_exibicao'] ?? null) ?: null;
     }
 
     /**
-     * Categoria amigável e granular (ex. "Peixes e frutos do mar"). Cai
-     * para `grupo_normalizado` (categoria mais ampla, já usada pelos
-     * filtros existentes) enquanto o backfill não roda.
+     * Categoria amigável e granular (ex. "Peixes e frutos do mar" /
+     * "Fish and seafood"), traduzida pro locale ativo via
+     * `FoodCatalogService::translatedGroupLabel()` — `config/food_group_labels.php`
+     * é a única fonte de tradução de categoria, sem lista duplicada aqui.
+     * Cai para `grupo_normalizado` (categoria mais ampla) enquanto o
+     * backfill de `grupo_exibicao` não roda.
      */
     public function getGrupoExibicaoAttribute(): string
     {
-        return ($this->attributes['grupo_exibicao'] ?? null) ?: ($this->grupo_normalizado ?: 'Outros');
+        $canonico = ($this->attributes['grupo_exibicao'] ?? null) ?: ($this->grupo_normalizado ?: 'Outros');
+
+        return app(FoodCatalogService::class)->translatedGroupLabel($canonico);
     }
 
 

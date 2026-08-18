@@ -16,9 +16,53 @@ class FoodCatalogService
         return trim((string) preg_replace('/\s+/', ' ', preg_replace('/[^a-z0-9]+/i', ' ', mb_strtolower($ascii))));
     }
 
+    /**
+     * Categorias amigáveis no locale ativo (`app()->getLocale()`), pra
+     * exibição. `id` (slug) é sempre derivado do rótulo canônico (pt-BR,
+     * o que está gravado em `grupo_exibicao`) — estável e independente do
+     * idioma. `label` é traduzido via `translatedGroupLabel()`; sem
+     * tradução cadastrada cai pro canônico, nunca fica vazio.
+     */
     public function displayGroups(): Collection
     {
-        return Alimento::query()
+        return $this->canonicalGroups()->map(fn (array $group) => [
+            'id' => $group['id'],
+            'label' => $this->translatedGroupLabel($group['label']),
+            'total' => $group['total'],
+        ])->values();
+    }
+
+    /**
+     * Resolve o slug estável de volta pro rótulo canônico (pt-BR) —
+     * sempre pt-BR, porque é o que está de fato gravado em `grupo_exibicao`
+     * no banco. Uso interno (filtro `categoria[]`), nunca pra exibição.
+     */
+    public function displayGroupLabelForSlug(string $slug): ?string
+    {
+        return $this->canonicalGroups()->firstWhere('id', $slug)['label'] ?? null;
+    }
+
+    /** Traduz um `grupo_exibicao` canônico (pt-BR) pro locale ativo. Fallback seguro: sem tradução, retorna o canônico — nunca vazio. */
+    public function translatedGroupLabel(?string $grupoExibicao, ?string $fallback = null): string
+    {
+        $canonical = $grupoExibicao ?: ($fallback ?: 'Outros');
+        $id = Str::slug($canonical);
+        $locale = app()->getLocale();
+
+        return config("food_group_labels.{$id}.{$locale}") ?? $canonical;
+    }
+
+    /**
+     * Consulta via query builder (`DB::table`), não Eloquent — `grupo_exibicao`
+     * tem accessor locale-aware no model (`Alimento::getGrupoExibicaoAttribute()`);
+     * ler por `Alimento::query()` aqui devolveria o rótulo já traduzido pro
+     * locale ativo em vez do canônico, quebrando a estabilidade do `id`.
+     *
+     * @return Collection<int, array{id: string, label: string, total: int}>
+     */
+    private function canonicalGroups(): Collection
+    {
+        return DB::table('alimentos')
             ->where('status', 'ativo')
             ->whereNotNull('grupo_exibicao')
             ->select('grupo_exibicao')
@@ -32,12 +76,6 @@ class FoodCatalogService
                 'total' => (int) $row->total,
             ])
             ->values();
-    }
-
-    /** Resolve o slug estável de `displayGroups()` de volta pro rótulo (`grupo_exibicao`), ou null se não existir. */
-    public function displayGroupLabelForSlug(string $slug): ?string
-    {
-        return $this->displayGroups()->firstWhere('id', $slug)['label'] ?? null;
     }
 
     /**
