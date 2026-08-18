@@ -46,28 +46,16 @@ Este repositório é o **backend** do produto: uma API Laravel 11 consumida pelo
 
 ## Autenticação
 
-Bearer token puro via **Laravel Sanctum** — sem cookies, sem CSRF, sem sessão stateful. `/login` e
-`/criar-usuario` ficam fora do grupo autenticado; todo o resto exige
-`Authorization: Bearer <token>`. O CORS libera exatamente uma origin (`FRONTEND_URL`), com
-`supports_credentials: true` só porque o Sanctum exige, não porque o front manda cookies.
+Bearer token puro via **Laravel Sanctum** — sem cookies, sem CSRF, sem sessão stateful. Só login e
+cadastro ficam fora do grupo autenticado; todo o resto exige `Authorization: Bearer <token>`, com
+uma camada extra de guard próprio nos endpoints administrativos. O CORS libera exatamente uma
+origin (`FRONTEND_URL`), com `supports_credentials: true` só porque o Sanctum exige, não porque o
+front manda cookies.
 
-## Principais rotas da API
-
-Base: `/api`. Resposta padrão `{data, success, message?}`; listas paginadas seguem o formato Laravel
-(`data`, `meta`, `links`).
-
-| Recurso            | Rotas                                                             | O que faz                                                                        |
-| ------------------ | ----------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Auth               | `POST /login`, `POST /criar-usuario`                              | Login por token; cadastro não autentica direto, sempre redireciona pro login.    |
-| Alimentos          | `GET /foods`, `GET /foods/{id}`, `GET /foods/groups[-normalized]` | Catálogo paginado, busca, favoritos, facetas por grupo bruto ou normalizado.     |
-| Diário             | `GET /diary/day`, `POST/PATCH/DELETE /diary/entries`              | Lançamentos do dia com macros snapshotados no pivô.                              |
-| Refeições (tipo)   | `/diary/meals`                                                    | Refeições pessoais do usuário (Café da manhã, Almoço...), editáveis/arquiváveis. |
-| Metas              | `/meta`                                                           | Meta diária de calorias/macros — upsert na meta vigente (`data: null`).          |
-| Recomendação       | `/recomendacao`                                                   | TMB/GET calculados a partir do perfil — uma por usuário.                         |
-| Planos de refeição | `/meal-plans`, `/meal-plans/preview*`                             | Geração, regeneração, troca de item e arquivamento de planos via IA.             |
-| Dietas (legado)    | `/dieta`                                                          | Planos reutilizáveis simples, predecessor do `meal-plans` orientado a IA.        |
-| Usuário            | `/user/{id}`, `/user/avatar`, `/users`                            | Perfil, avatar (`FormData`), listagem.                                           |
-| Admin              | `/admin/foods*`, `/admin/food-images*`, `/admin/food-plan-tags*`  | Curadoria do catálogo — exige `auth:sanctum` + guard `admin`.                    |
+O contrato completo de endpoints (rotas, payloads, respostas) não fica documentado aqui — é
+código-fonte de uma API viva, então a fonte de verdade é `routes/api.php` e os controllers em
+`app/Http/Controllers`. Quem integra com o frontend encontra o contrato consumido em
+`../vitality-front/CLAUDE.md`.
 
 ## Stack técnica
 
