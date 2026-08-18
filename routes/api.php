@@ -75,6 +75,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/meal-plans/preview', [MealPlanController::class, 'preview']);
     Route::post('/meal-plans/preview/recreate', [MealPlanController::class, 'recreate']);
     Route::post('/meal-plans/preview/undo', [MealPlanController::class, 'undo']);
+    Route::post('/meal-plans/preview/refresh-locale', [MealPlanController::class, 'refreshLocale']);
     Route::post('/meal-plans/preview/meal/{position}', [MealPlanController::class, 'regenerateMeal']);
     Route::post('/meal-plans/preview/meal/{position}/item/{foodId}/suggestions', [MealPlanController::class, 'itemSuggestions']);
     Route::post('/meal-plans/preview/meal/{position}/item/{foodId}/replace', [MealPlanController::class, 'replaceItem']);

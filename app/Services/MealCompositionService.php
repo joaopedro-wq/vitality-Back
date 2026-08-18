@@ -84,7 +84,7 @@ class MealCompositionService
     {
         $template = $definition['composition'];
         if (count($items) < 2 || count($items) > $template['max_items']) {
-            throw ValidationException::withMessages(['ai' => 'A composição da refeição tem uma quantidade inválida de itens.']);
+            throw ValidationException::withMessages(['ai' => __('messages.meal_plan.invalid_item_count')]);
         }
         $foodById = $foods->keyBy('id');
         $allowedRoles = collect([...(array) ($template['required'] ?? []), ...(array) ($template['optional'] ?? [])])
@@ -96,18 +96,18 @@ class MealCompositionService
             $food = $foodById->get((int) ($item['food_id'] ?? 0));
             $role = (string) ($item['role'] ?? '');
             if (! $food || ! in_array($role, $allowedRoles, true) || ! $this->catalog->supportsRole($food, $role) || in_array($role, $roles, true)) {
-                throw ValidationException::withMessages(['ai' => 'A IA retornou uma composição culinária incompatível.']);
+                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.incompatible_composition')]);
             }
             $roles[] = $role;
         }
         foreach ($template['required'] ?? [] as $role) {
             if (! in_array($role, $roles, true)) {
-                throw ValidationException::withMessages(['ai' => 'A refeição não contém os componentes essenciais para este horário.']);
+                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.missing_essential_components')]);
             }
         }
         foreach ($template['required_any'] ?? [] as $alternatives) {
             if (! collect($alternatives)->intersect($roles)->isNotEmpty()) {
-                throw ValidationException::withMessages(['ai' => 'A refeição não contém uma combinação adequada para este horário.']);
+                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.inadequate_combination')]);
             }
         }
 
@@ -150,7 +150,7 @@ class MealCompositionService
             if (! $food) continue;
             $profile = $this->catalog->profile($food);
             if (! $profile['adequado_para_consumo_direto']) {
-                throw ValidationException::withMessages(['ai' => 'A IA escolheu um ingrediente cru ou que exige preparo para consumo direto.']);
+                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.raw_or_unprepared_ingredient')]);
             }
             $familiesByRole[(string) $item['role']] = $profile['familia'];
         }
@@ -163,7 +163,7 @@ class MealCompositionService
         if (in_array($kind, ['almoco', 'jantar'], true)) {
             $protein = $this->foodForRole($items, $foodById, 'prato_proteina');
             if ($protein && Str::contains($this->normalize($protein->descricao), ['charque', 'carne seca']) && ! isset($familiesByRole['prato_leguminosa'])) {
-                throw ValidationException::withMessages(['ai' => 'Charque precisa vir em um prato completo, com leguminosa e vegetal.']);
+                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.charque_needs_full_plate')]);
             }
         }
     }
@@ -173,13 +173,13 @@ class MealCompositionService
         $families = array_values($familiesByRole);
         foreach (['pao_torrada', 'iogurte', 'queijo', 'ovo', 'leite_liquido'] as $family) {
             if (count(array_filter($families, fn (string $value) => $value === $family)) > 1) {
-                throw ValidationException::withMessages(['ai' => 'A IA repetiu alimentos da mesma família no café da manhã.']);
+                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.repeated_breakfast_family')]);
             }
         }
         foreach ($items as $item) {
             $food = $foodById->get((int) ($item['food_id'] ?? 0));
             if ($food && $this->isPoorBreakfastFood($food)) {
-                throw ValidationException::withMessages(['ai' => 'A IA escolheu um alimento incoerente para o café da manhã.']);
+                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.incoherent_breakfast_choice')]);
             }
         }
     }

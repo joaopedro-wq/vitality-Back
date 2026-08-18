@@ -28,9 +28,18 @@ class MealPlanController extends Controller
         $data = $request->validate(['draft_id' => ['required', 'uuid'], 'instruction' => ['nullable', 'string', 'max:350']]);
         $draft = MealPlanDraft::query()->whereKey($data['draft_id'])->where('user_id', $request->user()->id)->firstOrFail();
         if ($draft->expires_at->isPast()) {
-            abort(422, 'Esta prévia expirou. Gere um novo plano.');
+            abort(422, __('messages.preview_expired'));
         }
         $draft = $generator->replaceMeal($request->user(), $draft, $position, $data['instruction'] ?? null);
+
+        return response()->json(['data' => $this->serializeDraft($draft), 'success' => true]);
+    }
+
+    public function refreshLocale(Request $request, GeminiMealPlanService $generator)
+    {
+        $data = $request->validate(['draft_id' => ['required', 'uuid']]);
+        $draft = MealPlanDraft::query()->whereKey($data['draft_id'])->where('user_id', $request->user()->id)->firstOrFail();
+        $draft = $generator->refreshDraftLocale($request->user(), $draft);
 
         return response()->json(['data' => $this->serializeDraft($draft), 'success' => true]);
     }
