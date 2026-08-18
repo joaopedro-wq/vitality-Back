@@ -31,7 +31,8 @@ class NormalizeFoodGroups extends Command
             $normalizado = $map === 'exibicao' ? $catalog->normalizeGroupDisplay($food->grupo) : $catalog->normalizeGroup($food->grupo);
             $counts[$normalizado] = ($counts[$normalizado] ?? 0) + 1;
 
-            if ($food->{$column} !== $normalizado) {
+           
+            if ($food->getRawOriginal($column) !== $normalizado) {
                 $changed++;
                 if (! $this->option('dry-run')) {
                     $food->update([$column => $normalizado]);

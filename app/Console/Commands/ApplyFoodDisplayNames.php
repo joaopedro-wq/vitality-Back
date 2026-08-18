@@ -46,7 +46,11 @@ class ApplyFoodDisplayNames extends Command
                 'detalhe_exibicao' => $detalhe,
                 'nome_exibicao_normalizado' => $catalog->normalizeName($nome),
             ];
-            if ($food->nome_exibicao !== $nome || $food->detalhe_exibicao !== $detalhe) {
+            // Raw original, não o accessor: quando a coluna está vazia o
+            // accessor cai pra `descricao`, e para os alimentos cujo nome
+            // sugerido já é idêntico ao original isso mascara a coluna
+            // ainda não gravada.
+            if ($food->getRawOriginal('nome_exibicao') !== $nome || $food->getRawOriginal('detalhe_exibicao') !== $detalhe) {
                 $updated++;
                 if (! $this->option('dry-run')) {
                     $food->forceFill($values)->save();
