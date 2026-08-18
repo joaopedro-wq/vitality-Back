@@ -21,6 +21,7 @@ class FoodResource extends JsonResource
             'fonte' => $this->fonte,
             'source_reference' => $this->source_reference,
             'grupo' => $this->grupo,
+            'grupo_normalizado' => $this->grupo_normalizado,
             'illustration_key' => $this->illustration_key,
             'status' => $this->status,
             'is_favorite' => (bool) ($this->is_favorite ?? false),

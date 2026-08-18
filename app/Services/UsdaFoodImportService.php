@@ -38,10 +38,12 @@ class UsdaFoodImportService
             }
 
             $core = $this->coreValues($data['foodNutrients'] ?? []);
+            $grupo = $data['foodCategory']['description'] ?? 'USDA '.($data['dataType'] ?? $dataset);
             $attributes = [
                 'descricao' => $description,
                 'nome_normalizado' => $this->catalog->normalizeName($description),
-                'grupo' => $data['foodCategory']['description'] ?? 'USDA '.($data['dataType'] ?? $dataset),
+                'grupo' => $grupo,
+                'grupo_normalizado' => $this->catalog->normalizeGroup($grupo),
                 'proteina' => $core['proteina'] ?? 0,
                 'gordura' => $core['gordura'] ?? 0,
                 'carbo' => $core['carbo'] ?? 0,

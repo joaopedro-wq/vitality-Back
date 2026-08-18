@@ -42,8 +42,10 @@ class FoodAdminController extends Controller
 
     public function store(StoreFoodRequest $request, FoodCatalogService $catalog)
     {
-        $food = Alimento::create($request->validated() + [
+        $validated = $request->validated();
+        $food = Alimento::create($validated + [
             'fonte' => 'manual', 'status' => 'ativo', 'nome_normalizado' => $catalog->normalizeName($request->string('descricao')->toString()),
+            'grupo_normalizado' => $catalog->normalizeGroup($validated['grupo'] ?? null),
             'created_by' => $request->user()->id, 'updated_by' => $request->user()->id,
         ]);
         return (new FoodResource($food))->additional(['success' => true, 'message' => 'Alimento criado com sucesso.']);
@@ -53,6 +55,9 @@ class FoodAdminController extends Controller
     {
         $values = $request->validated();
         $values['nome_normalizado'] = $catalog->normalizeName($values['descricao']);
+        // `grupo_normalizado` é derivado do `grupo` recebido — se este PUT não
+        // mexer em `grupo`, mantém o que já está gravado no alimento.
+        $values['grupo_normalizado'] = $catalog->normalizeGroup($values['grupo'] ?? $food->grupo);
         $values['updated_by'] = $request->user()->id;
         $food->update($values);
         return (new FoodResource($food))->additional(['success' => true]);

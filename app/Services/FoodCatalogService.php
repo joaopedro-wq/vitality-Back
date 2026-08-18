@@ -13,6 +13,23 @@ class FoodCatalogService
         return trim((string) preg_replace('/\s+/', ' ', preg_replace('/[^a-z0-9]+/i', ' ', mb_strtolower($ascii))));
     }
 
+    /**
+     * Normaliza o `grupo` bruto (texto livre, TACO em português ou USDA em
+     * inglês) num rótulo curto usado nos filtros do Diário. Ver
+     * `config/food_groups.php` pro mapa; sem match cai em "Outros" — nunca
+     * fica sem categoria.
+     */
+    public function normalizeGroup(?string $grupo): string
+    {
+        if ($grupo === null || $grupo === '') return 'Outros';
+
+        foreach (config('food_groups', []) as $normalizado => $brutos) {
+            if (in_array($grupo, $brutos, true)) return $normalizado;
+        }
+
+        return 'Outros';
+    }
+
     /** @return array{created:int,updated:int,skipped:int} */
     public function importTaco(): array
     {
@@ -25,10 +42,12 @@ class FoodCatalogService
             $reference = trim((string) ($item['Número'] ?? ''));
             $description = trim((string) ($item['Descrição do Alimento'] ?? ''));
             if ($reference === '' || $description === '') { $skipped++; continue; }
+            $grupo = trim((string) ($item['Grupo'] ?? '')) ?: null;
             $values = [
                 'descricao' => $description,
                 'nome_normalizado' => $this->normalizeName($description),
-                'grupo' => trim((string) ($item['Grupo'] ?? '')) ?: null,
+                'grupo' => $grupo,
+                'grupo_normalizado' => $this->normalizeGroup($grupo),
                 'proteina' => (float) ($item['Proteína(g)'] ?? 0),
                 'gordura' => (float) ($item['Lipídeos(g)'] ?? 0),
                 'caloria' => (float) ($item['Energia(kcal)'] ?? 0),
