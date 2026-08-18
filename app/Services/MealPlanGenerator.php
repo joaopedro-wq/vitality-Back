@@ -48,6 +48,12 @@ class MealPlanGenerator
             5 => ['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar'],
         };
 
+        $labels = match ($count) {
+            3 => [__('messages.meal_breakfast'), __('messages.meal_lunch'), __('messages.meal_dinner')],
+            4 => [__('messages.meal_breakfast'), __('messages.meal_lunch'), __('messages.meal_afternoon_snack'), __('messages.meal_dinner')],
+            5 => [__('messages.meal_breakfast'), __('messages.meal_morning_snack'), __('messages.meal_lunch'), __('messages.meal_afternoon_snack'), __('messages.meal_dinner')],
+        };
+
         $used = [];
         $meals = [];
         foreach ($ratios as $position => $ratio) {
@@ -169,7 +175,7 @@ class MealPlanGenerator
             }
         }
 
-return $total;
+        return $total;
     }
 
     private function withinTarget(array $target, array $totals): bool
@@ -180,6 +186,6 @@ return $total;
             }
         }
 
-return true;
+        return true;
     }
 }

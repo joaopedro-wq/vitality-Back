@@ -69,7 +69,7 @@ class DiaryEntryController extends Controller
 
         return (new DiaryEntryResource($entry))->additional([
             'success' => true,
-            'message' => 'Consumo registrado com sucesso.',
+            'message' => __('messages.entry_created'),
         ])->response()->setStatusCode(201);
     }
 
@@ -87,7 +87,7 @@ class DiaryEntryController extends Controller
 
         return (new DiaryEntryResource($entry))->additional([
             'success' => true,
-            'message' => 'Consumo atualizado com sucesso.',
+            'message' => __('messages.entry_updated'),
         ]);
     }
 

@@ -33,12 +33,12 @@ class AuthController extends Controller
                     'status' => true,
                     'token' => $token,
                     'user' => (new UserResource($user))->resolve(),
-                    'message' => 'Login sucesso.',
+                    'message' => __('messages.login_success'),
                 ], 201);
             } else {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Senha incorreta.',
+                    'message' => __('messages.invalid_password'),
                 ], 401);  // Código HTTP para erro de autenticação
             }
         } else {
@@ -57,7 +57,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'Deslogado com sucesso.',
+                'message' => __('messages.logout_success'),
             ], 200);
         } catch (Exception $e) {
             return response()->json([

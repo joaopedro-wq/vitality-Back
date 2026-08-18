@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'login_success' => 'Signed in successfully.',
+    'invalid_password' => 'Incorrect password.',
+    'email_not_found' => 'Email not found.',
+    'logout_success' => 'Signed out successfully.',
+    'food_created' => 'Food created successfully.',
+    'food_updated' => 'Food updated successfully.',
+    'food_deleted' => 'Food deleted successfully.',
+    'food_not_found' => 'Food was not found in the database.',
+    'entry_created' => 'Consumption logged successfully.',
+    'entry_updated' => 'Consumption updated successfully.',
+    'meal_unavailable' => 'The selected meal is not available.',
+    'foods_unavailable' => 'One or more foods are not available.',
+    'preview_expired' => 'This preview has expired. Generate a new plan.',
+    'invalid_meal' => 'Invalid meal.',
+    'insufficient_foods' => 'There are not enough foods in the catalog for these preferences.',
+    'no_replacements' => 'No compatible replacements were found in the catalog.',
+    'meal_breakfast' => 'Breakfast',
+    'meal_morning_snack' => 'Morning snack',
+    'meal_lunch' => 'Lunch',
+    'meal_afternoon_snack' => 'Afternoon snack',
+    'meal_dinner' => 'Dinner',
+    'meal_evening_snack' => 'Evening snack',
+];

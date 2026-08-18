@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'login_success' => 'Login realizado com sucesso.',
+    'invalid_password' => 'Senha incorreta.',
+    'email_not_found' => 'E-mail não encontrado.',
+    'logout_success' => 'Logout realizado com sucesso.',
+    'food_created' => 'Alimento criado com sucesso.',
+    'food_updated' => 'Alimento atualizado com sucesso.',
+    'food_deleted' => 'Alimento excluído com sucesso.',
+    'food_not_found' => 'Alimento não encontrado na base de dados.',
+    'entry_created' => 'Consumo registrado com sucesso.',
+    'entry_updated' => 'Consumo atualizado com sucesso.',
+    'meal_unavailable' => 'A refeição selecionada não está disponível.',
+    'foods_unavailable' => 'Um ou mais alimentos não estão disponíveis.',
+    'preview_expired' => 'Esta prévia expirou. Gere um novo plano.',
+    'invalid_meal' => 'Refeição inválida.',
+    'insufficient_foods' => 'Não há alimentos suficientes no catálogo com essas preferências.',
+    'no_replacements' => 'Não há substituições compatíveis no catálogo.',
+    'meal_breakfast' => 'Café da manhã',
+    'meal_morning_snack' => 'Lanche da manhã',
+    'meal_lunch' => 'Almoço',
+    'meal_afternoon_snack' => 'Lanche da tarde',
+    'meal_dinner' => 'Jantar',
+    'meal_evening_snack' => 'Ceia',
+];

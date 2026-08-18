@@ -29,9 +29,16 @@ class MealCompositionService
             $label = $labels[$position];
             $kind = str_contains($label, 'Café') ? 'cafe' : (str_contains($label, 'Lanche') ? 'lanche' : ($label === 'Almoço' ? 'almoco' : 'jantar'));
 
+            $displayLabel = match ($kind) {
+                'cafe' => __('messages.meal_breakfast'),
+                'lanche' => $position === 1 ? __('messages.meal_morning_snack') : __('messages.meal_afternoon_snack'),
+                'almoco' => __('messages.meal_lunch'),
+                default => __('messages.meal_dinner'),
+            };
+
             return [
                 'position' => $position,
-                'descricao' => $label,
+                'descricao' => $displayLabel,
                 'horario' => $preferences['meal_times'][$position],
                 'kind' => $kind,
                 'target' => $this->scale($target, $ratio),

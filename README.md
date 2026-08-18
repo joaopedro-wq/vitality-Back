@@ -57,6 +57,18 @@ código-fonte de uma API viva, então a fonte de verdade é `routes/api.php` e o
 `app/Http/Controllers`. Quem integra com o frontend encontra o contrato consumido em
 `../vitality-front/CLAUDE.md`.
 
+## Internacionalização da API
+
+A API também participa da internacionalização do produto. O frontend envia o cabeçalho
+`Accept-Language` (`pt-BR` ou `en-US`) em cada requisição; a middleware `SetLocale` define o idioma
+da requisição e devolve `Content-Language` na resposta. Português do Brasil é o fallback.
+
+Mensagens de sucesso, validação e erros ficam em `lang/pt-BR/messages.php` e
+`lang/en-US/messages.php`. Os nomes das refeições padrão e os rótulos gerados pelo planejador
+alimentar são normalizados pelo locale antes de serem serializados pela API. Alimentos continuam
+com o nome canônico do catálogo para preservar snapshots nutricionais; traduções específicas de
+nomes devem ser adicionadas ao catálogo sem alterar o identificador ou os valores nutricionais.
+
 ## Stack técnica
 
 | Camada         | Tecnologia                                                                       |
