@@ -7,7 +7,7 @@ use App\Models\MealPlan;
 use App\Models\Meta_diaria;
 use App\Models\Refeicao;
 use App\Models\User;
-use App\Models\UserBadge;
+use App\Models\UserMissionCompletion;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -23,8 +23,7 @@ class DashboardService
     public function __construct(
         private readonly DiaryEntryService $diary,
         private readonly MetaDiariaService $metas,
-    ) {
-    }
+    ) {}
 
     /**
      * Resumo agregado do Painel — um payload só, pensado pra evitar a home do sistema abrir
@@ -42,14 +41,6 @@ class DashboardService
         );
 
         $consumidoHoje = $porDia->get($hoje, ['caloria' => 0.0, 'proteina' => 0.0, 'carbo' => 0.0, 'gordura' => 0.0]);
-        $streak = $this->streak($porDia, $meta, $hoje);
-        $diasComProteinaBatida = $this->diasComProteinaBatida($porDia, $meta, $hoje);
-
-        $badges = $this->badges($user, [
-            'streakDias' => $streak['dias'],
-            'diasComProteinaBatida' => $diasComProteinaBatida,
-        ]);
-
         $plano = $this->resolverPlano($user);
 
         return [
@@ -66,12 +57,11 @@ class DashboardService
                     ? (int) round(min($consumidoHoje['caloria'] / $meta->meta_calorias, 1.5) * 100)
                     : 0,
             ],
-            'streak' => $streak,
             'semana' => $this->semana($porDia, $meta, $hoje),
             'proxima_refeicao' => $this->proximaRefeicao($user, $hoje, $plano),
             'plano_ativo' => $this->aderencia($plano, $hoje),
             'mais_consumidos' => $this->maisConsumidos($user, $hoje),
-            'badges' => $badges,
+            'progressao' => $this->progressao($user, $porDia, $hoje),
         ];
     }
 
@@ -98,42 +88,10 @@ class DashboardService
     }
 
     /**
-     * @param  Collection<string, array{caloria: float, proteina: float, carbo: float, gordura: float}>  $porDia
-     * @return array{dias: int, recorde: int}
-     */
-    private function streak(Collection $porDia, ?Meta_diaria $meta, string $hoje): array
-    {
-        if (! $meta || ! $meta->meta_calorias) {
-            return ['dias' => 0, 'recorde' => 0];
-        }
-
-        $bateu = fn (string $data) => $this->dentroDaFaixa($porDia->get($data)['caloria'] ?? 0.0, (float) $meta->meta_calorias);
-
-        $dias = 0;
-        $cursor = CarbonImmutable::parse($hoje);
-        while ($bateu($cursor->toDateString())) {
-            $dias++;
-            $cursor = $cursor->subDay();
-        }
-
-        $inicio = CarbonImmutable::parse($hoje)->subDays(self::STREAK_SCAN_DAYS - 1);
-        $recorde = 0;
-        $atual = 0;
-        for ($cursor = $inicio; $cursor->lte(CarbonImmutable::parse($hoje)); $cursor = $cursor->addDay()) {
-            if ($bateu($cursor->toDateString())) {
-                $atual++;
-                $recorde = max($recorde, $atual);
-            } else {
-                $atual = 0;
-            }
-        }
-
-        return ['dias' => $dias, 'recorde' => $recorde];
-    }
-
-    /**
-     * "Bateu a meta" = ficou entre 90% e 110% do valor-alvo (decisão de escopo da Fase 6) —
-     * evita punir quem passou 1% e não recompensa quem comeu muito pouco.
+     * "Bateu a meta" = ficou entre 90% e 110% do valor-alvo — evita punir quem passou 1% e não
+     * recompensa quem comeu muito pouco. Usado só pro card "hoje"/"sua semana" (sobre nutrição);
+     * o sistema de missões (`progressao()`) é sobre hábito de registrar, não sobre acertar meta —
+     * ver decisão de escopo no CLAUDE.md, Roadmap, Fase 6.
      */
     private function dentroDaFaixa(float $consumido, float $alvo): bool
     {
@@ -144,23 +102,6 @@ class DashboardService
         $percentual = $consumido / $alvo;
 
         return $percentual >= 0.9 && $percentual <= 1.1;
-    }
-
-    private function diasComProteinaBatida(Collection $porDia, ?Meta_diaria $meta, string $hoje): int
-    {
-        if (! $meta || ! $meta->meta_proteinas) {
-            return 0;
-        }
-
-        $dias = 0;
-        for ($i = 0; $i < 7; $i++) {
-            $data = CarbonImmutable::parse($hoje)->subDays($i)->toDateString();
-            if ($this->dentroDaFaixa($porDia->get($data)['proteina'] ?? 0.0, (float) $meta->meta_proteinas)) {
-                $dias++;
-            }
-        }
-
-        return $dias;
     }
 
     /**
@@ -345,35 +286,119 @@ class DashboardService
     }
 
     /**
-     * Avalia o catálogo de badges contra as estatísticas do usuário e persiste qualquer
-     * desbloqueio novo (insert idempotente — não duplica se já existir).
-     *
-     * @param  array{streakDias: int, diasComProteinaBatida: int}  $stats
-     * @return array<int, array{codigo: string, icone: string, titulo: string, conquistado: bool, progresso: int, unlocked_at: ?string}>
+     * Dias consecutivos (a partir de hoje pra trás) com pelo menos um registro no diário —
+     * **não** é sobre bater meta calórica (isso é `dentroDaFaixa`/`semana`, assunto separado).
+     * `$porDia` (de `DiaryEntryService::forDateRange`) só tem chave pros dias que têm registro
+     * (a query agrega via `JOIN` com `registro_alimentos`), então "tem chave" já é exatamente
+     * "teve pelo menos um registro naquele dia" — sem precisar de query nova.
      */
-    private function badges(User $user, array $stats): array
+    private function streakDeRegistro(Collection $porDia, string $hoje): int
     {
-        $avaliacao = BadgeCatalog::avaliar($stats);
-        $existentes = UserBadge::query()->where('user_id', $user->id)->get()->keyBy('badge_code');
-        $agora = CarbonImmutable::now(self::TIMEZONE);
+        $dias = 0;
+        $cursor = CarbonImmutable::parse($hoje);
+        while ($porDia->has($cursor->toDateString())) {
+            $dias++;
+            $cursor = $cursor->subDay();
+        }
 
-        foreach ($avaliacao as $codigo => $resultado) {
-            if ($resultado['conquistado'] && ! $existentes->has($codigo)) {
-                $novo = UserBadge::create(['user_id' => $user->id, 'badge_code' => $codigo, 'unlocked_at' => $agora]);
-                $existentes->put($codigo, $novo);
+        return $dias;
+    }
+
+    /**
+     * Avalia cada missão do catálogo contra o estado atual do usuário — devolve, por código,
+     * a chave de período (`period_key`) que identifica a ocorrência atual (dia/semana/"once"),
+     * se ela está cumprida agora, e o progresso (0–100) em direção a ela.
+     *
+     * @return array<string, array{period_key: string, concluida: bool, progresso: int}>
+     */
+    private function avaliarMissoes(User $user, Collection $porDia, string $hoje): array
+    {
+        $segunda = CarbonImmutable::parse($hoje)->startOfWeek(CarbonImmutable::MONDAY)->toDateString();
+
+        $refeicoesAtivas = Refeicao::query()->where('id_usuario', $user->id)->whereNull('archived_at')->count();
+        $refeicoesRegistradasHoje = DB::table('registros')
+            ->where('id_usuario', $user->id)
+            ->where('data', $hoje)
+            ->distinct()
+            ->count('id_refeicao');
+
+        $diasSemana = 0;
+        $cursor = CarbonImmutable::parse($segunda);
+        for ($i = 0; $i < 7; $i++) {
+            if ($porDia->has($cursor->toDateString())) {
+                $diasSemana++;
+            }
+            $cursor = $cursor->addDay();
+        }
+
+        $streakRegistro = $this->streakDeRegistro($porDia, $hoje);
+        $progresso = fn (int $atual, int $alvo) => $alvo > 0 ? (int) round(min($atual / $alvo, 1) * 100) : 100;
+
+        return [
+            'log_primeira_refeicao' => ['period_key' => $hoje, 'concluida' => $porDia->has($hoje), 'progresso' => $porDia->has($hoje) ? 100 : 0],
+            'log_dia_completo' => ['period_key' => $hoje, 'concluida' => $refeicoesAtivas > 0 && $refeicoesRegistradasHoje >= $refeicoesAtivas, 'progresso' => $progresso($refeicoesRegistradasHoje, $refeicoesAtivas)],
+            'log_3_dias_semana' => ['period_key' => $segunda, 'concluida' => $diasSemana >= 3, 'progresso' => $progresso($diasSemana, 3)],
+            'log_semana_completa' => ['period_key' => $segunda, 'concluida' => $diasSemana >= 7, 'progresso' => $progresso($diasSemana, 7)],
+            'marco_streak_4' => ['period_key' => 'once', 'concluida' => $streakRegistro >= 4, 'progresso' => $progresso($streakRegistro, 4)],
+            'marco_streak_7' => ['period_key' => 'once', 'concluida' => $streakRegistro >= 7, 'progresso' => $progresso($streakRegistro, 7)],
+            'marco_streak_30' => ['period_key' => 'once', 'concluida' => $streakRegistro >= 30, 'progresso' => $progresso($streakRegistro, 30)],
+        ];
+    }
+
+    /**
+     * Avalia o catálogo de missões, persiste qualquer conclusão nova (insert idempotente —
+     * `(user_id, mission_code, period_key)` é único, então uma missão diária/semanal já
+     * persistida num período anterior não é tocada de novo; reavaliar no período novo é o que faz
+     * ela "resetar" — não tem UPDATE nem DELETE aqui) e resolve nível a partir do XP acumulado de
+     * toda a história (inclusive missões diárias/semanais de dias passados).
+     */
+    private function progressao(User $user, Collection $porDia, string $hoje): array
+    {
+        $avaliacoes = $this->avaliarMissoes($user, $porDia, $hoje);
+        $definicoes = collect(MissionCatalog::definicoes())->keyBy('codigo');
+
+        $existentes = UserMissionCompletion::query()->where('user_id', $user->id)->get()
+            ->keyBy(fn (UserMissionCompletion $completion) => $completion->mission_code.'|'.$completion->period_key);
+
+        $agora = CarbonImmutable::now(self::TIMEZONE);
+        foreach ($avaliacoes as $codigo => $avaliacao) {
+            $chave = $codigo.'|'.$avaliacao['period_key'];
+            if ($avaliacao['concluida'] && ! $existentes->has($chave)) {
+                $novo = UserMissionCompletion::create([
+                    'user_id' => $user->id,
+                    'mission_code' => $codigo,
+                    'period_key' => $avaliacao['period_key'],
+                    'xp' => $definicoes[$codigo]['xp'],
+                    'completed_at' => $agora,
+                ]);
+                $existentes->put($chave, $novo);
             }
         }
 
-        return collect(BadgeCatalog::definicoes())->map(function (array $definicao) use ($avaliacao, $existentes) {
-            $codigo = $definicao['codigo'];
-            $unlocked = $existentes->get($codigo);
+        $nivelInfo = LevelCatalog::resolver((int) $existentes->sum('xp'));
+
+        $porEscopo = fn (string $escopo) => collect(MissionCatalog::porEscopo($escopo))->map(function (array $definicao) use ($avaliacoes, $existentes) {
+            $avaliacao = $avaliacoes[$definicao['codigo']];
+            $chave = $definicao['codigo'].'|'.$avaliacao['period_key'];
 
             return [
-                ...$definicao,
-                'conquistado' => $unlocked !== null,
-                'progresso' => $avaliacao[$codigo]['progresso'] ?? 0,
-                'unlocked_at' => $unlocked?->unlocked_at?->toISOString(),
+                'codigo' => $definicao['codigo'],
+                'icone' => $definicao['icone'],
+                'titulo' => $definicao['titulo'],
+                'xp' => $definicao['xp'],
+                'concluida' => $existentes->has($chave),
+                'progresso' => $avaliacao['progresso'],
             ];
         })->values()->all();
+
+        return [
+            'nivel' => $nivelInfo['nivel'],
+            'xp' => $nivelInfo['xp'],
+            'xp_proximo_nivel' => $nivelInfo['xp_proximo_nivel'],
+            'progresso_percent' => $nivelInfo['progresso_percent'],
+            'diarias' => $porEscopo(MissionCatalog::ESCOPO_DIARIA),
+            'semanais' => $porEscopo(MissionCatalog::ESCOPO_SEMANAL),
+            'marcos' => $porEscopo(MissionCatalog::ESCOPO_MARCO),
+        ];
     }
 }

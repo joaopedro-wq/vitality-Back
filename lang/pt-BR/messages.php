@@ -24,9 +24,13 @@ return [
     'meal_dinner' => 'Jantar',
     'meal_evening_snack' => 'Ceia',
 
-    'badge_streak_4' => '4 dias seguidos batendo a meta',
-    'badge_protein_5x' => 'Proteína batida em 5 dos últimos 7 dias',
-    'badge_trilha_7' => '7 dias seguidos batendo a meta',
+    'mission_log_primeira_refeicao' => 'Registre sua primeira refeição hoje',
+    'mission_log_dia_completo' => 'Complete o dia',
+    'mission_log_3_dias_semana' => 'Registre em 3 dias diferentes essa semana',
+    'mission_log_semana_completa' => 'Semana completa',
+    'mission_marco_streak_4' => '4 dias seguidos de registro',
+    'mission_marco_streak_7' => '7 dias seguidos de registro',
+    'mission_marco_streak_30' => '30 dias seguidos de registro',
 
     'meal_plan' => [
         'reorganize_off_target' => 'A reorganização não manteve a meta diária. Tente novamente.',

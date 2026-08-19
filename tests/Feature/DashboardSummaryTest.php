@@ -48,7 +48,7 @@ class DashboardSummaryTest extends TestCase
         ]);
     }
 
-    public function test_summary_computes_streak_week_and_unlocks_a_badge(): void
+    public function test_summary_computes_week_adherence_and_progression(): void
     {
         $user = User::factory()->create();
         app(MealPresetService::class)->ensureFor($user);
@@ -76,17 +76,31 @@ class DashboardSummaryTest extends TestCase
 
         $this->getJson('/api/dashboard/summary')
             ->assertOk()
-            ->assertJsonPath('data.streak.dias', 4)
             ->assertJsonPath('data.hoje.percentual', 100)
             ->assertJsonPath('data.plano_ativo.titulo', 'Plano de teste')
             ->assertJsonPath('data.plano_ativo.aderencia_7d', 57)
             ->assertJsonPath('data.mais_consumidos.0.food_id', $food->id)
             ->assertJsonCount(7, 'data.semana');
 
-        $badges = collect($this->getJson('/api/dashboard/summary')->json('data.badges'));
-        $this->assertTrue($badges->firstWhere('codigo', 'streak_4')['conquistado']);
-        $this->assertFalse($badges->firstWhere('codigo', 'trilha_7')['conquistado']);
-        $this->assertDatabaseHas('user_badges', ['user_id' => $user->id, 'badge_code' => 'streak_4']);
+        // Missões de progressão — 4 dias seguidos de registro (hoje incluído) bate o marco de 4
+        // dias e a missão diária "primeira refeição hoje"; a missão de 7 dias e o "dia completo"
+        // (exige as 5 refeições padrão, só 1 foi registrada) continuam pendentes. Missões
+        // semanais não são asserted aqui — dependem de em que dia da semana o teste roda (os 4
+        // dias podem cair em semanas diferentes do calendário), então ficariam instáveis.
+        $progressao = $this->getJson('/api/dashboard/summary')->json('data.progressao');
+        $marcos = collect($progressao['marcos']);
+        $diarias = collect($progressao['diarias']);
+
+        $this->assertTrue($marcos->firstWhere('codigo', 'marco_streak_4')['concluida']);
+        $this->assertFalse($marcos->firstWhere('codigo', 'marco_streak_7')['concluida']);
+        $this->assertTrue($diarias->firstWhere('codigo', 'log_primeira_refeicao')['concluida']);
+        $this->assertFalse($diarias->firstWhere('codigo', 'log_dia_completo')['concluida']);
+
+        // XP determinístico: log_primeira_refeicao (5) + marco_streak_4 (30) com certeza contam;
+        // as missões semanais podem ou não somar em cima, então só o piso é garantido.
+        $this->assertGreaterThanOrEqual(35, $progressao['xp']);
+        $this->assertGreaterThanOrEqual(1, $progressao['nivel']);
+        $this->assertDatabaseHas('user_mission_completions', ['user_id' => $user->id, 'mission_code' => 'marco_streak_4']);
     }
 
     public function test_favorited_plan_wins_over_more_recent_unfavorited_one_and_suggests_food(): void
@@ -145,7 +159,8 @@ class DashboardSummaryTest extends TestCase
 
         $this->getJson('/api/dashboard/summary')
             ->assertOk()
-            ->assertJsonPath('data.streak.dias', 0)
+            ->assertJsonPath('data.progressao.nivel', 1)
+            ->assertJsonPath('data.progressao.xp', 0)
             ->assertJsonPath('data.hoje.percentual', 0)
             ->assertJsonPath('data.plano_ativo', null)
             ->assertJsonPath('data.mais_consumidos', []);

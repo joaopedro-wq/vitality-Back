@@ -24,9 +24,13 @@ return [
     'meal_dinner' => 'Dinner',
     'meal_evening_snack' => 'Evening snack',
 
-    'badge_streak_4' => '4 days in a row hitting the goal',
-    'badge_protein_5x' => 'Protein goal hit on 5 of the last 7 days',
-    'badge_trilha_7' => '7 days in a row hitting the goal',
+    'mission_log_primeira_refeicao' => 'Log your first meal today',
+    'mission_log_dia_completo' => 'Complete the day',
+    'mission_log_3_dias_semana' => 'Log on 3 different days this week',
+    'mission_log_semana_completa' => 'Full week',
+    'mission_marco_streak_4' => '4 days in a row logging',
+    'mission_marco_streak_7' => '7 days in a row logging',
+    'mission_marco_streak_30' => '30 days in a row logging',
 
     'meal_plan' => [
         'reorganize_off_target' => 'The reorganization did not keep the daily goal. Try again.',
