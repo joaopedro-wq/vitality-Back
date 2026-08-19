@@ -114,6 +114,14 @@ class MealPlanController extends Controller
         return response()->noContent();
     }
 
+    public function destroy(Request $request, MealPlan $mealPlan)
+    {
+        abort_unless($mealPlan->user_id === $request->user()->id, 404);
+        $mealPlan->delete();
+
+        return response()->noContent();
+    }
+
     private function preferences(Request $request): array
     {
         return $request->validate([

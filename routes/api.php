@@ -83,6 +83,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/meal-plans', [MealPlanController::class, 'store']);
     Route::put('/meal-plans/{mealPlan}', [MealPlanController::class, 'update']);
     Route::post('/meal-plans/{mealPlan}/archive', [MealPlanController::class, 'archive']);
+    Route::delete('/meal-plans/{mealPlan}', [MealPlanController::class, 'destroy']);
 
     Route::get('/foods', [FoodController::class, 'index']);
     Route::get('/foods/groups', [FoodController::class, 'groups']);

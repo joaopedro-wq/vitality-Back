@@ -63,6 +63,7 @@ class GeminiMealPlanService
         $plan->load('meals.items.food.planTags');
         $preferences = [...$plan->preferences, 'objective' => $user->objetivo];
         $payload = [
+            'titulo' => $plan->titulo,
             'preferences' => $preferences, 'target' => $plan->target, 'totals' => $plan->totals,
             'within_target' => ! $plan->warning, 'warning' => $plan->warning, 'summary' => __('messages.meal_plan.editable_copy_of', ['title' => $plan->titulo]),
             'meals' => $plan->meals->map(fn ($meal) => [
