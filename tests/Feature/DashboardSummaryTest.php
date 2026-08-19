@@ -80,7 +80,12 @@ class DashboardSummaryTest extends TestCase
             ->assertJsonPath('data.plano_ativo.titulo', 'Plano de teste')
             ->assertJsonPath('data.plano_ativo.aderencia_7d', 57)
             ->assertJsonPath('data.mais_consumidos.0.food_id', $food->id)
-            ->assertJsonCount(7, 'data.semana');
+            ->assertJsonCount(7, 'data.semana')
+            ->assertJsonPath('data.semana.6.caloria', 2000)
+            ->assertJsonPath('data.semana.6.proteina', 100)
+            ->assertJsonCount(5, 'data.proxima_refeicao.refeicoes_hoje')
+            ->assertJsonPath('data.proxima_refeicao.refeicoes_hoje.0.registrado', true)
+            ->assertJsonPath('data.proxima_refeicao.refeicoes_hoje.1.registrado', false);
 
         // Missões de progressão — 4 dias seguidos de registro (hoje incluído) bate o marco de 4
         // dias e a missão diária "primeira refeição hoje"; a missão de 7 dias e o "dia completo"
@@ -115,7 +120,8 @@ class DashboardSummaryTest extends TestCase
             'meal_count' => 1, 'preferences' => [], 'target' => [], 'totals' => [],
         ]);
         $meal = $older->meals()->create([
-            'position' => 1, 'descricao' => 'Café', 'horario' => $breakfast->horario, 'target' => [], 'totals' => [],
+            'position' => 1, 'descricao' => 'Café', 'horario' => $breakfast->horario, 'target' => [],
+            'totals' => ['caloria' => 350, 'proteina' => 42, 'carbo' => 12, 'gordura' => 8, 'quantidade' => 150],
         ]);
         $meal->items()->create([
             'food_id' => $food->id, 'descricao_snapshot' => $food->descricao,
@@ -134,7 +140,9 @@ class DashboardSummaryTest extends TestCase
         $this->getJson('/api/dashboard/summary')
             ->assertOk()
             ->assertJsonPath('data.plano_ativo.titulo', 'Plano favorito')
-            ->assertJsonPath('data.proxima_refeicao.sugestao_plano', 'Frango grelhado');
+            ->assertJsonPath('data.proxima_refeicao.sugestao_plano.itens.0', 'Frango grelhado')
+            ->assertJsonPath('data.proxima_refeicao.sugestao_plano.totais.caloria', 350)
+            ->assertJsonPath('data.proxima_refeicao.sugestao_plano.totais.proteina', 42);
     }
 
     public function test_favoriting_a_plan_unfavorites_any_previous_one(): void

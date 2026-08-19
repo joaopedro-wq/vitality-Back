@@ -105,14 +105,15 @@ class DashboardService
     }
 
     /**
-     * @return array<int, array{data: string, percentual: int, dentro_da_meta: bool}>
+     * @return array<int, array{data: string, percentual: int, dentro_da_meta: bool, caloria: int, proteina: int, carbo: int, gordura: int}>
      */
     private function semana(Collection $porDia, ?Meta_diaria $meta, string $hoje): array
     {
         $dias = [];
         for ($i = 6; $i >= 0; $i--) {
             $data = CarbonImmutable::parse($hoje)->subDays($i)->toDateString();
-            $caloria = $porDia->get($data)['caloria'] ?? 0.0;
+            $registroDoDia = $porDia->get($data, ['caloria' => 0.0, 'proteina' => 0.0, 'carbo' => 0.0, 'gordura' => 0.0]);
+            $caloria = $registroDoDia['caloria'];
             $percentual = $meta && $meta->meta_calorias > 0
                 ? (int) round(min($caloria / $meta->meta_calorias, 1.5) * 100)
                 : 0;
@@ -121,6 +122,11 @@ class DashboardService
                 'data' => $data,
                 'percentual' => $percentual,
                 'dentro_da_meta' => $meta ? $this->dentroDaFaixa($caloria, (float) $meta->meta_calorias) : false,
+
+                'caloria' => (int) round($caloria),
+                'proteina' => (int) round($registroDoDia['proteina']),
+                'carbo' => (int) round($registroDoDia['carbo']),
+                'gordura' => (int) round($registroDoDia['gordura']),
             ];
         }
 
@@ -162,14 +168,24 @@ class DashboardService
             'descricao' => $proxima->descricao,
             'horario' => substr((string) $proxima->horario, 0, 5),
             'sugestao_plano' => $this->sugestaoDoPlano($plano, (string) $proxima->horario),
+            // Todas as refeições do dia (não só a próxima) — vira a faixa "hoje" no card de
+            // missão, além do próprio horário-alvo já usado pra achar $proxima.
+            'refeicoes_hoje' => $refeicoes->map(fn (Refeicao $refeicao) => [
+                'meal_id' => $refeicao->id,
+                'descricao' => $refeicao->descricao,
+                'horario' => substr((string) $refeicao->horario, 0, 5),
+                'registrado' => $comRegistroHoje->contains($refeicao->id),
+            ])->values()->all(),
         ];
     }
 
     /**
      * Refeição do plano favorito mais próxima do horário informado (±90min, mesma tolerância da
-     * aderência) — sem isso o card de missão só dizia "registre X", nunca o que comer.
+     * aderência) — sem isso o card de missão só dizia "registre X", nunca o que comer nem quanto.
+     *
+     * @return array{itens: array<int, string>, totais: array{caloria: int, proteina: int, carbo: int, gordura: int}}|null
      */
-    private function sugestaoDoPlano(?MealPlan $plano, string $horario): ?string
+    private function sugestaoDoPlano(?MealPlan $plano, string $horario): ?array
     {
         if (! $plano || $plano->meals->isEmpty()) {
             return null;
@@ -186,7 +202,21 @@ class DashboardService
 
         $itens = $maisProxima->items->map(fn ($item) => $item->nome_exibicao_snapshot ?? $item->descricao_snapshot)->filter()->values();
 
-        return $itens->isEmpty() ? null : $itens->implode(', ');
+        if ($itens->isEmpty()) {
+            return null;
+        }
+
+        $totais = $maisProxima->totals ?? [];
+
+        return [
+            'itens' => $itens->all(),
+            'totais' => [
+                'caloria' => (int) round($totais['caloria'] ?? 0),
+                'proteina' => (int) round($totais['proteina'] ?? 0),
+                'carbo' => (int) round($totais['carbo'] ?? 0),
+                'gordura' => (int) round($totais['gordura'] ?? 0),
+            ],
+        ];
     }
 
     /**
