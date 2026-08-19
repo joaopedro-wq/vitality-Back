@@ -87,11 +87,6 @@ class DashboardSummaryTest extends TestCase
             ->assertJsonPath('data.proxima_refeicao.refeicoes_hoje.0.registrado', true)
             ->assertJsonPath('data.proxima_refeicao.refeicoes_hoje.1.registrado', false);
 
-        // Missões de progressão — 4 dias seguidos de registro (hoje incluído) bate o marco de 4
-        // dias e a missão diária "primeira refeição hoje"; a missão de 7 dias e o "dia completo"
-        // (exige as 5 refeições padrão, só 1 foi registrada) continuam pendentes. Missões
-        // semanais não são asserted aqui — dependem de em que dia da semana o teste roda (os 4
-        // dias podem cair em semanas diferentes do calendário), então ficariam instáveis.
         $progressao = $this->getJson('/api/dashboard/summary')->json('data.progressao');
         $marcos = collect($progressao['marcos']);
         $diarias = collect($progressao['diarias']);

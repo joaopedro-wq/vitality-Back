@@ -133,19 +133,13 @@ class DashboardService
         return $dias;
     }
 
-    /**
-     * Primeira refeição do usuário (ordenada por horário) ainda sem lançamento hoje — mesma
-     * heurística de `proximaFaseAberta` (`diary-day.util.ts`), portada pro backend. Quando existe
-     * um plano favorito (`$plano`), cruza por proximidade de horário (mesma heurística ±90min de
-     * `aderencia()`) pra sugerir o que o plano propõe pra aquela refeição.
-     */
     private function proximaRefeicao(User $user, string $hoje, ?MealPlan $plano): ?array
     {
         $refeicoes = Refeicao::query()
             ->where('id_usuario', $user->id)
             ->whereNull('archived_at')
             ->orderBy('horario')
-            ->get(['id', 'descricao', 'horario']);
+            ->get(['id', 'descricao', 'horario', 'chave_padrao']);
 
         if ($refeicoes->isEmpty()) {
             return null;
@@ -165,18 +159,30 @@ class DashboardService
 
         return [
             'meal_id' => $proxima->id,
-            'descricao' => $proxima->descricao,
+            'descricao' => $this->nomeDaRefeicao($proxima),
             'horario' => substr((string) $proxima->horario, 0, 5),
             'sugestao_plano' => $this->sugestaoDoPlano($plano, (string) $proxima->horario),
             // Todas as refeições do dia (não só a próxima) — vira a faixa "hoje" no card de
             // missão, além do próprio horário-alvo já usado pra achar $proxima.
             'refeicoes_hoje' => $refeicoes->map(fn (Refeicao $refeicao) => [
                 'meal_id' => $refeicao->id,
-                'descricao' => $refeicao->descricao,
+                'descricao' => $this->nomeDaRefeicao($refeicao),
                 'horario' => substr((string) $refeicao->horario, 0, 5),
                 'registrado' => $comRegistroHoje->contains($refeicao->id),
             ])->values()->all(),
         ];
+    }
+
+    private function nomeDaRefeicao(Refeicao $refeicao): string
+    {
+        return match ($refeicao->chave_padrao) {
+            'cafe_da_manha' => __('messages.meal_breakfast'),
+            'almoco' => __('messages.meal_lunch'),
+            'lanche_da_tarde' => __('messages.meal_afternoon_snack'),
+            'jantar' => __('messages.meal_dinner'),
+            'ceia' => __('messages.meal_evening_snack'),
+            default => $refeicao->descricao,
+        };
     }
 
     /**
