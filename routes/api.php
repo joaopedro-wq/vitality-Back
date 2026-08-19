@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\FoodAdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiaryEntryController;
 use App\Http\Controllers\DiaryMealController;
 use App\Http\Controllers\DietaController;
@@ -19,6 +20,8 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/dashboard/summary', [DashboardController::class, 'summary']);
 
     Route::get('/diary/day', [DiaryEntryController::class, 'day']);
     Route::get('/diary/recent-foods', [DiaryEntryController::class, 'recentFoods']);
@@ -83,6 +86,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/meal-plans', [MealPlanController::class, 'store']);
     Route::put('/meal-plans/{mealPlan}', [MealPlanController::class, 'update']);
     Route::post('/meal-plans/{mealPlan}/archive', [MealPlanController::class, 'archive']);
+    Route::post('/meal-plans/{mealPlan}/favorite', [MealPlanController::class, 'favorite']);
+    Route::delete('/meal-plans/{mealPlan}/favorite', [MealPlanController::class, 'unfavorite']);
     Route::delete('/meal-plans/{mealPlan}', [MealPlanController::class, 'destroy']);
 
     Route::get('/foods', [FoodController::class, 'index']);

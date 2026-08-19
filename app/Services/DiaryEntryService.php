@@ -66,6 +66,59 @@ class DiaryEntryService
             ->get();
     }
 
+    /**
+     * Totais de macro por dia, agregados no banco, para um intervalo de datas (inclusive).
+     * Usado pelo Painel (streak, trilha semanal, "mais consumidos") — não recarrega o dia
+     * inteiro com relações como `forDay`, só a soma que interessa.
+     *
+     * Reaproveita o mesmo fator qtd/qtd_base_snapshot que `DiaryEntryResource` aplica por item
+     * (o snapshot é por porção-base, não por grama absoluta).
+     *
+     * @return Collection<string, array{caloria: float, proteina: float, carbo: float, gordura: float}>
+     */
+    public function forDateRange(User $user, string $from, string $to): Collection
+    {
+        return DB::table('registros')
+            ->join('registro_alimentos', 'registro_alimentos.registro_id', '=', 'registros.id')
+            ->where('registros.id_usuario', $user->id)
+            ->whereBetween('registros.data', [$from, $to])
+            ->groupBy('registros.data')
+            ->orderBy('registros.data')
+            ->selectRaw('registros.data as data')
+            ->selectRaw('SUM(registro_alimentos.caloria_snapshot * registro_alimentos.qtd / NULLIF(registro_alimentos.qtd_base_snapshot, 0)) as caloria')
+            ->selectRaw('SUM(registro_alimentos.proteina_snapshot * registro_alimentos.qtd / NULLIF(registro_alimentos.qtd_base_snapshot, 0)) as proteina')
+            ->selectRaw('SUM(registro_alimentos.carbo_snapshot * registro_alimentos.qtd / NULLIF(registro_alimentos.qtd_base_snapshot, 0)) as carbo')
+            ->selectRaw('SUM(registro_alimentos.gordura_snapshot * registro_alimentos.qtd / NULLIF(registro_alimentos.qtd_base_snapshot, 0)) as gordura')
+            ->get()
+            ->keyBy(fn (object $row) => (string) $row->data)
+            ->map(fn (object $row) => [
+                'caloria' => round((float) $row->caloria, 3),
+                'proteina' => round((float) $row->proteina, 3),
+                'carbo' => round((float) $row->carbo, 3),
+                'gordura' => round((float) $row->gordura, 3),
+            ]);
+    }
+
+    /**
+     * Alimentos mais consumidos (por contagem de lançamentos), não por recência —
+     * complementa `recentFoods` do controller, que ordena por último consumo.
+     *
+     * @return Collection<int, array{food_id: int, vezes: int}>
+     */
+    public function mostConsumedFoods(User $user, string $since, int $limit = 5): Collection
+    {
+        return DB::table('registros')
+            ->join('registro_alimentos', 'registro_alimentos.registro_id', '=', 'registros.id')
+            ->where('registros.id_usuario', $user->id)
+            ->where('registros.data', '>=', $since)
+            ->groupBy('registro_alimentos.alimento_id')
+            ->orderByDesc(DB::raw('COUNT(*)'))
+            ->limit($limit)
+            ->selectRaw('registro_alimentos.alimento_id as food_id, COUNT(*) as vezes')
+            ->get()
+            ->map(fn (object $row) => ['food_id' => (int) $row->food_id, 'vezes' => (int) $row->vezes]);
+    }
+
     public function load(Registro $entry): Registro
     {
         return $entry->fresh(['alimentos.publishedImage', 'refeicao']);

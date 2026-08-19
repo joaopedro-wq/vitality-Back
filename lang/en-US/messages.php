@@ -24,6 +24,10 @@ return [
     'meal_dinner' => 'Dinner',
     'meal_evening_snack' => 'Evening snack',
 
+    'badge_streak_4' => '4 days in a row hitting the goal',
+    'badge_protein_5x' => 'Protein goal hit on 5 of the last 7 days',
+    'badge_trilha_7' => '7 days in a row hitting the goal',
+
     'meal_plan' => [
         'reorganize_off_target' => 'The reorganization did not keep the daily goal. Try again.',
         'item_not_in_meal' => 'This food does not belong to this meal.',

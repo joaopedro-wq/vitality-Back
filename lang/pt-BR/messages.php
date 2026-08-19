@@ -24,6 +24,10 @@ return [
     'meal_dinner' => 'Jantar',
     'meal_evening_snack' => 'Ceia',
 
+    'badge_streak_4' => '4 dias seguidos batendo a meta',
+    'badge_protein_5x' => 'Proteína batida em 5 dos últimos 7 dias',
+    'badge_trilha_7' => '7 dias seguidos batendo a meta',
+
     'meal_plan' => [
         'reorganize_off_target' => 'A reorganização não manteve a meta diária. Tente novamente.',
         'item_not_in_meal' => 'Este alimento não pertence à refeição.',

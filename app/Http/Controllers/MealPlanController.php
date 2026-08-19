@@ -6,6 +6,7 @@ use App\Models\MealPlan;
 use App\Models\MealPlanDraft;
 use App\Services\GeminiMealPlanService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MealPlanController extends Controller
 {
@@ -114,6 +115,32 @@ class MealPlanController extends Controller
         return response()->noContent();
     }
 
+    /**
+     * Só um plano favorito por vez (é o que o Painel usa como "plano ativo" — ver
+     * `DashboardService::planoAtivoEAderencia()`). Marcar um novo desmarca qualquer outro do
+     * mesmo usuário, numa transação — mesmo espírito do favorito de `Alimento`
+     * (`FoodController::favorite`), mas aqui é exclusivo (alimento pode ter vários favoritos).
+     */
+    public function favorite(Request $request, MealPlan $mealPlan)
+    {
+        abort_unless($mealPlan->user_id === $request->user()->id, 404);
+
+        DB::transaction(function () use ($request, $mealPlan) {
+            MealPlan::query()->where('user_id', $request->user()->id)->whereKeyNot($mealPlan->id)->update(['favorited_at' => null]);
+            $mealPlan->update(['favorited_at' => now()]);
+        });
+
+        return response()->json(['data' => $this->serialize($mealPlan->fresh()), 'success' => true]);
+    }
+
+    public function unfavorite(Request $request, MealPlan $mealPlan)
+    {
+        abort_unless($mealPlan->user_id === $request->user()->id, 404);
+        $mealPlan->update(['favorited_at' => null]);
+
+        return response()->noContent();
+    }
+
     public function destroy(Request $request, MealPlan $mealPlan)
     {
         abort_unless($mealPlan->user_id === $request->user()->id, 404);
@@ -134,7 +161,7 @@ class MealPlanController extends Controller
 
     private function serialize(MealPlan $plan): array
     {
-        return ['id' => $plan->id, 'titulo' => $plan->titulo, 'preferences' => $plan->preferences, 'target' => $plan->target, 'totals' => $plan->totals, 'within_target' => ! $plan->warning, 'warning' => $plan->warning, 'archived_at' => $plan->archived_at?->toISOString(), 'created_at' => $plan->created_at?->toISOString(), 'updated_at' => $plan->updated_at?->toISOString(), 'meals' => $plan->meals->map(fn ($meal) => ['id' => $meal->id, 'position' => $meal->position, 'descricao' => $meal->descricao, 'horario' => substr((string) $meal->horario, 0, 5), 'target' => $meal->target, 'totals' => $meal->totals, 'items' => $meal->items->map(fn ($item) => [
+        return ['id' => $plan->id, 'titulo' => $plan->titulo, 'preferences' => $plan->preferences, 'target' => $plan->target, 'totals' => $plan->totals, 'within_target' => ! $plan->warning, 'warning' => $plan->warning, 'archived_at' => $plan->archived_at?->toISOString(), 'favorited_at' => $plan->favorited_at?->toISOString(), 'created_at' => $plan->created_at?->toISOString(), 'updated_at' => $plan->updated_at?->toISOString(), 'meals' => $plan->meals->map(fn ($meal) => ['id' => $meal->id, 'position' => $meal->position, 'descricao' => $meal->descricao, 'horario' => substr((string) $meal->horario, 0, 5), 'target' => $meal->target, 'totals' => $meal->totals, 'items' => $meal->items->map(fn ($item) => [
             'id' => $item->id,
             'food_id' => $item->food_id,
             'descricao' => $item->nome_exibicao_snapshot ?? $item->descricao_snapshot,
