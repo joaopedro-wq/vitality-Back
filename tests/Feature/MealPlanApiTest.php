@@ -91,7 +91,7 @@ class MealPlanApiTest extends TestCase
         $this->fakeGemini();
         Sanctum::actingAs($user);
 
-        $payload = ['meal_count' => 3, 'meal_times' => ['08:00', '12:30', '19:30'], 'style' => 'rapido', 'diet_type' => 'onivora', 'restriction_slugs' => [], 'excluded_food_ids' => []];
+        $payload = ['meal_count' => 3, 'meal_times' => ['08:00', '12:30', '19:30'], 'style' => 'rapido', 'diet_type' => 'onivora', 'restriction_slugs' => [], 'excluded_food_ids' => [], 'included_food_ids' => []];
         $draft = $this->postJson('/api/meal-plans/preview', $payload)->assertOk()->assertJsonCount(3, 'data.meals')->json('data');
         $this->assertArrayHasKey('draft_id', $draft);
         $protein = collect($draft['meals'][1]['items'])->firstWhere('role', 'prato_proteina');
@@ -117,7 +117,7 @@ class MealPlanApiTest extends TestCase
     {
         $user = User::factory()->create();
         Sanctum::actingAs($user);
-        $profile = ['meal_count' => 4, 'meal_times' => ['08:00', '12:30', '16:30', '20:00'], 'style' => 'caseiro', 'diet_type' => 'vegana', 'restriction_slugs' => [], 'excluded_food_ids' => []];
+        $profile = ['meal_count' => 4, 'meal_times' => ['08:00', '12:30', '16:30', '20:00'], 'style' => 'caseiro', 'diet_type' => 'vegana', 'restriction_slugs' => [], 'excluded_food_ids' => [], 'included_food_ids' => []];
         $this->putJson('/api/meal-plan-profile', $profile)->assertOk()->assertJsonPath('data.diet_type', 'vegana');
         $this->getJson('/api/meal-plan-profile')->assertOk()->assertJsonPath('data.style', 'caseiro');
 

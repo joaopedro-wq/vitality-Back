@@ -8,6 +8,7 @@ use App\Services\GeminiMealPlanService;
 use App\Services\ManualMealPlanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class MealPlanController extends Controller
 {
@@ -216,6 +217,8 @@ class MealPlanController extends Controller
             'style' => ['required', 'in:rapido,caseiro,economico'], 'diet_type' => ['required', 'in:onivora,vegetariana,vegana'],
             'restriction_slugs' => ['present', 'array', 'max:7'], 'restriction_slugs.*' => ['string', 'exists:food_restrictions,slug'],
             'excluded_food_ids' => ['present', 'array', 'max:30'], 'excluded_food_ids.*' => ['integer', 'exists:alimentos,id'],
+            'included_food_ids' => ['present', 'array', 'max:8'],
+            'included_food_ids.*' => ['integer', 'exists:alimentos,id', Rule::notIn($request->input('excluded_food_ids', []))],
         ]);
     }
 

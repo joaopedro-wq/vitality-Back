@@ -71,5 +71,9 @@ return [
         'manual_invalid_food' => 'Invalid or unavailable food(s): :ids.',
         'manual_duplicate_food' => 'The same food cannot appear twice in the same meal.',
         'meal_position_taken' => 'There is already a meal in this position.',
+        'included_food_not_eligible' => 'One of the foods marked to always include is not available for your current diet type or restrictions.',
+        'included_food_incompatible_role' => 'One of the foods marked to always include does not fit into any meal in your plan.',
+        'included_food_could_not_fit' => "We couldn't fit one of the required foods without missing the day's nutritional goal.",
+        'included_food_locked' => 'This food is marked to always include and cannot be removed here.',
     ],
 ];

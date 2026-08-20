@@ -71,5 +71,9 @@ return [
         'manual_invalid_food' => 'Alimento(s) inválido(s) ou indisponível(is): :ids.',
         'manual_duplicate_food' => 'O mesmo alimento não pode aparecer duas vezes na mesma refeição.',
         'meal_position_taken' => 'Já existe uma refeição nesta posição.',
+        'included_food_not_eligible' => 'Um dos alimentos marcados para incluir sempre não está disponível para o seu tipo de dieta ou restrições atuais.',
+        'included_food_incompatible_role' => 'Um dos alimentos marcados para incluir sempre não se encaixa em nenhuma refeição do seu plano.',
+        'included_food_could_not_fit' => 'Não foi possível encaixar um dos alimentos obrigatórios sem sair da meta nutricional do dia.',
+        'included_food_locked' => 'Este alimento está marcado para incluir sempre e não pode ser removido por aqui.',
     ],
 ];

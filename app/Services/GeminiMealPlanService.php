@@ -25,9 +25,38 @@ class GeminiMealPlanService
         $preferences['objective'] = $user->objetivo;
         $target = $this->macroCalculator->resolveDailyTarget($user);
         $definitions = $this->composition->definitions($preferences, $target);
-        $payload = $this->validatedGeneration($target, $preferences, $this->candidates($preferences), $definitions, null);
+        $foods = $this->candidates($preferences);
+        $this->assertIncludedFoodsEligible($foods, $definitions, $preferences);
+        $payload = $this->validatedGeneration($target, $preferences, $foods, $definitions, null);
 
         return $this->draft($user, $preferences, $payload);
+    }
+
+    /**
+     * Checagem antecipada e determinística: não confia no prompt para garantir que
+     * `included_food_ids` apareça no plano. Cada id obrigatório precisa ser um candidato
+     * elegível (ativo, não excluído, compatível com diet_type/restrições) e precisa ter
+     * pelo menos um papel culinário usado em algum template do dia — senão nunca haveria
+     * onde encaixá-lo, e `enforceIncludedFoods()` falharia silenciosamente mais tarde.
+     */
+    private function assertIncludedFoodsEligible(Collection $foods, Collection $definitions, array $preferences): void
+    {
+        $includedIds = $preferences['included_food_ids'] ?? [];
+        if (empty($includedIds)) {
+            return;
+        }
+        $foodById = $foods->keyBy('id');
+        $validRoles = $definitions->flatMap(fn (array $definition) => $this->definitionRoles($definition))->unique()->values()->all();
+
+        foreach ($includedIds as $includedId) {
+            $food = $foodById->get((int) $includedId);
+            if (! $food) {
+                throw ValidationException::withMessages(['included_food_ids' => __('messages.meal_plan.included_food_not_eligible')]);
+            }
+            if (empty(array_intersect($this->composition->rolesForFood($food), $validRoles))) {
+                throw ValidationException::withMessages(['included_food_ids' => __('messages.meal_plan.included_food_incompatible_role')]);
+            }
+        }
     }
 
     public function clonePlan(User $user, MealPlan $plan): MealPlanDraft
@@ -65,10 +94,22 @@ class GeminiMealPlanService
             throw ValidationException::withMessages(['position' => __('messages.invalid_meal')]);
         }
         $existing = collect($draft->payload['meals'])->firstWhere('position', $position);
-        $preferences = [...$draft->preferences, 'excluded_food_ids' => array_values(array_unique([
-            ...($draft->preferences['excluded_food_ids'] ?? []),
-            ...collect($existing['items'] ?? [])->pluck('food_id')->all(),
-        ]))];
+        $existingItems = collect($existing['items'] ?? []);
+        // Escopa included_food_ids só aos ids que já pertenciam a ESTA refeição — passar
+        // obrigatórios de outras refeições do dia faria enforceIncludedFoods() tentar
+        // encaixá-los aqui, e uma chamada com escopo de 1 refeição não tem onde mais olhar.
+        $scopedIncludedIds = collect($draft->preferences['included_food_ids'] ?? [])
+            ->map(fn ($id) => (int) $id)
+            ->intersect($existingItems->pluck('food_id')->map(fn ($id) => (int) $id))
+            ->values()->all();
+        $preferences = [
+            ...$draft->preferences,
+            'included_food_ids' => $scopedIncludedIds,
+            'excluded_food_ids' => array_values(array_unique([
+                ...($draft->preferences['excluded_food_ids'] ?? []),
+                ...$existingItems->pluck('food_id')->reject(fn ($id) => in_array((int) $id, $scopedIncludedIds, true))->all(),
+            ])),
+        ];
         $replacement = $this->validatedGeneration($definition['target'], $preferences, $this->candidates($preferences, 3), collect([$definition]), $instruction ?: 'Reorganize esta refeição inteira com uma combinação culinária natural.');
         $payload = $draft->payload;
         $payload['summary'] = $replacement['summary'];
@@ -86,6 +127,9 @@ class GeminiMealPlanService
     public function itemSuggestions(User $user, MealPlanDraft $draft, int $position, int $foodId): array
     {
         $this->assertDraft($user, $draft);
+        if ($this->isIncludedFood($draft, $foodId)) {
+            throw ValidationException::withMessages(['food_id' => __('messages.meal_plan.included_food_locked')]);
+        }
         $meal = collect($draft->payload['meals'])->firstWhere('position', $position);
         $item = collect($meal['items'] ?? [])->firstWhere('food_id', $foodId);
         if (! $meal || ! $item) {
@@ -135,6 +179,9 @@ class GeminiMealPlanService
     public function applyItemReplacement(User $user, MealPlanDraft $draft, int $position, int $foodId, int $replacementFoodId, float $quantity): MealPlanDraft
     {
         $this->assertDraft($user, $draft);
+        if ($this->isIncludedFood($draft, $foodId)) {
+            throw ValidationException::withMessages(['food_id' => __('messages.meal_plan.included_food_locked')]);
+        }
         $payload = $draft->payload;
         $mealIndex = collect($payload['meals'])->search(fn ($meal) => $meal['position'] === $position);
         if ($mealIndex === false) {
@@ -271,6 +318,11 @@ class GeminiMealPlanService
         }
     }
 
+
+    private function isIncludedFood(MealPlanDraft $draft, int $foodId): bool
+    {
+        return collect($draft->preferences['included_food_ids'] ?? [])->contains(fn ($id) => (int) $id === $foodId);
+    }
 
     private function candidates(array $preferences, int $minimum = 8): Collection
     {
@@ -427,10 +479,12 @@ class GeminiMealPlanService
 
     private function generate(array $target, array $preferences, Collection $foods, Collection $definitions, ?string $instruction): array
     {
-        $context = ['papel' => 'Você atua como nutricionista montando planos alimentares brasileiros realistas, coesos e aplicáveis no dia a dia. Não monte combinações apenas para bater macros e não dê aconselhamento médico individualizado.', 'meta_do_dia' => $target, 'objetivo' => $preferences['objective'] ?? null, 'preferencias' => collect($preferences)->except(['excluded_food_ids', 'objective'])->all(), 'instrucao_de_troca' => $instruction, 'regras' => ['Use apenas IDs de candidatos por papel culinário.', 'Cada item deve trazer food_id, role e quantity_g.', 'Cada refeição deve fazer sentido culinário, cultural e nutricionalmente.', 'No café da manhã, use combinações naturais como ovos + pão/tapioca + fruta, iogurte + fruta + aveia, pão + queijo + ovo, tapioca + proteína + fruta ou vitamina com fruta + leite/iogurte + aveia.', 'No café da manhã, não use dois tipos de leite em pó; leite em pó não deve ser escolha recorrente nem padrão para fechar macros.', 'Varie a estrutura do café da manhã entre gerações quando houver candidatos compatíveis.', 'Onívora permite vegetais, frutas, ovos, laticínios, carnes, cereais e leguminosas compatíveis; não trate onívora como restrição.', 'Ovos, frutas, iogurte, leite líquido, aveia, tapioca, pães e queijos são opções válidas de café da manhã quando aparecem como candidatos compatíveis.', 'Almoço e jantar precisam manter a estrutura de prato e incluir exatamente um item com role prato_vegetal.', 'Evite os alimentos indicados como preferência de alternativa quando houver opções equivalentes.', 'Não misture fruta, conservas, pães e queijo em almoço/jantar sem a estrutura de prato exigida.', 'Antes de responder, calcule cada porção pelos nutrientes da quantidade base e confira a meta de cada refeição.', 'Respeite os componentes obrigatórios. A refeição pode usar margem moderada; o dia precisa fechar em calorias ±8%, proteína -10%/+25%, carboidratos ±15% e gorduras ±15%.'], 'refeicoes' => $definitions->map(fn ($definition) => [...$definition, 'candidatos_por_papel' => $this->composition->candidatesByRole($foods, $definition)->map(fn ($items) => $this->foodData($items))->all()])->values()->all()];
+        $context = ['papel' => 'Você atua como nutricionista montando planos alimentares brasileiros realistas, coesos e aplicáveis no dia a dia. Não monte combinações apenas para bater macros e não dê aconselhamento médico individualizado.', 'meta_do_dia' => $target, 'objetivo' => $preferences['objective'] ?? null, 'preferencias' => collect($preferences)->except(['excluded_food_ids', 'included_food_ids', 'objective'])->all(), 'instrucao_de_troca' => $instruction, 'regras' => ['Use apenas IDs de candidatos por papel culinário.', 'Cada item deve trazer food_id, role e quantity_g.', 'Cada refeição deve fazer sentido culinário, cultural e nutricionalmente.', 'No café da manhã, use combinações naturais como ovos + pão/tapioca + fruta, iogurte + fruta + aveia, pão + queijo + ovo, tapioca + proteína + fruta ou vitamina com fruta + leite/iogurte + aveia.', 'No café da manhã, não use dois tipos de leite em pó; leite em pó não deve ser escolha recorrente nem padrão para fechar macros.', 'Varie a estrutura do café da manhã entre gerações quando houver candidatos compatíveis.', 'Onívora permite vegetais, frutas, ovos, laticínios, carnes, cereais e leguminosas compatíveis; não trate onívora como restrição.', 'Ovos, frutas, iogurte, leite líquido, aveia, tapioca, pães e queijos são opções válidas de café da manhã quando aparecem como candidatos compatíveis.', 'Almoço e jantar precisam manter a estrutura de prato e incluir exatamente um item com role prato_vegetal.', 'Evite os alimentos indicados como preferência de alternativa quando houver opções equivalentes.', 'Não misture fruta, conservas, pães e queijo em almoço/jantar sem a estrutura de prato exigida.', 'Antes de responder, calcule cada porção pelos nutrientes da quantidade base e confira a meta de cada refeição.', 'Respeite os componentes obrigatórios. A refeição pode usar margem moderada; o dia precisa fechar em calorias ±8%, proteína -10%/+25%, carboidratos ±15% e gorduras ±15%.'], 'refeicoes' => $definitions->map(fn ($definition) => [...$definition, 'candidatos_por_papel' => $this->composition->candidatesByRole($foods, $definition)->map(fn ($items) => $this->foodData($items))->all()])->values()->all()];
 
         $context['papel'] = 'Você atua como nutricionista montando planos alimentares brasileiros realistas, coesos e aplicáveis no dia a dia. Primeiro escolha a estrutura culinária da refeição; somente depois ajuste as porções. Nunca forme uma lista aleatória apenas para bater macros.';
-        $context['preferencias'] = collect($preferences)->except(['excluded_food_ids', 'objective', 'internal_retry', 'generation_seed'])->all();
+        $context['preferencias'] = collect($preferences)->except(['excluded_food_ids', 'included_food_ids', 'objective', 'internal_retry', 'generation_seed'])->all();
+        $includedFoods = $foods->whereIn('id', $preferences['included_food_ids'] ?? []);
+        $context['alimentos_obrigatorios'] = $this->foodData($includedFoods);
         $context['regras'] = [
             'Use somente IDs de candidatos por papel culinário. Eles já foram filtrados por consumo direto, preparo e porção realista.',
             'Cada item deve trazer food_id, role e quantity_g, respeitando a porção mínima, máxima e o incremento do candidato.',
@@ -442,6 +496,7 @@ class GeminiMealPlanService
             'Ingredientes regionais como charque e farinhas só entram se formarem um prato completo e compatível; nunca como atalho para macro.',
             'Onívora permite vegetais, frutas, ovos, laticínios, carnes, cereais e leguminosas. O estilo orienta apenas praticidade, preparo e custo entre opções que já são coerentes.',
             'Evite repetir o mesmo alimento em várias refeições se houver equivalente disponível. Aproximar macros dentro da margem é suficiente.',
+            'Os alimentos listados em alimentos_obrigatorios devem aparecer no plano, um em cada refeição diferente, no papel culinário mais coerente disponível para eles; o servidor garante essa inclusão de forma determinística, independentemente da resposta da IA.',
             $this->languageInstruction('O campo summary do plano e o campo explanation de cada refeição devem ser escritos em'),
         ];
         $context['refeicoes'] = $definitions->map(fn ($definition) => [
@@ -535,6 +590,7 @@ class GeminiMealPlanService
             }
             $meals[] = ['position' => $definition['position'], 'descricao' => $definition['descricao'], 'horario' => $definition['horario'], 'target' => $definition['target'], 'totals' => $totals, 'explanation' => Str::limit(strip_tags((string) ($aiMeal['explanation'] ?? '')), 220, ''), 'items' => $items->all()];
         }
+        $meals = $this->enforceIncludedFoods($meals, $definitions, $foods, $preferences);
         $totals = $this->macroCalculator->sum(array_column($meals, 'totals'));
         $scope = $definitions->count() === 1 ? 'meal' : 'day';
         if (! $this->macroCalculator->withinTarget($target, $totals, $scope)) {
@@ -542,6 +598,115 @@ class GeminiMealPlanService
         }
 
         return ['preferences' => $preferences, 'target' => $target, 'totals' => $totals, 'within_target' => true, 'warning' => null, 'summary' => Str::limit(strip_tags($answer['summary']), 300, ''), 'meals' => $meals];
+    }
+
+    /**
+     * Garantia determinística de `included_food_ids`: não confia que a IA tenha obedecido a
+     * regra do prompt. Para cada obrigatório ainda ausente do plano, encaixa no servidor —
+     * numa refeição com papel livre (adiciona) ou substituindo um item não-obrigatório que
+     * ocupe um papel compatível (troca) —, escolhendo entre as refeições candidatas a que tem
+     * o `targetScore()` mais baixo (mais folga para absorver o novo item). Nunca re-roda
+     * `MealCompositionService::validate()`: o papel já vem do template legítimo da própria
+     * refeição, só troca qual alimento o ocupa.
+     *
+     * @param  list<array<string, mixed>>  $meals
+     * @return list<array<string, mixed>>
+     */
+    private function enforceIncludedFoods(array $meals, Collection $definitions, Collection $foods, array $preferences): array
+    {
+        $includedIds = collect($preferences['included_food_ids'] ?? [])->map(fn ($id) => (int) $id)->values();
+        if ($includedIds->isEmpty()) {
+            return $meals;
+        }
+        $foodById = $foods->keyBy('id');
+        $definitionsByIndex = $definitions->values();
+
+        foreach ($includedIds as $includedId) {
+            $alreadyPresent = collect($meals)->contains(fn (array $meal) => collect($meal['items'])->contains(fn (array $item) => (int) $item['food_id'] === $includedId));
+            if ($alreadyPresent) {
+                continue;
+            }
+            $food = $foodById->get($includedId);
+            if (! $food) {
+                // Defensivo: assertIncludedFoodsEligible() já deveria ter barrado isso em preview().
+                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.included_food_could_not_fit')]);
+            }
+            $roles = $this->composition->rolesForFood($food);
+
+            $candidateIndexes = [];
+            foreach ($meals as $index => $meal) {
+                $definition = $definitionsByIndex->get($index);
+                if (! $definition || empty(array_intersect($roles, $this->definitionRoles($definition)))) {
+                    continue;
+                }
+                $candidateIndexes[] = $index;
+            }
+            if (empty($candidateIndexes)) {
+                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.included_food_could_not_fit')]);
+            }
+            usort($candidateIndexes, fn ($a, $b) => $this->targetScore($meals[$a]['target'], $meals[$a]['totals']) <=> $this->targetScore($meals[$b]['target'], $meals[$b]['totals']));
+
+            $applied = false;
+            foreach ($candidateIndexes as $index) {
+                $meal = $meals[$index];
+                $definition = $definitionsByIndex->get($index);
+                $definitionRoles = $this->definitionRoles($definition);
+                $usableRoles = array_values(array_intersect($roles, $definitionRoles));
+                $items = collect($meal['items'])->values();
+                $occupiedRoles = $items->pluck('role')->all();
+
+                $freeRole = collect($usableRoles)->first(fn (string $role) => ! in_array($role, $occupiedRoles, true) && $items->count() < $definition['composition']['max_items']);
+
+                if ($freeRole !== null) {
+                    $newItem = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $freeRole, 'quantity' => 100.0, 'macros' => $this->macroCalculator->foodMacros($food, 100.0)];
+                    $candidateItems = $items->push($newItem)->values();
+                } else {
+                    $replaceIndex = $items->search(fn (array $item) => in_array($item['role'], $usableRoles, true) && ! $includedIds->contains((int) $item['food_id']));
+                    if ($replaceIndex === false) {
+                        continue;
+                    }
+                    $newItem = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $items[$replaceIndex]['role'], 'quantity' => 100.0, 'macros' => $this->macroCalculator->foodMacros($food, 100.0)];
+                    $candidateItems = $items->map(fn (array $item, int $itemIndex) => $itemIndex === $replaceIndex ? $newItem : $item)->values();
+                }
+
+                $rebalanced = $this->rebalanceItems($candidateItems, $definition['target'], $foodById, $definition);
+                if (! $this->itemsHaveRealisticPortions($rebalanced, $foodById)) {
+                    continue;
+                }
+                $rebalancedTotals = $this->macroCalculator->sum($rebalanced->pluck('macros')->all());
+                // Mesmas duas barreiras que o item da IA já passa nesta refeição (linha ~587) e
+                // que `fallbackCandidates()` já usa pra aceitar um item não vindo da IA (linha
+                // ~810, mesmo limiar de 50): a inclusão forçada não pode silenciosamente deixar
+                // a refeição fora da própria meta, nem quebrar coerência culinária (ex. dois
+                // itens da mesma família no café da manhã) só porque veio do servidor e não da
+                // IA. Se falhar, tenta a próxima refeição candidata em vez de aceitar.
+                if (! $this->macroCalculator->withinTarget($definition['target'], $rebalancedTotals)) {
+                    continue;
+                }
+                if ($this->coherencePenalty($definition, $rebalanced) >= 50) {
+                    continue;
+                }
+                $meals[$index]['items'] = $rebalanced->all();
+                $meals[$index]['totals'] = $rebalancedTotals;
+                $applied = true;
+                break;
+            }
+            if (! $applied) {
+                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.included_food_could_not_fit')]);
+            }
+        }
+
+        return $meals;
+    }
+
+    /** @return list<string> */
+    private function definitionRoles(array $definition): array
+    {
+        return collect([
+            ...(array) ($definition['composition']['required'] ?? []),
+            ...(array) ($definition['composition']['optional'] ?? []),
+            ...collect($definition['composition']['required_any'] ?? [])->flatten()->all(),
+        ])->unique()->values()->all();
     }
 
     private function assertCandidateCoverage(Collection $foods, Collection $definitions, array $preferences): void

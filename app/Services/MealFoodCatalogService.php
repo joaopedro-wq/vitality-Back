@@ -160,7 +160,18 @@ class MealFoodCatalogService
             return false;
         }
 
-        return ! in_array($family, ['fruta', 'vegetal'], true) || ! Str::contains($name, ['salada', 'alface', 'tomate', 'pepino', 'cenoura']);
+        // Fruta crua É a forma normal de consumo (ninguém "prepara" uma banana ou um
+        // abacaxi antes de comer) — ao contrário de carne/arroz/etc. crus, que exigem
+        // preparo. Sem esse caso especial, toda fruta com "crua"/"cru" na descrição
+        // (ex. "Abacate, cru", "Abacaxi, cru") ficava com `adequado_para_consumo_direto
+        // = false` e nunca virava candidata em nenhum papel, mesmo já tagueada
+        // corretamente em `food_plan_tags` — achado corrigindo `included_food_ids`
+        // rejeitando abacate/abacaxi com "não se encaixa em nenhuma refeição".
+        if ($family === 'fruta') {
+            return false;
+        }
+
+        return $family !== 'vegetal' || ! Str::contains($name, ['salada', 'alface', 'tomate', 'pepino', 'cenoura']);
     }
 
     private function isIngredientOnly(string $name, string $group): bool
