@@ -66,5 +66,10 @@ return [
         'charque_needs_full_plate' => 'Charque precisa vir em um prato completo, com leguminosa e vegetal.',
         'repeated_breakfast_family' => 'A IA repetiu alimentos da mesma família no café da manhã.',
         'incoherent_breakfast_choice' => 'A IA escolheu um alimento incoerente para o café da manhã.',
+        'manual_summary' => 'Plano montado manualmente com os alimentos escolhidos.',
+        'manual_off_target' => 'Este plano está fora da margem da sua meta diária, mas foi salvo do jeito que você montou.',
+        'manual_invalid_food' => 'Alimento(s) inválido(s) ou indisponível(is): :ids.',
+        'manual_duplicate_food' => 'O mesmo alimento não pode aparecer duas vezes na mesma refeição.',
+        'meal_position_taken' => 'Já existe uma refeição nesta posição.',
     ],
 ];

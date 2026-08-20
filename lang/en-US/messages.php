@@ -66,5 +66,10 @@ return [
         'charque_needs_full_plate' => 'Charque (dried beef) needs a complete plate, with a legume and a vegetable.',
         'repeated_breakfast_family' => 'The AI repeated foods from the same family at breakfast.',
         'incoherent_breakfast_choice' => 'The AI picked an incoherent food for breakfast.',
+        'manual_summary' => 'Plan manually assembled with the foods you chose.',
+        'manual_off_target' => 'This plan is outside your daily goal margin, but it was saved the way you put it together.',
+        'manual_invalid_food' => 'Invalid or unavailable food(s): :ids.',
+        'manual_duplicate_food' => 'The same food cannot appear twice in the same meal.',
+        'meal_position_taken' => 'There is already a meal in this position.',
     ],
 ];

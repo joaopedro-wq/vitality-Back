@@ -19,32 +19,48 @@ class MealCompositionService
             4 => [.25, .35, .15, .25],
             5 => [.20, .10, .30, .15, .25],
         };
-        $labels = match ((int) $preferences['meal_count']) {
-            3 => ['Café da manhã', 'Almoço', 'Jantar'],
-            4 => ['Café da manhã', 'Almoço', 'Lanche', 'Jantar'],
-            5 => ['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar'],
-        };
 
-        return collect($ratios)->map(function (float $ratio, int $position) use ($labels, $preferences, $target) {
-            $label = $labels[$position];
-            $kind = str_contains($label, 'Café') ? 'cafe' : (str_contains($label, 'Lanche') ? 'lanche' : ($label === 'Almoço' ? 'almoco' : 'jantar'));
-
-            $displayLabel = match ($kind) {
-                'cafe' => __('messages.meal_breakfast'),
-                'lanche' => $position === 1 ? __('messages.meal_morning_snack') : __('messages.meal_afternoon_snack'),
-                'almoco' => __('messages.meal_lunch'),
-                default => __('messages.meal_dinner'),
-            };
+        return collect($ratios)->map(function (float $ratio, int $position) use ($preferences, $target) {
+            $kind = $this->kindForPosition((int) $preferences['meal_count'], $position);
 
             return [
                 'position' => $position,
-                'descricao' => $displayLabel,
+                'descricao' => $this->defaultLabel($kind, $position),
                 'horario' => $preferences['meal_times'][$position],
                 'kind' => $kind,
                 'target' => $this->scale($target, $ratio),
                 'composition' => $this->template($kind),
             ];
         });
+    }
+
+    /**
+     * Rótulo de exibição default por posição — mesma tabela usada pelo fluxo Gemini
+     * (`definitions()`), reaproveitada pelo `ManualMealPlanService` para as refeições
+     * que o usuário não nomeou explicitamente.
+     */
+    public function defaultLabel(string $kind, int $position): string
+    {
+        return match ($kind) {
+            'cafe' => __('messages.meal_breakfast'),
+            'lanche' => $position === 1 ? __('messages.meal_morning_snack') : __('messages.meal_afternoon_snack'),
+            'almoco' => __('messages.meal_lunch'),
+            default => __('messages.meal_dinner'),
+        };
+    }
+
+    /** @return 'cafe'|'lanche'|'almoco'|'jantar' */
+    public function kindForPosition(int $mealCount, int $position): string
+    {
+        $labels = match ($mealCount) {
+            3 => ['Café da manhã', 'Almoço', 'Jantar'],
+            4 => ['Café da manhã', 'Almoço', 'Lanche', 'Jantar'],
+            5 => ['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar'],
+            default => ['Café da manhã', 'Almoço', 'Jantar'],
+        };
+        $label = $labels[$position] ?? 'Jantar';
+
+        return str_contains($label, 'Café') ? 'cafe' : (str_contains($label, 'Lanche') ? 'lanche' : ($label === 'Almoço' ? 'almoco' : 'jantar'));
     }
 
     /** @return array{required?: list<string>, required_any?: list<list<string>>, optional: list<string>, max_items: int} */

@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Alimento;
 use App\Models\MealPlan;
 use App\Models\MealPlanDraft;
-use App\Models\Meta_diaria;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -16,41 +15,15 @@ use Illuminate\Validation\ValidationException;
 
 class GeminiMealPlanService
 {
-    public function __construct(private readonly MealCompositionService $composition) {}
-
-    private const DAY_TOLERANCE = [
-        'caloria' => ['min' => .92, 'max' => 1.08],
-        'proteina' => ['min' => .90, 'max' => 1.25],
-        'carbo' => ['min' => .85, 'max' => 1.15],
-        'gordura' => ['min' => .80, 'max' => 1.15],
-    ];
-
-    private const MEAL_TOLERANCE = [
-        'caloria' => ['min' => .80, 'max' => 1.20],
-        'proteina' => ['min' => .80, 'max' => 1.35],
-        'carbo' => ['min' => .75, 'max' => 1.25],
-        'gordura' => ['min' => .25, 'max' => 1.30],
-    ];
-
-    private const SWAP_TOLERANCE = [
-        'caloria' => ['min' => .70, 'max' => 1.30],
-        'proteina' => ['min' => .65, 'max' => 1.60],
-        'carbo' => ['min' => .65, 'max' => 1.35],
-        'gordura' => ['min' => .25, 'max' => 1.65],
-    ];
-
-    private const SWAP_DAY_TOLERANCE = [
-        'caloria' => ['min' => .85, 'max' => 1.15],
-        'proteina' => ['min' => .85, 'max' => 1.30],
-        'carbo' => ['min' => .80, 'max' => 1.20],
-        'gordura' => ['min' => .60, 'max' => 1.35],
-    ];
+    public function __construct(
+        private readonly MealCompositionService $composition,
+        private readonly MealPlanMacroCalculator $macroCalculator,
+    ) {}
 
     public function preview(User $user, array $preferences): MealPlanDraft
     {
         $preferences['objective'] = $user->objetivo;
-        $meta = $this->meta($user);
-        $target = $this->macros($meta->meta_calorias, $meta->meta_proteinas, $meta->meta_carboidratos, $meta->meta_gorduras);
+        $target = $this->macroCalculator->resolveDailyTarget($user);
         $definitions = $this->composition->definitions($preferences, $target);
         $payload = $this->validatedGeneration($target, $preferences, $this->candidates($preferences), $definitions, null);
 
@@ -100,8 +73,8 @@ class GeminiMealPlanService
         $payload = $draft->payload;
         $payload['summary'] = $replacement['summary'];
         $payload['meals'] = collect($payload['meals'])->map(fn ($meal) => $meal['position'] === $position ? $replacement['meals'][0] : $meal)->values()->all();
-        $payload['totals'] = $this->sum(collect($payload['meals'])->pluck('totals')->all());
-        if (! $this->withinTarget($payload['target'], $payload['totals'], 'swap_day')) {
+        $payload['totals'] = $this->macroCalculator->sum(collect($payload['meals'])->pluck('totals')->all());
+        if (! $this->macroCalculator->withinTarget($payload['target'], $payload['totals'], 'swap_day')) {
             throw ValidationException::withMessages(['plan' => __('messages.meal_plan.reorganize_off_target')]);
         }
         $draft->update(['previous_payload' => $draft->payload, 'payload' => $payload, 'expires_at' => now()->addMinutes(config('gemini.draft_ttl_minutes'))]);
@@ -146,11 +119,11 @@ class GeminiMealPlanService
             if (! $food || ! $this->composition->quantityIsRealistic($food, $quantity, $item['role']) || ! $this->replacementKeepsMealCoherent($meal, $foodId, $food)) {
                 return null;
             }
-            $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $item['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
+            $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $item['role'], 'quantity' => round($quantity, 1), 'macros' => $this->macroCalculator->foodMacros($food, $quantity)];
             $items = collect($meal['items'])->map(fn ($mealItem) => $mealItem['food_id'] === $foodId ? $replacement : $mealItem)->all();
-            $totals = $this->sum(collect($items)->pluck('macros')->all());
+            $totals = $this->macroCalculator->sum(collect($items)->pluck('macros')->all());
 
-            return ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'quantity' => $replacement['quantity'], 'role' => $item['role'], 'macros' => $replacement['macros'], 'reason' => Str::limit(strip_tags((string) ($suggestion['reason'] ?? __('messages.meal_plan.fallback_suggestion_reason'))), 160, ''), 'meal_totals' => $totals, 'delta' => $this->delta($meal['totals'], $totals), 'within_target' => $this->withinTarget($meal['target'], $totals, 'swap')];
+            return ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'quantity' => $replacement['quantity'], 'role' => $item['role'], 'macros' => $replacement['macros'], 'reason' => Str::limit(strip_tags((string) ($suggestion['reason'] ?? __('messages.meal_plan.fallback_suggestion_reason'))), 160, ''), 'meal_totals' => $totals, 'delta' => $this->macroCalculator->delta($meal['totals'], $totals), 'within_target' => $this->macroCalculator->withinTarget($meal['target'], $totals, 'swap')];
         })->filter(fn ($suggestion) => $suggestion && $suggestion['within_target'])->unique('food_id')->take(5)->values();
         if ($suggestions->isEmpty()) {
             throw ValidationException::withMessages(['food_id' => __('messages.meal_plan.no_close_swap')]);
@@ -177,15 +150,15 @@ class GeminiMealPlanService
             throw ValidationException::withMessages(['replacement_food_id' => __('messages.meal_plan.incompatible_replacement')]);
         }
         $quantity = $this->bestSingleReplacementQuantity($meal, $foodId, $food) ?: $quantity;
-        $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $current['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
+        $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $current['role'], 'quantity' => round($quantity, 1), 'macros' => $this->macroCalculator->foodMacros($food, $quantity)];
         $meal['items'] = collect($meal['items'])->map(fn ($item) => $item['food_id'] === $foodId ? $replacement : $item)->values()->all();
-        $meal['totals'] = $this->sum(collect($meal['items'])->pluck('macros')->all());
-        if (! $this->withinTarget($meal['target'], $meal['totals'], 'swap')) {
+        $meal['totals'] = $this->macroCalculator->sum(collect($meal['items'])->pluck('macros')->all());
+        if (! $this->macroCalculator->withinTarget($meal['target'], $meal['totals'], 'swap')) {
             throw ValidationException::withMessages(['replacement_food_id' => __('messages.meal_plan.swap_out_of_meal_margin')]);
         }
         $payload['meals'][$mealIndex] = $meal;
-        $payload['totals'] = $this->sum(collect($payload['meals'])->pluck('totals')->all());
-        if (! $this->withinTarget($payload['target'], $payload['totals'], 'swap_day')) {
+        $payload['totals'] = $this->macroCalculator->sum(collect($payload['meals'])->pluck('totals')->all());
+        if (! $this->macroCalculator->withinTarget($payload['target'], $payload['totals'], 'swap_day')) {
             throw ValidationException::withMessages(['replacement_food_id' => __('messages.meal_plan.swap_out_of_day_margin')]);
         }
         $draft->update(['previous_payload' => $draft->payload, 'payload' => $payload, 'expires_at' => now()->addMinutes(config('gemini.draft_ttl_minutes'))]);
@@ -298,15 +271,6 @@ class GeminiMealPlanService
         }
     }
 
-    private function meta(User $user): Meta_diaria
-    {
-        $meta = Meta_diaria::query()->where('id_usuario', $user->id)->orderByRaw('case when data is null then 0 else 1 end')->orderByDesc('data')->first();
-        if (! $meta) {
-            throw ValidationException::withMessages(['meta' => __('messages.meal_plan.missing_daily_goal')]);
-        }
-
-        return $meta;
-    }
 
     private function candidates(array $preferences, int $minimum = 8): Collection
     {
@@ -342,9 +306,9 @@ class GeminiMealPlanService
 
         $quantity = $this->bestSingleReplacementQuantity($meal, (int) $current['food_id'], $food);
         if ($quantity > 0) {
-            $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $current['role'], 'quantity' => $quantity, 'macros' => $this->foodMacros($food, $quantity)];
+            $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $current['role'], 'quantity' => $quantity, 'macros' => $this->macroCalculator->foodMacros($food, $quantity)];
             $items = collect($meal['items'])->map(fn ($item) => $item['food_id'] === $current['food_id'] ? $replacement : $item)->all();
-            $score -= $this->targetScore($meal['target'], $this->sum(collect($items)->pluck('macros')->all())) * 1000;
+            $score -= $this->targetScore($meal['target'], $this->macroCalculator->sum(collect($items)->pluck('macros')->all())) * 1000;
         }
 
         return $score;
@@ -352,7 +316,7 @@ class GeminiMealPlanService
 
     private function bestSingleReplacementQuantity(array $meal, int $foodId, Alimento $food): float
     {
-        $other = $this->macros(0, 0, 0, 0);
+        $other = $this->macroCalculator->macros(0, 0, 0, 0);
         foreach ($meal['items'] as $item) {
             if ((int) $item['food_id'] === $foodId) {
                 continue;
@@ -362,7 +326,7 @@ class GeminiMealPlanService
             }
         }
 
-        $coefficients = $this->foodMacros($food, 1);
+        $coefficients = $this->macroCalculator->foodMacros($food, 1);
         $numerator = 0.0;
         $denominator = 0.0;
         foreach (['caloria', 'proteina', 'carbo', 'gordura'] as $key) {
@@ -549,31 +513,31 @@ class GeminiMealPlanService
                 }
                 $ids[] = $food->id;
 
-                return ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $item['role'], 'quantity' => round($quantity, 1), 'macros' => $this->foodMacros($food, $quantity)];
+                return ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $item['role'], 'quantity' => round($quantity, 1), 'macros' => $this->macroCalculator->foodMacros($food, $quantity)];
             })->values();
             // A IA define a combinação; o servidor normaliza porções realistas antes de validar macros.
             $items = $this->rebalanceItems($items, $definition['target'], $foodById, $definition);
-            $totals = $this->sum($items->pluck('macros')->all());
-            if (! $this->withinTarget($definition['target'], $totals)) {
+            $totals = $this->macroCalculator->sum($items->pluck('macros')->all());
+            if (! $this->macroCalculator->withinTarget($definition['target'], $totals)) {
                 $fallback = $this->fallbackItems($definition, $foods, $foodById);
                 if ($fallback) {
                     $items = $fallback;
-                    $totals = $this->sum($items->pluck('macros')->all());
+                    $totals = $this->macroCalculator->sum($items->pluck('macros')->all());
                     Log::info('meal_plan.catalog_fallback.used', ['position' => $definition['position']]);
                 }
             }
             if (! $this->itemsHaveRealisticPortions($items, $foodById)) {
                 throw ValidationException::withMessages(['ai' => __('messages.meal_plan.ai_unrealistic_portion')]);
             }
-            if (! $this->withinTarget($definition['target'], $totals)) {
+            if (! $this->macroCalculator->withinTarget($definition['target'], $totals)) {
                 Log::warning('meal_plan.ai.meal_target_miss', ['position' => $definition['position'], 'target' => $definition['target'], 'totals' => $totals, 'items' => $items->map(fn ($item) => collect($item)->only(['food_id', 'role', 'quantity']))->all()]);
                 throw ValidationException::withMessages(['ai' => __('messages.meal_plan.ai_meal_target_miss')]);
             }
             $meals[] = ['position' => $definition['position'], 'descricao' => $definition['descricao'], 'horario' => $definition['horario'], 'target' => $definition['target'], 'totals' => $totals, 'explanation' => Str::limit(strip_tags((string) ($aiMeal['explanation'] ?? '')), 220, ''), 'items' => $items->all()];
         }
-        $totals = $this->sum(array_column($meals, 'totals'));
+        $totals = $this->macroCalculator->sum(array_column($meals, 'totals'));
         $scope = $definitions->count() === 1 ? 'meal' : 'day';
-        if (! $this->withinTarget($target, $totals, $scope)) {
+        if (! $this->macroCalculator->withinTarget($target, $totals, $scope)) {
             throw ValidationException::withMessages(['ai' => __('messages.meal_plan.ai_day_target_miss')]);
         }
 
@@ -604,12 +568,12 @@ class GeminiMealPlanService
     private function rebalanceItems(Collection $items, array $target, Collection $foodById, array $definition): Collection
     {
         $keys = ['caloria', 'proteina', 'carbo', 'gordura'];
-        $coefficients = $items->map(fn (array $item) => $this->foodMacros($foodById->get($item['food_id']), 1));
+        $coefficients = $items->map(fn (array $item) => $this->macroCalculator->foodMacros($foodById->get($item['food_id']), 1));
         $quantities = $items->map(fn (array $item) => $this->composition->normalizeQuantity($foodById->get($item['food_id']), (float) $item['quantity'], $item['role'] ?? null))->values();
 
         for ($round = 0; $round < 24; $round++) {
             foreach ($items->keys() as $index) {
-                $other = $this->macros(0, 0, 0, 0);
+                $other = $this->macroCalculator->macros(0, 0, 0, 0);
                 foreach ($items->keys() as $otherIndex) {
                     if ($otherIndex === $index) {
                         continue;
@@ -638,7 +602,7 @@ class GeminiMealPlanService
         return $items->map(function (array $item, int $index) use ($foodById, $quantities) {
             $quantity = $this->composition->normalizeQuantity($foodById->get($item['food_id']), $quantities[$index], $item['role'] ?? null);
 
-            return [...$item, 'quantity' => $quantity, 'macros' => $this->foodMacros($foodById->get($item['food_id']), $quantity)];
+            return [...$item, 'quantity' => $quantity, 'macros' => $this->macroCalculator->foodMacros($foodById->get($item['food_id']), $quantity)];
         })->values();
     }
 
@@ -674,9 +638,9 @@ class GeminiMealPlanService
                     if (count(array_unique(array_column($selected, 'food_id'))) !== count($selected)) {
                         return;
                     }
-                    $items = collect($selected)->map(fn (array $item) => [...$item, 'quantity' => 100.0, 'macros' => $this->foodMacros($foodById->get($item['food_id']), 100)])->values();
+                    $items = collect($selected)->map(fn (array $item) => [...$item, 'quantity' => 100.0, 'macros' => $this->macroCalculator->foodMacros($foodById->get($item['food_id']), 100)])->values();
                     $items = $this->rebalanceItems($items, $definition['target'], $foodById, $definition);
-                    $score = $this->targetScore($definition['target'], $this->sum($items->pluck('macros')->all())) + $this->coherencePenalty($definition, $items);
+                    $score = $this->targetScore($definition['target'], $this->macroCalculator->sum($items->pluck('macros')->all())) + $this->coherencePenalty($definition, $items);
                     if ($score < $bestScore) {
                         $bestScore = $score;
                         $best = $items;
@@ -691,7 +655,7 @@ class GeminiMealPlanService
             $visit(0, []);
         }
 
-        return $best && $this->withinTarget($definition['target'], $this->sum($best->pluck('macros')->all())) && $this->coherencePenalty($definition, $best) < 50 ? $best : null;
+        return $best && $this->macroCalculator->withinTarget($definition['target'], $this->macroCalculator->sum($best->pluck('macros')->all())) && $this->coherencePenalty($definition, $best) < 50 ? $best : null;
     }
 
     private function fallbackCandidates(Collection $foods, string $role): Collection
@@ -791,11 +755,6 @@ class GeminiMealPlanService
         })->values()->all();
     }
 
-    private function foodMacros(Alimento $food, float $quantity): array
-    {
-        return $this->scale($this->macros($food->caloria, $food->proteina, $food->carbo, $food->gordura), $quantity / max((float) $food->qtd, .001));
-    }
-
     private function planSchema(int $mealCount): array
     {
         return ['type' => 'object', 'properties' => ['summary' => ['type' => 'string'], 'meals' => ['type' => 'array', 'minItems' => $mealCount, 'maxItems' => $mealCount, 'items' => ['type' => 'object', 'properties' => ['position' => ['type' => 'integer'], 'explanation' => ['type' => 'string'], 'items' => ['type' => 'array', 'minItems' => 2, 'maxItems' => 4, 'items' => ['type' => 'object', 'properties' => ['food_id' => ['type' => 'integer'], 'role' => ['type' => 'string'], 'quantity_g' => ['type' => 'number']], 'required' => ['food_id', 'role', 'quantity_g']]]], 'required' => ['position', 'explanation', 'items']]]], 'required' => ['summary', 'meals']];
@@ -806,51 +765,4 @@ class GeminiMealPlanService
         return ['type' => 'object', 'properties' => ['suggestions' => ['type' => 'array', 'minItems' => 2, 'maxItems' => 5, 'items' => ['type' => 'object', 'properties' => ['food_id' => ['type' => 'integer'], 'quantity_g' => ['type' => 'number'], 'reason' => ['type' => 'string']], 'required' => ['food_id', 'quantity_g', 'reason']]]], 'required' => ['suggestions']];
     }
 
-    private function macros(float $caloria, float $proteina, float $carbo, float $gordura): array
-    {
-        return ['caloria' => round($caloria, 3), 'proteina' => round($proteina, 3), 'carbo' => round($carbo, 3), 'gordura' => round($gordura, 3), 'quantidade' => 0.0];
-    }
-
-    private function scale(array $macros, float $factor): array
-    {
-        return collect($macros)->map(fn ($value, $key) => $key === 'quantidade' ? 0.0 : round($value * $factor, 3))->all();
-    }
-
-    private function sum(array $macros): array
-    {
-        $total = $this->macros(0, 0, 0, 0);
-        foreach ($macros as $macro) {
-            foreach ($total as $key => $value) {
-                $total[$key] = round($value + ($macro[$key] ?? 0), 3);
-            }
-        }
-
-        return $total;
-    }
-
-    private function delta(array $before, array $after): array
-    {
-        return collect($before)->map(fn ($value, $key) => $key === 'quantidade' ? 0 : round(($after[$key] ?? 0) - $value, 1))->all();
-    }
-
-    private function withinTarget(array $target, array $totals, string $scope = 'meal'): bool
-    {
-        $tolerances = match ($scope) {
-            'day' => self::DAY_TOLERANCE,
-            'swap' => self::SWAP_TOLERANCE,
-            'swap_day' => self::SWAP_DAY_TOLERANCE,
-            default => self::MEAL_TOLERANCE,
-        };
-        foreach ($tolerances as $key => $tolerance) {
-            if (($target[$key] ?? 0) <= 0) {
-                continue;
-            }
-            $ratio = ($totals[$key] ?? 0) / $target[$key];
-            if ($ratio < $tolerance['min'] || $ratio > $tolerance['max']) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MealPlan;
 use App\Models\MealPlanDraft;
 use App\Services\GeminiMealPlanService;
+use App\Services\ManualMealPlanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +21,65 @@ class MealPlanController extends Controller
     public function preview(Request $request, GeminiMealPlanService $generator)
     {
         $draft = $generator->preview($request->user(), $this->preferences($request));
+
+        return response()->json(['data' => $this->serializeDraft($draft), 'success' => true]);
+    }
+
+    public function manualPreview(Request $request, ManualMealPlanService $manual)
+    {
+        $data = $request->validate([
+            'meal_count' => ['required', 'integer', 'in:3,4,5'],
+            'meal_times' => ['required', 'array', 'min:3', 'max:5'],
+            'meal_times.*' => ['required', 'string'],
+            'meals' => ['required', 'array', 'min:3', 'max:5'],
+            'meals.*.position' => ['required', 'integer'],
+            'meals.*.descricao' => ['nullable', 'string'],
+            'meals.*.horario' => ['required', 'string'],
+            'meals.*.items' => ['required', 'array', 'min:1', 'max:6'],
+            'meals.*.items.*.food_id' => ['required', 'integer', 'exists:alimentos,id'],
+            'meals.*.items.*.quantity' => ['required', 'numeric', 'min:1', 'max:800'],
+        ]);
+        $draft = $manual->preview($request->user(), $data);
+
+        return response()->json(['data' => $this->serializeDraft($draft), 'success' => true]);
+    }
+
+    public function manualUpdateMeal(Request $request, int $position, ManualMealPlanService $manual)
+    {
+        $data = $request->validate([
+            'draft_id' => ['required', 'string'],
+            'items' => ['required', 'array', 'min:1', 'max:6'],
+            'items.*.food_id' => ['required', 'integer', 'exists:alimentos,id'],
+            'items.*.quantity' => ['required', 'numeric', 'min:1', 'max:800'],
+        ]);
+        $draft = MealPlanDraft::query()->whereKey($data['draft_id'])->where('user_id', $request->user()->id)->firstOrFail();
+        $draft = $manual->updateMealItems($request->user(), $draft, $position, $data['items']);
+
+        return response()->json(['data' => $this->serializeDraft($draft), 'success' => true]);
+    }
+
+    public function manualAddMeal(Request $request, ManualMealPlanService $manual)
+    {
+        $data = $request->validate([
+            'draft_id' => ['required', 'string'],
+            'position' => ['required', 'integer'],
+            'descricao' => ['nullable', 'string'],
+            'horario' => ['required', 'string'],
+            'items' => ['required', 'array', 'min:1', 'max:6'],
+            'items.*.food_id' => ['required', 'integer', 'exists:alimentos,id'],
+            'items.*.quantity' => ['required', 'numeric', 'min:1', 'max:800'],
+        ]);
+        $draft = MealPlanDraft::query()->whereKey($data['draft_id'])->where('user_id', $request->user()->id)->firstOrFail();
+        $draft = $manual->addMeal($request->user(), $draft, collect($data)->except('draft_id')->all());
+
+        return response()->json(['data' => $this->serializeDraft($draft), 'success' => true]);
+    }
+
+    public function manualRemoveMeal(Request $request, int $position, ManualMealPlanService $manual)
+    {
+        $data = $request->validate(['draft_id' => ['required', 'string']]);
+        $draft = MealPlanDraft::query()->whereKey($data['draft_id'])->where('user_id', $request->user()->id)->firstOrFail();
+        $draft = $manual->removeMeal($request->user(), $draft, $position);
 
         return response()->json(['data' => $this->serializeDraft($draft), 'success' => true]);
     }
@@ -161,7 +221,7 @@ class MealPlanController extends Controller
 
     private function serialize(MealPlan $plan): array
     {
-        return ['id' => $plan->id, 'titulo' => $plan->titulo, 'preferences' => $plan->preferences, 'target' => $plan->target, 'totals' => $plan->totals, 'within_target' => ! $plan->warning, 'warning' => $plan->warning, 'archived_at' => $plan->archived_at?->toISOString(), 'favorited_at' => $plan->favorited_at?->toISOString(), 'created_at' => $plan->created_at?->toISOString(), 'updated_at' => $plan->updated_at?->toISOString(), 'meals' => $plan->meals->map(fn ($meal) => ['id' => $meal->id, 'position' => $meal->position, 'descricao' => $meal->descricao, 'horario' => substr((string) $meal->horario, 0, 5), 'target' => $meal->target, 'totals' => $meal->totals, 'items' => $meal->items->map(fn ($item) => [
+        return ['id' => $plan->id, 'titulo' => $plan->titulo, 'preferences' => $plan->preferences, 'target' => $plan->target, 'totals' => $plan->totals, 'within_target' => ! $plan->warning, 'warning' => $plan->warning, 'source' => $plan->generation_provider, 'archived_at' => $plan->archived_at?->toISOString(), 'favorited_at' => $plan->favorited_at?->toISOString(), 'created_at' => $plan->created_at?->toISOString(), 'updated_at' => $plan->updated_at?->toISOString(), 'meals' => $plan->meals->map(fn ($meal) => ['id' => $meal->id, 'position' => $meal->position, 'descricao' => $meal->descricao, 'horario' => substr((string) $meal->horario, 0, 5), 'target' => $meal->target, 'totals' => $meal->totals, 'items' => $meal->items->map(fn ($item) => [
             'id' => $item->id,
             'food_id' => $item->food_id,
             'descricao' => $item->nome_exibicao_snapshot ?? $item->descricao_snapshot,
@@ -182,7 +242,7 @@ class MealPlanController extends Controller
             return $meal;
         })->values()->all();
 
-        return ['draft_id' => $draft->id, 'can_undo' => $draft->previous_payload !== null, ...$payload];
+        return ['draft_id' => $draft->id, 'can_undo' => $draft->previous_payload !== null, 'source' => $draft->provider, ...$payload];
     }
 
     /**
