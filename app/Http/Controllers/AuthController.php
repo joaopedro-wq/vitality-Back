@@ -31,8 +31,19 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+
+        // Token-authenticated API callers do not have a session store. Stateful
+        // Sanctum requests do, so invalidate it when present without turning a
+        // valid logout into a 500 for other authenticated clients.
+        if ($request->hasSession()) {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+
+        $accessToken = $request->user()?->currentAccessToken();
+        if ($accessToken && method_exists($accessToken, 'delete')) {
+            $accessToken->delete();
+        }
 
         return response()->noContent();
     }

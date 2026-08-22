@@ -1,0 +1,47 @@
+{
+  "documentType": "codex-security.hardening-analysis",
+  "schemaVersion": "1.0",
+  "analysisId": "vitality-back-security-20260822",
+  "sourceScan": {
+    "scanId": "37851c84-7460-464d-ba9c-d14267dd7533",
+    "targetRevision": "345ff7d3606b1b3993e580371b5f99d4d75443c4",
+    "sourceDrift": "unknown"
+  },
+  "sourceEvidence": {
+    "kind": "mixed",
+    "label": "Varredura estática e recomendações Vitality PLUS",
+    "artifactCount": 6
+  },
+  "assessment": {
+    "outcome": "opportunities_identified",
+    "summary": "Consolidar autorização, autenticação e sessão como contratos de feature obrigatórios em CI e validar a configuração de produção."
+  },
+  "constraints": {
+    "profile": "balanced",
+    "changeHorizons": ["incremental", "medium_term"],
+    "nonNegotiables": ["Nenhum usuário acessa recurso de outro.", "Logout revoga o acesso protegido.", "Testes de segurança bloqueiam o merge."],
+    "assumptions": ["Sanctum é o mecanismo de sessão da SPA.", "A CI pode executar php artisan test com SQLite em memória."]
+  },
+  "opportunities": [
+    {
+      "opportunityId": "security-contract-ci",
+      "title": "Contrato de segurança executável para API e sessão",
+      "summary": "Centralizar a matriz de autorização e os abusos de autenticação em testes Feature obrigatórios, com configuração de sessão validada fora do código.",
+      "desiredInvariants": [
+        "Toda leitura ou mutação por ID exige a identidade proprietária final.",
+        "Falhas de credenciais não revelam se a conta existe.",
+        "Depois do logout, uma rota protegida responde 401.",
+        "O limite de login e cadastro responde 429 sem criar sessão ou usuário adicional."
+      ],
+      "proposalPath": "proposals/security-contract-ci.md",
+      "options": [
+        {"optionId":"local-feature-tests","title":"Testes locais por controller","kind":"baseline"},
+        {"optionId":"security-contract-suite","title":"Matriz reutilizável e gate obrigatório","kind":"structural"},
+        {"optionId":"staging-browser-contract","title":"Complemento de staging com navegador","kind":"incremental"}
+      ],
+      "recommendedOptionId": "security-contract-suite",
+      "recommendation": "Adotar a suíte de contrato como gate imediato e complementar com verificação de staging para cookies/CORS/CSP."
+    }
+  ],
+  "openQuestions": ["Quais são os domínios exatos de frontend e API em staging e produção?", "Qual provedor de CI executará o gate e publicará artefatos?", "A verificação de e-mail será obrigatória antes de operações sensíveis?"]
+}

@@ -58,7 +58,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Rotas estáticas ANTES das paramétricas para evitar conflito de match
     Route::get('/user', [UserController::class, 'getWithToken']);
     Route::put('/user', [UserController::class, 'update']);
-    Route::post('/user/avatar', [UserController::class, 'updateAvatar']);
+    Route::post('/user/avatar', [UserController::class, 'updateAvatar'])->middleware('throttle:avatar-upload');
     Route::delete('/user/avatar', [UserController::class, 'destroyAvatar']);
 
     Route::delete('/registro/{entry}', [DiaryEntryController::class, 'destroy']);
@@ -73,13 +73,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/meal-plan-profile', [MealPlanProfileController::class, 'show']);
     Route::put('/meal-plan-profile', [MealPlanProfileController::class, 'update']);
     Route::get('/meal-plan-restrictions', [MealPlanProfileController::class, 'restrictions']);
-    Route::post('/meal-plans/preview', [MealPlanController::class, 'preview']);
-    Route::post('/meal-plans/preview/recreate', [MealPlanController::class, 'recreate']);
-    Route::post('/meal-plans/preview/undo', [MealPlanController::class, 'undo']);
-    Route::post('/meal-plans/preview/refresh-locale', [MealPlanController::class, 'refreshLocale']);
-    Route::post('/meal-plans/preview/meal/{position}', [MealPlanController::class, 'regenerateMeal']);
-    Route::post('/meal-plans/preview/meal/{position}/item/{foodId}/suggestions', [MealPlanController::class, 'itemSuggestions']);
-    Route::post('/meal-plans/preview/meal/{position}/item/{foodId}/replace', [MealPlanController::class, 'replaceItem']);
+    Route::post('/meal-plans/preview', [MealPlanController::class, 'preview'])->middleware('throttle:ai-plan');
+    Route::post('/meal-plans/preview/recreate', [MealPlanController::class, 'recreate'])->middleware('throttle:ai-plan');
+    Route::post('/meal-plans/preview/undo', [MealPlanController::class, 'undo'])->middleware('throttle:ai-plan');
+    Route::post('/meal-plans/preview/refresh-locale', [MealPlanController::class, 'refreshLocale'])->middleware('throttle:ai-plan');
+    Route::post('/meal-plans/preview/meal/{position}', [MealPlanController::class, 'regenerateMeal'])->middleware('throttle:ai-plan');
+    Route::post('/meal-plans/preview/meal/{position}/item/{foodId}/suggestions', [MealPlanController::class, 'itemSuggestions'])->middleware('throttle:ai-plan');
+    Route::post('/meal-plans/preview/meal/{position}/item/{foodId}/replace', [MealPlanController::class, 'replaceItem'])->middleware('throttle:ai-plan');
     Route::post('/meal-plans/manual/preview', [MealPlanController::class, 'manualPreview']);
     Route::put('/meal-plans/manual/preview/meal/{position}', [MealPlanController::class, 'manualUpdateMeal']);
     Route::post('/meal-plans/manual/preview/meal', [MealPlanController::class, 'manualAddMeal']);

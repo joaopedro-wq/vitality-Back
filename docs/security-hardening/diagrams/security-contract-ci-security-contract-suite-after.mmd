@@ -1,0 +1,9 @@
+flowchart LR
+  A[Cliente A] --> R[Rotas por ID]
+  B[Cliente B] --> R
+  R --> C[Policy ou query escopada]
+  C --> D[(Dados)]
+  M[Matriz A x B] --> R
+  X[Testes login/cadastro/logout] --> L[Auth e Sanctum]
+  M --> G[Gate obrigatório CI]
+  X --> G

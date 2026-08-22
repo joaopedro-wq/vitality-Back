@@ -1,0 +1,7 @@
+flowchart LR
+  SPA[SPA no domínio real] --> P[Proxy/TLS]
+  P --> API[Laravel + Sanctum]
+  API --> C[Cookies/CORS/CSRF/CSP]
+  E[Teste browser staging] --> SPA
+  E --> C
+  G[CI] --> E

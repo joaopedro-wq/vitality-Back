@@ -1,0 +1,8 @@
+flowchart LR
+  A[Cliente autenticado A] --> R[Rotas por ID]
+  B[Cliente autenticado B] --> R
+  R --> C[Controllers: query/policy/abort]
+  C --> D[(Dados de usuários)]
+  U[Cliente anônimo] --> L[Login e cadastro]
+  L --> S[Sessão Sanctum]
+  T[Testes Feature pontuais] -.cobertura incompleta.-> R
