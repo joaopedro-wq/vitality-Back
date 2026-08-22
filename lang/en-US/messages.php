@@ -3,6 +3,7 @@
 return [
     'login_success' => 'Signed in successfully.',
     'invalid_password' => 'Incorrect password.',
+    'invalid_credentials' => 'Invalid credentials.',
     'email_not_found' => 'Email not found.',
     'logout_success' => 'Signed out successfully.',
     'food_created' => 'Food created successfully.',

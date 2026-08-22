@@ -3,6 +3,7 @@
 return [
     'login_success' => 'Login realizado com sucesso.',
     'invalid_password' => 'Senha incorreta.',
+    'invalid_credentials' => 'Credenciais inválidas.',
     'email_not_found' => 'E-mail não encontrado.',
     'logout_success' => 'Logout realizado com sucesso.',
     'food_created' => 'Alimento criado com sucesso.',
