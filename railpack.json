@@ -1,6 +1,7 @@
 {
   "$schema": "https://schema.railpack.com",
   "provider": "php",
+  "buildAptPackages": ["bison"],
   "packages": {
     "php": "8.4"
   }
