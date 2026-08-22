@@ -79,8 +79,8 @@ nomes devem ser adicionadas ao catálogo sem alterar o identificador ou os valor
 | Camada         | Tecnologia                                                                       |
 | -------------- | -------------------------------------------------------------------------------- |
 | Framework      | Laravel 11, PHP 8.2                                                              |
-| Autenticação   | Laravel Sanctum — Bearer token, sem sessão stateful                              |
-| Banco de dados | PostgreSQL (dev/prod); SQLite em memória nos testes (forçado em `phpunit.xml`)   |
+| Autenticação   | Laravel Sanctum stateful — cookie de sessão + CSRF para a SPA                    |
+| Banco de dados | Banco relacional configurado por ambiente; SQLite isolado nos testes             |
 | IA generativa  | Google Gemini — geração e ajuste de planos de refeição (`GeminiMealPlanService`) |
 | Catálogo       | TACO (seed idempotente) + USDA FoodData Central (Foundation Foods / SR Legacy)   |
 | Testes         | PHPUnit                                                                          |
@@ -88,8 +88,8 @@ nomes devem ser adicionadas ao catálogo sem alterar o identificador ou os valor
 
 ## Rodando localmente
 
-Pré-requisitos: PHP 8.2, Composer 2.6+, PostgreSQL rodando localmente, e o frontend em
-`../vitality-front` (opcional, mas é quem consome a API).
+Pré-requisitos: PHP 8.2, Composer 2.6+, um banco relacional compatível com a configuração local e
+o frontend em `../vitality-front` (opcional, mas é quem consome a API).
 
 ```bash
 composer install
@@ -100,19 +100,19 @@ php artisan key:generate
 Ajuste no `.env`:
 
 ```env
-DB_CONNECTION=pgsql
+DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
-DB_PORT=
+DB_PORT=3306
 DB_DATABASE=vitality
-DB_USERNAME=
+DB_USERNAME=root
 DB_PASSWORD=
 
 FRONTEND_URL=http://localhost:4200
 SANCTUM_STATEFUL_DOMAINS=localhost:4200
 ```
 
-> `.env.example` ainda traz `DB_CONNECTION=mysql` de uma fase anterior do projeto — o ambiente real
-> de desenvolvimento roda em PostgreSQL; use os valores acima.
+> Use a conexão definida no seu ambiente; o exemplo acompanha o `.env.example`. Nunca versione
+> credenciais, chaves de API ou o arquivo `.env`.
 
 ```bash
 php artisan migrate --seed   # cria as tabelas e importa a TACO (idempotente)
@@ -153,15 +153,15 @@ php artisan user:make-admin email@dominio.com
 php artisan test
 ```
 
-Roda sempre contra **SQLite em memória** (forçado em `phpunit.xml`/`.env.testing`), nunca contra o
-Postgres de desenvolvimento — `Tests\TestCase` aborta a suíte se outra conexão for selecionada.
+Os testes devem rodar contra um banco isolado, nunca contra o banco de desenvolvimento. A suíte
+ainda possui pendências de isolamento/cache descritas em `../vitality-front/RECOMENDACOES.md`; só
+considere a validação concluída quando `php artisan test` estiver verde em uma instalação limpa.
 
 ## Decisões de arquitetura
 
-- **Bearer token, não sessão** — `EnsureFrontendRequestsAreStateful` (Sanctum) foi removida de
-  `bootstrap/app.php` de propósito. Essa middleware promove qualquer request com `Origin` batendo
-  em `SANCTUM_STATEFUL_DOMAINS` pra sessão + CSRF, mesmo em rotas de `routes/api.php` — incompatível
-  com o fluxo Bearer-only que o frontend usa.
+- **Sessão Sanctum stateful** — `statefulApi()` permite que a SPA autenticada por cookie use as
+  rotas de `api.php` com proteção CSRF. Essa decisão reduz a exposição de credenciais persistidas no
+  navegador e exige configuração coerente de CORS e domínios stateful.
 - **Snapshot de macros no diário** — `DiaryEntryItem` guarda os valores nutricionais no momento do
   lançamento, não uma referência viva ao alimento. Corrigir um dado no catálogo (ex.: recalcular
   calorias da TACO) nunca reescreve o histórico de quem já registrou aquele alimento.
@@ -175,5 +175,5 @@ Postgres de desenvolvimento — `Tests\TestCase` aborta a suíte se outra conex�
   o outro; o normalizado existe só pra dar ao frontend um conjunto curto e estável de categorias pra
   filtrar.
 
-Ver mais notas de arquitetura, contrato de API completo e histórico de decisões no `CLAUDE.md` do
-frontend (`../vitality-front/CLAUDE.md`), que documenta os dois lados da integração.
+As pendências técnicas e a ordem de execução ficam em
+[`../vitality-front/RECOMENDACOES.md`](../vitality-front/RECOMENDACOES.md).
