@@ -18,4 +18,4 @@ RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framewor
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs && php artisan storage:link --force && php artisan config:cache && php artisan db:seed --force && php artisan foods:import-usda --dataset=foundation && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"]
+CMD ["sh", "-c", "mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs && php artisan storage:link --force && php artisan config:cache && php artisan db:seed --force && php artisan foods:import-usda --dataset=foundation && if [ \"${FOOD_IMAGE_ENRICH_ON_BOOT:-false}\" = \"true\" ]; then php artisan foods:assign-illustrations && php artisan foods:enrich-images --limit=${FOOD_IMAGE_ENRICH_LIMIT:-25}; fi && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"]
