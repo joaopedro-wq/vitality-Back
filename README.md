@@ -4,13 +4,13 @@
 
 ![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?logo=php&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-database-4169E1?logo=postgresql&logoColor=white)
-![Sanctum](<https://img.shields.io/badge/Auth-Sanctum%20(Bearer)-3178C6>)
+![Database](https://img.shields.io/badge/Database-relational-4169E1)
+![Sanctum](<https://img.shields.io/badge/Auth-Sanctum%20(session)-3178C6>)
 ![Gemini](https://img.shields.io/badge/IA-Google%20Gemini-8E75B2?logo=googlegemini&logoColor=white)
 
 **A API que sustenta o Vitality PLUS.** Catálogo nutricional curado, diário alimentar com snapshot
 de macros, metas calculadas por fórmula científica e planos de refeição gerados por IA generativa —
-tudo por trás de uma API REST autenticada por token.
+tudo por trás de uma API REST autenticada por sessão Sanctum.
 
 </div>
 
@@ -44,18 +44,23 @@ Este repositório é o **backend** do produto: uma API Laravel 11 consumida pelo
   administrativo (`auth:sanctum` + guard próprio) pra curar o catálogo: criar/editar/arquivar
   alimentos, reimportar a TACO, revisar imagens sugeridas e tags de restrição alimentar.
 
-## Autenticação
+## Autenticação e segurança
 
-Bearer token puro via **Laravel Sanctum** — sem cookies, sem CSRF, sem sessão stateful. Só login e
-cadastro ficam fora do grupo autenticado; todo o resto exige `Authorization: Bearer <token>`, com
-uma camada extra de guard próprio nos endpoints administrativos. O CORS libera exatamente uma
-origin (`FRONTEND_URL`), com `supports_credentials: true` só porque o Sanctum exige, não porque o
-front manda cookies.
+A API usa **Laravel Sanctum stateful** para a SPA Angular. O navegador obtém primeiro o cookie
+CSRF em `GET /sanctum/csrf-cookie` e, então, envia cookies de sessão nas chamadas à API. Login e
+cadastro (`POST /api/login` e `POST /api/criar-usuario`) são públicos e limitados por rate limit;
+as demais rotas usam `auth:sanctum`.
 
-O contrato completo de endpoints (rotas, payloads, respostas) não fica documentado aqui — é
-código-fonte de uma API viva, então a fonte de verdade é `routes/api.php` e os controllers em
-`app/Http/Controllers`. Quem integra com o frontend encontra o contrato consumido em
-`../vitality-front/CLAUDE.md`.
+`POST /api/logout` invalida a sessão atual e `POST /api/session/refresh` a renova. O perfil da
+sessão é consultado em `GET /api/user` e atualizado em `PUT /api/user`; a API não deve aceitar
+consulta ou atualização arbitrária de usuário por ID. Recursos pessoais são escopados ao usuário
+autenticado e o catálogo administrativo exige middleware `admin`.
+
+Para desenvolvimento local, `FRONTEND_URL` e `SANCTUM_STATEFUL_DOMAINS` devem apontar para o
+frontend. Em produção, configure cookies `Secure`/`SameSite`, CORS, domínio da sessão e CSP no
+servidor de borda. Não use Bearer tokens persistidos em `localStorage` no cliente web.
+
+`routes/api.php` e os controllers em `app/Http/Controllers` são a fonte de verdade do contrato.
 
 ## Internacionalização da API
 
