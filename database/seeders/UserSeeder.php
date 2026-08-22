@@ -11,15 +11,15 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        $email = env('ADMIN_EMAIL');
-        $password = env('ADMIN_PASSWORD');
+        $email = config('admin.email');
+        $password = config('admin.password');
 
         if (! $email || ! $password) {
             return;
         }
 
         $superAdmin = User::updateOrCreate(['email' => $email], [
-            'name' => env('ADMIN_NAME', 'João Pedro'),
+            'name' => config('admin.name'),
             'password' => Hash::make($password, ['rounds' => 12]),
             'is_admin' => true,
         ]);
