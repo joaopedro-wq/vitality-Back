@@ -1,3 +1,7 @@
 *
 !public/
 !.gitignore
+!imports/
+!imports/usda/
+!imports/usda/foundation-2026-04-30/
+!imports/usda/foundation-2026-04-30/FoodData_Central_foundation_food_json_2026-04-30.json
