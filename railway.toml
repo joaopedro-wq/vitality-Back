@@ -1,7 +1,11 @@
 [deploy]
 # The migration runs against Railway's private Postgres network before traffic
 # is switched to this release.
-preDeployCommand = ["php artisan migrate --force"]
+preDeployCommand = [
+  "php artisan migrate --force",
+  "php artisan db:seed --force",
+  "php artisan foods:import-usda --dataset=foundation"
+]
 
 healthcheckPath = "/up"
 healthcheckTimeout = 100
