@@ -9,6 +9,7 @@ use App\Services\MealPresetService;
 use App\Services\UserAvatarService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -72,9 +73,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = User::find($id);
+        $user = $request->user();
 
         if (! $user) {
             return response()->json([
@@ -104,10 +105,6 @@ class UserController extends Controller
             'nivel_atividade',
             'objetivo',
         ]));
-
-        if ($request->filled('password')) {
-            $user->update(['password' => Hash::make($request->password)]);
-        }
 
         return UserResource::make($user->fresh())->additional([
             'message' => 'Usuário atualizado com sucesso',
@@ -154,7 +151,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'unique:users|email|lowercase',
-            'password' => 'required|string|confirmed',
+            'password' => ['required', 'confirmed', Password::min(12)->mixedCase()->numbers()],
         ], [
             'name.required' => 'O campo nome é obrigatório.',
             'email.required' => 'O campo email é obrigatório.',

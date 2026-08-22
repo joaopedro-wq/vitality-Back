@@ -68,9 +68,9 @@ class MetaDiariaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $meta = Meta_diaria::find($id);
+        $meta = Meta_diaria::whereKey($id)->where('id_usuario', $request->user()->id)->first();
 
         if (! $meta) {
             return response()->json(['message' => 'Meta diária não encontrada', 'success' => false], 404);
@@ -84,7 +84,7 @@ class MetaDiariaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $meta = Meta_diaria::find($id);
+        $meta = Meta_diaria::whereKey($id)->where('id_usuario', $request->user()->id)->first();
 
         if (! $meta) {
             return response()->json(['message' => 'Meta diária não encontrada', 'success' => false], 404);
@@ -105,9 +105,9 @@ class MetaDiariaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $meta = Meta_diaria::find($id);
+        $meta = Meta_diaria::whereKey($id)->where('id_usuario', $request->user()->id)->first();
 
         if (! $meta) {
             return response()->json(['message' => 'Meta diária não encontrada', 'success' => false], 404);

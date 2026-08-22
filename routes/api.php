@@ -15,8 +15,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/criar-usuario', [UserController::class, 'storeUser']);
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:api-login');
+    Route::post('/criar-usuario', [UserController::class, 'storeUser'])->middleware('throttle:api-register');
 });
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -53,15 +53,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/recomendacao/{id}', [NutricaoRecomendadaController::class, 'update']);
     Route::delete('/recomendacao/{id}', [NutricaoRecomendadaController::class, 'destroy']);
 
-    Route::get('/users', [UserController::class, 'index']);
-    Route::post('/user', [UserController::class, 'store']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/session/refresh', [AuthController::class, 'refreshSession']);
     // Rotas estáticas ANTES das paramétricas para evitar conflito de match
-    Route::get('/user/get-with-token', [UserController::class, 'getWithToken']);
+    Route::get('/user', [UserController::class, 'getWithToken']);
+    Route::put('/user', [UserController::class, 'update']);
     Route::post('/user/avatar', [UserController::class, 'updateAvatar']);
     Route::delete('/user/avatar', [UserController::class, 'destroyAvatar']);
-    Route::get('/user/{id}', [UserController::class, 'show']);
-    Route::put('/atualizar-user/{id}', [UserController::class, 'update']);
-    Route::put('/user/{id}', [UserController::class, 'update']);
 
     Route::delete('/registro/{entry}', [DiaryEntryController::class, 'destroy']);
 

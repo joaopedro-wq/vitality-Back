@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alimento;
 use App\Models\Dieta;
 use Illuminate\Http\Request;
-use App\Models\Alimento;
 
 class DietaController extends Controller
 {
@@ -15,17 +15,16 @@ class DietaController extends Controller
     {
         $user = $request->user();
 
-        if (!$user) {
+        if (! $user) {
             return response()->json([
                 'message' => 'Usuário não encontrado na base de dados',
-                'success' => false
+                'success' => false,
             ], 404);
-        } 
+        }
 
-        
         $dietas = Dieta::where('id_usuario', $user->id)
-                       ->with(['alimentos', 'refeicao'])
-                       ->get();
+            ->with(['alimentos', 'refeicao'])
+            ->get();
 
         $dietas->transform(function ($dieta) {
             $totalCarbo = 0;
@@ -53,66 +52,62 @@ class DietaController extends Controller
 
         return response()->json([
             'data' => $dietas,
-            'success' => true
+            'success' => true,
         ]);
     }
-
-
 
     /**
      * Store a newly created resource in storage.
      */
+    public function store(Request $request)
+    {
+        $user = $request->user();
 
-     public function store(Request $request)
-     {
-         $user = $request->user();
- 
-         $dieta = Dieta::create([
-             'descricao' => $request->descricao,
-             'id_refeicao' => $request->id_refeicao,
-             'id_usuario' => $user->id,
-         ]);
- 
-         $alimentos = $request->alimentos;
-         if (Alimento::whereIn('id', collect($alimentos)->pluck('id'))->where('status', 'ativo')->count() !== count($alimentos)) {
-             return response()->json(['message' => 'Um ou mais alimentos não estão disponíveis.', 'success' => false], 422);
-         }
-         foreach ($alimentos as $alimento) {
-             $dieta->alimentos()->attach($alimento['id'], ['qtd' => $alimento['qtd']]);
-         }
- 
-         $alimentos_descricao = $dieta->alimentos->pluck('descricao')->toArray();
-         $refeicao_descricao = $dieta->refeicao->descricao;
- 
-         return response()->json([
-             'message' => 'Refeição registrada com sucesso',
-             'data' => $dieta,
-             'success' => true,
-             'descricao_alimentos' => $alimentos_descricao,
-             'descricao_refeicao' => $refeicao_descricao,
-             'id_usuario' => $user->id,
-         ]);
-     }
+        $dieta = Dieta::create([
+            'descricao' => $request->descricao,
+            'id_refeicao' => $request->id_refeicao,
+            'id_usuario' => $user->id,
+        ]);
+
+        $alimentos = $request->alimentos;
+        if (Alimento::whereIn('id', collect($alimentos)->pluck('id'))->where('status', 'ativo')->count() !== count($alimentos)) {
+            return response()->json(['message' => 'Um ou mais alimentos não estão disponíveis.', 'success' => false], 422);
+        }
+        foreach ($alimentos as $alimento) {
+            $dieta->alimentos()->attach($alimento['id'], ['qtd' => $alimento['qtd']]);
+        }
+
+        $alimentos_descricao = $dieta->alimentos->pluck('descricao')->toArray();
+        $refeicao_descricao = $dieta->refeicao->descricao;
+
+        return response()->json([
+            'message' => 'Refeição registrada com sucesso',
+            'data' => $dieta,
+            'success' => true,
+            'descricao_alimentos' => $alimentos_descricao,
+            'descricao_refeicao' => $refeicao_descricao,
+            'id_usuario' => $user->id,
+        ]);
+    }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
-        $dieta = Dieta::with(['alimentos', 'refeicao'])->find($id);
+        $dieta = Dieta::with(['alimentos', 'refeicao'])->whereKey($id)->where('id_usuario', $request->user()->id)->first();
 
-        if (!$dieta) {
+        if (! $dieta) {
             return response()->json([
                 'message' => 'dieta não encontrada na base de dados',
-                'success' => false
+                'success' => false,
             ], 404);
         }
-
 
         return response()->json([
             'message' => 'Resposta da dieta carregada com sucesso',
             'data' => $dieta,
-            'success' => true
+            'success' => true,
         ]);
     }
 
@@ -124,12 +119,12 @@ class DietaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $dieta = Dieta::find($id);
+        $dieta = Dieta::whereKey($id)->where('id_usuario', $request->user()->id)->first();
 
-        if (!$dieta) {
+        if (! $dieta) {
             return response()->json([
                 'message' => 'Dieta não encontrada na base de dados',
-                'success' => false
+                'success' => false,
             ], 404);
         }
 
@@ -165,14 +160,14 @@ class DietaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        $dieta = Dieta::find($id);
+        $dieta = Dieta::whereKey($id)->where('id_usuario', $request->user()->id)->first();
 
-        if (!$dieta) {
+        if (! $dieta) {
             return response()->json([
                 'message' => 'dieta não encontrada na base de dados',
-                'success' => false
+                'success' => false,
             ], 404);
         }
 
@@ -180,7 +175,7 @@ class DietaController extends Controller
 
         return response()->json([
             'message' => 'dieta excluída com sucesso',
-            'success' => true
+            'success' => true,
         ]);
     }
 }

@@ -124,9 +124,9 @@ class NutricaoRecomendadaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $recomendacaoNutricional = NutricaoRecomendada::find($id);
+        $recomendacaoNutricional = NutricaoRecomendada::whereKey($id)->where('id_usuario', $request->user()->id)->first();
 
         if (! $recomendacaoNutricional) {
             return response()->json(['message' => 'Meta diária não encontrada', 'success' => false], 404);
@@ -140,7 +140,7 @@ class NutricaoRecomendadaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $recomendacaoNutricional = NutricaoRecomendada::find($id);
+        $recomendacaoNutricional = NutricaoRecomendada::whereKey($id)->where('id_usuario', $request->user()->id)->first();
 
         if (! $recomendacaoNutricional) {
             return response()->json(['message' => 'Meta diária não encontrada', 'success' => false], 404);
@@ -164,9 +164,9 @@ class NutricaoRecomendadaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $recomendacaoNutricional = NutricaoRecomendada::find($id);
+        $recomendacaoNutricional = NutricaoRecomendada::whereKey($id)->where('id_usuario', $request->user()->id)->first();
 
         if (! $recomendacaoNutricional) {
             return response()->json(['message' => 'Meta diária não encontrada', 'success' => false], 404);
