@@ -19,11 +19,13 @@ class AuthController extends Controller
             return response()->json(['status' => false, 'message' => __('messages.invalid_credentials')], 401);
         }
 
-        $request->session()->regenerate();
+        $user = $request->user();
+        $token = $user->createToken('vitality-web')->plainTextToken;
 
         return response()->json([
             'status' => true,
-            'user' => (new UserResource($request->user()))->resolve(),
+            'user' => (new UserResource($user))->resolve(),
+            'token' => $token,
             'message' => __('messages.login_success'),
         ]);
     }
