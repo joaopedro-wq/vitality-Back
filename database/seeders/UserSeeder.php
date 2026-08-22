@@ -4,20 +4,24 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Services\MealPresetService;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    
     public function run(): void
     {
-        $superAdmin = User::firstOrCreate(['email' => 'joao.bandeira@gmail.com.br'], [
-                'name' => 'João Pedro',
-                'email' => 'joao.bandeira@gmail.com.br',
-                'password' => Hash::make('12345678a', ['rounds' => 12]),
-                'is_admin' => true,
+        $email = env('ADMIN_EMAIL');
+        $password = env('ADMIN_PASSWORD');
+
+        if (! $email || ! $password) {
+            return;
+        }
+
+        $superAdmin = User::updateOrCreate(['email' => $email], [
+            'name' => env('ADMIN_NAME', 'João Pedro'),
+            'password' => Hash::make($password, ['rounds' => 12]),
+            'is_admin' => true,
         ]);
 
         $superAdmin->update(['is_admin' => true]);
