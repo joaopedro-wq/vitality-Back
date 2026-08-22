@@ -3,10 +3,6 @@
 # is switched to this release.
 preDeployCommand = ["php artisan migrate --force"]
 
-# Volumes are only mounted when the application starts. Recreate Laravel's
-# public storage link at runtime so uploaded avatars and food images persist.
-startCommand = "sh -c 'php artisan storage:link --force && php artisan config:cache && php artisan serve --host=0.0.0.0 --port=$PORT'"
-
 healthcheckPath = "/up"
 healthcheckTimeout = 100
 restartPolicyType = "ON_FAILURE"
