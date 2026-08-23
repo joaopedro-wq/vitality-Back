@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\FoodAdminController;
+use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiaryEntryController;
@@ -101,6 +102,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/foods/{food}/favorite', [FoodController::class, 'unfavorite']);
 
     Route::middleware('admin')->prefix('admin')->group(function () {
+        Route::get('/users', [UserAdminController::class, 'index']);
+        Route::get('/users/{user}', [UserAdminController::class, 'show']);
         Route::get('/foods', [FoodAdminController::class, 'index']);
         Route::get('/foods/duplicates', [FoodAdminController::class, 'duplicates']);
         Route::post('/foods', [FoodAdminController::class, 'store']);

@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use  HasApiTokens ,HasFactory, Notifiable;
+    use HasApiTokens ,HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -30,7 +30,6 @@ class User extends Authenticatable
         'objetivo',
         'is_admin',
 
-        
     ];
 
     /**
@@ -51,6 +50,11 @@ class User extends Authenticatable
     public function registros()
     {
         return $this->hasMany(Registro::class, 'id_usuario');
+    }
+
+    public function mealPlans()
+    {
+        return $this->hasMany(MealPlan::class);
     }
 
     /**
