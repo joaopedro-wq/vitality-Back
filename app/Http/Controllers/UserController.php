@@ -46,6 +46,7 @@ class UserController extends Controller
             'avatar' => $request->avatar,
             'nivel_atividade' => $request->nivel_atividade,
             'objetivo' => $request->objetivo,
+            'onboarding_status' => 'pending',
         ]);
 
         $mealPresets->ensureFor($user);
@@ -129,6 +130,24 @@ class UserController extends Controller
         ]);
     }
 
+    public function updateOnboarding(Request $request)
+    {
+        $data = $request->validate([
+            'status' => ['required', 'in:completed,skipped'],
+        ]);
+
+        $user = $request->user();
+        $user->forceFill([
+            'onboarding_status' => $data['status'],
+            'onboarding_finished_at' => now(),
+        ])->save();
+
+        return UserResource::make($user->fresh())->additional([
+            'message' => 'Onboarding atualizado com sucesso',
+            'success' => true,
+        ]);
+    }
+
     public function updateAvatar(UpdateUserAvatarRequest $request, UserAvatarService $avatarService)
     {
         $user = $avatarService->replace($request->user(), $request->file('avatar'));
@@ -164,6 +183,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'onboarding_status' => 'pending',
         ]);
 
         $mealPresets->ensureFor($user);

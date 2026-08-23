@@ -25,6 +25,8 @@ class UserResource extends JsonResource
             'nivel_atividade' => $this->nivel_atividade,
             'objetivo' => $this->objetivo,
             'is_admin' => $this->is_admin,
+            'onboarding_status' => $this->onboarding_status,
+            'onboarding_finished_at' => $this->onboarding_finished_at?->toISOString(),
         ];
     }
 

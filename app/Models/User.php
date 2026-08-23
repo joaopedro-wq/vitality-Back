@@ -29,6 +29,8 @@ class User extends Authenticatable
         'nivel_atividade',
         'objetivo',
         'is_admin',
+        'onboarding_status',
+        'onboarding_finished_at',
 
     ];
 
@@ -68,6 +70,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'boolean',
+            'onboarding_finished_at' => 'datetime',
         ];
     }
 }

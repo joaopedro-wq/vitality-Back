@@ -59,6 +59,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Rotas estáticas ANTES das paramétricas para evitar conflito de match
     Route::get('/user', [UserController::class, 'getWithToken']);
     Route::put('/user', [UserController::class, 'update']);
+    Route::put('/user/onboarding', [UserController::class, 'updateOnboarding']);
     Route::post('/user/avatar', [UserController::class, 'updateAvatar'])->middleware('throttle:avatar-upload');
     Route::delete('/user/avatar', [UserController::class, 'destroyAvatar']);
 
