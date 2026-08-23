@@ -20,6 +20,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Password validation
+    |--------------------------------------------------------------------------
+    |
+    | Shared minimum used by the active API registration flow and password
+    | reset flow. Keep this separate from the hashing configuration.
+    |
+    */
+
+    'password_min_length' => env('AUTH_PASSWORD_MIN_LENGTH', 6),
+
+    /*
+    |--------------------------------------------------------------------------
     | Authentication Guards
     |--------------------------------------------------------------------------
     |

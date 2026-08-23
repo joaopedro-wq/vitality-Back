@@ -151,7 +151,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'unique:users|email|lowercase',
-            'password' => ['required', 'confirmed', Password::min(12)->mixedCase()->numbers()],
+            'password' => ['required', 'confirmed', Password::min((int) config('auth.password_min_length'))],
         ], [
             'name.required' => 'O campo nome é obrigatório.',
             'email.required' => 'O campo email é obrigatório.',
