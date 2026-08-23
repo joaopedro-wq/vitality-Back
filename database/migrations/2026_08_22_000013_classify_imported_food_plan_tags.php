@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use App\Services\FoodPlanClassificationService;
 use Illuminate\Database\Migrations\Migration;
