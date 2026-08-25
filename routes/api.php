@@ -75,6 +75,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/meal-plan-profile', [MealPlanProfileController::class, 'show']);
     Route::put('/meal-plan-profile', [MealPlanProfileController::class, 'update']);
     Route::get('/meal-plan-restrictions', [MealPlanProfileController::class, 'restrictions']);
+    Route::post('/meal-plan-feasibility', [MealPlanProfileController::class, 'feasibility']);
     Route::post('/meal-plans/preview', [MealPlanController::class, 'preview'])->middleware('throttle:ai-plan');
     Route::post('/meal-plans/preview/recreate', [MealPlanController::class, 'recreate'])->middleware('throttle:ai-plan');
     Route::post('/meal-plans/preview/undo', [MealPlanController::class, 'undo'])->middleware('throttle:ai-plan');
@@ -112,6 +113,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/foods/{food}/archive', [FoodAdminController::class, 'archive']);
         Route::post('/foods/{food}/restore', [FoodAdminController::class, 'restore']);
         Route::post('/foods/import-taco', [FoodAdminController::class, 'importTaco']);
+        Route::post('/foods/import-taco-spreadsheet', [FoodAdminController::class, 'importTacoSpreadsheet']);
         Route::get('/food-plan-tags', [FoodAdminController::class, 'planTags']);
         Route::put('/foods/{food}/plan-tags', [FoodAdminController::class, 'updatePlanTags']);
         Route::get('/food-restrictions', [FoodAdminController::class, 'restrictions']);

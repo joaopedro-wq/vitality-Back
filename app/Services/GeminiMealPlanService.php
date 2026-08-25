@@ -18,6 +18,7 @@ class GeminiMealPlanService
     public function __construct(
         private readonly MealCompositionService $composition,
         private readonly MealPlanMacroCalculator $macroCalculator,
+        private readonly MealPlanFeasibilityService $feasibility,
     ) {}
 
     public function preview(User $user, array $preferences): MealPlanDraft
@@ -25,6 +26,10 @@ class GeminiMealPlanService
         $preferences['objective'] = $user->objetivo;
         $target = $this->macroCalculator->resolveDailyTarget($user);
         $definitions = $this->composition->definitions($preferences, $target);
+        $assessment = $this->feasibility->assess($preferences);
+        if (! $assessment['feasible']) {
+            throw ValidationException::withMessages(['preferences' => $assessment['message']]);
+        }
         $foods = $this->candidates($preferences);
         $this->assertIncludedFoodsEligible($foods, $definitions, $preferences);
         $payload = $this->validatedGeneration($target, $preferences, $foods, $definitions, null);
@@ -326,13 +331,8 @@ class GeminiMealPlanService
 
     private function candidates(array $preferences, int $minimum = 8): Collection
     {
-        $query = Alimento::query()->where('status', 'ativo')->with(['planTags', 'restrictions'])->whereNotIn('id', $preferences['excluded_food_ids'] ?? []);
-        foreach (array_values(array_unique([...(array) ($preferences['restriction_slugs'] ?? []), ...match ($preferences['diet_type'] ?? 'onivora') {
-            'vegetariana' => ['vegetariano'], 'vegana' => ['vegano'], default => []
-        }])) as $slug) {
-            $query->whereHas('restrictions', fn ($relation) => $relation->where('slug', $slug));
-        }
-        $foods = $query->get()->sortByDesc(fn (Alimento $food) => ($food->planTags->contains('slug', 'base_alimentar') ? 1000 : 0) + ($food->planTags->contains('slug', $preferences['style']) ? 100 : 0))->values();
+        $foods = $this->feasibility->candidates($preferences)
+            ->sortByDesc(fn (Alimento $food) => ($food->planTags->contains('slug', 'base_alimentar') ? 1000 : 0) + ($food->planTags->contains('slug', $preferences['style']) ? 100 : 0))->values();
         if ($foods->count() < $minimum) {
             throw ValidationException::withMessages(['restrictions' => __('messages.meal_plan.insufficient_reviewed_foods')]);
         }
@@ -462,7 +462,10 @@ class GeminiMealPlanService
     {
         $this->assertCandidateCoverage($foods, $definitions, $preferences);
         $lastException = null;
-        for ($attempt = 0; $attempt < 3; $attempt++) {
+        // A IA recebe uma única oportunidade curta. Caso a resposta não passe nas
+        // regras do catálogo, o servidor entrega a composição determinística em vez
+        // de reenviar três prompts grandes e deixar o usuário esperando.
+        for ($attempt = 0; $attempt < 1; $attempt++) {
             $attemptPreferences = [
                 ...$preferences,
                 'generation_seed' => Str::uuid()->toString(),
@@ -474,6 +477,13 @@ class GeminiMealPlanService
                 $lastException = $exception;
             }
         }
+        $fallback = $this->deterministicGeneration($target, $preferences, $foods, $definitions);
+        if ($fallback) {
+            Log::info('meal_plan.catalog_fallback.day_used', ['reason' => $lastException?->getMessage()]);
+
+            return $fallback;
+        }
+
         throw $lastException;
     }
 
@@ -509,6 +519,43 @@ class GeminiMealPlanService
         return $this->ask('plano_alimentar', $context, $this->planSchema($definitions->count()));
     }
 
+    private function deterministicGeneration(array $target, array $preferences, Collection $foods, Collection $definitions): ?array
+    {
+        $foodById = $foods->keyBy('id');
+        $meals = [];
+        foreach ($definitions as $definition) {
+            $items = $this->fallbackItems($definition, $foods, $foodById);
+            if (! $items) {
+                return null;
+            }
+            $totals = $this->macroCalculator->sum($items->pluck('macros')->all());
+            $meals[] = [
+                'position' => $definition['position'],
+                'descricao' => $definition['descricao'],
+                'horario' => $definition['horario'],
+                'target' => $definition['target'],
+                'totals' => $totals,
+                'explanation' => __('messages.meal_plan.catalog_fallback_explanation'),
+                'items' => $items->all(),
+            ];
+        }
+        $meals = $this->enforceIncludedFoods($meals, $definitions, $foods, $preferences);
+        $totals = $this->macroCalculator->sum(array_column($meals, 'totals'));
+        if (! $this->macroCalculator->withinTarget($target, $totals, 'day')) {
+            return null;
+        }
+
+        return [
+            'preferences' => $preferences,
+            'target' => $target,
+            'totals' => $totals,
+            'within_target' => true,
+            'warning' => null,
+            'summary' => __('messages.meal_plan.catalog_fallback_summary'),
+            'meals' => $meals,
+        ];
+    }
+
     /**
      * As regras operacionais do prompt (estrutura culinária, composição,
      * porções) ficam em português — é o que orienta a IA na tarefa, não
@@ -531,7 +578,7 @@ class GeminiMealPlanService
         }
         $started = microtime(true);
         try {
-            $response = Http::acceptJson()->withHeaders(['x-goog-api-key' => config('gemini.api_key')])->timeout(config('gemini.timeout'))->post(config('gemini.endpoint'), ['model' => config('gemini.model'), 'input' => json_encode(['task' => $task, ...$context], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), 'response_format' => [['type' => 'text', 'mime_type' => 'application/json', 'schema' => $schema]]])->throw()->json();
+            $response = Http::acceptJson()->withHeaders(['x-goog-api-key' => config('gemini.api_key')])->timeout(min((int) config('gemini.timeout'), 10))->post(config('gemini.endpoint'), ['model' => config('gemini.model'), 'input' => json_encode(['task' => $task, ...$context], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), 'response_format' => [['type' => 'text', 'mime_type' => 'application/json', 'schema' => $schema]]])->throw()->json();
             $step = collect($response['steps'] ?? [])->reverse()->first(fn ($item) => ($item['type'] ?? null) === 'model_output');
             $raw = data_get($response, 'output_text') ?? data_get($step, 'content.0.text');
             if (! is_string($raw)) {
@@ -585,8 +632,12 @@ class GeminiMealPlanService
                 throw ValidationException::withMessages(['ai' => __('messages.meal_plan.ai_unrealistic_portion')]);
             }
             if (! $this->macroCalculator->withinTarget($definition['target'], $totals)) {
-                Log::warning('meal_plan.ai.meal_target_miss', ['position' => $definition['position'], 'target' => $definition['target'], 'totals' => $totals, 'items' => $items->map(fn ($item) => collect($item)->only(['food_id', 'role', 'quantity']))->all()]);
-                throw ValidationException::withMessages(['ai' => __('messages.meal_plan.ai_meal_target_miss')]);
+                // A distribuição entre refeições é uma referência culinária, não uma
+                // exigência rígida de macro. Exigir que toda refeição feche todos os
+                // macros inviabiliza combinações perfeitamente saudáveis (por exemplo,
+                // café da manhã sem glúten). A aprovação nutricional obrigatória é do
+                // dia completo, validada abaixo com a tolerância diária.
+                Log::info('meal_plan.ai.meal_target_deviation', ['position' => $definition['position'], 'target' => $definition['target'], 'totals' => $totals]);
             }
             $meals[] = ['position' => $definition['position'], 'descricao' => $definition['descricao'], 'horario' => $definition['horario'], 'target' => $definition['target'], 'totals' => $totals, 'explanation' => Str::limit(strip_tags((string) ($aiMeal['explanation'] ?? '')), 220, ''), 'items' => $items->all()];
         }
@@ -820,7 +871,10 @@ class GeminiMealPlanService
             $visit(0, []);
         }
 
-        return $best && $this->macroCalculator->withinTarget($definition['target'], $this->macroCalculator->sum($best->pluck('macros')->all())) && $this->coherencePenalty($definition, $best) < 50 ? $best : null;
+        // O melhor conjunto coerente é útil mesmo que uma refeição isolada não feche
+        // todos os macros. A decisão final é feita no total diário em
+        // deterministicGeneration(), onde os macros efetivamente importam.
+        return $best && $this->coherencePenalty($definition, $best) < 50 ? $best : null;
     }
 
     private function fallbackCandidates(Collection $foods, string $role): Collection

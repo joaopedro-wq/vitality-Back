@@ -20,8 +20,8 @@ class FoodPlanClassificationServiceTest extends TestCase
         $arroz = $this->classifier->classify('Cereais e derivados', 'Arroz, tipo 1, cozido', 2.5, 28, .2);
         $frango = $this->classifier->classify('Carnes e derivados', 'Frango, peito, cozido', 31, 0, 4);
 
-        $this->assertEqualsCanonicalizing(['carboidrato', 'base_alimentar', 'caseiro', 'economico'], $arroz);
-        $this->assertEqualsCanonicalizing(['proteina', 'base_alimentar', 'caseiro', 'economico'], $frango);
+        $this->assertEqualsCanonicalizing(['carboidrato', 'base_alimentar', 'caseiro', 'economico', 'prato_base'], $arroz);
+        $this->assertEqualsCanonicalizing(['proteina', 'base_alimentar', 'caseiro', 'economico', 'prato_proteina'], $frango);
     }
 
     public function test_it_keeps_sweets_and_alcohol_available_as_complements_not_foundations(): void
@@ -38,6 +38,6 @@ class FoodPlanClassificationServiceTest extends TestCase
     {
         $banana = $this->classifier->classify('Frutas e derivados', 'Banana, prata, crua', 1.3, 26, 0);
 
-        $this->assertEqualsCanonicalizing(['fruta', 'base_alimentar', 'caseiro', 'rapido'], $banana);
+        $this->assertEqualsCanonicalizing(['fruta', 'base_alimentar', 'caseiro', 'rapido', 'fruta_lanche', 'lanche_pratico'], $banana);
     }
 }

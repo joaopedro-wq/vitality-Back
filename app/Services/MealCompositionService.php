@@ -14,19 +14,22 @@ class MealCompositionService
 
     public function definitions(array $preferences, array $target): Collection
     {
-        $ratios = match ((int) $preferences['meal_count']) {
+        $mealCount = (int) ($preferences['meal_count'] ?? 4);
+        $mealTimes = array_values($preferences['meal_times'] ?? ['08:00', '12:30', '16:30', '20:00']);
+        $ratios = match ($mealCount) {
             3 => [.25, .40, .35],
             4 => [.25, .35, .15, .25],
             5 => [.20, .10, .30, .15, .25],
+            default => [.25, .35, .15, .25],
         };
 
-        return collect($ratios)->map(function (float $ratio, int $position) use ($preferences, $target) {
-            $kind = $this->kindForPosition((int) $preferences['meal_count'], $position);
+        return collect($ratios)->map(function (float $ratio, int $position) use ($mealCount, $mealTimes, $target) {
+            $kind = $this->kindForPosition($mealCount, $position);
 
             return [
                 'position' => $position,
                 'descricao' => $this->defaultLabel($kind, $position),
-                'horario' => $preferences['meal_times'][$position],
+                'horario' => $mealTimes[$position] ?? '12:00',
                 'kind' => $kind,
                 'target' => $this->scale($target, $ratio),
                 'composition' => $this->template($kind),
@@ -92,7 +95,7 @@ class MealCompositionService
         return $roles->mapWithKeys(fn (string $role) => [$role => $foods
             ->filter(fn (Alimento $food) => $this->catalog->supportsRole($food, $role))
             ->sortByDesc(fn (Alimento $food) => $this->candidateScore($food, $role, (string) $definition['kind'], (string) ($preferences['style'] ?? 'rapido'), (string) ($preferences['generation_seed'] ?? '')))
-            ->take(16)
+            ->take(6)
             ->values()]);
     }
 

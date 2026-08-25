@@ -36,6 +36,7 @@ class Alimento extends Model
         'updated_by',
         'source_version',
         'source_checksum',
+        'catalog_version_id',
 
     ];
 
@@ -148,6 +149,16 @@ class Alimento extends Model
     public function restrictions()
     {
         return $this->belongsToMany(FoodRestriction::class, 'alimento_food_restriction');
+    }
+
+    public function planningProfile()
+    {
+        return $this->hasOne(FoodPlanningProfile::class, 'alimento_id');
+    }
+
+    public function aliases()
+    {
+        return $this->hasMany(FoodAlias::class, 'alimento_id');
     }
 
 }

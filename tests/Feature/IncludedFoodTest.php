@@ -133,37 +133,15 @@ class IncludedFoodTest extends TestCase
         $this->postJson('/api/meal-plans/preview', $payload)->assertStatus(422)->assertJsonValidationErrors('included_food_ids.0');
     }
 
-    public function test_preview_returns_422_when_included_food_is_incompatible_with_diet_type(): void
+    public function test_preview_rejects_the_removed_vegan_diet_type(): void
     {
         $this->actingUser();
-        $foods = $this->seedCatalog();
-        // Carne bovina não tem a restrição 'vegano' — a query de candidates() a exclui inteiramente
-        // quando diet_type é vegana, então ela nunca chega a ser um candidato elegível. As demais
-        // (>= 8, mínimo exigido por candidates()) têm a restrição, cobrindo os papéis do dia inteiro.
-        $veganRoles = [
-            'Tofu' => ['prato_proteina', 'cafe_proteina'],
-            'Grão-de-bico cozido' => ['prato_proteina'],
-            'Aveia' => ['cafe_base'],
-            'Pão integral vegano' => ['cafe_base'],
-            'Maçã' => ['fruta_lanche', 'lanche_pratico'],
-            'Arroz integral' => ['prato_base'],
-            'Batata doce cozida' => ['prato_base'],
-            'Feijão preto cozido' => ['prato_leguminosa'],
-            'Lentilha cozida vegana' => ['prato_leguminosa'],
-            'Couve refogada' => ['prato_vegetal'],
-            'Abobrinha vegana' => ['prato_vegetal'],
-        ];
-        $veganoId = \App\Models\FoodRestriction::query()->where('slug', 'vegano')->value('id');
-        foreach ($veganRoles as $name => $roles) {
-            $this->food($name, 8, 15, 3, 120, $roles)->restrictions()->sync([$veganoId]);
-        }
-
         $payload = [
             'meal_count' => 3, 'meal_times' => ['08:00', '12:30', '19:30'], 'style' => 'rapido', 'diet_type' => 'vegana',
-            'restriction_slugs' => [], 'excluded_food_ids' => [], 'included_food_ids' => [$foods['carne']->id],
+            'restriction_slugs' => [], 'excluded_food_ids' => [], 'included_food_ids' => [],
         ];
 
-        $this->postJson('/api/meal-plans/preview', $payload)->assertStatus(422)->assertJsonValidationErrors('included_food_ids');
+        $this->postJson('/api/meal-plans/preview', $payload)->assertStatus(422)->assertJsonValidationErrors('diet_type');
     }
 
     public function test_replacing_a_locked_item_returns_an_error_instead_of_applying_the_swap(): void

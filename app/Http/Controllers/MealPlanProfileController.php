@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FoodRestriction;
 use App\Models\MealPlanProfile;
+use App\Services\MealPlanFeasibilityService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -27,23 +27,40 @@ class MealPlanProfileController extends Controller
         return response()->json(['data' => $this->serialize($profile), 'success' => true]);
     }
 
-    public function restrictions()
+    public function restrictions(MealPlanFeasibilityService $feasibility)
     {
-        $restrictions = FoodRestriction::query()
-            ->leftJoin('alimento_food_restriction as pivot', 'pivot.food_restriction_id', '=', 'food_restrictions.id')
-            ->selectRaw('food_restrictions.slug, food_restrictions.label, food_restrictions.type, count(pivot.alimento_id) as food_count')
-            ->groupBy('food_restrictions.id', 'food_restrictions.slug', 'food_restrictions.label', 'food_restrictions.type')
-            ->orderBy('food_restrictions.type')->orderBy('food_restrictions.label')->get()
-            ->map(fn ($restriction) => ['slug' => $restriction->slug, 'label' => $restriction->label, 'type' => $restriction->type, 'food_count' => (int) $restriction->food_count, 'available' => (int) $restriction->food_count >= 8]);
+        $defaults = $this->defaults();
+        $preferences = [
+            ...$defaults['preferences'],
+            'diet_type' => $defaults['diet_type'],
+            'restriction_slugs' => $defaults['restriction_slugs'],
+        ];
 
-        return response()->json(['data' => $restrictions, 'success' => true]);
+        return response()->json(['data' => $feasibility->describe($preferences)['restrictions'], 'success' => true]);
+    }
+
+    public function feasibility(Request $request, MealPlanFeasibilityService $feasibility)
+    {
+        $data = $request->validate([
+            'meal_count' => ['required', 'integer', 'in:3,4,5'],
+            'meal_times' => ['required', 'array', 'min:3', 'max:5'],
+            'meal_times.*' => ['required', 'date_format:H:i'],
+            'style' => ['required', 'in:rapido,caseiro,economico'],
+            'diet_type' => ['required', 'in:onivora,vegetariana'],
+            'restriction_slugs' => ['present', 'array', 'max:7'],
+            'restriction_slugs.*' => ['string', 'exists:food_restrictions,slug'],
+            'excluded_food_ids' => ['present', 'array', 'max:30'],
+            'excluded_food_ids.*' => ['integer', 'exists:alimentos,id'],
+        ]);
+
+        return response()->json(['data' => $feasibility->describe($data), 'success' => true]);
     }
 
     private function validateProfile(Request $request): array
     {
         return $request->validate([
             'meal_count' => ['required', 'integer', 'in:3,4,5'], 'meal_times' => ['required', 'array', 'min:3', 'max:5'], 'meal_times.*' => ['required', 'date_format:H:i'],
-            'style' => ['required', 'in:rapido,caseiro,economico'], 'diet_type' => ['required', 'in:onivora,vegetariana,vegana'],
+            'style' => ['required', 'in:rapido,caseiro,economico'], 'diet_type' => ['required', 'in:onivora,vegetariana'],
             'restriction_slugs' => ['present', 'array', 'max:7'], 'restriction_slugs.*' => ['string', 'exists:food_restrictions,slug'],
             'excluded_food_ids' => ['present', 'array', 'max:30'], 'excluded_food_ids.*' => ['integer', 'exists:alimentos,id'],
             'included_food_ids' => ['present', 'array', 'max:8'],
@@ -58,6 +75,12 @@ class MealPlanProfileController extends Controller
 
     private function serialize(MealPlanProfile $profile): array
     {
-        return ['diet_type' => $profile->diet_type, 'restriction_slugs' => $profile->restriction_slugs ?? [], ...($profile->preferences ?? $this->defaults()['preferences'])];
+        $dietType = $profile->diet_type === 'vegana' ? 'vegetariana' : $profile->diet_type;
+        $restrictionSlugs = collect($profile->restriction_slugs ?? [])
+            ->reject(fn (string $slug) => $slug === 'vegano')
+            ->values()
+            ->all();
+
+        return ['diet_type' => $dietType, 'restriction_slugs' => $restrictionSlugs, ...($profile->preferences ?? $this->defaults()['preferences'])];
     }
 }

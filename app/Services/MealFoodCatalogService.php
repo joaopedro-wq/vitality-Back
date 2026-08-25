@@ -11,6 +11,18 @@ class MealFoodCatalogService
     /** @return array<string, mixed> */
     public function profile(Alimento $food): array
     {
+        $planning = $food->relationLoaded('planningProfile') ? $food->planningProfile : null;
+        if ($planning) {
+            return [
+                'grupo_alimentar' => $food->grupo,
+                'familia' => $planning->family,
+                'forma_de_consumo' => $planning->consumption_form,
+                'preparo' => $planning->preparation,
+                'adequado_para_consumo_direto' => $planning->direct_consumption,
+                'ingrediente_de_apoio' => $planning->support_ingredient,
+                'porcao' => ['min' => (float) $planning->portion_min_g, 'max' => (float) $planning->portion_max_g, 'step' => (float) $planning->portion_step_g],
+            ];
+        }
         $name = $this->normalize($food->descricao);
         $group = $this->normalize((string) $food->grupo);
         $family = $this->family($name, $group);
@@ -67,6 +79,8 @@ class MealFoodCatalogService
     /** @return array{min: float, max: float, step: float} */
     public function portionRange(Alimento $food, ?string $role = null): array
     {
+        $planning = $food->relationLoaded('planningProfile') ? $food->planningProfile : null;
+        if ($planning) return ['min' => (float) $planning->portion_min_g, 'max' => (float) $planning->portion_max_g, 'step' => (float) $planning->portion_step_g];
         $name = $this->normalize($food->descricao);
         $group = $this->normalize((string) $food->grupo);
         $family = $this->family($name, $group);

@@ -12,8 +12,13 @@ use App\Models\FoodImage;
 use App\Models\FoodPlanTag;
 use App\Models\FoodRestriction;
 use App\Services\FoodCatalogService;
+use App\Services\TacoCatalogImporter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
+use RuntimeException;
 
 class FoodAdminController extends Controller
 {
@@ -78,6 +83,48 @@ class FoodAdminController extends Controller
     public function importTaco(FoodCatalogService $catalog)
     {
         return response()->json(['data' => $catalog->importTaco(), 'success' => true]);
+    }
+
+    /**
+     * Recebe a planilha oficial TACO diretamente do administrador. O arquivo é
+     * armazenado somente durante o processamento; a versão, os alimentos e os
+     * perfis de planejamento são persistidos pelo TacoCatalogImporter.
+     */
+    public function importTacoSpreadsheet(Request $request, TacoCatalogImporter $importer)
+    {
+        $data = $request->validate([
+            'file' => ['required', 'file', 'extensions:xlsx', 'max:15360'],
+        ]);
+        $storedPath = $data['file']->store('imports/taco');
+
+        try {
+            $path = Storage::path($storedPath);
+            $preview = $importer->preview($path);
+            $version = $importer->import($path, true);
+            Log::info('food_catalog.taco_spreadsheet_imported', [
+                'user_id' => $request->user()->id,
+                'catalog_version_id' => $version->id,
+                'checksum' => $version->checksum,
+                'foods' => $preview['foods'],
+            ]);
+
+            return response()->json([
+                'data' => [
+                    'version' => [
+                        'id' => $version->id,
+                        'status' => $version->status,
+                        'checksum' => $version->checksum,
+                        'activated_at' => $version->activated_at?->toISOString(),
+                    ],
+                    'summary' => $version->summary,
+                ],
+                'success' => true,
+            ]);
+        } catch (RuntimeException $exception) {
+            throw ValidationException::withMessages(['file' => $exception->getMessage()]);
+        } finally {
+            Storage::delete($storedPath);
+        }
     }
 
     public function planTags()
