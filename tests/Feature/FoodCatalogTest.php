@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Alimento;
+use App\Models\FoodAlias;
 use App\Models\FoodImage;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -58,5 +59,27 @@ class FoodCatalogTest extends TestCase
         Sanctum::actingAs(User::factory()->create());
 
         $this->getJson('/api/foods')->assertOk()->assertJsonPath('data.0.image_url', '/storage/food-images/test/rice.jpg');
+    }
+
+    public function test_catalog_search_finds_aliases_and_returns_the_food_detail(): void
+    {
+        $food = $this->food([
+            'descricao' => 'Leite, de vaca, integral',
+            'nome_normalizado' => 'leite de vaca integral',
+            'nome_exibicao' => 'Leite',
+            'detalhe_exibicao' => 'de vaca, integral',
+        ]);
+        FoodAlias::create([
+            'alimento_id' => $food->id,
+            'alias' => 'Leite integral',
+            'normalized' => 'leite integral',
+        ]);
+        Sanctum::actingAs(User::factory()->create());
+
+        $this->getJson('/api/foods?search=leite%20integral')
+            ->assertOk()
+            ->assertJsonPath('data.0.id', $food->id)
+            ->assertJsonPath('data.0.descricao', 'Leite')
+            ->assertJsonPath('data.0.detalhe_exibicao', 'de vaca, integral');
     }
 }

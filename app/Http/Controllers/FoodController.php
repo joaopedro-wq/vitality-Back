@@ -45,7 +45,8 @@ class FoodController extends Controller
                 return $query->where(fn ($sub) => $sub
                     ->where('nome_normalizado', 'like', '%'.$normalized.'%')
                     ->orWhere('nome_exibicao_normalizado', 'like', '%'.$normalized.'%')
-                    ->orWhere('nome_exibicao_en_normalizado', 'like', '%'.$normalized.'%'));
+                    ->orWhere('nome_exibicao_en_normalizado', 'like', '%'.$normalized.'%')
+                    ->orWhereHas('aliases', fn ($aliases) => $aliases->where('normalized', 'like', '%'.$normalized.'%')));
             })
             ->when(($validated['tab'] ?? 'all') === 'favorites', fn ($query) => $query->whereHas('userPreferences', fn ($preference) => $preference->where('user_id', $user->id)->where('is_favorite', true)))
             ->when($validated['grupo'] ?? null, fn ($query, $grupos) => $query->whereIn('grupo', $grupos))
