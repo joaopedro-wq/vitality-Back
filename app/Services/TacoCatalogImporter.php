@@ -12,7 +12,11 @@ use Illuminate\Support\Str;
 
 class TacoCatalogImporter
 {
-    public function __construct(private readonly TacoSpreadsheetReader $reader, private readonly TacoFoodProfileClassifier $classifier) {}
+    public function __construct(
+        private readonly TacoSpreadsheetReader $reader,
+        private readonly TacoFoodProfileClassifier $classifier,
+        private readonly FoodCatalogService $catalog,
+    ) {}
 
     /** @return array<string,mixed> */
     public function preview(string $path): array
@@ -32,7 +36,7 @@ class TacoCatalogImporter
             foreach ($foods as $foodData) {
                 $profile = $this->classifier->classify($foodData['group'], $foodData['description'], $foodData['protein'], $foodData['carbs'], $foodData['fat']);
                 [$display, $detail] = $this->displayName($foodData['description']);
-                $food = Alimento::updateOrCreate(['fonte' => 'taco_4', 'source_reference' => $foodData['reference']], ['catalog_version_id' => $version->id, 'descricao' => $foodData['description'], 'nome_exibicao' => $display, 'detalhe_exibicao' => $detail, 'nome_normalizado' => $this->normalized($foodData['description']), 'grupo' => $foodData['group'], 'grupo_normalizado' => $foodData['group'], 'qtd' => 100, 'proteina' => $foodData['protein'], 'gordura' => $foodData['fat'], 'caloria' => $foodData['calories'], 'carbo' => $foodData['carbs'], 'status' => 'staging', 'source_version' => '4a-edicao', 'source_checksum' => $preview['checksum']]);
+                $food = Alimento::updateOrCreate(['fonte' => 'taco_4', 'source_reference' => $foodData['reference']], ['catalog_version_id' => $version->id, 'descricao' => $foodData['description'], 'nome_exibicao' => $display, 'detalhe_exibicao' => $detail, 'nome_normalizado' => $this->normalized($foodData['description']), 'grupo' => $foodData['group'], 'grupo_normalizado' => $this->catalog->normalizeGroup($foodData['group']), 'grupo_exibicao' => $this->catalog->normalizeGroupDisplay($foodData['group']), 'qtd' => 100, 'proteina' => $foodData['protein'], 'gordura' => $foodData['fat'], 'caloria' => $foodData['calories'], 'carbo' => $foodData['carbs'], 'status' => 'staging', 'source_version' => '4a-edicao', 'source_checksum' => $preview['checksum']]);
                 FoodPlanningProfile::updateOrCreate(['alimento_id' => $food->id], ['family' => $profile['family'], 'consumption_form' => $profile['consumption_form'], 'preparation' => $profile['preparation'], 'direct_consumption' => $profile['direct_consumption'], 'support_ingredient' => $profile['support_ingredient'], 'portion_min_g' => $profile['portion']['min'], 'portion_max_g' => $profile['portion']['max'], 'portion_step_g' => $profile['portion']['step'], 'diet_compatibility' => $profile['diets'], 'restriction_compatibility' => $profile['restrictions'], 'confidence' => $profile['confidence'], 'review_status' => $profile['review_status']]);
                 $food->planTags()->sync(collect($profile['tags'])->map(fn ($slug) => $tagIds[$slug] ?? null)->filter()->values());
                 FoodAlias::query()->where('alimento_id', $food->id)->delete();
