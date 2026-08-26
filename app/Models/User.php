@@ -59,6 +59,11 @@ class User extends Authenticatable
         return $this->hasMany(MealPlan::class);
     }
 
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'group_members')->withPivot('joined_at')->withTimestamps();
+    }
+
     /**
      * Get the attributes that should be cast.
      *

@@ -8,6 +8,7 @@ use App\Http\Controllers\DiaryEntryController;
 use App\Http\Controllers\DiaryMealController;
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MealPlanController;
 use App\Http\Controllers\MealPlanProfileController;
 use App\Http\Controllers\MetaDiariaController;
@@ -129,5 +130,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/refeicao/{meal}', [DiaryMealController::class, 'show']);
     Route::put('/refeicao/{meal}', [DiaryMealController::class, 'update']);
     Route::delete('/refeicao/{meal}', [DiaryMealController::class, 'destroy']);
+
+    Route::post('/groups/join', [GroupController::class, 'join']);
+    Route::get('/groups', [GroupController::class, 'index']);
+    Route::post('/groups', [GroupController::class, 'store']);
+    Route::get('/groups/{group}', [GroupController::class, 'show']);
+    Route::delete('/groups/{group}', [GroupController::class, 'destroy']);
+    Route::post('/groups/{group}/leave', [GroupController::class, 'leave']);
+    Route::get('/groups/{group}/ranking', [GroupController::class, 'ranking']);
+    Route::get('/groups/{group}/activity', [GroupController::class, 'activity']);
 
 });

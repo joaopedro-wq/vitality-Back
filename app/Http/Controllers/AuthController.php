@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use App\Services\GroupService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,8 @@ class AuthController extends Controller
 
         $user = $request->user();
         $token = $user->createToken('vitality-web')->plainTextToken;
+
+        GroupService::ensureGlobalMembership($user);
 
         return response()->json([
             'status' => true,

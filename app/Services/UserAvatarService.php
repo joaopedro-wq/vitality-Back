@@ -46,6 +46,19 @@ class UserAvatarService
         return $user->fresh();
     }
 
+    public static function url(?string $avatar): ?string
+    {
+        if (! $avatar) {
+            return null;
+        }
+
+        if (filter_var($avatar, FILTER_VALIDATE_URL)) {
+            return $avatar;
+        }
+
+        return url(Storage::disk(self::DISK)->url($avatar));
+    }
+
     private function storedPath(?string $avatar): ?string
     {
         if (! $avatar) {

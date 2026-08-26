@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserAvatarRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Services\GroupService;
 use App\Services\MealPresetService;
 use App\Services\UserAvatarService;
 use Illuminate\Http\Request;
@@ -123,6 +124,13 @@ class UserController extends Controller
                 'success' => false,
             ], 404);
         }
+
+        // Ponto certo pro auto-join no grupo global "Vitality": a sessão restaurada por token
+        // (`AuthService.restoreSession()` no front, chamada a cada boot do app) é quem realmente
+        // roda toda vez que alguém "entra no sistema" — muito mais que `/login`, que só dispara
+        // no primeiro acesso da sessão. Fica também em `AuthController::login` pro caso de login
+        // dentro da mesma SPA sem reload de página.
+        GroupService::ensureGlobalMembership($user);
 
         return UserResource::make($user)->additional([
             'message' => 'Usuário encontrado com sucesso',
