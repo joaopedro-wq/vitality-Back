@@ -4,18 +4,6 @@ use App\Services\TacoFoodProfileClassifier;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
-/**
- * Popula, para todo alimento já existente, as 3 chaves novas de preferência de proteína
- * (`carne_vermelha`, `aves`, `fruto_do_mar`) usadas por MealPlanFeasibilityService::supportsPreferences().
- *
- * Sem isso, os chips novos ("Sem carne vermelha" etc.) ficariam quebrados pra todo o catálogo já
- * importado: alimento com `food_planning_profiles` (TACO) não tem essas chaves no
- * `restriction_compatibility` ainda, e cai em 'desconhecido' -> tratado como incompatível assim
- * que o chip é marcado; alimento sem profile (hoje, os importados via USDA) não tem NENHUMA linha
- * na pivot `alimento_food_restriction` pras 3 restrições novas, e a ausência também é lida como
- * incompatibilidade — ou seja, TODO alimento sem profile ficaria excluído ao marcar qualquer um
- * dos 3 chips, não só os que realmente são daquela categoria.
- */
 return new class extends Migration
 {
     public function up(): void
