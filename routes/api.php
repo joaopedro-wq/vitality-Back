@@ -107,6 +107,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('/users', [UserAdminController::class, 'index']);
         Route::get('/users/{user}', [UserAdminController::class, 'show']);
+        Route::delete('/users/{user}', [UserAdminController::class, 'destroy']);
         Route::get('/foods', [FoodAdminController::class, 'index']);
         Route::get('/foods/duplicates', [FoodAdminController::class, 'duplicates']);
         Route::post('/foods', [FoodAdminController::class, 'store']);

@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\MealPlan;
 use App\Models\Registro;
 use App\Models\User;
+use App\Services\UserAvatarService;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserAdminController extends Controller
 {
@@ -51,6 +53,26 @@ class UserAdminController extends Controller
             'recent_meal_plans' => MealPlan::query()->where('user_id', $user->id)->latest('updated_at')->limit(5)
                 ->get(['id', 'titulo', 'updated_at', 'created_at']),
         ]]);
+    }
+
+    public function destroy(Request $request, User $user)
+    {
+        abort_if($request->user()->id === $user->id, 422, __('messages.admin_cannot_delete_self'));
+
+        DB::transaction(function () use ($user) {
+            DB::table('registros')->where('id_usuario', $user->id)->delete();
+            DB::table('dietas')->where('id_usuario', $user->id)->delete();
+            DB::table('refeicaos')->where('id_usuario', $user->id)->delete();
+            DB::table('meta_diarias')->where('id_usuario', $user->id)->delete();
+            DB::table('nutricao_recomendadas')->where('id_usuario', $user->id)->delete();
+
+            DB::table('alimentos')->where('id_usuario', $user->id)->update(['id_usuario' => null]);
+            $user->tokens()->delete();
+            app(UserAvatarService::class)->remove($user);
+            $user->delete();
+        });
+
+        return response()->json(['success' => true]);
     }
 
     private function filters(Request $request): array

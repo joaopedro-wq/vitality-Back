@@ -116,6 +116,46 @@ class MealPlanApiTest extends TestCase
         $this->assertDatabaseCount('registros', 0);
     }
 
+    public function test_item_suggestions_fall_back_to_catalog_when_ai_is_unavailable_and_every_suggestion_is_applicable(): void
+    {
+        $user = User::factory()->create();
+        Meta_diaria::create(['id_usuario' => $user->id, 'data' => null, 'meta_calorias' => 2000, 'meta_proteinas' => 120, 'meta_carboidratos' => 220, 'meta_gorduras' => 65]);
+        $this->food('Ovos', 13, 1, 10, 155, ['cafe_proteina']);
+        $this->food('Pão integral', 9, 50, 3, 253, ['cafe_base']);
+        $this->food('Banana', 1, 22, 0, 89, ['fruta_lanche', 'lanche_pratico']);
+        $this->food('Frango', 31, 0, 4, 165, ['prato_proteina']);
+        $this->food('Arroz cozido', 2, 28, 0, 130, ['prato_base']);
+        $this->food('Feijão cozido', 5, 14, 1, 76, ['prato_leguminosa']);
+        $this->food('Brócolis', 3, 7, 0, 35, ['prato_vegetal']);
+        $this->food('Omelete', 13, 1, 10, 155, ['cafe_proteina']);
+        $this->food('Tapioca', 0, 50, 0, 200, ['cafe_base']);
+        $this->food('Carne bovina', 26, 0, 10, 200, ['prato_proteina']);
+        $this->food('Peixe', 26, 0, 4, 145, ['prato_proteina']);
+        $this->food('Batata cozida', 2, 18, 0, 86, ['prato_base']);
+        $this->food('Lentilha cozida', 5, 14, 1, 76, ['prato_leguminosa']);
+        $this->food('Abobrinha', 1, 3, 0, 20, ['prato_vegetal']);
+        Sanctum::actingAs($user);
+
+        $payload = ['meal_count' => 3, 'meal_times' => ['08:00', '12:30', '19:30'], 'style' => 'rapido', 'diet_type' => 'onivora', 'restriction_slugs' => [], 'excluded_food_ids' => [], 'included_food_ids' => []];
+        $draft = $this->postJson('/api/meal-plans/preview', $payload)->assertOk()->assertJsonCount(3, 'data.meals')->json('data');
+        $protein = collect($draft['meals'][1]['items'])->firstWhere('role', 'prato_proteina');
+
+        $suggestions = $this->postJson("/api/meal-plans/preview/meal/1/item/{$protein['food_id']}/suggestions", ['draft_id' => $draft['draft_id']])
+            ->assertOk()->json('data');
+        $this->assertNotEmpty($suggestions, 'Sem IA disponível, a rota deveria cair no catálogo em vez de falhar.');
+
+        // Toda sugestão devolvida precisa ser de fato aplicável — sem isso, a pessoa escolhe uma
+        // opção "válida" na lista e recebe erro só na confirmação (causa raiz nº2 do plano).
+        // undo() entre cada tentativa porque replace() muda o item da posição — sem desfazer, a
+        // 2ª sugestão tentaria substituir um food_id que não está mais na refeição.
+        foreach ($suggestions as $suggestion) {
+            $this->postJson("/api/meal-plans/preview/meal/1/item/{$protein['food_id']}/replace", [
+                'draft_id' => $draft['draft_id'], 'replacement_food_id' => $suggestion['food_id'], 'quantity' => $suggestion['quantity'],
+            ])->assertOk();
+            $this->postJson('/api/meal-plans/preview/undo', ['draft_id' => $draft['draft_id']])->assertOk();
+        }
+    }
+
     public function test_profile_persists_restrictions_and_a_draft_cannot_be_saved_by_another_user(): void
     {
         $user = User::factory()->create();

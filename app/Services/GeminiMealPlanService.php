@@ -150,31 +150,48 @@ class GeminiMealPlanService
             ->take(40)
             ->values();
         if ($foods->count() < 2) {
+            Log::info('meal_plan.swap.rejected', ['reason' => 'no_replacements', 'position' => $position, 'food_id' => $foodId]);
             throw ValidationException::withMessages(['food_id' => __('messages.no_replacements')]);
         }
-        $answer = $this->ask('substituicao', [
-            'alimento_atual' => $item, 'papel_culinario' => $role, 'refeicao_atual' => $meal,
-            'candidatos' => $this->foodData($foods), 'regras' => ['Sugira entre 2 e 5 substituições para o mesmo papel culinário.', 'Mantenha a refeição coerente e as calorias/macros próximas.', 'Use somente IDs candidatos.', $this->languageInstruction('O campo reason de cada sugestão deve ser escrito em')],
-        ], $this->suggestionSchema());
+
+        try {
+            $answer = $this->ask('substituicao', [
+                'alimento_atual' => $item, 'papel_culinario' => $role, 'refeicao_atual' => $meal,
+                'candidatos' => $this->foodData($foods), 'regras' => ['Sugira entre 2 e 5 substituições para o mesmo papel culinário.', 'Mantenha a refeição coerente e as calorias/macros próximas.', 'Use somente IDs candidatos.', $this->languageInstruction('O campo reason de cada sugestão deve ser escrito em')],
+            ], $this->suggestionSchema());
+        } catch (ValidationException $exception) {
+            Log::warning('meal_plan.swap.ai_failed', ['position' => $position, 'food_id' => $foodId, 'error' => $exception->getMessage()]);
+            $answer = ['suggestions' => []];
+        }
         $foodById = $foods->keyBy('id');
         $answer['suggestions'] = collect($answer['suggestions'] ?? [])
             ->merge($foods->take(12)->map(fn (Alimento $food) => ['food_id' => $food->id, 'quantity_g' => $item['quantity'], 'reason' => __('messages.meal_plan.fallback_swap_reason')])->all())
             ->unique('food_id')
             ->values()
             ->all();
-        $suggestions = collect($answer['suggestions'] ?? [])->map(function ($suggestion) use ($foodById, $meal, $foodId, $item) {
+        $suggestions = collect($answer['suggestions'] ?? [])->map(function ($suggestion) use ($foodById, $meal, $foodId, $item, $draft) {
             $food = $foodById->get((int) ($suggestion['food_id'] ?? 0));
+            // bestSingleReplacementQuantity() já normaliza pro min/max/step do alimento
+            // internamente (mesma normalizeQuantity() que rebalanceItems() usa) — nada a
+            // clampar aqui, só checar coerência.
             $quantity = $food ? $this->bestSingleReplacementQuantity($meal, $foodId, $food) : 0.0;
-            if (! $food || ! $this->composition->quantityIsRealistic($food, $quantity, $item['role']) || ! $this->replacementKeepsMealCoherent($meal, $foodId, $food)) {
+            if (! $food || ! $this->replacementKeepsMealCoherent($meal, $foodId, $food)) {
                 return null;
             }
             $replacement = ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'role' => $item['role'], 'quantity' => round($quantity, 1), 'macros' => $this->macroCalculator->foodMacros($food, $quantity)];
             $items = collect($meal['items'])->map(fn ($mealItem) => $mealItem['food_id'] === $foodId ? $replacement : $mealItem)->all();
             $totals = $this->macroCalculator->sum(collect($items)->pluck('macros')->all());
+            // Confere também a margem do DIA (não só da refeição) com essa troca aplicada —
+            // sem isso, a sugestão passa aqui (tolerância de refeição é larga) e só falha depois,
+            // quando a pessoa confirma em applyItemReplacement() (que já checa as duas).
+            $dayMeals = collect($draft->payload['meals'])->map(fn ($mealDoDia) => $mealDoDia['position'] === $meal['position'] ? [...$mealDoDia, 'totals' => $totals] : $mealDoDia);
+            $dayTotals = $this->macroCalculator->sum($dayMeals->pluck('totals')->all());
+            $withinDay = $this->macroCalculator->withinTarget($draft->payload['target'], $dayTotals, 'swap_day');
 
-            return ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'quantity' => $replacement['quantity'], 'role' => $item['role'], 'macros' => $replacement['macros'], 'reason' => Str::limit(strip_tags((string) ($suggestion['reason'] ?? __('messages.meal_plan.fallback_suggestion_reason'))), 160, ''), 'meal_totals' => $totals, 'delta' => $this->macroCalculator->delta($meal['totals'], $totals), 'within_target' => $this->macroCalculator->withinTarget($meal['target'], $totals, 'swap')];
+            return ['food_id' => $food->id, 'descricao' => $food->descricao, 'descricao_exibicao' => $food->nome_exibicao, 'detalhe_exibicao' => $food->detalhe_exibicao, 'quantity' => $replacement['quantity'], 'role' => $item['role'], 'macros' => $replacement['macros'], 'reason' => Str::limit(strip_tags((string) ($suggestion['reason'] ?? __('messages.meal_plan.fallback_suggestion_reason'))), 160, ''), 'meal_totals' => $totals, 'delta' => $this->macroCalculator->delta($meal['totals'], $totals), 'within_target' => $withinDay && $this->macroCalculator->withinTarget($meal['target'], $totals, 'swap')];
         })->filter(fn ($suggestion) => $suggestion && $suggestion['within_target'])->unique('food_id')->take(5)->values();
         if ($suggestions->isEmpty()) {
+            Log::info('meal_plan.swap.rejected', ['reason' => 'no_close_swap', 'position' => $position, 'food_id' => $foodId]);
             throw ValidationException::withMessages(['food_id' => __('messages.meal_plan.no_close_swap')]);
         }
 
@@ -199,6 +216,7 @@ class GeminiMealPlanService
         }
         $food = $this->candidates($draft->preferences)->firstWhere('id', $replacementFoodId);
         if (! $food || ! in_array($current['role'], $this->composition->rolesForFood($food), true) || ! $this->replacementKeepsMealCoherent($meal, $foodId, $food)) {
+            Log::info('meal_plan.swap.rejected', ['reason' => 'incompatible_replacement', 'position' => $position, 'food_id' => $foodId, 'replacement_food_id' => $replacementFoodId]);
             throw ValidationException::withMessages(['replacement_food_id' => __('messages.meal_plan.incompatible_replacement')]);
         }
         $quantity = $this->bestSingleReplacementQuantity($meal, $foodId, $food) ?: $quantity;
@@ -206,11 +224,13 @@ class GeminiMealPlanService
         $meal['items'] = collect($meal['items'])->map(fn ($item) => $item['food_id'] === $foodId ? $replacement : $item)->values()->all();
         $meal['totals'] = $this->macroCalculator->sum(collect($meal['items'])->pluck('macros')->all());
         if (! $this->macroCalculator->withinTarget($meal['target'], $meal['totals'], 'swap')) {
+            Log::info('meal_plan.swap.rejected', ['reason' => 'swap_out_of_meal_margin', 'position' => $position, 'food_id' => $foodId, 'replacement_food_id' => $replacementFoodId]);
             throw ValidationException::withMessages(['replacement_food_id' => __('messages.meal_plan.swap_out_of_meal_margin')]);
         }
         $payload['meals'][$mealIndex] = $meal;
         $payload['totals'] = $this->macroCalculator->sum(collect($payload['meals'])->pluck('totals')->all());
         if (! $this->macroCalculator->withinTarget($payload['target'], $payload['totals'], 'swap_day')) {
+            Log::info('meal_plan.swap.rejected', ['reason' => 'swap_out_of_day_margin', 'position' => $position, 'food_id' => $foodId, 'replacement_food_id' => $replacementFoodId]);
             throw ValidationException::withMessages(['replacement_food_id' => __('messages.meal_plan.swap_out_of_day_margin')]);
         }
         $draft->update(['previous_payload' => $draft->payload, 'payload' => $payload, 'expires_at' => now()->addMinutes(config('gemini.draft_ttl_minutes'))]);
@@ -322,7 +342,6 @@ class GeminiMealPlanService
             throw ValidationException::withMessages(['draft_id' => __('messages.preview_expired')]);
         }
     }
-
 
     private function isIncludedFood(MealPlanDraft $draft, int $foodId): bool
     {
@@ -983,5 +1002,4 @@ class GeminiMealPlanService
     {
         return ['type' => 'object', 'properties' => ['suggestions' => ['type' => 'array', 'minItems' => 2, 'maxItems' => 5, 'items' => ['type' => 'object', 'properties' => ['food_id' => ['type' => 'integer'], 'quantity_g' => ['type' => 'number'], 'reason' => ['type' => 'string']], 'required' => ['food_id', 'quantity_g', 'reason']]]], 'required' => ['suggestions']];
     }
-
 }

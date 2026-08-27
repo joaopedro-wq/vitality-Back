@@ -13,6 +13,7 @@ return [
     'entry_created' => 'Consumo registrado com sucesso.',
     'entry_updated' => 'Consumo atualizado com sucesso.',
     'meal_unavailable' => 'A refeição selecionada não está disponível.',
+    'admin_cannot_delete_self' => 'Você não pode excluir sua própria conta por aqui.',
     'foods_unavailable' => 'Um ou mais alimentos não estão disponíveis.',
     'preview_expired' => 'Esta prévia expirou. Gere um novo plano.',
     'invalid_meal' => 'Refeição inválida.',

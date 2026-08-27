@@ -13,6 +13,7 @@ return [
     'entry_created' => 'Consumption logged successfully.',
     'entry_updated' => 'Consumption updated successfully.',
     'meal_unavailable' => 'The selected meal is not available.',
+    'admin_cannot_delete_self' => 'You cannot delete your own account here.',
     'foods_unavailable' => 'One or more foods are not available.',
     'preview_expired' => 'This preview has expired. Generate a new plan.',
     'invalid_meal' => 'Invalid meal.',
