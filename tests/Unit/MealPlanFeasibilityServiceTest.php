@@ -36,6 +36,24 @@ class MealPlanFeasibilityServiceTest extends TestCase
         $this->assertContains('prato_proteina', $withoutEgg['missing_roles']);
     }
 
+    public function test_protein_preference_restrictions_exclude_matching_category(): void
+    {
+        FoodRestriction::firstOrCreate(['slug' => 'sem_carne_vermelha'], ['label' => 'Sem carne vermelha', 'type' => 'preference']);
+        FoodRestriction::firstOrCreate(['slug' => 'sem_aves'], ['label' => 'Sem aves', 'type' => 'preference']);
+        $this->food('Carne bovina grelhada', ['prato_proteina'], 'carne', ['carne_vermelha' => 'incompativel', 'aves' => 'compativel']);
+        $this->food('Frango grelhado', ['prato_proteina'], 'carne', ['carne_vermelha' => 'compativel', 'aves' => 'incompativel']);
+        $service = app(MealPlanFeasibilityService::class);
+        $onivora = [...$this->preferences(), 'diet_type' => 'onivora'];
+
+        $withoutRedMeat = $service->candidates([...$onivora, 'restriction_slugs' => ['sem_carne_vermelha']]);
+        $withoutPoultry = $service->candidates([...$onivora, 'restriction_slugs' => ['sem_aves']]);
+
+        $this->assertFalse($withoutRedMeat->contains('descricao', 'Carne bovina grelhada'));
+        $this->assertTrue($withoutRedMeat->contains('descricao', 'Frango grelhado'));
+        $this->assertFalse($withoutPoultry->contains('descricao', 'Frango grelhado'));
+        $this->assertTrue($withoutPoultry->contains('descricao', 'Carne bovina grelhada'));
+    }
+
     private function preferences(): array
     {
         return [

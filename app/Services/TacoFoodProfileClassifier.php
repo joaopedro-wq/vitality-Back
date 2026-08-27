@@ -81,7 +81,35 @@ class TacoFoodProfileClassifier
         $peanut = Str::contains($name, 'amendoim') ? 'incompativel' : ($unknownProcessed ? 'desconhecido' : 'compativel');
         $shellfish = Str::contains($name, ['camarao', 'camarão', 'caranguejo', 'lagosta', 'marisco']) ? 'incompativel' : ($unknownProcessed ? 'desconhecido' : 'compativel');
 
-        return compact('gluten', 'lactose', 'egg', 'peanut', 'shellfish');
+        // Preferência de proteína (chips opcionais do quiz de Dietas quando o padrão é onívoro):
+        // `family` já separa "carne" (grupo TACO "carnes e derivados", mistura boi/porco/frango)
+        // de "peixe" (grupo "pescados e frutos do mar", mistura peixe e crustáceo/molusco). Dentro
+        // de "carne", só a palavra-chave no nome distingue ave de carne vermelha — item ambíguo
+        // (ex. "carne moída" sem espécie, "hambúrguer") fica `desconhecido`, nunca chuta um lado.
+        $isPoultryName = Str::contains($name, ['frango', 'galinha', 'peru', 'chester']);
+        $isRedMeatName = Str::contains($name, ['bovina', 'bovino', 'suina', 'suíno', 'porco', 'boi', 'vitela', 'cordeiro', 'charque', 'carne seca', 'bacon', 'presunto', 'linguica', 'linguiça', 'salsicha']);
+        $aves = match (true) {
+            $family !== 'carne' => 'compativel',
+            $isPoultryName => 'incompativel',
+            $isRedMeatName => 'compativel',
+            default => 'desconhecido',
+        };
+        $carneVermelha = match (true) {
+            $family !== 'carne' => 'compativel',
+            $isRedMeatName => 'incompativel',
+            $isPoultryName => 'compativel',
+            default => 'desconhecido',
+        };
+        // "peixe" já é o family de todo o grupo "pescados e frutos do mar" — cobre peixe e
+        // frutos do mar (camarão, lula etc.) num chip só, por decisão de produto.
+        $frutoDoMar = $family === 'peixe' ? 'incompativel' : 'compativel';
+
+        return [
+            ...compact('gluten', 'lactose', 'egg', 'peanut', 'shellfish'),
+            'carne_vermelha' => $carneVermelha,
+            'aves' => $aves,
+            'fruto_do_mar' => $frutoDoMar,
+        ];
     }
 
     /** @return list<string> */

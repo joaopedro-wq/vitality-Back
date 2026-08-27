@@ -118,6 +118,9 @@ class MealPlanFeasibilityService
             'sem_ovo' => 'egg',
             'sem_amendoim' => 'peanut',
             'sem_crustaceos' => 'shellfish',
+            'sem_carne_vermelha' => 'carne_vermelha',
+            'sem_aves' => 'aves',
+            'sem_frutos_do_mar' => 'fruto_do_mar',
         ];
         foreach ($preferences['restriction_slugs'] ?? [] as $slug) {
             if (($profile->restriction_compatibility[$keys[$slug] ?? $slug] ?? 'desconhecido') !== 'compativel') {

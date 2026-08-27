@@ -47,7 +47,7 @@ class MealPlanProfileController extends Controller
             'meal_times.*' => ['required', 'date_format:H:i'],
             'style' => ['required', 'in:rapido,caseiro,economico'],
             'diet_type' => ['required', 'in:onivora,vegetariana'],
-            'restriction_slugs' => ['present', 'array', 'max:7'],
+            'restriction_slugs' => ['present', 'array', 'max:10'],
             'restriction_slugs.*' => ['string', 'exists:food_restrictions,slug'],
             'excluded_food_ids' => ['present', 'array', 'max:30'],
             'excluded_food_ids.*' => ['integer', 'exists:alimentos,id'],
@@ -61,7 +61,7 @@ class MealPlanProfileController extends Controller
         return $request->validate([
             'meal_count' => ['required', 'integer', 'in:3,4,5'], 'meal_times' => ['required', 'array', 'min:3', 'max:5'], 'meal_times.*' => ['required', 'date_format:H:i'],
             'style' => ['required', 'in:rapido,caseiro,economico'], 'diet_type' => ['required', 'in:onivora,vegetariana'],
-            'restriction_slugs' => ['present', 'array', 'max:7'], 'restriction_slugs.*' => ['string', 'exists:food_restrictions,slug'],
+            'restriction_slugs' => ['present', 'array', 'max:10'], 'restriction_slugs.*' => ['string', 'exists:food_restrictions,slug'],
             'excluded_food_ids' => ['present', 'array', 'max:30'], 'excluded_food_ids.*' => ['integer', 'exists:alimentos,id'],
             'included_food_ids' => ['present', 'array', 'max:8'],
             'included_food_ids.*' => ['integer', 'exists:alimentos,id', Rule::notIn($request->input('excluded_food_ids', []))],
