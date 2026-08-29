@@ -19,7 +19,21 @@ return [
 
     'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 
-    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000')],
+    /*
+     | Uma origin só não basta desde que o app nativo entrou em cena: o WebView
+     | do Capacitor nunca se apresenta como o domínio do site. No Android o
+     | esquema padrão é `https` (confirmado no emulador: o log do WebView serve
+     | `https://localhost/...`), e `http://localhost` fica como rede de segurança
+     | para quem mudar `androidScheme`; no iOS a origin é `capacitor://localhost`.
+     | As três são fixas — fazem parte do runtime, não do deploy. O resto vem de
+     | FRONTEND_ORIGINS (lista separada por vírgula) com FRONTEND_URL preservado
+     | como fallback para os ambientes que ainda só definem essa variável.
+     */
+    'allowed_origins' => array_values(array_unique(array_filter(array_merge(
+        ['https://localhost', 'http://localhost', 'capacitor://localhost'],
+        array_map('trim', explode(',', (string) env('FRONTEND_ORIGINS', ''))),
+        [env('FRONTEND_URL', 'http://localhost:3000')],
+    )))),
 
     'allowed_origins_patterns' => [],
 
